@@ -30,7 +30,7 @@ class inputGUI(object):
         #Construct GUI
         #  ________________________________________________________
         # |Guided Mode                    |                        |
-        # |"Description"                  |                        |
+        # |"Guided Mode Description"      |                        |
         # |*Guided Metrology Button*      |                        |
         # |-------------------------------|                        |
         # |Manual Mode                    |                        |
@@ -50,7 +50,20 @@ class inputGUI(object):
         # |                                                        |
         # |________________________________________________________|
         
-        #Titles
+        #Guided Mode Label
+        Label(master, text="Guided Mode", font="bold").grid(row=0, column=0, columnspan=2, sticky='W')
+        #Guided Mode Description
+        Label(master, text="Be guided through measuring the CI FIFs.").grid(row=1, column=0, columnspan=2, sticky='W')
+        #Guided Mode Button        
+        gmButton = Button(master, text="Begin Guided Mode",bg = "white", command=lambda:self._loadInputDataFile(S00))
+        gmButton.grid(row=2, column=0, columnspan=2, sticky='W')
+        
+        #FIF Map
+        self.fifMAP = PhotoImage(file="tempmap.png", width=600, height=600)
+        Label(image=self.cordImage).grid(row=0, column=15, rowspan=3, sticky='W')  
+        
+        #Grid Separator
+        Separator(master, orient="horizontal").grid(row=3, column=0, columnspan=5, sticky='ew')
         
         #Buttons
         #REB0
@@ -94,8 +107,6 @@ class inputGUI(object):
         '''
         #open file
         fileName = self._openFile()
-        #load workbook
-        self.wb = load_workbook(fileName, read_only=True)
         #load Sheet1
         self.ws = self.wb.get_sheet_by_name('Sheet1')
         #create a python list of the data by iterating over all of the Sheet1 data
