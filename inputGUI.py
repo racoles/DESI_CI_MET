@@ -81,7 +81,7 @@ class inputGUI(object):
         #Note Text Box
         noteBox = Entry(master).grid(row=10, column=0, columnspan=5, sticky='W')
         #Note Text Submit Button
-        Button(master, text='Show', command=show_entry_fields).grid(row=3, column=1, sticky=W, pady=4
+        Button(master, text='Submit', command=self._log_entry_field(noteBox)).grid(row=11, column=1, sticky='W')
         
         
         
@@ -122,7 +122,7 @@ class inputGUI(object):
         #S00 = Button(master, text="S00",bg = "white", command=lambda:self._loadInputDataFile(S00, RSAMetGUI.S00List, 'S00')) #white
         #S00.grid(row=4, column=2, sticky='W')
         
-    def log_entry_field(self, noteBox):
+    def _log_entry_field(self, noteBox):
         print("First Name: %s\nLast Name: %s" % (noteBox.get()))
         noteBox.delete(0,'END')
         
