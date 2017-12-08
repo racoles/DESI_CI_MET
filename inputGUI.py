@@ -10,7 +10,7 @@ Software for the DESI CI metrology program.
 
 # Import #######################################################################################
 import ntpath
-from tkinter import Button, filedialog, PhotoImage, Label, Entry, StringVar
+from tkinter import Button, filedialog, PhotoImage, Label, Entry, StringVar, Frame
 from tkinter.ttk import Separator, Style
 ################################################################################################
 
@@ -63,6 +63,7 @@ class inputGUI(object):
         
         #Grid Separator
         Separator(master, orient="horizontal").grid(row=3, column=0, columnspan=5, sticky='ew')
+        Style(master).configure("TSeparator", background="black")
         
         #Manual Mode Label
         Label(master, text="Manual Mode", font="bold").grid(row=4, column=0, columnspan=2, sticky='W')
@@ -74,15 +75,18 @@ class inputGUI(object):
         mmCButton = Button(master, text="Centroid FIF",bg = "white", command=lambda:self._loadInputDataFile()).grid(row=7, column=0, columnspan=2, sticky='W')
 
         #Grid Separator
-        Separator(master, orient="horizontal").grid(row=8, column=0, columnspan=5, sticky='ew')        
+        Separator(master, orient="horizontal").grid(row=8, column=0, columnspan=5, sticky='ew')
+        #Style(master).configure("TSeparator", background="black")   
  
         #Note Text Box Label
         Label(master, text="Add Note to Log", font="bold").grid(row=9, column=0, columnspan=2, sticky='W')
         #Note Text Box
-        noteBox = Entry(master).grid(row=10, column=0, columnspan=5, sticky='W')
+        noteStr = StringVar()
+        noteBox = Entry(master, textvariable=noteStr, width=40).grid(row=10, column=0, columnspan=5, sticky='W')
         #Note Text Submit Button
         Button(master, text='Submit', command=self._log_entry_field(noteBox)).grid(row=10, column=1, columnspan=2, sticky='W')
         
+        #Log Console
         
         
         
@@ -91,21 +95,7 @@ class inputGUI(object):
         
         
         
-        #Grid Spacing
-        Label(master, text=" ").grid(row=1, column=0)
-        Label(master, text=" ").grid(row=8, column=0)
-        Label(master, text=" ").grid(row=15, column=0)
-        
-        #Grid Separator
-        Separator(master, orient="horizontal").grid(row=5, column=0, columnspan=4, sticky='ew')
-        Separator(master, orient="horizontal").grid(row=13, column=0, columnspan=4, sticky='ew')
-        Style(master).configure("TSeparator", background="black")
-        
-        #Labels
-        Label(master, text="Load Sensor Metrology Files (.xlsx)").grid(row=0, column=0, columnspan=2, sticky='W')
-        Label(master, text="Raft Plane Equations (optional)").grid(row=6, column=0, columnspan=2, sticky='W')
-        Label(master, text="Ex:    53.0234 + 0.0010629 x + 0.00322188 y").grid(row=7, column=0, columnspan=2, sticky='W')
-        Label(master, text="Process and Plot Data").grid(row=14, column=0, columnspan=2, sticky='W')
+
         
         #Datum Plane Text Box
         datumPlaneEqn = StringVar()
@@ -146,20 +136,12 @@ class inputGUI(object):
         sensorList.append(list(self._iter_rows(self.ws)))
         #update the button text to show the filename
         sensorButton.config(text = sensorButtonLabel + ': ' + self._path_leaf(fileName))
-
         
     def _openFile(self):
         '''
         Create open file dialogue box
         '''
         return filedialog.askopenfilename()
-    
-    def _iter_rows(self, ws):
-        '''
-        iterate through xlsx list
-        '''
-        for row in self.ws.iter_rows(row_offset=1):
-            yield [cell.value for cell in row]
             
     def _path_leaf(self, path):
         '''
