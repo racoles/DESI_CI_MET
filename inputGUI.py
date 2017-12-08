@@ -55,7 +55,7 @@ class inputGUI(object):
         #Guided Mode Description
         Label(master, text="Be guided through measuring the CI FIFs.").grid(row=1, column=0, columnspan=2, sticky='W')
         #Guided Mode Button        
-        gmButton = Button(master, text="Begin Guided Mode",bg = "white", command=lambda:self._loadInputDataFile(S00))
+        gmButton = Button(master, text="Begin Guided Mode",bg = "white", command=lambda:self._loadInputDataFile())
         gmButton.grid(row=2, column=0, columnspan=2, sticky='W')
         
         #FIF Map
@@ -68,16 +68,19 @@ class inputGUI(object):
         #Manual Mode Label
         Label(master, text="Manual Mode", font="bold").grid(row=4, column=0, columnspan=2, sticky='W')
         #Manual Mode Description
-        Label(master, text="Perform manual measurements of the CI FIFs.").grid(row=1, column=0, columnspan=2, sticky='W') 
-        
-        #Buttons
-        #REB0
-        S00 = Button(master, text="S00",bg = "white", command=lambda:self._loadInputDataFile(S00, RSAMetGUI.S00List, 'S00')) #white
-        S00.grid(row=4, column=2, sticky='W')
-        
-        #Add coordinate compass
-        self.cordImage = PhotoImage(file="cord.pgm", width=100, height=79)
-        Label(image=self.cordImage).grid(row=2, column=3, rowspan=3, sticky='W')
+        Label(master, text="Perform manual measurements of the CI FIFs.").grid(row=5, column=0, columnspan=2, sticky='W')
+        #Manual Mode Focus Curve
+        mmFCButton = Button(master, text="Focus Curve",bg = "white", command=lambda:self._loadInputDataFile())
+        mmFCButton.grid(row=6, column=0, columnspan=2, sticky='W')
+        #Manual Mode Centroid FIF
+        mmCButton = Button(master, text="Centroid FIF",bg = "white", command=lambda:self._loadInputDataFile())
+        mmCButton.grid(row=7, column=0, columnspan=2, sticky='W')
+
+        #Grid Separator
+        Separator(master, orient="horizontal").grid(row=8, column=0, columnspan=5, sticky='ew')        
+ 
+ 
+ 
         
         #Grid Spacing
         Label(master, text=" ").grid(row=1, column=0)
@@ -104,6 +107,11 @@ class inputGUI(object):
         raftFitEqn = StringVar()
         Label(master, text="Enter Raft Fit Equation (must also provide Datum Plane Equation)").grid(row=11, column=0, columnspan=2, sticky='W')
         Entry(master, textvariable=raftFitEqn, width=40).grid(row=12, column=0, columnspan=3, sticky='W')
+        
+        #Buttons
+        #REB0
+        #S00 = Button(master, text="S00",bg = "white", command=lambda:self._loadInputDataFile(S00, RSAMetGUI.S00List, 'S00')) #white
+        #S00.grid(row=4, column=2, sticky='W')
         
         
     def _loadInputDataFile(self, sensorButton, sensorList, sensorButtonLabel):
