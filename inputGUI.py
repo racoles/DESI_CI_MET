@@ -10,7 +10,7 @@ Software for the DESI CI metrology program.
 
 # Import #######################################################################################
 import ntpath
-from tkinter import Button, filedialog, PhotoImage, Label, Entry, StringVar, Frame
+from tkinter import Button, filedialog, PhotoImage, Label, Entry, Frame
 from tkinter.ttk import Separator, Style
 ################################################################################################
 
@@ -85,9 +85,13 @@ class inputGUI(object):
         #Note Text Submit Button
         Button(master, text='Submit', bg = "white", command=lambda:self._log_entry_field(noteBox)).grid(row=10, column=1, columnspan=2, sticky='W')
         
+        #Grid Separator
+        Separator(master, orient="horizontal").grid(row=11, column=0, columnspan=5, sticky='ew')
+        #Style(master).configure("TSeparator", background="black")   
+        
         #Log Console
         # create a Frame for the Text and Scrollbar
-        txt_frm = tki.Frame(self.root, width=600, height=600)
+        txt_frm = Frame(self.root, width=600, height=600).grid(row=12, column=0, columnspan=5, sticky='ew')
         txt_frm.pack(fill="both", expand=True)
         # ensure a consistent GUI size
         txt_frm.grid_propagate(False)
