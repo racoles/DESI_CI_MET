@@ -79,8 +79,12 @@ class inputGUI(object):
         #Grid Separator
         Separator(master, orient="horizontal").grid(row=8, column=0, columnspan=5, sticky='ew')        
  
- 
- 
+        #Note Label
+        Label(master, text="Add Note to Log", font="bold").grid(row=9, column=0, columnspan=2, sticky='W')
+        #Note Text Box
+        noteBox = Entry(master)
+        noteBox.grid(row=10, column=0, columnspan=5, sticky='W')
+        #Note Text Submit Button
         
         #Grid Spacing
         Label(master, text=" ").grid(row=1, column=0)
