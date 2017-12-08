@@ -50,36 +50,12 @@ class inputGUI(object):
         # |                                                        |
         # |________________________________________________________|
         
+        #Titles
+        
         #Buttons
         #REB0
         S00 = Button(master, text="S00",bg = "white", command=lambda:self._loadInputDataFile(S00, RSAMetGUI.S00List, 'S00')) #white
         S00.grid(row=4, column=2, sticky='W')
-        
-        S01 = Button(master, text="S01",bg = "purple", command=lambda:self._loadInputDataFile(S01, RSAMetGUI.S01List, 'S01')) #purple
-        S01.grid(row=3, column=2, sticky='W')
-
-        S02 = Button(master, text="S02",bg = "yellow", command=lambda:self._loadInputDataFile(S02, RSAMetGUI.S02List, 'S02')) #yellow
-        S02.grid(row=2, column=2, sticky='W')
-        
-        #REB1
-        S10 = Button(master, text="S10",bg = "cyan", command=lambda:self._loadInputDataFile(S10, RSAMetGUI.S10List, 'S10')) #cyan
-        S10.grid(row=4, column=1, sticky='W')
-
-        S11 = Button(master, text="S11",bg = "blue", command=lambda:self._loadInputDataFile(S11, RSAMetGUI.S11List, 'S11')) #blue
-        S11.grid(row=3, column=1, sticky='W')
-
-        S12 = Button(master, text="S12",bg = "orange", command=lambda:self._loadInputDataFile(S12, RSAMetGUI.S12List, 'S12')) #orange
-        S12.grid(row=2, column=1, sticky='W')
-        
-        #REB2
-        S20 = Button(master, text="S20",bg = "magenta", command=lambda:self._loadInputDataFile(S20, RSAMetGUI.S20List, 'S20')) #magenta
-        S20.grid(row=4, column=0, sticky='W')
-
-        S21 = Button(master, text="S21",bg = "green", command=lambda:self._loadInputDataFile(S21, RSAMetGUI.S21List, 'S21')) #green
-        S21.grid(row=3, column=0, sticky='W')
-
-        S22 = Button(master, text="S22",bg = "red", command=lambda:self._loadInputDataFile(S22, RSAMetGUI.S22List, 'S22')) #red
-        S22.grid(row=2, column=0, sticky='W')
         
         #Add coordinate compass
         self.cordImage = PhotoImage(file="cord.pgm", width=100, height=79)
@@ -110,15 +86,6 @@ class inputGUI(object):
         raftFitEqn = StringVar()
         Label(master, text="Enter Raft Fit Equation (must also provide Datum Plane Equation)").grid(row=11, column=0, columnspan=2, sticky='W')
         Entry(master, textvariable=raftFitEqn, width=40).grid(row=12, column=0, columnspan=3, sticky='W')
-        
-        #Plot RSA for manually selected sensor positions
-        manualPosition = Button(master, text = "Plot virtual RSA for manually selected sensor positions", 
-                                command=lambda:RSA3DPlot().createVirtualRSA(RSAMetGUI.S00List, RSAMetGUI.S01List, RSAMetGUI.S02List, 
-                                                                            RSAMetGUI.S10List, RSAMetGUI.S11List, RSAMetGUI.S12List, 
-                                                                            RSAMetGUI.S20List, RSAMetGUI.S21List, RSAMetGUI.S22List, 0, datumPlaneEqn, raftFitEqn))
-        manualPosition.grid(row=16, column=0, columnspan=3, sticky='W')
-        
-        #Plot RSA for optimal sensor positions
         
         
     def _loadInputDataFile(self, sensorButton, sensorList, sensorButtonLabel):
