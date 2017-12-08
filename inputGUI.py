@@ -55,8 +55,7 @@ class inputGUI(object):
         #Guided Mode Description
         Label(master, text="Be guided through measuring the CI FIFs.").grid(row=1, column=0, columnspan=2, sticky='W')
         #Guided Mode Button        
-        gmButton = Button(master, text="Begin Guided Mode",bg = "white", command=lambda:self._loadInputDataFile())
-        gmButton.grid(row=2, column=0, columnspan=2, sticky='W')
+        gmButton = Button(master, text="Begin Guided Mode",bg = "white", command=lambda:self._loadInputDataFile()).grid(row=2, column=0, columnspan=2, sticky='W')
         
         #FIF Map
         self.fifMAP = PhotoImage(file="tempmap.png", width=600, height=600)
@@ -70,11 +69,9 @@ class inputGUI(object):
         #Manual Mode Description
         Label(master, text="Perform manual measurements of the CI FIFs.").grid(row=5, column=0, columnspan=2, sticky='W')
         #Manual Mode Focus Curve
-        mmFCButton = Button(master, text="Focus Curve",bg = "white", command=lambda:self._loadInputDataFile())
-        mmFCButton.grid(row=6, column=0, columnspan=2, sticky='W')
+        mmFCButton = Button(master, text="Focus Curve",bg = "white", command=lambda:self._loadInputDataFile()).grid(row=6, column=0, columnspan=2, sticky='W')
         #Manual Mode Centroid FIF
-        mmCButton = Button(master, text="Centroid FIF",bg = "white", command=lambda:self._loadInputDataFile())
-        mmCButton.grid(row=7, column=0, columnspan=2, sticky='W')
+        mmCButton = Button(master, text="Centroid FIF",bg = "white", command=lambda:self._loadInputDataFile()).grid(row=7, column=0, columnspan=2, sticky='W')
 
         #Grid Separator
         Separator(master, orient="horizontal").grid(row=8, column=0, columnspan=5, sticky='ew')        
@@ -82,9 +79,17 @@ class inputGUI(object):
         #Note Label
         Label(master, text="Add Note to Log", font="bold").grid(row=9, column=0, columnspan=2, sticky='W')
         #Note Text Box
-        noteBox = Entry(master)
-        noteBox.grid(row=10, column=0, columnspan=5, sticky='W')
+        noteBox = Entry(master).grid(row=10, column=0, columnspan=5, sticky='W')
         #Note Text Submit Button
+        Button(master, text='Show', command=show_entry_fields).grid(row=3, column=1, sticky=W, pady=4
+        
+        
+        
+        
+        
+        
+        
+        
         
         #Grid Spacing
         Label(master, text=" ").grid(row=1, column=0)
@@ -116,6 +121,16 @@ class inputGUI(object):
         #REB0
         #S00 = Button(master, text="S00",bg = "white", command=lambda:self._loadInputDataFile(S00, RSAMetGUI.S00List, 'S00')) #white
         #S00.grid(row=4, column=2, sticky='W')
+        
+    def log_entry_field(self, noteBox):
+        print("First Name: %s\nLast Name: %s" % (noteBox.get()))
+        noteBox.delete(0,'END')
+        
+        
+        
+        
+        
+        
         
         
     def _loadInputDataFile(self, sensorButton, sensorList, sensorButtonLabel):
