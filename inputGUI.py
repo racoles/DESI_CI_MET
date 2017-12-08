@@ -81,7 +81,7 @@ class inputGUI(object):
         #Note Text Box
         noteBox = Entry(master).grid(row=10, column=0, columnspan=5, sticky='W')
         #Note Text Submit Button
-        Button(master, text='Submit', command=self._log_entry_field(noteBox)).grid(row=11, column=1, sticky='W')
+        Button(master, text='Submit', command=self._log_entry_field(noteBox)).grid(row=11, column=0, columnspan=2, sticky='W')
         
         
         
