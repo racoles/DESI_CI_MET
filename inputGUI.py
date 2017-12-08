@@ -81,71 +81,15 @@ class inputGUI(object):
         #Note Text Box Label
         Label(master, text="Add Note to Log", font="bold").grid(row=9, column=0, columnspan=2, sticky='W')
         #Note Text Box
-        noteStr = StringVar()
-        noteBox = Entry(master, textvariable=noteStr, width=40).grid(row=10, column=0, columnspan=5, sticky='W')
+        noteBox = Entry(master, width=40).grid(row=10, column=0, columnspan=5, sticky='W')
         #Note Text Submit Button
-        Button(master, text='Submit', command=self._log_entry_field(noteBox)).grid(row=10, column=1, columnspan=2, sticky='W')
+        Button(master, text='Submit', bg = "white", command=lambda:self._log_entry_field(noteBox)).grid(row=10, column=1, columnspan=2, sticky='W')
         
         #Log Console
         
         
-        
-        
-        
-        
-        
-        
-
-        
-        #Datum Plane Text Box
-        datumPlaneEqn = StringVar()
-        Label(master, text="Enter Datum Plane Equation (must also provide Raft Fit Equation)").grid(row=9, column=0, columnspan=2, sticky='W')
-        Entry(master, textvariable=datumPlaneEqn, width=40).grid(row=10, column=0, columnspan=3, sticky='W')
-        
-        #Raft Fit Text Box
-        raftFitEqn = StringVar()
-        Label(master, text="Enter Raft Fit Equation (must also provide Datum Plane Equation)").grid(row=11, column=0, columnspan=2, sticky='W')
-        Entry(master, textvariable=raftFitEqn, width=40).grid(row=12, column=0, columnspan=3, sticky='W')
-        
-        #Buttons
-        #REB0
-        #S00 = Button(master, text="S00",bg = "white", command=lambda:self._loadInputDataFile(S00, RSAMetGUI.S00List, 'S00')) #white
-        #S00.grid(row=4, column=2, sticky='W')
+    
         
     def _log_entry_field(self, noteBox):
         print("First Name: %s\nLast Name: %s" % (noteBox.get()))
         noteBox.delete(0,'END')
-        
-        
-        
-        
-        
-        
-        
-        
-    def _loadInputDataFile(self, sensorButton, sensorList, sensorButtonLabel):
-        '''
-        Load metrology data from input file using openpyxl library
-        '''
-        #open file
-        fileName = self._openFile()
-        #load Sheet1
-        self.ws = self.wb.get_sheet_by_name('Sheet1')
-        #create a python list of the data by iterating over all of the Sheet1 data
-        del sensorList[:] #empty list in case the user is changing a previously loaded file
-        sensorList.append(list(self._iter_rows(self.ws)))
-        #update the button text to show the filename
-        sensorButton.config(text = sensorButtonLabel + ': ' + self._path_leaf(fileName))
-        
-    def _openFile(self):
-        '''
-        Create open file dialogue box
-        '''
-        return filedialog.askopenfilename()
-            
-    def _path_leaf(self, path):
-        '''
-        get filename from full path
-        '''
-        head, tail = ntpath.split(path)
-        return tail or ntpath.basename(head)
