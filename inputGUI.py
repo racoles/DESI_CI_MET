@@ -9,8 +9,7 @@ Software for the DESI CI metrology program.
 '''
 
 # Import #######################################################################################
-import ntpath
-from tkinter import Button, filedialog, PhotoImage, Label, Entry, Frame
+from tkinter import Button, PhotoImage, Label, Entry, Frame, Text, Scrollbar
 from tkinter.ttk import Separator, Style
 ################################################################################################
 
@@ -91,7 +90,7 @@ class inputGUI(object):
         
         #Log Console
         # create a Frame for the Text and Scrollbar
-        txt_frm = Frame(self.root, width=600, height=600).grid(row=12, column=0, columnspan=5, sticky='ew')
+        txt_frm = Frame(master, width=600, height=400).grid(row=12, column=0, columnspan=5, sticky='ew')
         txt_frm.pack(fill="both", expand=True)
         # ensure a consistent GUI size
         txt_frm.grid_propagate(False)
@@ -99,11 +98,11 @@ class inputGUI(object):
         txt_frm.grid_rowconfigure(0, weight=1)
         txt_frm.grid_columnconfigure(0, weight=1)
         # create a Text widget
-        self.txt = tki.Text(txt_frm, borderwidth=3, relief="sunken")
+        self.txt = Text(txt_frm, borderwidth=3, relief="sunken")
         self.txt.config(font=("consolas", 12), undo=True, wrap='word')
         self.txt.grid(row=0, column=0, sticky="nsew", padx=2, pady=2)
         # create a Scrollbar and associate it with txt
-        scrollb = tki.Scrollbar(txt_frm, command=self.txt.yview)
+        scrollb = Scrollbar(txt_frm, command=self.txt.yview)
         scrollb.grid(row=0, column=1, sticky='nsew')
         self.txt['yscrollcommand'] = scrollb.set
         
