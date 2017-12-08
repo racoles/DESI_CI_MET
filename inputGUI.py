@@ -65,6 +65,11 @@ class inputGUI(object):
         #Grid Separator
         Separator(master, orient="horizontal").grid(row=3, column=0, columnspan=5, sticky='ew')
         
+        #Manual Mode Label
+        Label(master, text="Manual Mode", font="bold").grid(row=4, column=0, columnspan=2, sticky='W')
+        #Manual Mode Description
+        Label(master, text="Perform manual measurements of the CI FIFs.").grid(row=1, column=0, columnspan=2, sticky='W') 
+        
         #Buttons
         #REB0
         S00 = Button(master, text="S00",bg = "white", command=lambda:self._loadInputDataFile(S00, RSAMetGUI.S00List, 'S00')) #white
