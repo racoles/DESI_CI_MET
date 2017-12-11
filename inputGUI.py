@@ -93,7 +93,7 @@ class inputGUI(object):
         # create a Text widget with a Scrollbar attached
         self.txt = ScrolledText.ScrolledText(self.master, undo=True)
         self.txt['font'] = ('consolas', '12')
-        #self.txt.pack(expand=True, fill='both')        
+        self.txt.grid(row=12, column=0, columnspan=5, sticky='ew')        
     
         
     def _log_entry_field(self, noteBox):
