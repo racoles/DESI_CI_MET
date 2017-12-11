@@ -62,7 +62,7 @@ class inputGUI(object):
         Label(image=self.fifMAP).grid(row=0, column=4, rowspan=11, sticky='W')  
         
         #Grid Separator
-        Separator(master, orient="horizontal").grid(row=3, column=0, columnspan=3, sticky='ew')
+        Separator(master, orient="horizontal").grid(row=3, column=0, columnspan=4, sticky='ew')
         Style(master).configure("TSeparator", background="black")
         
         #Manual Mode Label
@@ -75,7 +75,7 @@ class inputGUI(object):
         Button(master, text="Centroid FIF",bg = "white", command=lambda:self._loadInputDataFile()).grid(row=7, column=0, columnspan=2, sticky='W')
 
         #Grid Separator
-        Separator(master, orient="horizontal").grid(row=8, column=0, columnspan=3, sticky='ew')
+        Separator(master, orient="horizontal").grid(row=8, column=0, columnspan=4, sticky='ew')
         #Style(master).configure("TSeparator", background="black")   
  
         #Note Text Box Label
@@ -83,10 +83,10 @@ class inputGUI(object):
         #Note Text Box
         noteBox = Entry(master, width=40).grid(row=10, column=0, columnspan=5, sticky='W')
         #Note Text Submit Button
-        Button(master, text='Submit', bg = "white", command=lambda:self._log_entry_field(noteBox)).grid(row=10, column=1, columnspan=2, sticky='W')
+        Button(master, text='Submit', bg = "white", command=lambda:self._log_entry_field(noteBox)).grid(row=10, column=2, columnspan=2)
         
         #Grid Separator
-        Separator(master, orient="horizontal").grid(row=11, column=0, columnspan=3, sticky='ew')
+        Separator(master, orient="horizontal").grid(row=11, column=0, columnspan=4, sticky='ew')
         #Style(master).configure("TSeparator", background="black")   
         
         #Log Console
