@@ -58,8 +58,8 @@ class inputGUI(object):
         Button(master, text="Begin Guided Mode",bg = "white", command=lambda:self._loadInputDataFile()).grid(row=2, column=0, columnspan=2, sticky='W')
         
         #FIF Map
-        self.fifMAP = PhotoImage(file="tempmap.png", width=200, height=200)
-        Label(image=self.fifMAP).grid(row=0, column=15, rowspan=3, sticky='W')  
+        self.fifMAP = PhotoImage(file="FPA.png", width=300, height=300)
+        Label(image=self.fifMAP).grid(row=0, column=15, rowspan=11, sticky='W')  
         
         #Grid Separator
         Separator(master, orient="horizontal").grid(row=3, column=0, columnspan=5, sticky='ew')
