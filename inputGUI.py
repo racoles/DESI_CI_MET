@@ -55,10 +55,10 @@ class inputGUI(object):
         #Guided Mode Description
         Label(master, text="Be guided through measuring the CI FIFs.").grid(row=1, column=0, columnspan=2, sticky='W')
         #Guided Mode Button        
-        gmButton = Button(master, text="Begin Guided Mode",bg = "white", command=lambda:self._loadInputDataFile()).grid(row=2, column=0, columnspan=2, sticky='W')
+        Button(master, text="Begin Guided Mode",bg = "white", command=lambda:self._loadInputDataFile()).grid(row=2, column=0, columnspan=2, sticky='W')
         
         #FIF Map
-        self.fifMAP = PhotoImage(file="tempmap.png", width=600, height=600)
+        self.fifMAP = PhotoImage(file="tempmap.png", width=200, height=200)
         Label(image=self.fifMAP).grid(row=0, column=15, rowspan=3, sticky='W')  
         
         #Grid Separator
@@ -70,9 +70,9 @@ class inputGUI(object):
         #Manual Mode Description
         Label(master, text="Perform manual measurements of the CI FIFs.").grid(row=5, column=0, columnspan=2, sticky='W')
         #Manual Mode Focus Curve
-        mmFCButton = Button(master, text="Focus Curve",bg = "white", command=lambda:self._loadInputDataFile()).grid(row=6, column=0, columnspan=2, sticky='W')
+        Button(master, text="Focus Curve",bg = "white", command=lambda:self._loadInputDataFile()).grid(row=6, column=0, columnspan=2, sticky='W')
         #Manual Mode Centroid FIF
-        mmCButton = Button(master, text="Centroid FIF",bg = "white", command=lambda:self._loadInputDataFile()).grid(row=7, column=0, columnspan=2, sticky='W')
+        Button(master, text="Centroid FIF",bg = "white", command=lambda:self._loadInputDataFile()).grid(row=7, column=0, columnspan=2, sticky='W')
 
         #Grid Separator
         Separator(master, orient="horizontal").grid(row=8, column=0, columnspan=5, sticky='ew')
@@ -93,7 +93,7 @@ class inputGUI(object):
         # create a Text widget with a Scrollbar attached
         self.txt = ScrolledText.ScrolledText(self.master, undo=True)
         self.txt['font'] = ('consolas', '12')
-        self.txt.grid(row=12, column=0, columnspan=5, sticky='ew')        
+        self.txt.grid(row=12, column=0, columnspan=20, sticky='ew')        
     
         
     def _log_entry_field(self, noteBox):
