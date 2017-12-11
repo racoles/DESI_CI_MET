@@ -58,11 +58,11 @@ class inputGUI(object):
         Button(master, text="Begin Guided Mode",bg = "white", command=lambda:self._loadInputDataFile()).grid(row=2, column=0, columnspan=2, sticky='W')
         
         #FIF Map
-        self.fifMAP = PhotoImage(file="FPA.png", width=300, height=300)
-        Label(image=self.fifMAP).grid(row=0, column=15, rowspan=11, sticky='W')  
+        self.fifMAP = PhotoImage(file="FPA.png", width=350, height=350)
+        Label(image=self.fifMAP).grid(row=0, column=4, rowspan=11, sticky='W')  
         
         #Grid Separator
-        Separator(master, orient="horizontal").grid(row=3, column=0, columnspan=5, sticky='ew')
+        Separator(master, orient="horizontal").grid(row=3, column=0, columnspan=3, sticky='ew')
         Style(master).configure("TSeparator", background="black")
         
         #Manual Mode Label
@@ -75,7 +75,7 @@ class inputGUI(object):
         Button(master, text="Centroid FIF",bg = "white", command=lambda:self._loadInputDataFile()).grid(row=7, column=0, columnspan=2, sticky='W')
 
         #Grid Separator
-        Separator(master, orient="horizontal").grid(row=8, column=0, columnspan=5, sticky='ew')
+        Separator(master, orient="horizontal").grid(row=8, column=0, columnspan=3, sticky='ew')
         #Style(master).configure("TSeparator", background="black")   
  
         #Note Text Box Label
@@ -86,14 +86,14 @@ class inputGUI(object):
         Button(master, text='Submit', bg = "white", command=lambda:self._log_entry_field(noteBox)).grid(row=10, column=1, columnspan=2, sticky='W')
         
         #Grid Separator
-        Separator(master, orient="horizontal").grid(row=11, column=0, columnspan=5, sticky='ew')
+        Separator(master, orient="horizontal").grid(row=11, column=0, columnspan=3, sticky='ew')
         #Style(master).configure("TSeparator", background="black")   
         
         #Log Console
         # create a Text widget with a Scrollbar attached
         self.txt = ScrolledText.ScrolledText(self.master, undo=True)
         self.txt['font'] = ('consolas', '12')
-        self.txt.grid(row=12, column=0, columnspan=20, sticky='ew')        
+        self.txt.grid(row=12, column=0, columnspan=5, sticky='ew')        
     
         
     def _log_entry_field(self, noteBox):
