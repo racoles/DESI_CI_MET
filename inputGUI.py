@@ -97,5 +97,5 @@ class inputGUI(object):
     
         
     def _log_entry_field(self, noteBox):
-        print("First Name: %s\nLast Name: %s" % (noteBox.get()))
+        print("Manual Note Entry %s" % (noteBox.get()))
         noteBox.delete(0,'END')
