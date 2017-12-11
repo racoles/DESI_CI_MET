@@ -9,7 +9,8 @@ Software for the DESI CI metrology program.
 '''
 
 # Import #######################################################################################
-from tkinter import Button, PhotoImage, Label, Entry, Frame, Text, Scrollbar
+from tkinter import Button, PhotoImage, Label, Entry
+import tkinter.scrolledtext as ScrolledText
 from tkinter.ttk import Separator, Style
 ################################################################################################
 
@@ -58,7 +59,7 @@ class inputGUI(object):
         
         #FIF Map
         self.fifMAP = PhotoImage(file="tempmap.png", width=600, height=600)
-        Label(image=self.cordImage).grid(row=0, column=15, rowspan=3, sticky='W')  
+        Label(image=self.fifMAP).grid(row=0, column=15, rowspan=3, sticky='W')  
         
         #Grid Separator
         Separator(master, orient="horizontal").grid(row=3, column=0, columnspan=5, sticky='ew')
@@ -89,23 +90,10 @@ class inputGUI(object):
         #Style(master).configure("TSeparator", background="black")   
         
         #Log Console
-        # create a Frame for the Text and Scrollbar
-        txt_frm = Frame(master, width=600, height=400).grid(row=12, column=0, columnspan=5, sticky='ew')
-        txt_frm.pack(fill="both", expand=True)
-        # ensure a consistent GUI size
-        txt_frm.grid_propagate(False)
-        # implement stretchability
-        txt_frm.grid_rowconfigure(0, weight=1)
-        txt_frm.grid_columnconfigure(0, weight=1)
-        # create a Text widget
-        self.txt = Text(txt_frm, borderwidth=3, relief="sunken")
-        self.txt.config(font=("consolas", 12), undo=True, wrap='word')
-        self.txt.grid(row=0, column=0, sticky="nsew", padx=2, pady=2)
-        # create a Scrollbar and associate it with txt
-        scrollb = Scrollbar(txt_frm, command=self.txt.yview)
-        scrollb.grid(row=0, column=1, sticky='nsew')
-        self.txt['yscrollcommand'] = scrollb.set
-        
+        # create a Text widget with a Scrollbar attached
+        self.txt = ScrolledText.ScrolledText(self.master, undo=True)
+        self.txt['font'] = ('consolas', '12')
+        #self.txt.pack(expand=True, fill='both')        
     
         
     def _log_entry_field(self, noteBox):
