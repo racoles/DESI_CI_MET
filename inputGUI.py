@@ -104,7 +104,7 @@ class inputGUI(object):
         # start log
         startTime = time.strftime("%Y%m%d-%H%M%S")
         self.logFile = open("DESI_CI_MET_" + startTime + "_log.txt", "w")
-        self.logFile.write("Log started: " + startTime)
+        self.logFile.write("Log started: " + startTime + '\n')
         self.log.insert(END, "Log started: " + startTime + '\n')
         self.log.configure(state="disable")
         
