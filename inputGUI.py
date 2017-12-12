@@ -115,7 +115,7 @@ class inputGUI(object):
         # console
         log.configure(state="normal")
         log.insert(END, str(noteBox.get()) + '\n')
-        noteBox.delete(0, END)
         log.configure(state="disable")
         # logfile
         logFile.write(str(noteBox.get()) + '\n')
+        noteBox.delete(0, END)
