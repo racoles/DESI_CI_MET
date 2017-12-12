@@ -9,7 +9,7 @@ Software for the DESI CI metrology program.
 '''
 
 # Import #######################################################################################
-from tkinter import Button, PhotoImage, Label, Entry
+from tkinter import Button, PhotoImage, Label, Entry, END
 import tkinter.scrolledtext as ScrolledText
 from tkinter.ttk import Separator, Style
 ################################################################################################
@@ -83,7 +83,7 @@ class inputGUI(object):
         #Note Text Box
         noteBox = Entry(master, width=40).grid(row=10, column=0, columnspan=5, sticky='W')
         #Note Text Submit Button
-        Button(master, text='Submit', bg = "white", command=lambda:self._log_entry_field(noteBox)).grid(row=10, column=2, columnspan=2)
+        Button(master, text='Submit', bg = "white", command=lambda:self._log_entry_field(noteBox, self.log)).grid(row=10, column=2, columnspan=2)
         
         #Grid Separator
         Separator(master, orient="horizontal").grid(row=11, column=0, columnspan=4, sticky='ew')
@@ -91,11 +91,16 @@ class inputGUI(object):
         
         #Log Console
         # create a Text widget with a Scrollbar attached
-        self.txt = ScrolledText.ScrolledText(self.master, undo=True)
-        self.txt['font'] = ('consolas', '12')
-        self.txt.grid(row=12, column=0, columnspan=5, sticky='ew')        
+        self.log = ScrolledText.ScrolledText(self.master, undo=True)
+        self.log['font'] = ('consolas', '12')
+        self.log.grid(row=12, column=0, columnspan=5, sticky='ew') 
+        # start log
+        self.log.insert(END, "Log started: ")
+        self.log.configure(state="disable")
     
         
-    def _log_entry_field(self, noteBox):
+    def _log_entry_field(self, noteBox, log):
+        log.configure(state="normal")
         print("Manual Note Entry %s" % (noteBox.get()))
         noteBox.delete(0,'END')
+        log.configure(state="disable")
