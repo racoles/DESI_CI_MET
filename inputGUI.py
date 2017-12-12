@@ -17,7 +17,7 @@ _log_entry_field:
 from tkinter import Button, PhotoImage, Label, Entry, END
 import tkinter.scrolledtext as ScrolledText
 from tkinter.ttk import Separator, Style
-import datetime
+import time
 ################################################################################################
 
 class inputGUI(object):
@@ -101,7 +101,7 @@ class inputGUI(object):
         self.log['font'] = ('consolas', '10')
         self.log.grid(row=12, column=0, columnspan=5, sticky='ew') 
         # start log
-        startTime = str(datetime.datetime)
+        startTime = time.strftime("%Y%m%d-%H%M%S")
         logFile = open("DESI_CI_MET_" + startTime + "_log.txt", "w")
         logFile.write("Log started: " + startTime)
         self.log.insert(END, "Log started: " + startTime)
