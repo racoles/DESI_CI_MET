@@ -90,7 +90,7 @@ class inputGUI(object):
         noteBox = Entry(master, width=40)
         noteBox.grid(row=10, column=0, columnspan=5, sticky='W')
         #Note Text Submit Button
-        Button(master, text='Submit', bg = "white", command=lambda:self._log_entry_field(noteBox, self.log)).grid(row=10, column=2, columnspan=2)
+        Button(master, text='Submit', bg = "white", command=lambda:self._log_entry_field(noteBox, self.log, logFile)).grid(row=10, column=2, columnspan=2)
         
         #Grid Separator
         Separator(master, orient="horizontal").grid(row=11, column=0, columnspan=4, sticky='ew')
@@ -108,11 +108,14 @@ class inputGUI(object):
         self.log.insert(END, "Log started: " + startTime + '\n')
         self.log.configure(state="disable")
         
-    def _log_entry_field(self, noteBox, log):
+    def _log_entry_field(self, noteBox, log, logFile):
         '''
         Manually enter text into log.
         '''
+        # console
         log.configure(state="normal")
         log.insert(END, str(noteBox.get()) + '\n')
         noteBox.delete(0,'END')
         log.configure(state="disable")
+        # logfile
+        logFile.write(noteBox + '\n')
