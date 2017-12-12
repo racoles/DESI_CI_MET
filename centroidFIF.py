@@ -45,6 +45,7 @@ class centroidFIF(object):
         '''
         Constructor
         '''
+        
     def findCentroid(self, image, x, y, extendbox = False):
         '''
         Take a numpy array of an image and centroid the pinholes within

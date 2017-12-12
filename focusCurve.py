@@ -4,13 +4,24 @@
 Updated on Dec 12, 2017
 Created on Dec 12, 2017
 
-cropAndResize
+focusCurve
 This module holds a series of functions that I use to plot images.
 
 Modules:
 stdFocusCurve
     Accepts a 4D numpy array and plots standard deviations of the images.
     Note: assumes filenames are distances (int)
+fileNameToInt
+    Create x values by remove extension from filenames and converting them to ints
+zipAndSort
+    Zip xx and yy values into array of tulups
+    Sort list by distance (x) so xx (distances) are in the proper order in the plot
+xyPolyFit
+    Calculate polynomial fit (order given)
+    Calculate new x's and y's for plotting
+    Find slope = 0 for fit, this will be used to split the data to a left and right liner fit
+    Find the first derivative of the poly1d
+    Solve deriv =ax + b for deriv = 0 (point of best focus)
 '''
 
 # Import #######################################################################################
