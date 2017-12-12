@@ -118,4 +118,4 @@ class inputGUI(object):
         noteBox.delete(0, END)
         log.configure(state="disable")
         # logfile
-        logFile.write(noteBox + '\n')
+        logFile.write(str(noteBox.get()) + '\n')
