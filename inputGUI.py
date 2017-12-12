@@ -87,7 +87,8 @@ class inputGUI(object):
         #Note Text Box Label
         Label(master, text="Add Note to Log", font="bold").grid(row=9, column=0, columnspan=2, sticky='W')
         #Note Text Box
-        noteBox = Entry(master, width=40).grid(row=10, column=0, columnspan=5, sticky='W')
+        noteBox = Entry(master, width=40)
+        noteBox.grid(row=10, column=0, columnspan=5, sticky='W')
         #Note Text Submit Button
         Button(master, text='Submit', bg = "white", command=lambda:self._log_entry_field(noteBox, self.log)).grid(row=10, column=2, columnspan=2)
         
@@ -104,7 +105,7 @@ class inputGUI(object):
         startTime = time.strftime("%Y%m%d-%H%M%S")
         logFile = open("DESI_CI_MET_" + startTime + "_log.txt", "w")
         logFile.write("Log started: " + startTime)
-        self.log.insert(END, "Log started: " + startTime)
+        self.log.insert(END, "Log started: " + startTime + '\n')
         self.log.configure(state="disable")
         
     def _log_entry_field(self, noteBox, log):
@@ -112,6 +113,6 @@ class inputGUI(object):
         Manually enter text into log.
         '''
         log.configure(state="normal")
-        log.insert(END, noteBox.get())
+        log.insert(END, str(noteBox.get()) + '\n')
         noteBox.delete(0,'END')
         log.configure(state="disable")
