@@ -101,8 +101,8 @@ class inputGUI(object):
         self.log['font'] = ('consolas', '10')
         self.log.grid(row=12, column=0, columnspan=5, sticky='ew') 
         # start log
-        logFile = open("DESI_CI_MET_" + datetime.datetime + "_log.txt", "w")
         startTime = str(datetime.datetime)
+        logFile = open("DESI_CI_MET_" + startTime + "_log.txt", "w")
         logFile.write("Log started: " + startTime)
         self.log.insert(END, "Log started: " + startTime)
         self.log.configure(state="disable")
