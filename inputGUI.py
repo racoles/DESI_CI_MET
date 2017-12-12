@@ -90,7 +90,7 @@ class inputGUI(object):
         noteBox = Entry(master, width=40)
         noteBox.grid(row=10, column=0, columnspan=5, sticky='W')
         #Note Text Submit Button
-        Button(master, text='Submit', bg = "white", command=lambda:self._log_entry_field(noteBox, self.log, logFile)).grid(row=10, column=2, columnspan=2)
+        Button(master, text='Submit', bg = "white", command=lambda:self._log_entry_field(noteBox, self.log, self.logFile)).grid(row=10, column=2, columnspan=2)
         
         #Grid Separator
         Separator(master, orient="horizontal").grid(row=11, column=0, columnspan=4, sticky='ew')
@@ -103,8 +103,8 @@ class inputGUI(object):
         self.log.grid(row=12, column=0, columnspan=5, sticky='ew') 
         # start log
         startTime = time.strftime("%Y%m%d-%H%M%S")
-        logFile = open("DESI_CI_MET_" + startTime + "_log.txt", "w")
-        logFile.write("Log started: " + startTime)
+        self.logFile = open("DESI_CI_MET_" + startTime + "_log.txt", "w")
+        self.logFile.write("Log started: " + startTime)
         self.log.insert(END, "Log started: " + startTime + '\n')
         self.log.configure(state="disable")
         
