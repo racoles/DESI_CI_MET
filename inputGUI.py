@@ -92,7 +92,7 @@ class inputGUI(object):
         #Log Console
         # create a Text widget with a Scrollbar attached
         self.log = ScrolledText.ScrolledText(self.master, undo=True)
-        self.log['font'] = ('consolas', '12')
+        self.log['font'] = ('consolas', '10')
         self.log.grid(row=12, column=0, columnspan=5, sticky='ew') 
         # start log
         self.log.insert(END, "Log started: ")
