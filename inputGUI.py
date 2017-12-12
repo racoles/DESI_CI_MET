@@ -109,7 +109,7 @@ class inputGUI(object):
         Manually enter text into log.
         '''
         log.configure(state="normal")
-        print("Manual Note Entry %s" % (noteBox.get()))
+        log.insert(END, noteBox.get())
         noteBox.delete(0,'END')
         log.configure(state="disable")
         
