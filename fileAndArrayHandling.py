@@ -6,7 +6,7 @@ Created on Dec 12, 2017
 
 fileAndArrayHandling
 This module holds a series of functions that I use to convert
-images to arrays, and 
+images to arrays, and converts images to arrays.
 
 Modules:
 openAllFITSImagesInDirectory
