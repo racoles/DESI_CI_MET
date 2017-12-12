@@ -115,5 +115,3 @@ class inputGUI(object):
         log.insert(END, noteBox.get())
         noteBox.delete(0,'END')
         log.configure(state="disable")
-        
-    #def _create_log()
