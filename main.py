@@ -14,3 +14,13 @@ if __name__ == '__main__':
     root = Tk()
     iGUI = inputGUI(root)
     root.mainloop()
+    
+    
+    #im = imageToArray()
+    #fH = fileHandling()
+    #pl = plots()
+    
+    
+    #STD focus curve for a 4D array of FITs images
+    #imageArray, fileList = im.openAllFITSImagesInDirectory()
+    #pl.stdPlotAll(imageArray, fileList)
