@@ -102,7 +102,6 @@ class inputGUI(object):
         # start log
         self.log.insert(END, "Log started: ")
         self.log.configure(state="disable")
-    
         
     def _log_entry_field(self, noteBox, log):
         '''
