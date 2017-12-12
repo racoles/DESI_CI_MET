@@ -1,8 +1,8 @@
 '''
 @title fileAndArrayHandling
 @author: Rebecca Coles
-Updated on Sep 18, 2017
-Created on Sep 13, 2017
+Updated on Dec 12, 2017
+Created on Dec 12, 2017
 
 fileAndArrayHandling
 This module holds a series of functions that I use to convert
@@ -11,6 +11,8 @@ images to arrays, and
 Modules:
 openAllFITSImagesInDirectory
     This function convertsFITs type images to a 4D array.
+openDir
+    This function creates an open directory dialogue box and returns the name of the user selected directory.
 '''
 
 # Import #######################################################################################
