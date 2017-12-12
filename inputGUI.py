@@ -1,7 +1,7 @@
 '''
 @title inputGUI
 @author: Rebecca Coles
-Updated on Dec 8, 2017
+Updated on Dec 12, 2017
 Created on Dec 8, 2017
 
 inputGUI
