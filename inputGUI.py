@@ -6,6 +6,11 @@ Created on Dec 8, 2017
 
 inputGUI
 Software for the DESI CI metrology program.
+
+Modules:
+_log_entry_field:
+    Manually enter text into log.
+
 '''
 
 # Import #######################################################################################
@@ -100,7 +105,12 @@ class inputGUI(object):
     
         
     def _log_entry_field(self, noteBox, log):
+        '''
+        Manually enter text into log.
+        '''
         log.configure(state="normal")
         print("Manual Note Entry %s" % (noteBox.get()))
         noteBox.delete(0,'END')
         log.configure(state="disable")
+        
+    #def _create_log()
