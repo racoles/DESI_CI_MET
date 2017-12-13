@@ -28,6 +28,7 @@ class fileAndArrayHandling(object):
         '''
         Constructor
         '''
+        
     def openAllFITSImagesInDirectory(self):
         '''
         Open multiple images and save them to a numpy array

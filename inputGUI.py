@@ -24,7 +24,6 @@ class inputGUI(object):
     '''
     GUI for DESI CI metrology software
     '''
-    #Initialize empty data lists
 
     def __init__(self, master):
         '''
