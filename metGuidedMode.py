@@ -23,6 +23,8 @@ class metGuidedMode(object):
         '''
         Constructor
         '''
+        self.master = master
+        master.title("DESI CI Meterology Guided Mode")
         
     def guidedModeFrames(self):
         '''
