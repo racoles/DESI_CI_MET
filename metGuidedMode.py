@@ -17,12 +17,13 @@ import tkinter as tk
 frameFont = ('consolas', '10')
 ################################################################################################
 
-class metGuidedMode(object):
+class metGuidedMode(tk.Frame):
 
     def __init__(self, master):
         '''
         Constructor
         '''
+        super(metGuidedMode, self).__init__()
         self.master = master
         master.title("DESI CI Meterology Guided Mode")
         
