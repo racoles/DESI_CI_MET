@@ -38,17 +38,16 @@ class metGuidedMode(object):
         container.grid_columnconfigure(0, weight=1)
         self.frames = {}
 
-        for page in (StartPage, PageOne, PageTwo):
-
+        pages = list(range(0, 23)) #start page + FIF pages + conclusion page
+        for page in (pages):
             frame = page(container, self)
-
             self.frames[page] = frame
-
             frame.grid(row=0, column=0, sticky="nsew")
-
-        self.show_frame(StartPage)
+        self.show_frame(pages[0]) #start on the start page
 
     def show_frame(self, cont):
-
+        '''
+        Show page to user.
+        '''
         frame = self.frames[cont]
         frame.tkraise()
