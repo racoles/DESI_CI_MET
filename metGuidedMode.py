@@ -15,15 +15,9 @@ Modules:
 import tkinter as tk
 # Variables ####################################################################################
 frameFont = ('consolas', '10')
-pages = ("RefFIF", "NFIF", "EFIF", "SFIF", "WFIF", 
-         "A1", "A2", "A3", "A4", 
-         "B1", "B2", "B3", "B4", 
-         "C1", "C2", "C3", "C4", 
-         "D1", "D2", "D3", "D4",
-         "CFIF")
 ################################################################################################
 
-class metGuidedMode(tk.Frame):
+class metGuidedMode(tk.Tk):
 
     def __init__(self, master):
         '''
@@ -46,6 +40,15 @@ class metGuidedMode(tk.Frame):
         container.grid_columnconfigure(0, weight=1)
         self.frames = {}
 
+        pages = (
+         startPage, 
+         "RefFIF", 
+         "NFIF", "EFIF", "SFIF", "WFIF", 
+         "A1", "A2", "A3", "A4", 
+         "B1", "B2", "B3", "B4", 
+         "C1", "C2", "C3", "C4", 
+         "D1", "D2", "D3", "D4",
+         "CFIF")
         
         for page in pages:
             frame = page(container, self)
@@ -59,35 +62,8 @@ class metGuidedMode(tk.Frame):
         '''
         frame = self.frames[cont]
         frame.tkraise()
-
-class guidedModeWindow(tk.Tk):
-
-    def __init__(self, *args, **kwargs):
-        '''
-        Constructor
-        '''
-        #Set up frame
-        tk.Tk.__init__(self, *args, **kwargs)
-        container = tk.Frame(self)
-        container.pack(side="top", fill="both", expand = True)
-        container.grid_rowconfigure(0, weight=1)
-        container.grid_columnconfigure(0, weight=1)
-        self.frames = {}
-
-        #Set up page list
-        pages = list(range(0, 23)) #start page + FIF pages + conclusion page
-        for page in (pages):
-            frame = page(container, self)
-            self.frames[page] = frame
-            frame.grid(row=0, column=0, sticky="nsew")
-        self.show_frame(pages[0]) #start on the start page
-
-    def show_frame(self, cont):
-        frame = self.frames[cont]
-        frame.tkraise()
-
         
-class StartPage(tk.Frame):
+class startPage(tk.Frame):
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self,parent)
