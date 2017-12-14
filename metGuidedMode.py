@@ -15,6 +15,12 @@ Modules:
 import tkinter as tk
 # Variables ####################################################################################
 frameFont = ('consolas', '10')
+pages = ("RefFIF", "NFIF", "EFIF", "SFIF", "WFIF", 
+         "A1", "A2", "A3", "A4", 
+         "B1", "B2", "B3", "B4", 
+         "C1", "C2", "C3", "C4", 
+         "D1", "D2", "D3", "D4",
+         "CFIF")
 ################################################################################################
 
 class metGuidedMode(tk.Frame):
@@ -23,6 +29,7 @@ class metGuidedMode(tk.Frame):
         '''
         Constructor
         '''
+        
         super(metGuidedMode, self).__init__()
         self.master = master
         master.title("DESI CI Meterology Guided Mode")
@@ -31,6 +38,7 @@ class metGuidedMode(tk.Frame):
         '''
         Guide the user through measuring all of the FIFs.
         '''
+        
         #Create pages for all 22 FIFs
         container = tk.Frame(self)
         container.pack(side="top", fill="both", expand = True)
@@ -38,8 +46,8 @@ class metGuidedMode(tk.Frame):
         container.grid_columnconfigure(0, weight=1)
         self.frames = {}
 
-        pages = list(range(0, 23)) #start page + FIF pages + conclusion page
-        for page in (pages):
+        
+        for page in pages:
             frame = page(container, self)
             self.frames[page] = frame
             frame.grid(row=0, column=0, sticky="nsew")
