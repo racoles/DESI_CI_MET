@@ -13,6 +13,8 @@ Modules:
 
 # Import #######################################################################################
 import tkinter as tk
+# Variables ####################################################################################
+frameFont = ('consolas', '10')
 ################################################################################################
 
 class metGuidedMode(object):
@@ -22,7 +24,7 @@ class metGuidedMode(object):
         Constructor
         '''
         
-    def runGuidedMode(self):
+    def guidedModeFrames(self):
         '''
         Guide the user through measuring all of the FIFs.
         '''
@@ -46,11 +48,6 @@ class metGuidedMode(object):
         '''
         frame = self.frames[cont]
         frame.tkraise()
-        
-
-
-LARGE_FONT= ("Verdana", 12)
-
 
 class guidedModeWindow(tk.Tk):
 
@@ -58,7 +55,6 @@ class guidedModeWindow(tk.Tk):
         '''
         Constructor
         '''
-        
         #Set up frame
         tk.Tk.__init__(self, *args, **kwargs)
         container = tk.Frame(self)
@@ -67,15 +63,13 @@ class guidedModeWindow(tk.Tk):
         container.grid_columnconfigure(0, weight=1)
         self.frames = {}
 
-        for F in (StartPage, PageOne, PageTwo):
-
-            frame = F(container, self)
-
-            self.frames[F] = frame
-
+        #Set up page list
+        pages = list(range(0, 23)) #start page + FIF pages + conclusion page
+        for page in (pages):
+            frame = page(container, self)
+            self.frames[page] = frame
             frame.grid(row=0, column=0, sticky="nsew")
-
-        self.show_frame(StartPage)
+        self.show_frame(pages[0]) #start on the start page
 
     def show_frame(self, cont):
 
