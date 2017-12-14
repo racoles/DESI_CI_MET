@@ -72,7 +72,6 @@ class guidedModeWindow(tk.Tk):
         self.show_frame(pages[0]) #start on the start page
 
     def show_frame(self, cont):
-
         frame = self.frames[cont]
         frame.tkraise()
 
@@ -81,7 +80,7 @@ class StartPage(tk.Frame):
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self,parent)
-        label = tk.Label(self, text="Start Page", font=LARGE_FONT)
+        label = tk.Label(self, text="Start Page", font=frameFont)
         label.pack(pady=10,padx=10)
 
         button = tk.Button(self, text="Visit Page 1",
@@ -97,7 +96,7 @@ class PageOne(tk.Frame):
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
-        label = tk.Label(self, text="Page One!!!", font=LARGE_FONT)
+        label = tk.Label(self, text="Page One!!!", font=frameFont)
         label.pack(pady=10,padx=10)
 
         button1 = tk.Button(self, text="Back to Home",
@@ -113,7 +112,7 @@ class PageTwo(tk.Frame):
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
-        label = tk.Label(self, text="Page Two!!!", font=LARGE_FONT)
+        label = tk.Label(self, text="Page Two!!!", font=frameFont)
         label.pack(pady=10,padx=10)
 
         button1 = tk.Button(self, text="Back to Home",
