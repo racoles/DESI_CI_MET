@@ -18,6 +18,7 @@ from tkinter import Button, PhotoImage, Label, Entry, END
 import tkinter.scrolledtext as ScrolledText
 from tkinter.ttk import Separator, Style
 import time
+from metGuidedMode import metGuidedMode
 ################################################################################################
 
 class inputGUI(object):
@@ -55,12 +56,15 @@ class inputGUI(object):
         # |                                                        |
         # |________________________________________________________|
         
+        #Setup Guided Mode
+        gMode = metGuidedMode()
+        
         #Guided Mode Label
         Label(master, text="Guided Mode", font="bold").grid(row=0, column=0, columnspan=2, sticky='W')
         #Guided Mode Description
         Label(master, text="Be guided through measuring the CI FIFs.").grid(row=1, column=0, columnspan=2, sticky='W')
         #Guided Mode Button        
-        Button(master, text="Begin Guided Mode",bg = "white", command=lambda:self._loadInputDataFile()).grid(row=2, column=0, columnspan=2, sticky='W')
+        Button(master, text="Begin Guided Mode",bg = "white", command=lambda:gMode.mainloop()).grid(row=2, column=0, columnspan=2, sticky='W')
         
         #FIF Map
         self.fifMAP = PhotoImage(file="FPA.png", width=350, height=350)
