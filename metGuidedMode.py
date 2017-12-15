@@ -16,8 +16,6 @@ import tkinter as tk
 ################################################################################################
 
 class metGuidedMode(tk.Tk):
-    consoleLog = []
-    logFile = []
     
     def __init__(self, master):
         '''
@@ -31,8 +29,6 @@ class metGuidedMode(tk.Tk):
         '''
         Guide the user through measuring all of the FIFs.
         '''
-        #load log and console files
-        
         
         #Create pages
         container = tk.Frame(self)

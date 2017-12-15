@@ -128,6 +128,4 @@ class inputGUI(object):
         '''
         #Setup Guided Mode
         gMode = metGuidedMode(master)
-        gMode.consoleLog = consoleLog
-        gMode.logFile = logFile
         gMode.guidedModeFrames()
