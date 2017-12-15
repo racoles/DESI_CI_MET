@@ -30,8 +30,7 @@ class metGuidedMode(tk.Tk):
     def guidedModeFrames(self):
         '''
         Guide the user through measuring all of the FIFs.
-        '''
-        
+        '''  
         #Create pages
         container = tk.Frame(self)
         container.pack(side="top", fill="both", expand = True)
