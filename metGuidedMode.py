@@ -16,7 +16,9 @@ import tkinter as tk
 ################################################################################################
 
 class metGuidedMode(tk.Tk):
-
+    cLog = []
+    lFile = []
+    
     def __init__(self, master):
         '''
         Constructor
@@ -30,7 +32,7 @@ class metGuidedMode(tk.Tk):
         Guide the user through measuring all of the FIFs.
         '''
         #load log and console files
-        loadLogging(consoleLog, logFile)
+        
         
         #Create pages
         container = tk.Frame(self)
@@ -105,14 +107,3 @@ class conclusion(tk.Frame):
         button2 = tk.Button(self, text="Page One",
                             command=lambda: controller.show_frame(fifPage))
         button2.pack()
-        
-class loadLogging(object):
-    '''
-    Load log and console files.
-    '''
-    def __init__(self, consoleLog, logFile):
-        '''
-        Constructor
-        '''
-        self.cLog = consoleLog
-        self.lFile = logFile
