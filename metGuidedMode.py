@@ -54,6 +54,14 @@ class metGuidedMode(tk.Tk):
         frame = self.frames[cont]
         frame.tkraise()
         
+    def pageLogging(self, cLog, lFile, logText):
+        # console
+        cLog.configure(state="normal")
+        cLog.insert(tk.END, str(logText) + '\n')
+        cLog.configure(state="disable")
+        # log file
+        lFile.write(str(logText) + '\n')
+        
 class startPage(tk.Frame):
     consoleLog = []
     logFile = []
@@ -70,9 +78,6 @@ class startPage(tk.Frame):
         button2 = tk.Button(self, text="Visit Page 2",
                             command=lambda: controller.show_frame(fifPage))
         button2.pack()
-    
-    def startPageLogging(self, logText):
-        pass
 
 class fifPage(tk.Frame):
     consoleLog = []
