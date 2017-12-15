@@ -40,7 +40,7 @@ class metGuidedMode(tk.Tk):
         container.grid_columnconfigure(0, weight=1)
         self.frames = {}
 
-        pages = (startPage, fifPage, conclusion)
+        pages = (startPage(consoleLog, logFile), fifPage(consoleLog, logFile), conclusion(consoleLog, logFile))
         #
         #"RefFIF", 
         #"NFIF", "EFIF", "SFIF", "WFIF", 
@@ -65,7 +65,7 @@ class metGuidedMode(tk.Tk):
         
 class startPage(tk.Frame):
 
-    def __init__(self, parent, controller):
+    def __init__(self, parent, controller, consoleLog, logFile):
         tk.Frame.__init__(self,parent)
         label = tk.Label(self, text="Start Page", font=frameFont)
         label.pack(pady=10,padx=10)
@@ -81,7 +81,7 @@ class startPage(tk.Frame):
 
 class fifPage(tk.Frame):
 
-    def __init__(self, parent, controller):
+    def __init__(self, parent, controller, consoleLog, logFile):
         tk.Frame.__init__(self, parent)
         label = tk.Label(self, text="Page One!!!", font=frameFont)
         label.pack(pady=10,padx=10)
@@ -97,7 +97,7 @@ class fifPage(tk.Frame):
 
 class conclusion(tk.Frame):
 
-    def __init__(self, parent, controller):
+    def __init__(self, parent, controller, consoleLog, logFile):
         tk.Frame.__init__(self, parent)
         label = tk.Label(self, text="Page Two!!!", font=frameFont)
         label.pack(pady=10,padx=10)
