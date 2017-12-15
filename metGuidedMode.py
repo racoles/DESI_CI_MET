@@ -104,3 +104,6 @@ class conclusion(tk.Frame):
         button2 = tk.Button(self, text="Page One",
                             command=lambda: controller.show_frame(fifPage))
         button2.pack()
+        
+def loadLogging(consoleLog, logFile):
+    return consoleLog, logFile
