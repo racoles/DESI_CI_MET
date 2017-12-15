@@ -56,15 +56,12 @@ class inputGUI(object):
         # |                                                        |
         # |________________________________________________________|
         
-        #Setup Guided Mode
-        gMode = metGuidedMode(master)
-        
         #Guided Mode Label
         Label(master, text="Guided Mode", font="bold").grid(row=0, column=0, columnspan=2, sticky='W')
         #Guided Mode Description
         Label(master, text="Be guided through measuring the CI FIFs.").grid(row=1, column=0, columnspan=2, sticky='W')
         #Guided Mode Button        
-        Button(master, text="Begin Guided Mode",bg = "white", command=lambda:gMode.guidedModeFrames()).grid(row=2, column=0, columnspan=2, sticky='W')
+        Button(master, text="Begin Guided Mode",bg = "white", command=lambda:self._beginGuidedMode(self, master)).grid(row=2, column=0, columnspan=2, sticky='W')
         
         #FIF Map
         self.fifMAP = PhotoImage(file="FPA.png", width=350, height=350)
@@ -122,3 +119,8 @@ class inputGUI(object):
         # logfile
         logFile.write(str(noteBox.get()) + '\n')
         noteBox.delete(0, END)
+        
+    def _beginGuidedMode(self, master):
+        #Setup Guided Mode
+        gMode = metGuidedMode(master)
+        gMode.guidedModeFrames()
