@@ -21,7 +21,6 @@ class metGuidedMode(tk.Tk):
         '''
         Constructor
         '''
-        
         super(metGuidedMode, self).__init__()
         self.master = master
         master.title("DESI CI Meterology Guided Mode")
@@ -30,6 +29,7 @@ class metGuidedMode(tk.Tk):
         '''
         Guide the user through measuring all of the FIFs.
         '''
+        
         #Create pages for all 22 FIFs
         container = tk.Frame(self)
         container.pack(side="top", fill="both", expand = True)
@@ -105,5 +105,13 @@ class conclusion(tk.Frame):
                             command=lambda: controller.show_frame(fifPage))
         button2.pack()
         
-def loadLogging(consoleLog, logFile):
-    return consoleLog, logFile
+class loadLogging(object):
+    '''
+    Load log and console files.
+    '''
+    def __init__(self, consoleLog, logFile):
+        '''
+        Constructor
+        '''
+        self.cLog = consoleLog
+        self.lFile = logFile
