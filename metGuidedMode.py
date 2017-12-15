@@ -39,7 +39,8 @@ class metGuidedMode(tk.Tk):
         container.grid_columnconfigure(0, weight=1)
         self.frames = {}
 
-        pages = (startPage, fifPage, conclusion)
+        
+        pages = (startPage.startPage(consoleLog, logFile), fifPage, conclusion)
         #
         #"RefFIF", 
         #"NFIF", "EFIF", "SFIF", "WFIF", 
