@@ -16,13 +16,14 @@ import tkinter as tk
 ################################################################################################
 
 class metGuidedMode(tk.Tk):
-    consoleLog = []
-    logFile = []
     
     def __init__(self, master):
         '''
         Constructor
         '''
+        self.consoleLog = []
+        self.logFile = []
+        
         super(metGuidedMode, self).__init__()
         self.master = master
         master.title("DESI CI Meterology Guided Mode")
@@ -42,6 +43,8 @@ class metGuidedMode(tk.Tk):
     
         for page in pages:
             frame = page(container, self)
+            page.consoleLog = self.consoleLog
+            page.logFile = self.logFile
             self.frames[page] = frame
             frame.grid(row=0, column=0, sticky="nsew")
         self.show_frame(pages[0]) #start on the start page
@@ -54,6 +57,8 @@ class metGuidedMode(tk.Tk):
         frame.tkraise()
         
 class startPage(tk.Frame):
+    consoleLog = []
+    logFile = []
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self,parent)
@@ -69,7 +74,9 @@ class startPage(tk.Frame):
         button2.pack()
 
 class fifPage(tk.Frame):
-
+    consoleLog = []
+    logFile = []
+    
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         label = tk.Label(self, text="Page One!!!", font=('consolas', '10'))
@@ -92,6 +99,8 @@ class fifPage(tk.Frame):
         #"CFIF
 
 class conclusion(tk.Frame):
+    consoleLog = []
+    logFile = []
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
