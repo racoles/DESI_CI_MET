@@ -14,14 +14,9 @@ Modules:
 # Import #######################################################################################
 import tkinter as tk
 # Variables ####################################################################################
-frameFont = ('consolas', '10')
 cLog = []
 lFile = []
 ################################################################################################
-
-def loadGuideModeWithLogging(consoleLog, logFile):
-    cLog = consoleLog
-    lFile =logFile
 
 class metGuidedMode(tk.Tk):
 
@@ -34,10 +29,14 @@ class metGuidedMode(tk.Tk):
         self.master = master
         master.title("DESI CI Meterology Guided Mode")
         
-    def guidedModeFrames(self):
+    def guidedModeFrames(self, consoleLog, logFile):
         '''
         Guide the user through measuring all of the FIFs.
         '''
+        #Set logging variables
+        cLog = consoleLog
+        lFile = logFile
+
         #Create pages for all 22 FIFs
         container = tk.Frame(self)
         container.pack(side="top", fill="both", expand = True)
@@ -73,7 +72,7 @@ class startPage(tk.Frame):
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self,parent)
-        label = tk.Label(self, text="Start Page", font=frameFont)
+        label = tk.Label(self, text="Start Page", font=('consolas', '10'))
         label.pack(pady=10,padx=10)
 
         button = tk.Button(self, text="Visit Page 1",
@@ -81,14 +80,14 @@ class startPage(tk.Frame):
         button.pack()
 
         button2 = tk.Button(self, text="Visit Page 2",
-                            command=lambda: controller.show_frame(fifPage))
+                            command=lambda: print(lFile))
         button2.pack()
 
 class fifPage(tk.Frame):
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
-        label = tk.Label(self, text="Page One!!!", font=frameFont)
+        label = tk.Label(self, text="Page One!!!", font=('consolas', '10'))
         label.pack(pady=10,padx=10)
 
         button1 = tk.Button(self, text="Back to Home",
@@ -103,7 +102,7 @@ class conclusion(tk.Frame):
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
-        label = tk.Label(self, text="Page Two!!!", font=frameFont)
+        label = tk.Label(self, text="Page Two!!!", font=('consolas', '10'))
         label.pack(pady=10,padx=10)
 
         button1 = tk.Button(self, text="Back to Home",
