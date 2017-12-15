@@ -48,7 +48,7 @@ class metGuidedMode(tk.Tk):
          "B1", "B2", "B3", "B4", 
          "C1", "C2", "C3", "C4", 
          "D1", "D2", "D3", "D4",
-         "CFIF")
+         "CFIF", "Conclusion")
         
         for page in pages:
             frame = page(container, self)
@@ -87,7 +87,7 @@ class PageOne(tk.Frame):
         label.pack(pady=10,padx=10)
 
         button1 = tk.Button(self, text="Back to Home",
-                            command=lambda: controller.show_frame(StartPage))
+                            command=lambda: controller.show_frame(startPage))
         button1.pack()
 
         button2 = tk.Button(self, text="Page Two",
@@ -95,7 +95,7 @@ class PageOne(tk.Frame):
         button2.pack()
 
 
-class PageTwo(tk.Frame):
+class Conclusion(tk.Frame):
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
