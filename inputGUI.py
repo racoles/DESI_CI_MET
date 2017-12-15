@@ -61,7 +61,7 @@ class inputGUI(object):
         #Guided Mode Description
         Label(master, text="Be guided through measuring the CI FIFs.").grid(row=1, column=0, columnspan=2, sticky='W')
         #Guided Mode Button        
-        Button(master, text="Begin Guided Mode",bg = "white", command=lambda:self._beginGuidedMode(self, master)).grid(row=2, column=0, columnspan=2, sticky='W')
+        Button(master, text="Begin Guided Mode",bg = "white", command=lambda:self._beginGuidedMode(master)).grid(row=2, column=0, columnspan=2, sticky='W')
         
         #FIF Map
         self.fifMAP = PhotoImage(file="FPA.png", width=350, height=350)
