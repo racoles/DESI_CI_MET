@@ -31,6 +31,7 @@ class metGuidedMode(tk.Tk):
         '''
         #load log and console files
         ll = loadLogging(consoleLog, logFile)
+        print(ll.lFile)
         
         #Create pages for all 22 FIFs
         container = tk.Frame(self)
