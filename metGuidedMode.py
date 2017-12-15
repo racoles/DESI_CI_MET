@@ -28,7 +28,7 @@ class metGuidedMode(tk.Tk):
         self.master = master
         master.title("DESI CI Meterology Guided Mode")
         
-    def guidedModeFrames(self, ):
+    def guidedModeFrames(self, consoleLog, logFile):
         '''
         Guide the user through measuring all of the FIFs.
         '''
