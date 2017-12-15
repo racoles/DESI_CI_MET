@@ -34,7 +34,7 @@ class metGuidedMode(tk.Tk):
         self.master = master
         master.title("DESI CI Meterology Guided Mode")
         
-    def guidedModeFrames(self, consoleLog, logFile):
+    def guidedModeFrames(self):
         '''
         Guide the user through measuring all of the FIFs.
         '''
@@ -83,11 +83,6 @@ class startPage(tk.Frame):
         button2 = tk.Button(self, text="Visit Page 2",
                             command=lambda: controller.show_frame(fifPage))
         button2.pack()
-    
-    def startPage(self, consoleLog, logFile):
-        print(consoleLog)
-        print(logFile)
-
 
 class fifPage(tk.Frame):
 
@@ -103,7 +98,6 @@ class fifPage(tk.Frame):
         button2 = tk.Button(self, text="Page Two",
                             command=lambda: controller.show_frame(conclusion))
         button2.pack()
-
 
 class conclusion(tk.Frame):
 
