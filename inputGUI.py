@@ -121,6 +121,9 @@ class inputGUI(object):
         noteBox.delete(0, END)
         
     def _beginGuidedMode(self, master):
+        '''
+        Set up frames for guided mode
+        '''
         #Setup Guided Mode
         gMode = metGuidedMode(master)
         gMode.guidedModeFrames()
