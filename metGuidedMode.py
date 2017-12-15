@@ -32,7 +32,6 @@ class metGuidedMode(tk.Tk):
         '''
         Guide the user through measuring all of the FIFs.
         '''
-        
         #Create pages for all 22 FIFs
         container = tk.Frame(self)
         container.pack(side="top", fill="both", expand = True)
