@@ -1,7 +1,7 @@
 '''
 @title metGuidedMode
 @author: Rebecca Coles
-Updated on Dec 13, 2017
+Updated on Dec 15, 2017
 Created on Dec 13, 2017
 
 metGuidedMode
