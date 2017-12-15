@@ -63,7 +63,7 @@ class inputGUI(object):
         #Guided Mode Description
         Label(master, text="Be guided through measuring the CI FIFs.").grid(row=1, column=0, columnspan=2, sticky='W')
         #Guided Mode Button        
-        Button(master, text="Begin Guided Mode",bg = "white", command=lambda:self._beginGuidedMode(master)).grid(row=2, column=0, columnspan=2, sticky='W')
+        Button(master, text="Begin Guided Mode",bg = "white", command=lambda:self._beginGuidedMode(master, self.consoleLog, self.logFile)).grid(row=2, column=0, columnspan=2, sticky='W')
         
         #FIF Map
         self.fifMAP = PhotoImage(file="FPA.png", width=350, height=350)
@@ -92,7 +92,7 @@ class inputGUI(object):
         noteBox = Entry(master, width=40)
         noteBox.grid(row=10, column=0, columnspan=5, sticky='W')
         #Note Text Submit Button
-        Button(master, text='Submit', bg = "white", command=lambda:self._log_entry_field(noteBox, self.log, self.logFile)).grid(row=10, column=2, columnspan=2)
+        Button(master, text='Submit', bg = "white", command=lambda:self._log_entry_field(noteBox, self.consoleLog, self.logFile)).grid(row=10, column=2, columnspan=2)
         
         #Grid Separator
         Separator(master, orient="horizontal").grid(row=11, column=0, columnspan=4, sticky='ew')
@@ -100,32 +100,32 @@ class inputGUI(object):
         
         #Log Console
         # create a Text widget with a Scrollbar attached
-        self.log = ScrolledText.ScrolledText(self.master, undo=True)
-        self.log['font'] = ('consolas', '10')
-        self.log.grid(row=12, column=0, columnspan=5, sticky='ew') 
+        self.consoleLog = ScrolledText.ScrolledText(self.master, undo=True)
+        self.consoleLog['font'] = ('consolas', '10')
+        self.consoleLog.grid(row=12, column=0, columnspan=5, sticky='ew') 
         # start log
         startTime = time.strftime("%Y%m%d-%H%M%S")
         self.logFile = open("DESI_CI_MET_" + startTime + "_log.txt", "w")
         self.logFile.write("Log started: " + startTime + '\n')
-        self.log.insert(END, "Log started: " + startTime + '\n')
-        self.log.configure(state="disable")
+        self.consoleLog.insert(END, "Log started: " + startTime + '\n')
+        self.consoleLog.configure(state="disable")
         
-    def _log_entry_field(self, noteBox, log, logFile):
+    def _log_entry_field(self, noteBox, consoleLog, logFile):
         '''
         Manually enter text into log.
         '''
         # console
-        log.configure(state="normal")
-        log.insert(END, str(noteBox.get()) + '\n')
-        log.configure(state="disable")
-        # logfile
+        consoleLog.configure(state="normal")
+        consoleLog.insert(END, str(noteBox.get()) + '\n')
+        consoleLog.configure(state="disable")
+        # log file
         logFile.write(str(noteBox.get()) + '\n')
         noteBox.delete(0, END)
         
-    def _beginGuidedMode(self, master):
+    def _beginGuidedMode(self, master, consoleLog, logFile):
         '''
         Set up frames for guided mode
         '''
         #Setup Guided Mode
         gMode = metGuidedMode(master)
-        gMode.guidedModeFrames()
+        gMode.guidedModeFrames(consoleLog, logFile)
