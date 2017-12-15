@@ -40,7 +40,7 @@ class metGuidedMode(tk.Tk):
         self.frames = {}
 
         
-        pages = (startPage.startPage(consoleLog, logFile), fifPage, conclusion)
+        pages = (startPage, fifPage, conclusion)
         #
         #"RefFIF", 
         #"NFIF", "EFIF", "SFIF", "WFIF", 
