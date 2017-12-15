@@ -10,6 +10,8 @@ Software for the DESI CI metrology program.
 Modules:
 _log_entry_field:
     Manually enter text into log.
+_beginGuidedMode(self, master):
+    Set up frames for guided mode
 
 '''
 
