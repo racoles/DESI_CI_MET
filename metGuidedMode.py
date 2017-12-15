@@ -16,6 +16,8 @@ import tkinter as tk
 ################################################################################################
 
 class metGuidedMode(tk.Tk):
+    consoleLog = []
+    logFile = []
     
     def __init__(self, master):
         '''
