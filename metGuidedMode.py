@@ -76,6 +76,10 @@ class startPage(tk.Frame):
         button2 = tk.Button(self, text="Visit Page 2",
                             command=lambda: controller.show_frame(fifPage))
         button2.pack()
+    
+    def startPage(self, consoleLog, logFile):
+        print(consoleLog)
+        print(logFile)
 
 
 class fifPage(tk.Frame):
