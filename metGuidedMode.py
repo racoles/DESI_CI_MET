@@ -39,7 +39,6 @@ class metGuidedMode(tk.Tk):
         container.grid_columnconfigure(0, weight=1)
         self.frames = {}
 
-        print(logFile)
         pages = (startPage, fifPage, conclusion)
         #
         #"RefFIF", 
