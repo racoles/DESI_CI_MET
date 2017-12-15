@@ -29,6 +29,8 @@ class metGuidedMode(tk.Tk):
         '''
         Guide the user through measuring all of the FIFs.
         '''
+        #load log and console files
+        ll = loadLogging(consoleLog, logFile)
         
         #Create pages for all 22 FIFs
         container = tk.Frame(self)
