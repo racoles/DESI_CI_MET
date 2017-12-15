@@ -13,9 +13,6 @@ Modules:
 
 # Import #######################################################################################
 import tkinter as tk
-# Variables ####################################################################################
-cLog = []
-lFile = []
 ################################################################################################
 
 class metGuidedMode(tk.Tk):
@@ -33,10 +30,6 @@ class metGuidedMode(tk.Tk):
         '''
         Guide the user through measuring all of the FIFs.
         '''
-        #Set logging variables
-        cLog = consoleLog
-        lFile = logFile
-
         #Create pages for all 22 FIFs
         container = tk.Frame(self)
         container.pack(side="top", fill="both", expand = True)

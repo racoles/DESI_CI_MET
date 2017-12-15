@@ -1,7 +1,7 @@
 '''
 @title RSA_Metrology
 @author: Rebecca Coles
-Updated on Dec 12, 2017
+Updated on Dec 15, 2017
 Created on Dec 11, 2017
 '''
 
@@ -14,13 +14,3 @@ if __name__ == '__main__':
     root = Tk()
     iGUI = inputGUI(root)
     root.mainloop()
-    
-    
-    #im = imageToArray()
-    #fH = fileHandling()
-    #pl = plots()
-    
-    
-    #STD focus curve for a 4D array of FITs images
-    #imageArray, fileList = im.openAllFITSImagesInDirectory()
-    #pl.stdPlotAll(imageArray, fileList)
