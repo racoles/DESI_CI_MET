@@ -7,7 +7,7 @@ Created on Dec 13, 2017
 metGuidedMode
 Guided mode for DESI CI FIF metrology.
 
-Modules:
+Classes and Modules:
 
 '''
 
