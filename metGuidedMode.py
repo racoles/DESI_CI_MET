@@ -15,7 +15,13 @@ Modules:
 import tkinter as tk
 # Variables ####################################################################################
 frameFont = ('consolas', '10')
+cLog = []
+lFile = []
 ################################################################################################
+
+def loadGuideModeWithLogging(consoleLog, logFile):
+    cLog = consoleLog
+    lFile =logFile
 
 class metGuidedMode(tk.Tk):
 
