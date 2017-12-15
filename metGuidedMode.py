@@ -32,23 +32,14 @@ class metGuidedMode(tk.Tk):
         #load log and console files
         loadLogging(consoleLog, logFile)
         
-        #Create pages for all 22 FIFs
+        #Create pages
         container = tk.Frame(self)
         container.pack(side="top", fill="both", expand = True)
         container.grid_rowconfigure(0, weight=1)
         container.grid_columnconfigure(0, weight=1)
         self.frames = {}
-        
         pages = (startPage, fifPage, conclusion)
-        #
-        #"RefFIF", 
-        #"NFIF", "EFIF", "SFIF", "WFIF", 
-        #"A1", "A2", "A3", "A4", 
-        #"B1", "B2", "B3", "B4", 
-        #"C1", "C2", "C3", "C4", 
-        #"D1", "D2", "D3", "D4",
-        #"CFIF
-        
+    
         for page in pages:
             frame = page(container, self)
             self.frames[page] = frame
@@ -91,6 +82,14 @@ class fifPage(tk.Frame):
         button2 = tk.Button(self, text="Page Two",
                             command=lambda: controller.show_frame(conclusion))
         button2.pack()
+        
+        #"RefFIF", 
+        #"NFIF", "EFIF", "SFIF", "WFIF", 
+        #"A1", "A2", "A3", "A4", 
+        #"B1", "B2", "B3", "B4", 
+        #"C1", "C2", "C3", "C4", 
+        #"D1", "D2", "D3", "D4",
+        #"CFIF
 
 class conclusion(tk.Frame):
 
