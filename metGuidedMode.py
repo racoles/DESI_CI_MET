@@ -16,8 +16,8 @@ import tkinter as tk
 ################################################################################################
 
 class metGuidedMode(tk.Tk):
-    cLog = []
-    lFile = []
+    consoleLog = []
+    logFile = []
     
     def __init__(self, master):
         '''
@@ -27,7 +27,7 @@ class metGuidedMode(tk.Tk):
         self.master = master
         master.title("DESI CI Meterology Guided Mode")
         
-    def guidedModeFrames(self, consoleLog, logFile):
+    def guidedModeFrames(self):
         '''
         Guide the user through measuring all of the FIFs.
         '''
