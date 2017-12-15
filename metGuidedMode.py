@@ -62,32 +62,32 @@ class metGuidedMode(tk.Tk):
         
 class startPage(tk.Frame):
 
-    def __init__(self, parent, controller):
-        tk.Frame.__init__(self,parent)
+    def __init__(self, container, metGuidedModeSelf):
+        tk.Frame.__init__(self,container)
         label = tk.Label(self, text="Start Page", font=('consolas', '10'))
         label.pack(pady=10,padx=10)
 
         button = tk.Button(self, text="Visit Page 1",
-                            command=lambda: controller.show_frame(fifPage))
+                            command=lambda: metGuidedModeSelf.show_frame(fifPage))
         button.pack()
 
         button2 = tk.Button(self, text="Visit Page 2",
-                            command=lambda: print(controller.logFile))
+                            command=lambda: print(metGuidedModeSelf.logFile))
         button2.pack()
 
 class fifPage(tk.Frame):
     
-    def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
+    def __init__(self, container, metGuidedModeSelf):
+        tk.Frame.__init__(self, container)
         label = tk.Label(self, text="Page One!!!", font=('consolas', '10'))
         label.pack(pady=10,padx=10)
 
         button1 = tk.Button(self, text="Back to Home",
-                            command=lambda: controller.show_frame(startPage))
+                            command=lambda: metGuidedModeSelf.show_frame(startPage))
         button1.pack()
 
         button2 = tk.Button(self, text="Page Two",
-                            command=lambda: controller.show_frame(conclusion))
+                            command=lambda: metGuidedModeSelf.show_frame(conclusion))
         button2.pack()
         
         #"RefFIF", 
@@ -100,15 +100,15 @@ class fifPage(tk.Frame):
 
 class conclusion(tk.Frame):
 
-    def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
+    def __init__(self, container, metGuidedModeSelf):
+        tk.Frame.__init__(self, container)
         label = tk.Label(self, text="Page Two!!!", font=('consolas', '10'))
         label.pack(pady=10,padx=10)
 
         button1 = tk.Button(self, text="Back to Home",
-                            command=lambda: controller.show_frame(startPage))
+                            command=lambda: metGuidedModeSelf.show_frame(startPage))
         button1.pack()
 
         button2 = tk.Button(self, text="Page One",
-                            command=lambda: controller.show_frame(fifPage))
+                            command=lambda: metGuidedModeSelf.show_frame(fifPage))
         button2.pack()
