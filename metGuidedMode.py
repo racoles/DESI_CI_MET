@@ -76,7 +76,7 @@ class startPage(tk.Frame):
         button.pack()
 
         button2 = tk.Button(self, text="Exit to Map Screen",
-                            command=lambda: print(metGuidedModeSelf.logFile))
+                            command=lambda: metGuidedModeSelf.destroy())
         button2.pack()
 
 class fifPage(tk.Frame):
