@@ -64,26 +64,30 @@ class startPage(tk.Frame):
 
     def __init__(self, container, metGuidedModeSelf):
         tk.Frame.__init__(self,container)
-        label = tk.Label(self, text="Start PageDD", font=('consolas', '10'))
+        label = tk.Label(self,
+                          text="Guided Metrology: The following page will lead you through taking " +
+                           "metrology measurements of the FIFs for the DESI CI. The button table " +
+                           "shows the suggested order of measurements.",
+                           font=('consolas', '10'))
         label.pack(pady=10,padx=10)
 
-        button = tk.Button(self, text="Visit Page 1",
+        button = tk.Button(self, text="Begin Measuring FIFs",
                             command=lambda: metGuidedModeSelf.show_frame(fifPage))
         button.pack()
 
-        button2 = tk.Button(self, text="Visit Page 2",
+        button2 = tk.Button(self, text="Exit to Map Screen",
                             command=lambda: print(metGuidedModeSelf.logFile))
         button2.pack()
 
 class fifPage(tk.Frame):
     
-    #"RefFIF", 
-    #"NFIF", "WFIF", "SFIF", "EFIF", 
-    #"A1", "A2", "A3", "A4", 
-    #"B1", "B2", "B3", "B4", 
-    #"C1", "C2", "C3", "C4", 
-    #"D1", "D2", "D3", "D4",
-    #"CFIF
+        #"RefFIF", 
+        #"NFIF", "WFIF", "SFIF", "EFIF", 
+        #"A1", "A2", "A3", "A4", 
+        #"B1", "B2", "B3", "B4", 
+        #"C1", "C2", "C3", "C4", 
+        #"D1", "D2", "D3", "D4",
+        #"CFIF
     
     def __init__(self, container, metGuidedModeSelf):
         tk.Frame.__init__(self, container)
