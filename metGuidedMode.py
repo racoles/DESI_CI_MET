@@ -60,12 +60,9 @@ class metGuidedMode(tk.Tk):
         # log file
         lFile.write(str(logText) + '\n')
         
-    def areYouSureExit(self):
-        result = tk.messagebox.askquestion("Delete", "Are You Sure?", icon='warning')
-        if result == 'yes':
-            print("Deleted")
-        else:
-            print("I'm Not Deleted Yet")
+    def areYouSureExit(self, metGuidedModeSelf):
+        if tk.messagebox.askyesno("You are about to exit Guided Mode", "Are You Sure?", icon='warning'):
+            metGuidedModeSelf.destroy()
         
 class startPage(tk.Frame):
 
