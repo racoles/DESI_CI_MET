@@ -64,7 +64,7 @@ class startPage(tk.Frame):
 
     def __init__(self, container, metGuidedModeSelf):
         tk.Frame.__init__(self,container)
-        label = tk.Label(self, text="Start Page", font=('consolas', '10'))
+        label = tk.Label(self, text="Start PageDD", font=('consolas', '10'))
         label.pack(pady=10,padx=10)
 
         button = tk.Button(self, text="Visit Page 1",
