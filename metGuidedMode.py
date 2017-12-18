@@ -94,13 +94,17 @@ class fifPage(tk.Frame):
         label = tk.Label(self, text="Page One!!!", font=('consolas', '10'))
         label.pack(pady=10,padx=10)
 
-        button1 = tk.Button(self, text="Back to Home",
+        button1 = tk.Button(self, text="Back to Guided Mode Home",
                             command=lambda: metGuidedModeSelf.show_frame(startPage))
         button1.pack()
 
         button2 = tk.Button(self, text="Page Two",
                             command=lambda: metGuidedModeSelf.show_frame(conclusion))
         button2.pack()
+        
+        button3 = tk.Button(self, text="Exit to Map Screen", 
+                            command=lambda: metGuidedModeSelf.show_frame(conclusion)) #are you sure?
+        button3.pack()
 
 class conclusion(tk.Frame):
 
