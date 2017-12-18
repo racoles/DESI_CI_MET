@@ -60,6 +60,13 @@ class metGuidedMode(tk.Tk):
         # log file
         lFile.write(str(logText) + '\n')
         
+    def areYouSureExit(self):
+        result = tk.messagebox.askquestion("Delete", "Are You Sure?", icon='warning')
+        if result == 'yes':
+            print("Deleted")
+        else:
+            print("I'm Not Deleted Yet")
+        
 class startPage(tk.Frame):
 
     def __init__(self, container, metGuidedModeSelf):
@@ -91,7 +98,7 @@ class fifPage(tk.Frame):
     
     def __init__(self, container, metGuidedModeSelf):
         tk.Frame.__init__(self, container)
-        label = tk.Label(self, text="Page One!!!", font=('consolas', '10'))
+        label = tk.Label(self, text="FIFs can be measured in the order shown in the table below for maximum efficiency.", font=('consolas', '10'))
         label.pack(pady=10,padx=10)
 
         button1 = tk.Button(self, text="Back to Guided Mode Home",
@@ -103,7 +110,7 @@ class fifPage(tk.Frame):
         button2.pack()
         
         button3 = tk.Button(self, text="Exit to Map Screen", 
-                            command=lambda: metGuidedModeSelf.show_frame(conclusion)) #are you sure?
+                            command=lambda: metGuidedModeSelf.destroy()) #are you sure?
         button3.pack()
 
 class conclusion(tk.Frame):
