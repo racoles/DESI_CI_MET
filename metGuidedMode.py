@@ -65,9 +65,9 @@ class startPage(tk.Frame):
     def __init__(self, container, metGuidedModeSelf):
         tk.Frame.__init__(self,container)
         label = tk.Label(self,
-                          text="Guided Metrology: The following page will lead you through taking " +
-                           "metrology measurements of the FIFs for the DESI CI. The button table " +
-                           "shows the suggested order of measurements.",
+                          text="Guided Metrology: The following page will lead you through taking\n" +
+                           "metrology measurements of the FIFs for the DESI CI. The button table\n" +
+                           "shows the suggested order of measurements.\n",
                            font=('consolas', '10'))
         label.pack(pady=10,padx=10)
 
