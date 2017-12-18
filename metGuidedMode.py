@@ -13,6 +13,7 @@ Classes and Modules:
 
 # Import #######################################################################################
 import tkinter as tk
+from tkinter import messagebox
 ################################################################################################
 
 class metGuidedMode(tk.Tk):
@@ -60,9 +61,9 @@ class metGuidedMode(tk.Tk):
         # log file
         lFile.write(str(logText) + '\n')
         
-    def areYouSureExit(self, metGuidedModeSelf):
-        if tk.messagebox.askyesno("You are about to exit Guided Mode", "Are You Sure?", icon='warning'):
-            metGuidedModeSelf.destroy()
+    def areYouSureExit(self):
+        if messagebox.askyesno("Exit Guided Mode", "You are about to exit Guided Mode.\nAre You Sure?", icon='warning'):
+            self.destroy()
         
 class startPage(tk.Frame):
 
@@ -107,7 +108,7 @@ class fifPage(tk.Frame):
         button2.pack()
         
         button3 = tk.Button(self, text="Exit to Map Screen", 
-                            command=lambda: metGuidedModeSelf.destroy()) #are you sure?
+                            command=lambda: metGuidedModeSelf.areYouSureExit()) #are you sure?
         button3.pack()
 
 class conclusion(tk.Frame):
