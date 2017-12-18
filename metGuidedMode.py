@@ -77,6 +77,14 @@ class startPage(tk.Frame):
 
 class fifPage(tk.Frame):
     
+    #"RefFIF", 
+    #"NFIF", "EFIF", "SFIF", "WFIF", 
+    #"A1", "A2", "A3", "A4", 
+    #"B1", "B2", "B3", "B4", 
+    #"C1", "C2", "C3", "C4", 
+    #"D1", "D2", "D3", "D4",
+    #"CFIF
+    
     def __init__(self, container, metGuidedModeSelf):
         tk.Frame.__init__(self, container)
         label = tk.Label(self, text="Page One!!!", font=('consolas', '10'))
@@ -89,14 +97,6 @@ class fifPage(tk.Frame):
         button2 = tk.Button(self, text="Page Two",
                             command=lambda: metGuidedModeSelf.show_frame(conclusion))
         button2.pack()
-        
-        #"RefFIF", 
-        #"NFIF", "EFIF", "SFIF", "WFIF", 
-        #"A1", "A2", "A3", "A4", 
-        #"B1", "B2", "B3", "B4", 
-        #"C1", "C2", "C3", "C4", 
-        #"D1", "D2", "D3", "D4",
-        #"CFIF
 
 class conclusion(tk.Frame):
 
