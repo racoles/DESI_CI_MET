@@ -38,7 +38,7 @@ class metGuidedMode(tk.Tk):
         container.grid_rowconfigure(0, weight=1)
         container.grid_columnconfigure(0, weight=1)
         self.frames = {}
-        pages = (startPage, fifPage, conclusion)
+        pages = (fifPage, conclusion, helpPage)
     
         for page in pages:
             frame = page(container, self)
@@ -65,24 +65,20 @@ class metGuidedMode(tk.Tk):
         if messagebox.askyesno("Exit Guided Mode", "You are about to exit Guided Mode.\nAre You Sure?", icon='warning'):
             self.destroy()
         
-class startPage(tk.Frame):
+class helpPage(tk.Frame):
 
     def __init__(self, container, metGuidedModeSelf):
         tk.Frame.__init__(self,container)
         label = tk.Label(self,
                           text="Guided Metrology: The following page will lead you through taking\n" +
                            "metrology measurements of the FIFs for the DESI CI. The button table\n" +
-                           "shows the suggested order of measurements.\n",
+                           "will show the suggested order of measurements.\n",
                            font=('consolas', '10'))
         label.pack(pady=10,padx=10)
 
-        button = tk.Button(self, text="Begin Measuring FIFs",
-                            command=lambda: metGuidedModeSelf.show_frame(fifPage))
-        button.pack()
-
-        button2 = tk.Button(self, text="Exit to Map Screen",
-                            command=lambda: metGuidedModeSelf.destroy())
-        button2.pack()
+        button1 = tk.Button(self, text="Exit to Guided Mode page",
+                            command=lambda: self.destroy())
+        button1.pack()
 
 class fifPage(tk.Frame):
         #Help Button
