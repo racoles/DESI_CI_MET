@@ -14,6 +14,7 @@ Classes and Modules:
 # Import #######################################################################################
 import tkinter as tk
 from tkinter import messagebox
+from tkinter.ttk import Separator
 ################################################################################################
 
 class metGuidedMode(tk.Tk):
@@ -82,7 +83,6 @@ class helpPage(tk.Frame):
         button1.pack()
 
 class fifPage(tk.Frame):
-        #Help Button
         #"RefFIF", 
         #"NFIF", "WFIF", "SFIF", "EFIF", 
         #"A1", "A2", "A3", "A4", 
@@ -93,10 +93,17 @@ class fifPage(tk.Frame):
     
     def __init__(self, container, metGuidedModeSelf):
         tk.Frame.__init__(self, container)
-        label = tk.Label(self, text="FIFs can be measured in the order shown below for maximum efficiency.             ", font=('consolas', '10')).grid(row=0, column=0, columnspan=5, sticky='W')
         
-        helpButton = tk.Button(self, text="Help",
-                            command=lambda: metGuidedModeSelf.show_frame(helpPage)).grid(row=0, column=6, sticky='E') 
+        tk.Label(self, text="FIFs can be measured in the order shown below for maximum efficiency.             ", font=('consolas', '10')).grid(row=0, column=0, columnspan=5, sticky='W')
+        tk.Button(self, text="Help",
+                            command=lambda: metGuidedModeSelf.show_frame(helpPage)).grid(row=0, column=6, sticky='E')
+        Separator(self, orient="horizontal").grid(row=1, column=0, columnspan=6, sticky='ew') 
+                           
+        #Measurement grid
+        # RefFIFLabel
+        tk.Label(self, text="RefFIF", font=('consolas', '10')).grid(row=2, column=0, columnspan=5, sticky='W')
+        tk.Button(self, text="RefFIF Focal Curve",
+                            command=lambda: metGuidedModeSelf.show_frame(helpPage)).grid(row=3, column=0, sticky='E')
 
 #######################
         ExitButton1 = tk.Button(self, text="Conclude Measurements",
@@ -108,6 +115,8 @@ class fifPage(tk.Frame):
         ExitButton2.grid(row=3, column=0, columnspan=5, sticky='W')
 
 class conclusion(tk.Frame):
+    
+    #warning, did not create focus curve or met for X
 
     def __init__(self, container, metGuidedModeSelf):
         tk.Frame.__init__(self, container)
