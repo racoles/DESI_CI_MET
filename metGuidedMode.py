@@ -99,17 +99,13 @@ class fifPage(tk.Frame):
         label = tk.Label(self, text="FIFs can be measured in the order shown below for maximum efficiency.", font=('consolas', '10'))
         label.grid(row=0, column=0, columnspan=5, sticky='W')
 
-        button1 = tk.Button(self, text="Back to Guided Mode Home",
-                            command=lambda: metGuidedModeSelf.show_frame(startPage))
-        button1.grid(row=1, column=0, columnspan=5, sticky='W')
-
-        button2 = tk.Button(self, text="Conclude Measurements",
+        button1 = tk.Button(self, text="Conclude Measurements",
                             command=lambda: metGuidedModeSelf.show_frame(conclusion)) #are you sure?
-        button2.grid(row=1, column=1, columnspan=5, sticky='W')
+        button1.grid(row=2, column=0, columnspan=5, sticky='W')
         
-        button3 = tk.Button(self, text="Exit to Map Screen", 
+        button2 = tk.Button(self, text="Exit to Map Screen", 
                             command=lambda: metGuidedModeSelf.areYouSureExit()) #are you sure?
-        button3.grid(row=1, column=2, columnspan=5, sticky='W')
+        button2.grid(row=3, column=0, columnspan=5, sticky='W')
 
 class conclusion(tk.Frame):
 
