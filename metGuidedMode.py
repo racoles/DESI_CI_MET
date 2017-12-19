@@ -101,15 +101,15 @@ class fifPage(tk.Frame):
 
         button1 = tk.Button(self, text="Back to Guided Mode Home",
                             command=lambda: metGuidedModeSelf.show_frame(startPage))
-        button1.pack()
+        button1.grid(row=1, column=0, columnspan=5, sticky='W')
 
         button2 = tk.Button(self, text="Conclude Measurements",
                             command=lambda: metGuidedModeSelf.show_frame(conclusion)) #are you sure?
-        button2.pack()
+        button2.grid(row=1, column=1, columnspan=5, sticky='W')
         
         button3 = tk.Button(self, text="Exit to Map Screen", 
                             command=lambda: metGuidedModeSelf.areYouSureExit()) #are you sure?
-        button3.pack()
+        button3.grid(row=1, column=2, columnspan=5, sticky='W')
 
 class conclusion(tk.Frame):
 
