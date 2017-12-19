@@ -96,8 +96,8 @@ class fifPage(tk.Frame):
     
     def __init__(self, container, metGuidedModeSelf):
         tk.Frame.__init__(self, container)
-        label = tk.Label(self, text="FIFs can be measured in the order shown in the table below for maximum efficiency.", font=('consolas', '10'))
-        label.pack(pady=10,padx=10)
+        label = tk.Label(self, text="FIFs can be measured in the order shown below for maximum efficiency.", font=('consolas', '10'))
+        label.grid(row=0, column=0, columnspan=5, sticky='W')
 
         button1 = tk.Button(self, text="Back to Guided Mode Home",
                             command=lambda: metGuidedModeSelf.show_frame(startPage))
