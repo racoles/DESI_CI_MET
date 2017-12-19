@@ -103,31 +103,38 @@ class fifPage(tk.Frame):
         # RefFIFLabel
         tk.Label(self, text="RefFIF", font=('consolas', '10')).grid(row=2, column=0, columnspan=5, sticky='W')
         tk.Button(self, text="RefFIF Focal Curve",
-                            command=lambda: metGuidedModeSelf.show_frame(self.focusCurve())).grid(row=3, column=0, sticky='E')
+                            command=lambda: metGuidedModeSelf.show_frame(self.focusCurve("RefFIF",  fiflabel, metGuidedModeSelf))).grid(row=3, column=0, sticky='E')
+
 
         #Exit Buttons
         ExitButton1 = tk.Button(self, text="Conclude Measurements",
                             command=lambda: metGuidedModeSelf.show_frame(conclusion)) #are you sure?
-        ExitButton1.grid(row=2, column=0, columnspan=5, sticky='W')
+        ExitButton1.grid(row=3, column=0, columnspan=5, sticky='W')
         
         ExitButton2 = tk.Button(self, text="Exit to Map Screen", 
                             command=lambda: metGuidedModeSelf.areYouSureExit()) #are you sure?
-        ExitButton2.grid(row=3, column=0, columnspan=5, sticky='W')
+        ExitButton2.grid(row=4, column=0, columnspan=5, sticky='W')
         
-    def focusCurve(self):
-        #create folder
+    def focusCurve(self, fiflabel, metGuidedModeSelf):
+        #Create folder
+        #    extract folder name
         #message user to fill folder (mention label names)
         #create curve
         pass
     
-    def centroidFIF(self):
-        #create folder
+    def centroidFIF(self, fiflabel, metGuidedModeSelf):
+        #Create folder
         #message user to fill folder (mention label names)
         #find fif in image
         #create subarray (note location offsets)
         #centroid
         #return locations + offsets
         pass
+    
+    def createFolder(self, fiflabel, metGuidedModeSelf):
+        #Create folder
+        #    get log start time
+        logTime = [int(s) for s in metGuidedModeSelf.logFile.name.split() if s.isdigit()]
 
 class conclusion(tk.Frame):
     
