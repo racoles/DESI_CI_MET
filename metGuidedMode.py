@@ -131,7 +131,7 @@ class fifPage(tk.Frame):
 
 class conclusion(tk.Frame):
     
-    #warning, did not create focus curve or met for X
+    #warning, did not create focus curve or met for X, go back?
 
     def __init__(self, container, metGuidedModeSelf):
         tk.Frame.__init__(self, container)
