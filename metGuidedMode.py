@@ -1,7 +1,7 @@
 '''
 @title metGuidedMode
 @author: Rebecca Coles
-Updated on Dec 15, 2017
+Updated on Dec 19, 2017
 Created on Dec 13, 2017
 
 metGuidedMode
@@ -85,7 +85,7 @@ class startPage(tk.Frame):
         button2.pack()
 
 class fifPage(tk.Frame):
-    
+        #Help Button
         #"RefFIF", 
         #"NFIF", "WFIF", "SFIF", "EFIF", 
         #"A1", "A2", "A3", "A4", 
@@ -96,16 +96,19 @@ class fifPage(tk.Frame):
     
     def __init__(self, container, metGuidedModeSelf):
         tk.Frame.__init__(self, container)
-        label = tk.Label(self, text="FIFs can be measured in the order shown below for maximum efficiency.", font=('consolas', '10'))
-        label.grid(row=0, column=0, columnspan=5, sticky='W')
-
-        button1 = tk.Button(self, text="Conclude Measurements",
-                            command=lambda: metGuidedModeSelf.show_frame(conclusion)) #are you sure?
-        button1.grid(row=2, column=0, columnspan=5, sticky='W')
+        label = tk.Label(self, text="FIFs can be measured in the order shown below for maximum efficiency.             ", font=('consolas', '10')).grid(row=0, column=0, columnspan=5, sticky='W')
         
-        button2 = tk.Button(self, text="Exit to Map Screen", 
+        helpButton = tk.Button(self, text="Help",
+                            command=lambda: metGuidedModeSelf.show_frame(conclusion)).grid(row=0, column=6, sticky='E') 
+
+#######################
+        ExitButton1 = tk.Button(self, text="Conclude Measurements",
+                            command=lambda: metGuidedModeSelf.show_frame(conclusion)) #are you sure?
+        ExitButton1.grid(row=2, column=0, columnspan=5, sticky='W')
+        
+        ExitButton2 = tk.Button(self, text="Exit to Map Screen", 
                             command=lambda: metGuidedModeSelf.areYouSureExit()) #are you sure?
-        button2.grid(row=3, column=0, columnspan=5, sticky='W')
+        ExitButton2.grid(row=3, column=0, columnspan=5, sticky='W')
 
 class conclusion(tk.Frame):
 
