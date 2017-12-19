@@ -70,9 +70,10 @@ class helpPage(tk.Frame):
     def __init__(self, container, metGuidedModeSelf):
         tk.Frame.__init__(self,container)
         label = tk.Label(self,
-                          text="Guided Metrology: The following page will lead you through taking\n" +
-                           "metrology measurements of the FIFs for the DESI CI. The button table\n" +
-                           "will show the suggested order of measurements.\n",
+                          text="Guided Metrology will lead you through taking\n" +
+                           "metrology measurements of the FIFs for the DESI CI.\n" +
+                           "The button table will show the suggested order of \n" +
+                           "measurements.\n",
                            font=('consolas', '10'))
         label.pack(pady=10,padx=10)
 
@@ -95,7 +96,7 @@ class fifPage(tk.Frame):
         label = tk.Label(self, text="FIFs can be measured in the order shown below for maximum efficiency.             ", font=('consolas', '10')).grid(row=0, column=0, columnspan=5, sticky='W')
         
         helpButton = tk.Button(self, text="Help",
-                            command=lambda: metGuidedModeSelf.show_frame(conclusion)).grid(row=0, column=6, sticky='E') 
+                            command=lambda: metGuidedModeSelf.show_frame(helpPage)).grid(row=0, column=6, sticky='E') 
 
 #######################
         ExitButton1 = tk.Button(self, text="Conclude Measurements",
