@@ -138,6 +138,6 @@ class conclusion(tk.Frame):
         label = tk.Label(self, text="Page Two!!!", font=('consolas', '10'))
         label.pack(pady=10,padx=10)
 
-        button2 = tk.Button(self, text="Page One",
+        button2 = tk.Button(self, text="Fif page",
                             command=lambda: metGuidedModeSelf.show_frame(fifPage))
         button2.pack()
