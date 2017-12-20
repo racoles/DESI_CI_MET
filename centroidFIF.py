@@ -39,6 +39,8 @@ findFIFInImage
 
 # Import #######################################################################################
 import numpy as np
+import argparse
+import cv2
 ################################################################################################
 
 class centroidFIF(object):
@@ -202,6 +204,6 @@ class centroidFIF(object):
         #|  SubArray  |
         #|            |
         #|____________|
-        
+        gray = cv2.GaussianBlur(image, (0, 31), 0)
         
         #return subArray, xOffset, yOffset
