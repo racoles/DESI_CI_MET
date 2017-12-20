@@ -142,8 +142,8 @@ class fifPage(tk.Frame):
                                       "Best focus for " + str(fiflabel) + " is " + xInter + "um")
     
     def centroidFIF(self, fiflabel, metGuidedModeSelf):
-        #Create folder
-        #message user to fill folder (mention label names) + log the message using metGuidedModeSelf funct
+        #Message user to fill dir (mention label names)
+        #    Log the message
         #find fif in image
         #create subarray (note location offsets)
         #centroid
