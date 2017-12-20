@@ -129,12 +129,9 @@ class fifPage(tk.Frame):
                                         "\nNOTE: the file names will be used to create the X axis values (distance)\n" +
                                         " so please label the FITS files appropriately\n" +
                                         "(example: 350.fit for the image taken at 350um).")
+        #Create focus curve
         if result == 'yes':
             print("Deleted")
-        else:
-            print("I'm Not Deleted Yet")
-        #create curve
-        pass
     
     def centroidFIF(self, fiflabel, metGuidedModeSelf):
         #Create folder
