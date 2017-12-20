@@ -138,6 +138,8 @@ class fifPage(tk.Frame):
         else:
             metGuidedModeSelf.pageLogging(metGuidedModeSelf.consoleLog, metGuidedModeSelf.logFile, 
                                       fiflabel + "focus curve fits files load failed")
+        metGuidedModeSelf.pageLogging(metGuidedModeSelf.consoleLog, metGuidedModeSelf.logFile, 
+                                      "Best focus for " + str(fiflabel) + " is " + xInter + "um")
     
     def centroidFIF(self, fiflabel, metGuidedModeSelf):
         #Create folder
