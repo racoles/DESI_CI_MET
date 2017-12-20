@@ -134,7 +134,7 @@ class fifPage(tk.Frame):
         fC = focusCurve()
         if result == 'yes':
             imageArray4D, filelist = fH.openAllFITSImagesInDirectory()
-            fC.stdFocusCurve(imageArray4D, filelist)
+            xInter = fC.stdFocusCurve(imageArray4D, filelist)
     
     def centroidFIF(self, fiflabel, metGuidedModeSelf):
         #Create folder
