@@ -123,6 +123,7 @@ class fifPage(tk.Frame):
         #    Log the message
         metGuidedModeSelf.pageLogging(metGuidedModeSelf.consoleLog, metGuidedModeSelf.logFile, 
                                       fiflabel + " focus curve directory: " + dirName)
+        #    Dialogue window
         #create curve
         pass
     
@@ -153,7 +154,7 @@ class conclusion(tk.Frame):
 
     def __init__(self, container, metGuidedModeSelf):
         tk.Frame.__init__(self, container)
-        label = tk.Label(self, text="Page Two!!!", font=('consolas', '10'))
+        label = tk.Label(self, text="You are on Conclusion", font=('consolas', '10'))
         label.pack(pady=10,padx=10)
 
         button2 = tk.Button(self, text="Fif page",
