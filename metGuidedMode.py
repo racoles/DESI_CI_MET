@@ -137,7 +137,7 @@ class fifPage(tk.Frame):
             xInter = fC.stdFocusCurve(imageArray4D, filelist)
         else:
             metGuidedModeSelf.pageLogging(metGuidedModeSelf.consoleLog, metGuidedModeSelf.logFile, 
-                                      fiflabel + " fits files load failed")
+                                      fiflabel + "focus curve fits files load failed")
     
     def centroidFIF(self, fiflabel, metGuidedModeSelf):
         #Create folder
