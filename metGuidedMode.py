@@ -119,13 +119,13 @@ class fifPage(tk.Frame):
     def focusCurve(self, fiflabel, metGuidedModeSelf):
         #Create dir
         dirName = self.createDir(fiflabel, metGuidedModeSelf)
-        #message user to fill dir (mention label names)
+        #message user to fill dir (mention label names)  + log the message using metGuidedModeSelf funct
         #create curve
         pass
     
     def centroidFIF(self, fiflabel, metGuidedModeSelf):
         #Create folder
-        #message user to fill folder (mention label names)
+        #message user to fill folder (mention label names) + log the message using metGuidedModeSelf funct
         #find fif in image
         #create subarray (note location offsets)
         #centroid
