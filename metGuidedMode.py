@@ -118,7 +118,7 @@ class fifPage(tk.Frame):
         
     def focusCurve(self, fiflabel, metGuidedModeSelf):
         #Create dir
-        dirName = self.createDir(self, fiflabel, metGuidedModeSelf)
+        dirName = self.createDir(fiflabel, metGuidedModeSelf)
         #message user to fill dir (mention label names)
         #create curve
         pass
