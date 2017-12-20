@@ -15,6 +15,7 @@ Classes and Modules:
 import tkinter as tk
 from tkinter import messagebox
 from tkinter.ttk import Separator
+import os, errno
 ################################################################################################
 
 class metGuidedMode(tk.Tk):
@@ -103,7 +104,7 @@ class fifPage(tk.Frame):
         # RefFIFLabel
         tk.Label(self, text="RefFIF", font=('consolas', '10')).grid(row=2, column=0, columnspan=5, sticky='W')
         tk.Button(self, text="RefFIF Focal Curve",
-                            command=lambda: metGuidedModeSelf.show_frame(self.focusCurve("RefFIF",  fiflabel, metGuidedModeSelf))).grid(row=3, column=0, sticky='E')
+                            command=lambda: metGuidedModeSelf.show_frame(self.focusCurve("RefFIF", metGuidedModeSelf))).grid(row=3, column=0, sticky='E')
 
 
         #Exit Buttons
@@ -132,9 +133,15 @@ class fifPage(tk.Frame):
         pass
     
     def createFolder(self, fiflabel, metGuidedModeSelf):
-        #Create folder
-        #    get log start time
+        #Get log start time
         logTime = [int(s) for s in metGuidedModeSelf.logFile.name.split() if s.isdigit()]
+        logTime = '-'.join(logTime[:])
+        #Create folder
+        try:
+            os.makedirs(fiflabel + logTime)
+        except OSError as e:
+            if e.errno != errno.EEXIST:
+                raise
 
 class conclusion(tk.Frame):
     
