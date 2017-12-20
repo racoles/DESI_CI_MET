@@ -119,14 +119,16 @@ class fifPage(tk.Frame):
         ExitButton2.grid(row=4, column=0, columnspan=5, sticky='W')
         
     def focusCurve(self, fiflabel, metGuidedModeSelf):
+        #Create Dir
+        dirName = self.createDir(fiflabel, metGuidedModeSelf)
         #Message user to fill dir (mention label names)
         #    Log the message
         metGuidedModeSelf.pageLogging(metGuidedModeSelf.consoleLog, metGuidedModeSelf.logFile, 
-                                      "Select " +  str(fiflabel) + " focus curve directory")
+                                      "Suggested " +  str(fiflabel) + " focus curve directory: " + str(os.getcwd()) + dirName)
         #    Dialogue window
         result = messagebox.askokcancel("Select " +  str(fiflabel) + " focus curve directory", 
                                         "Select " +  str(fiflabel) + " focus curve directory that contains fits images." + 
-                                        "\nNOTE: the file names will be used to create the X axis values (distance)\n" +
+                                        "\nNOTE: the file names will be used to create the Z axis values (distance)\n" +
                                         " so please label the FITS files appropriately\n" +
                                         "(example: 350.fit for the image taken at 350um).")
         #Create focus curve

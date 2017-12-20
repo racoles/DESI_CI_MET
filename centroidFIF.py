@@ -191,7 +191,17 @@ class centroidFIF(object):
             xcen,ycen = xcen[0]+1,ycen[0]+1
         return(xcen,ycen)
     
-    def findFIFInImage(self, image, x, y):
+    def findFIFInImage(self, image):
         '''
         Find FIF in image using intensity.
         '''
+        #(xOffset, yOffset)
+        #*____________
+        #|            |
+        #|            |
+        #|  SubArray  |
+        #|            |
+        #|____________|
+        
+        
+        #return subArray, xOffset, yOffset
