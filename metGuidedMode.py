@@ -117,9 +117,9 @@ class fifPage(tk.Frame):
         ExitButton2.grid(row=4, column=0, columnspan=5, sticky='W')
         
     def focusCurve(self, fiflabel, metGuidedModeSelf):
-        #Create folder
-        #    extract folder name
-        #message user to fill folder (mention label names)
+        #Create dir
+        dirName = self.createDir(self, fiflabel, metGuidedModeSelf)
+        #message user to fill dir (mention label names)
         #create curve
         pass
     
@@ -132,16 +132,17 @@ class fifPage(tk.Frame):
         #return locations + offsets
         pass
     
-    def createFolder(self, fiflabel, metGuidedModeSelf):
+    def createDir(self, fiflabel, metGuidedModeSelf):
         #Get log start time
         logTime = [int(s) for s in metGuidedModeSelf.logFile.name.split() if s.isdigit()]
         logTime = '-'.join(logTime[:])
-        #Create folder
+        #Create dir
         try:
-            os.makedirs(fiflabel + logTime)
+            os.makedirs(str(fiflabel + logTime))
         except OSError as e:
             if e.errno != errno.EEXIST:
                 raise
+        return str(fiflabel + logTime)
 
 class conclusion(tk.Frame):
     
