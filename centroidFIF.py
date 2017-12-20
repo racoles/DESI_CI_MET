@@ -1,7 +1,7 @@
 '''
 @title centroidFIF
 @author: Rebecca Coles
-Updated on Dec 12, 2017
+Updated on Dec 20, 2017
 Created on Dec 12, 2017
 
 centroidPinHoleImage
@@ -33,6 +33,8 @@ findCentroid
     centroid falls outside of the box, or if the computed derivatives
     are non-decreasing.   If the centroid cannot be computed, then a 
     xcen and ycen are set to -1 and a message is displayed.
+findFIFInImage
+    Find FIF in image using intensity.
 '''
 
 # Import #######################################################################################
@@ -190,3 +192,6 @@ class centroidFIF(object):
         return(xcen,ycen)
     
     def findFIFInImage(self):
+        '''
+        Find FIF in image using intensity.
+        '''
