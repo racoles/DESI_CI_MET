@@ -16,6 +16,8 @@ import tkinter as tk
 from tkinter import messagebox
 from tkinter.ttk import Separator
 import os, errno
+from focusCurve import focusCurve
+from fileAndArrayHandling import fileAndArrayHandling
 ################################################################################################
 
 class metGuidedMode(tk.Tk):
@@ -117,21 +119,22 @@ class fifPage(tk.Frame):
         ExitButton2.grid(row=4, column=0, columnspan=5, sticky='W')
         
     def focusCurve(self, fiflabel, metGuidedModeSelf):
-        #Create dir
-        dirName = self.createDir(fiflabel, metGuidedModeSelf)
         #Message user to fill dir (mention label names)
         #    Log the message
         metGuidedModeSelf.pageLogging(metGuidedModeSelf.consoleLog, metGuidedModeSelf.logFile, 
-                                      fiflabel + " focus curve directory: " + dirName)
+                                      "Select " +  fiflabel + " focus curve directory")
         #    Dialogue window
-        result = messagebox.askokcancel("Fill " + fiflabel + " Directory", 
-                                        "Fill " + fiflabel + " directory with focus curve images." + 
+        result = messagebox.askokcancel("Select " +  fiflabel + " focus curve directory", 
+                                        "Select " +  fiflabel + " focus curve directory that contains fits images." + 
                                         "\nNOTE: the file names will be used to create the X axis values (distance)\n" +
                                         " so please label the FITS files appropriately\n" +
                                         "(example: 350.fit for the image taken at 350um).")
         #Create focus curve
+        fH = fileAndArrayHandling()
+        fC = focusCurve()
         if result == 'yes':
-            print("Deleted")
+            imageArray4D, filelist = fH.openAllFITSImagesInDirectory()
+            fC.stdFocusCurve(imageArray4D, filelist)
     
     def centroidFIF(self, fiflabel, metGuidedModeSelf):
         #Create folder
