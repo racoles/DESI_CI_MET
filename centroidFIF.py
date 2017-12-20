@@ -204,6 +204,6 @@ class centroidFIF(object):
         #|  SubArray  |
         #|            |
         #|____________|
-        gray = cv2.GaussianBlur(image, (0, 31), 0)
-        
+        gray = cv2.GaussianBlur(image, (1, 31), 0)
+        (minVal, maxVal, minLoc, maxLoc) = cv2.minMaxLoc(gray)
         #return subArray, xOffset, yOffset
