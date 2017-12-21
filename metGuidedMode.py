@@ -18,6 +18,7 @@ from tkinter.ttk import Separator
 import os, errno
 from focusCurve import focusCurve
 from fileAndArrayHandling import fileAndArrayHandling
+from centroidFIF import centroidFIF
 ################################################################################################
 
 class metGuidedMode(tk.Tk):
@@ -140,9 +141,12 @@ class fifPage(tk.Frame):
         #add nominal BF
         
     def centroidFIF(self, fiflabel, metGuidedModeSelf):
+        #Create Dir
+        dirName = self.createDir(fiflabel, metGuidedModeSelf)
         #Message user to fill dir (mention label names)
         #    Log the message
         #find fif in image
+        #centroidFIF.findFIFInImage(self, image)
         #create subarray (note location offsets)
         #centroid
         #return locations + offsets
