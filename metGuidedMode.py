@@ -104,20 +104,21 @@ class fifPage(tk.Frame):
                            
         #Measurement grid
         # RefFIFLabel
-        tk.Label(self, text="RefFIF", font=('consolas', '10')).grid(row=2, column=0, columnspan=5, sticky='W')
-        tk.Button(self, text="RefFIF Focal Curve",
-                            command=lambda: metGuidedModeSelf.show_frame(self.focusCurve("RefFIF", metGuidedModeSelf))).grid(row=3, column=0, sticky='E')
-
+        tk.Label(self, text="RefFIF", font=('consolas', '10')).grid(row=2, column=0, columnspan=1, sticky='W')
+        tk.Button(self, text="RefFIF Focus Curve",
+                            command=lambda: metGuidedModeSelf.show_frame(self.focusCurve("RefFIF", metGuidedModeSelf))).grid(row=3, column=0, sticky='W')
+        tk.Button(self, text="RefFIF Centroid",
+                            command=lambda: metGuidedModeSelf.show_frame(self.centroidFIF("RefFIF", metGuidedModeSelf))).grid(row=4, column=0, sticky='W')
 
         #Exit Buttons
-        Separator(self, orient="horizontal").grid(row=4, column=0, columnspan=6, sticky='ew') 
+        Separator(self, orient="horizontal").grid(row=5, column=0, columnspan=6, sticky='ew') 
         ExitButton1 = tk.Button(self, text="Conclude Measurements",
                             command=lambda: metGuidedModeSelf.show_frame(conclusion)) #are you sure?
-        ExitButton1.grid(row=5, column=1, columnspan=1, sticky='W')
+        ExitButton1.grid(row=6, column=1, columnspan=1, sticky='W')
         
         ExitButton2 = tk.Button(self, text="Exit to Map Screen", 
                             command=lambda: metGuidedModeSelf.areYouSureExit()) #are you sure?
-        ExitButton2.grid(row=5, column=0, columnspan=1, sticky='W')
+        ExitButton2.grid(row=6, column=0, columnspan=1, sticky='W')
         
     def focusCurve(self, fiflabel, metGuidedModeSelf):
         #Create Dir
@@ -153,11 +154,11 @@ class fifPage(tk.Frame):
         logTime = '-'.join(logTime[:])
         #Create dir
         try:
-            os.makedirs(str(fiflabel + logTime))
+            os.makedirs(str(fiflabel + "_" + logTime))
         except OSError as e:
             if e.errno != errno.EEXIST:
                 raise
-        return str(fiflabel + logTime)
+        return str(fiflabel + "_" +  logTime)
 
 class conclusion(tk.Frame):
     
