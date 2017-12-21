@@ -127,7 +127,7 @@ class fifPage(tk.Frame):
         #Message user to fill dir (mention label names)
         #    Log the message
         metGuidedModeSelf.pageLogging(metGuidedModeSelf.consoleLog, metGuidedModeSelf.logFile, 
-                                      "Suggested " +  str(fiflabel) + " focus curve directory: " + str(os.getcwd()) + dirName + 
+                                      "Suggested " +  str(fiflabel) + " focus curve directory: \n" + str(os.getcwd()) + '\\' + dirName + 
                                       "\nNOTE: the file names will be used to create the Z axis values (distance)\n" +
                                         " so please label the FITS files appropriately\n" +
                                         "(example: 350.fit for the image taken at 350um).")
@@ -147,7 +147,7 @@ class fifPage(tk.Frame):
         #Message user to fill dir (mention label names)
         #    Log the message
         metGuidedModeSelf.pageLogging(metGuidedModeSelf.consoleLog, metGuidedModeSelf.logFile, 
-                                      "Suggested " +  str(fiflabel) + " centroid directory: " + str(os.getcwd()) + dirName)
+                                      "Suggested " +  str(fiflabel) + " centroid directory: \n" + str(os.getcwd()) + '\\' + dirName)
         #Get images
         fH = fileAndArrayHandling()
         imageArray4D, filelist = fH.openAllFITSImagesInDirectory()
@@ -162,6 +162,8 @@ class fifPage(tk.Frame):
     
     def createDir(self, fiflabel, metGuidedModeSelf):
         #Get log start time
+        logtime = metGuidedModeSelf.logFile.name
+        print(logtime)
         logTime = [int(s) for s in metGuidedModeSelf.logFile.name.split() if s.isdigit()]
         logTime = '-'.join(logTime[:])
         print(logTime)
