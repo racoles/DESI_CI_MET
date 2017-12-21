@@ -152,11 +152,12 @@ class fifPage(tk.Frame):
         fH = fileAndArrayHandling()
         imageArray4D, filelist = fH.openAllFITSImagesInDirectory()
         #Find fif in image and create subarray
-        #centroidFIF.findFIFInImage(self, image)
+        centroidFIF.findFIFInImage(self, imageArray4D[0])
         #create subarray (note location offsets)
         #centroid
+        #    cp = centroidPinHoleImage()
+        #    pinhole = cp.findCentroid(images[0], 159, 95, extendbox = 3)
         #return locations + offsets
-        pass
     
     def createDir(self, fiflabel, metGuidedModeSelf):
         #Get log start time
