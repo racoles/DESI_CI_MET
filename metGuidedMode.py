@@ -153,8 +153,9 @@ class fifPage(tk.Frame):
         imageArray4D, filelist = fH.openAllFITSImagesInDirectory()
         #Find fif in image and create subarray
         centroidFIF.findFIFInImage(self, imageArray4D[0])
-        #create subarray (note location offsets)
         #centroid
+        #    metGuidedModeSelf.pageLogging(metGuidedModeSelf.consoleLog, metGuidedModeSelf.logFile, 
+        #                             "Centroiding using image: " +  filelist[0])
         #    cp = centroidPinHoleImage()
         #    pinhole = cp.findCentroid(images[0], 159, 95, extendbox = 3)
         #return locations + offsets
