@@ -136,7 +136,7 @@ class fifPage(tk.Frame):
         imageArray4D, filelist = fH.openAllFITSImagesInDirectory()
         xInter = fC.stdFocusCurve(imageArray4D, filelist)
         metGuidedModeSelf.pageLogging(metGuidedModeSelf.consoleLog, metGuidedModeSelf.logFile, 
-                                      "Measured Best focus for " + str(fiflabel) + " is: " + xInter + "um")
+                                      "Measured Best focus for " + str(fiflabel) + " is: " + str(xInter) + "um")
         #add nominal BF
         
     def centroidFIF(self, fiflabel, metGuidedModeSelf):
@@ -152,6 +152,7 @@ class fifPage(tk.Frame):
         #Get log start time
         logTime = [int(s) for s in metGuidedModeSelf.logFile.name.split() if s.isdigit()]
         logTime = '-'.join(logTime[:])
+        print(logTime)
         #Create dir
         try:
             os.makedirs(str(fiflabel + "_" + logTime))
