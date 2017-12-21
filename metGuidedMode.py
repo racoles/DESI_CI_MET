@@ -153,7 +153,7 @@ class fifPage(tk.Frame):
         imageArray4D, filelist = fH.openAllFITSImagesInDirectory()
         #Find fif in image and create subarray
         metGuidedModeSelf.pageLogging(metGuidedModeSelf.consoleLog, metGuidedModeSelf.logFile, 
-                                      "Centroiding " + str(fiflabel) + " using FITs file:\n" + str(filelist[0]).replace('\\', '/'))
+                                      "Centroiding " + str(fiflabel) + " using FITs file:\n" + str(filelist[0]).replace('/', '\\'))
         centroidFIF.findFIFInImage(self, imageArray4D[0])
         #centroid
         #    metGuidedModeSelf.pageLogging(metGuidedModeSelf.consoleLog, metGuidedModeSelf.logFile, 
