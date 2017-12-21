@@ -15,7 +15,7 @@ Classes and Modules:
 import tkinter as tk
 from tkinter import messagebox
 from tkinter.ttk import Separator
-import os, errno
+import os, errno, re
 from focusCurve import focusCurve
 from fileAndArrayHandling import fileAndArrayHandling
 from centroidFIF import centroidFIF
@@ -162,9 +162,7 @@ class fifPage(tk.Frame):
     
     def createDir(self, fiflabel, metGuidedModeSelf):
         #Get log start time
-        logtime = metGuidedModeSelf.logFile.name
-        print(logtime)
-        logTime = [int(s) for s in metGuidedModeSelf.logFile.name.split() if s.isdigit()]
+        logTime = re.findall(r'\d+', metGuidedModeSelf.logFile.name)
         logTime = '-'.join(logTime[:])
         print(logTime)
         #Create dir
