@@ -145,6 +145,8 @@ class fifPage(tk.Frame):
         dirName = self.createDir(fiflabel, metGuidedModeSelf)
         #Message user to fill dir (mention label names)
         #    Log the message
+        metGuidedModeSelf.pageLogging(metGuidedModeSelf.consoleLog, metGuidedModeSelf.logFile, 
+                                      "Suggested " +  str(fiflabel) + " centroid directory: " + str(os.getcwd()) + dirName)
         #find fif in image
         #centroidFIF.findFIFInImage(self, image)
         #create subarray (note location offsets)
