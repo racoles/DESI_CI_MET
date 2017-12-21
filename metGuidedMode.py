@@ -110,13 +110,14 @@ class fifPage(tk.Frame):
 
 
         #Exit Buttons
+        Separator(self, orient="horizontal").grid(row=4, column=0, columnspan=6, sticky='ew') 
         ExitButton1 = tk.Button(self, text="Conclude Measurements",
                             command=lambda: metGuidedModeSelf.show_frame(conclusion)) #are you sure?
-        ExitButton1.grid(row=3, column=0, columnspan=5, sticky='W')
+        ExitButton1.grid(row=5, column=1, columnspan=1, sticky='W')
         
         ExitButton2 = tk.Button(self, text="Exit to Map Screen", 
                             command=lambda: metGuidedModeSelf.areYouSureExit()) #are you sure?
-        ExitButton2.grid(row=4, column=0, columnspan=5, sticky='W')
+        ExitButton2.grid(row=5, column=0, columnspan=1, sticky='W')
         
     def focusCurve(self, fiflabel, metGuidedModeSelf):
         #Create Dir
