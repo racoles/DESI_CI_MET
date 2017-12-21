@@ -164,7 +164,6 @@ class fifPage(tk.Frame):
         #Get log start time
         logTime = re.findall(r'\d+', metGuidedModeSelf.logFile.name)
         logTime = '-'.join(logTime[:])
-        print(logTime)
         #Create dir
         try:
             os.makedirs(str(fiflabel + "_" + logTime))
