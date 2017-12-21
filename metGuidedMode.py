@@ -131,10 +131,11 @@ class fifPage(tk.Frame):
                                       "\nNOTE: the file names will be used to create the Z axis values (distance)\n" +
                                         " so please label the FITS files appropriately\n" +
                                         "(example: 350.fit for the image taken at 350um).")
-        #Create focus curve
+        #Get images
         fH = fileAndArrayHandling()
         fC = focusCurve()
         imageArray4D, filelist = fH.openAllFITSImagesInDirectory()
+        #Create focus curve
         xInter = fC.stdFocusCurve(imageArray4D, filelist)
         metGuidedModeSelf.pageLogging(metGuidedModeSelf.consoleLog, metGuidedModeSelf.logFile, 
                                       "Measured Best focus for " + str(fiflabel) + " is: " + str(xInter) + "um")
@@ -147,9 +148,10 @@ class fifPage(tk.Frame):
         #    Log the message
         metGuidedModeSelf.pageLogging(metGuidedModeSelf.consoleLog, metGuidedModeSelf.logFile, 
                                       "Suggested " +  str(fiflabel) + " centroid directory: " + str(os.getcwd()) + dirName)
-        #find fif in image
+        #Get images
         fH = fileAndArrayHandling()
         imageArray4D, filelist = fH.openAllFITSImagesInDirectory()
+        #Find fif in image and create subarray
         #centroidFIF.findFIFInImage(self, image)
         #create subarray (note location offsets)
         #centroid
