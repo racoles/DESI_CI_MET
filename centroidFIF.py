@@ -207,4 +207,4 @@ class centroidFIF(object):
         gray = cv2.GaussianBlur(image, (1, 31), 0)
         (minVal, maxVal, minLoc, maxLoc) = cv2.minMaxLoc(gray)
         print(maxLoc)
-        #return subArray, xOffset, yOffset
+        #return subArray, xOffset, yOffset, maxLoc

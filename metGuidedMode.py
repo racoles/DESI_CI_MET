@@ -124,22 +124,15 @@ class fifPage(tk.Frame):
         #Message user to fill dir (mention label names)
         #    Log the message
         metGuidedModeSelf.pageLogging(metGuidedModeSelf.consoleLog, metGuidedModeSelf.logFile, 
-                                      "Suggested " +  str(fiflabel) + " focus curve directory: " + str(os.getcwd()) + dirName)
-        #    Dialogue window
-        result = messagebox.askokcancel("Select " +  str(fiflabel) + " focus curve directory", 
-                                        "Select " +  str(fiflabel) + " focus curve directory that contains fits images." + 
-                                        "\nNOTE: the file names will be used to create the Z axis values (distance)\n" +
+                                      "Suggested " +  str(fiflabel) + " focus curve directory: " + str(os.getcwd()) + dirName + 
+                                      "\nNOTE: the file names will be used to create the Z axis values (distance)\n" +
                                         " so please label the FITS files appropriately\n" +
                                         "(example: 350.fit for the image taken at 350um).")
         #Create focus curve
         fH = fileAndArrayHandling()
         fC = focusCurve()
-        if result == 'yes':
-            imageArray4D, filelist = fH.openAllFITSImagesInDirectory()
-            xInter = fC.stdFocusCurve(imageArray4D, filelist)
-        else:
-            metGuidedModeSelf.pageLogging(metGuidedModeSelf.consoleLog, metGuidedModeSelf.logFile, 
-                                      str(fiflabel) + "focus curve fits files load failed")
+        imageArray4D, filelist = fH.openAllFITSImagesInDirectory()
+        xInter = fC.stdFocusCurve(imageArray4D, filelist)
         metGuidedModeSelf.pageLogging(metGuidedModeSelf.consoleLog, metGuidedModeSelf.logFile, 
                                       "Measured Best focus for " + str(fiflabel) + " is: " + xInter + "um")
         #add nominal BF
