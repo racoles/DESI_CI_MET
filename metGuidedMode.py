@@ -148,6 +148,8 @@ class fifPage(tk.Frame):
         metGuidedModeSelf.pageLogging(metGuidedModeSelf.consoleLog, metGuidedModeSelf.logFile, 
                                       "Suggested " +  str(fiflabel) + " centroid directory: " + str(os.getcwd()) + dirName)
         #find fif in image
+        fH = fileAndArrayHandling()
+        imageArray4D, filelist = fH.openAllFITSImagesInDirectory()
         #centroidFIF.findFIFInImage(self, image)
         #create subarray (note location offsets)
         #centroid
