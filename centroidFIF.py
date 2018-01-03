@@ -208,8 +208,13 @@ class centroidFIF(object):
         
         #Grayscale image
         gray = cv2.GaussianBlur(image, (1, 31), 0)
-        
+        #Find FIF in image
         (minVal, maxVal, minLoc, maxLoc) = cv2.minMaxLoc(gray)
+        #Create subarray around FIF (slice array)
+        print(maxLoc.shape)
+        #fifSubArray = image[,]
+        
+        
         #Create lists of: minVal, maxVal, minLoc, maxLoc for numberOfFIFInImage FIFs
         #minVal, maxVal, minLoc, maxLoc = []        
         #Identify FIF Loop
