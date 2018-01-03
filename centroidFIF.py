@@ -197,13 +197,14 @@ class centroidFIF(object):
         '''
         Find FIF in image using intensity.
         '''
-        #(xOffset, yOffset)
-        #*____________
+        #(0,0) is in lower left-hand corner of image
+        # ____________
         #|            |
         #|            |
         #|  SubArray  |
         #|            |
         #|____________|
+        #* (xOffset, yOffset)
         gray = cv2.GaussianBlur(image, (1, 31), 0)
         (minVal, maxVal, minLoc, maxLoc) = cv2.minMaxLoc(gray)
         print(maxLoc)
