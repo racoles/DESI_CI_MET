@@ -39,7 +39,7 @@ findFIFInImage
 
 # Import #######################################################################################
 import numpy as np
-import argparse
+#import argparse
 import cv2
 ################################################################################################
 
@@ -193,7 +193,7 @@ class centroidFIF(object):
             xcen,ycen = xcen[0]+1,ycen[0]+1
         return(xcen,ycen)
     
-    def findFIFInImage(self, image):
+    def findFIFInImage(self, image, numberOfFIFInImage):
         '''
         Find FIF in image using intensity.
         '''
@@ -205,7 +205,21 @@ class centroidFIF(object):
         #|            |
         #|____________|
         #* (xOffset, yOffset)
+        
+        #Grayscale image
         gray = cv2.GaussianBlur(image, (1, 31), 0)
+        
         (minVal, maxVal, minLoc, maxLoc) = cv2.minMaxLoc(gray)
+        #Create lists of: minVal, maxVal, minLoc, maxLoc for numberOfFIFInImage FIFs
+        #minVal, maxVal, minLoc, maxLoc = []        
+        #Identify FIF Loop
+        #    after each identification, the identified FIF will be masked before the
+        #    next iteration of the loop.
+        #for xx in range(numberOfFIFInImage):
+            #locate FIF
+        #    (minVal[xx], maxVal[xx], minLoc[xx], maxLoc[xx]) = cv2.minMaxLoc(gray)
+            #mask FIF
+        #    grayMask = 
+        #    grayMasked = np.ma.MaskedArray(gray ,mask)
         print(maxLoc)
         #return subArray, xOffset, yOffset, maxLoc
