@@ -205,7 +205,9 @@ class centroidFIF(object):
         # |            |
         # |____________|
         # *(xOffset, yOffset)
+
         subArrayBoxSize = 40 #subArrayBoxSize+1 pixels per side. Use even number!
+        
         #Grayscale image
         gray = cv2.GaussianBlur(image, (1, 31), 0)
         #Find FIF in image (minVal, maxVal, minLoc, maxLoc)

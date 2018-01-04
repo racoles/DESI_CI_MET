@@ -154,14 +154,14 @@ class fifPage(tk.Frame):
         #Find fif in image and create subarray
         metGuidedModeSelf.pageLogging(metGuidedModeSelf.consoleLog, metGuidedModeSelf.logFile, 
                                       "Centroiding " + str(fiflabel) + " using FITs file:\n" + str(filelist[0]).replace('/', '\\'))
-        fifSubArray, xOffset, yOffset, subArrayBoxSize  = centroidFIF.findFIFInImage(self, imageArray4D[0])
+        fifSubArray, subArrayBoxSize, maxLoc  = centroidFIF.findFIFInImage(self, imageArray4D[0])
         metGuidedModeSelf.pageLogging(metGuidedModeSelf.consoleLog, metGuidedModeSelf.logFile, 
-                                      str(fiflabel) + "FIF found at pixel location: (" + str(xOffset) + "," + str(yOffset) + "). Will now centroid using that location.")
+                                      str(fiflabel) + "FIF found at pixel location: (" + str(maxLoc[0]) + "," + str(maxLoc[1]) + "). Will now centroid using that location.")
         #Centroid
         xcen, ycen = centroidFIF.findCentroid(fifSubArray, int(subArrayBoxSize/2), int(subArrayBoxSize/2), extendbox = 3)
         #Add offsets at account for subarray
-        xcen = xcen + xOffset
-        ycen = ycen + yOffset
+        xcen = xcen + maxLoc[0]-subArrayBoxSize/2
+        ycen = ycen + maxLoc[1]-subArrayBoxSize/2
         metGuidedModeSelf.pageLogging(metGuidedModeSelf.consoleLog, metGuidedModeSelf.logFile, 
                                       str(fiflabel) + " center found at location: " )
         return xcen, ycen
