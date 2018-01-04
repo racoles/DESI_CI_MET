@@ -158,8 +158,8 @@ class fifPage(tk.Frame):
         metGuidedModeSelf.pageLogging(metGuidedModeSelf.consoleLog, metGuidedModeSelf.logFile, 
                                       str(fiflabel) + "FIF found at pixel location: (" + str(xOffset) + "," + str(yOffset) + "). Will now centroid using that location.")
         #Centroid
-        pinhole = centroidFIF.findCentroid(fifSubArray, int(fifSubArray.shape[0]/2), int(fifSubArray.shape[1]/2), extendbox = 3)
-        #return locations + offsets
+        xcen, ycen = centroidFIF.findCentroid(fifSubArray, int(fifSubArray.shape[0]/2), int(fifSubArray.shape[1]/2), extendbox = 3)
+        #return locations and offsets
     
     def createDir(self, fiflabel, metGuidedModeSelf):
         #Get log start time
