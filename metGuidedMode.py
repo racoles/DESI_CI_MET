@@ -164,7 +164,7 @@ class fifPage(tk.Frame):
         ycen = ycen + maxLoc[1]-subArrayBoxSize/2
         metGuidedModeSelf.pageLogging(metGuidedModeSelf.consoleLog, metGuidedModeSelf.logFile, 
                                       str(fiflabel) + " center found at location: (" + str(xcen) + "," + str(ycen) + ")")
-        return xcen, ycen
+        return xcen, ycen ###############
     
     def createDir(self, fiflabel, metGuidedModeSelf):
         #Get log start time
