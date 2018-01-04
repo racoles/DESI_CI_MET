@@ -211,8 +211,7 @@ class centroidFIF(object):
         #Find FIF in image
         (minVal, maxVal, minLoc, maxLoc) = cv2.minMaxLoc(gray)
         #Create subarray around FIF (slice array)
-        print(maxLoc.shape)
-        #fifSubArray = image[,]
+        fifSubArray = image[maxLoc[0]-20:maxLoc[0]+20,maxLoc[1]-20:maxLoc[1]+20]
         
         
         #Create lists of: minVal, maxVal, minLoc, maxLoc for numberOfFIFInImage FIFs
