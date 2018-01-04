@@ -155,6 +155,8 @@ class fifPage(tk.Frame):
         metGuidedModeSelf.pageLogging(metGuidedModeSelf.consoleLog, metGuidedModeSelf.logFile, 
                                       "Centroiding " + str(fiflabel) + " using FITs file:\n" + str(filelist[0]).replace('/', '\\'))
         fifSubArray, xOffset, yOffset = centroidFIF.findFIFInImage(self, imageArray4D[0])
+        metGuidedModeSelf.pageLogging(metGuidedModeSelf.consoleLog, metGuidedModeSelf.logFile, 
+                                      str(fiflabel) + "FIF found at pixel location: (" + str(xOffset) + "," + str(yOffset) + "). Will now centroid using that location.")
         #centroid
         #    metGuidedModeSelf.pageLogging(metGuidedModeSelf.consoleLog, metGuidedModeSelf.logFile, 
         #                             "Centroiding using image: " +  filelist[0])
