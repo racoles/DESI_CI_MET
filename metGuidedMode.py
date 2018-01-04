@@ -158,10 +158,13 @@ class fifPage(tk.Frame):
         metGuidedModeSelf.pageLogging(metGuidedModeSelf.consoleLog, metGuidedModeSelf.logFile, 
                                       str(fiflabel) + "FIF found at pixel location: (" + str(xOffset) + "," + str(yOffset) + "). Will now centroid using that location.")
         #Centroid
-        xcen, ycen = centroidFIF.findCentroid(fifSubArray, int(fifSubArray.shape[0]/2), int(fifSubArray.shape[1]/2), extendbox = 3)
+        xcen, ycen = centroidFIF.findCentroid(fifSubArray, int(subArrayBoxSize/2), int(subArrayBoxSize/2), extendbox = 3)
+        #Add offsets at account for subarray
+        xcen = xcen + xOffset
+        ycen = ycen + yOffset
         metGuidedModeSelf.pageLogging(metGuidedModeSelf.consoleLog, metGuidedModeSelf.logFile, 
                                       str(fiflabel) + " center found at location: " )
-        return xcen , ycen
+        return xcen, ycen
     
     def createDir(self, fiflabel, metGuidedModeSelf):
         #Get log start time
