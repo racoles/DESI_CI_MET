@@ -210,20 +210,9 @@ class centroidFIF(object):
         gray = cv2.GaussianBlur(image, (1, 31), 0)
         #Find FIF in image
         (minVal, maxVal, minLoc, maxLoc) = cv2.minMaxLoc(gray)
+        #Offsets are:
+        xOffset = maxLoc[0]
+        yOffset = maxLoc[1]
         #Create subarray around FIF (slice array)
-        fifSubArray = image[maxLoc[0]-20:maxLoc[0]+20,maxLoc[1]-20:maxLoc[1]+20]
-        
-        
-        #Create lists of: minVal, maxVal, minLoc, maxLoc for numberOfFIFInImage FIFs
-        #minVal, maxVal, minLoc, maxLoc = []        
-        #Identify FIF Loop
-        #    after each identification, the identified FIF will be masked before the
-        #    next iteration of the loop.
-        #for xx in range(numberOfFIFInImage):
-            #locate FIF
-        #    (minVal[xx], maxVal[xx], minLoc[xx], maxLoc[xx]) = cv2.minMaxLoc(gray)
-            #mask FIF
-        #    grayMask = 
-        #    grayMasked = np.ma.MaskedArray(gray ,mask)
-        print(maxLoc)
-        #return subArray, xOffset, yOffset, maxLoc
+        fifSubArray = image[ xOffset-20: xOffset+20, yOffset-20:yOffset+20]
+        return fifSubArray, xOffset, yOffset
