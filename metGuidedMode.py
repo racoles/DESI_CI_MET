@@ -235,6 +235,13 @@ class fifPage(tk.Frame):
             if e.errno != errno.EEXIST:
                 raise
         return str(fiflabel + "_" +  logTime)
+    
+    def asphericFocalCurve(self):
+        '''
+        Use ZEMAX Image surface definition, of 10th order even 
+        polynomial, to find best focus nominal Z (mm).
+        '''
+        #return nominalZ
 
 class conclusion(tk.Frame):
     
