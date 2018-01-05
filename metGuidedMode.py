@@ -255,7 +255,8 @@ class fifPage(tk.Frame):
         
         nominalZ = a2 + a4 + a6 + a8 + a10
         '''
-        
+        #r = sqrt(x^2 + y^2)
+        #inv_c = -4977.99
         #return nominalZ
 
 class conclusion(tk.Frame):
