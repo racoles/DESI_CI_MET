@@ -33,14 +33,19 @@ class fileAndArrayHandling(object):
         '''
         Open multiple images and save them to a numpy array
         '''
-        #open image file
+        ###########################################################################
+        ###Open image file
+        ###########################################################################
         try:
             dirLocation = self._openDir()
         except IOError:
             print('The directory could not be opened, or no directory was selected.')
         filelist = glob(dirLocation + '/*.*')
         fitsImages = [fits.getdata(image) for image in filelist]
-        #convert to 4D numpy array
+        
+        ###########################################################################
+        ###Convert images to 4D numpy array
+        ###########################################################################
         return array(fitsImages), filelist
     
     def _openDir(self):
