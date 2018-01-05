@@ -221,11 +221,19 @@ class centroidFIF(object):
         # *(xOffset, yOffset)
 
         subArrayBoxSize = 40 #subArrayBoxSize+1 pixels per side. Use even number!
-        
-        #Grayscale image
+
+        ###########################################################################
+        ###Grayscale image
+        ###########################################################################
         gray = cv2.GaussianBlur(image, (1, 31), 0)
-        #Find FIF in image (minVal, maxVal, minLoc, maxLoc)
+        
+        ###########################################################################
+        ###Find FIF in image (minVal, maxVal, minLoc, maxLoc)
+        ###########################################################################
         _, _, _, maxLoc = cv2.minMaxLoc(gray)
-        #Create subarray around FIF (slice array)
+
+        ###########################################################################
+        ###Create subarray around FIF (slice array)
+        ###########################################################################        
         fifSubArray = image[maxLoc[0]-subArrayBoxSize/2:maxLoc[0]+subArrayBoxSize/2, maxLoc[1]-subArrayBoxSize/2:maxLoc[1]+subArrayBoxSize/2]
         return fifSubArray, subArrayBoxSize, maxLoc
