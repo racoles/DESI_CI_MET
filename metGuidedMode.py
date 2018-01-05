@@ -167,7 +167,7 @@ class fifPage(tk.Frame):
         ###########################################################################
         ###Nominal best focus
         ###########################################################################
-        #self.asphericFocalCurve(x, y)
+        nominalZ = self.asphericFocalCurve(x, y)
         
         ###########################################################################
         ###Change button text and color
