@@ -120,11 +120,13 @@ class fifPage(tk.Frame):
         #Measurement grid
         # RefFIFLabel
         tk.Label(self, text="RefFIF", font=('consolas', '10')).grid(row=2, column=0, columnspan=1, sticky='W')
-        RefFIFF = tk.Button(self, text="RefFIF Focus Curve",
-                            command=lambda: metGuidedModeSelf.show_frame(self.focusCurve(RefFIFF, "RefFIF", metGuidedModeSelf))).grid(row=3, column=0, sticky='W')
-        RefFIFC = tk.Button(self, text="RefFIF Centroid",
-                            command=lambda: metGuidedModeSelf.show_frame(self.centroidFIF(RefFIFC, "RefFIF", metGuidedModeSelf))).grid(row=4, column=0, sticky='W')
-
+        refFIFF = tk.Button(self, text="RefFIF Focus Curve",
+                            command=lambda: metGuidedModeSelf.show_frame(self.focusCurve(refFIFF, "RefFIF", metGuidedModeSelf)))
+        refFIFF.grid(row=3, column=0, sticky='W')
+        refFIFC = tk.Button(self, text="RefFIF Centroid",
+                            command=lambda: metGuidedModeSelf.show_frame(self.centroidFIF(refFIFC, "RefFIF", metGuidedModeSelf)))
+        refFIFC.grid(row=4, column=0, sticky='W')
+        
         #Exit Buttons
         Separator(self, orient="horizontal").grid(row=5, column=0, columnspan=6, sticky='ew') 
         ExitButton1 = tk.Button(self, text="Conclude Measurements",
@@ -167,7 +169,7 @@ class fifPage(tk.Frame):
         ###########################################################################
         ###Nominal best focus
         ###########################################################################
-        nominalZ = self.asphericFocalCurve(x, y)
+        #nominalZ = self.asphericFocalCurve(x, y)
         
         ###########################################################################
         ###Change button text and color
