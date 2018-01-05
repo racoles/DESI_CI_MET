@@ -185,30 +185,50 @@ class fifPage(tk.Frame):
         ###########################################################################
         fH = fileAndArrayHandling()
         imageArray4D, filelist = fH.openAllFITSImagesInDirectory()
-        #Find fif in image and create subarray
+        
+        ###########################################################################
+        ###Find fif in image and create subarray
+        ###########################################################################
         metGuidedModeSelf.pageLogging(metGuidedModeSelf.consoleLog, metGuidedModeSelf.logFile, 
                                       "Centroiding " + str(fiflabel) + " using FITs file:\n" + str(filelist[0]).replace('/', '\\'))
         fifSubArray, subArrayBoxSize, maxLoc  = centroidFIF.findFIFInImage(self, imageArray4D[0])
         metGuidedModeSelf.pageLogging(metGuidedModeSelf.consoleLog, metGuidedModeSelf.logFile, 
                                       str(fiflabel) + "FIF found at pixel location: (" + str(maxLoc[0]) + "," + str(maxLoc[1]) + "). Will now centroid using that location.")
-        #Centroid
+        
+        ###########################################################################
+        ###Centroid
+        ###########################################################################
         xcen, ycen = centroidFIF.findCentroid(fifSubArray, int(subArrayBoxSize/2), int(subArrayBoxSize/2), extendbox = 3)
-        #Add offsets to account for subarray
+        
+        ###########################################################################
+        ###Add offsets to account for subarray
+        ###########################################################################
         xcen = xcen + maxLoc[0]-subArrayBoxSize/2
         ycen = ycen + maxLoc[1]-subArrayBoxSize/2
         metGuidedModeSelf.pageLogging(metGuidedModeSelf.consoleLog, metGuidedModeSelf.logFile, 
                                       str(fiflabel) + " center found at location: (" + str(xcen) + "," + str(ycen) + ")")
-        #Save values to metGuidedMode dictionary: fifCentroidedLocationDict
+        
+        ###########################################################################
+        ###Save values to metGuidedMode dictionary: fifCentroidedLocationDict
+        ###########################################################################
         metGuidedModeSelf.fifCentroidedLocationDict[fiflabel] = (xcen, ycen)
-        #change button text and color
+        
+        ###########################################################################
+        ###Change button text and color
+        ###########################################################################
         sensorButton.config(text = "Centroid Complete", bg = 'green')
 
     
     def createDir(self, fiflabel, metGuidedModeSelf):
-        #Get log start time
+        ###########################################################################
+        ###Get log start time
+        ###########################################################################
         logTime = re.findall(r'\d+', metGuidedModeSelf.logFile.name)
         logTime = '-'.join(logTime[:])
-        #Create dir
+        
+        ###########################################################################
+        ###Create Dir
+        ###########################################################################
         try:
             os.makedirs(str(fiflabel + "_" + logTime))
         except OSError as e:
