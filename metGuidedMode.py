@@ -135,7 +135,7 @@ class fifPage(tk.Frame):
                             command=lambda: metGuidedModeSelf.areYouSureExit()) #are you sure?
         ExitButton2.grid(row=6, column=0, columnspan=1, sticky='W')
         
-    def focusCurve(self, fiflabel, metGuidedModeSelf):
+    def focusCurve(self, RefFIFF, fiflabel, metGuidedModeSelf):
         ###########################################################################
         ###Create Dir
         ###########################################################################
