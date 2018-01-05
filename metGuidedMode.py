@@ -236,11 +236,13 @@ class fifPage(tk.Frame):
                 raise
         return str(fiflabel + "_" +  logTime)
     
-    def asphericFocalCurve(self):
+    def asphericFocalCurve(self, x, y):
         '''
         Use ZEMAX Image surface definition, of 10th order even 
-        polynomial, to find best focus nominal Z (mm).
+        polynomial, to find best focus nominal Z (mm) for a FIF
+        that has its center pinhole at location (x, y).
         '''
+        
         #return nominalZ
 
 class conclusion(tk.Frame):
