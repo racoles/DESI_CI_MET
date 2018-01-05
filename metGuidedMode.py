@@ -165,7 +165,7 @@ class fifPage(tk.Frame):
                                       "Measured Best focus for " + str(fiflabel) + " is: " + str(xInter) + "um")
         
         ###########################################################################
-        ###Add nominal BF
+        ###Nominal best focus
         ########################################################################### 
         
     def centroidFIF(self, sensorButton, fiflabel, metGuidedModeSelf):
