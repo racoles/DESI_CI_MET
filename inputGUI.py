@@ -58,6 +58,9 @@ class inputGUI(object):
         # |                                                        |
         # |________________________________________________________|
         
+        ###########################################################################
+        ###Buttons
+        ########################################################################### 
         #Guided Mode Label
         tk.Label(master, text="Guided Mode", font="bold").grid(row=0, column=0, columnspan=2, sticky='W')
         #Guided Mode Description
@@ -97,8 +100,10 @@ class inputGUI(object):
         #Grid Separator
         Separator(master, orient="horizontal").grid(row=11, column=0, columnspan=4, sticky='ew')
         #Style(master).configure("TSeparator", background="black")   
-        
-        #Log Console
+
+        ###########################################################################
+        ###Log Console
+        ###########################################################################         
         # create a Text widget with a Scrollbar attached
         self.consoleLog = ScrolledText.ScrolledText(self.master, undo=True)
         self.consoleLog['font'] = ('consolas', '10')
