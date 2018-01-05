@@ -142,14 +142,20 @@ class focusCurve(object):
         Zip xx and yy values into array of tulups
         Sort list by distance (x) so xx (distances) are in the proper order in the plot
         '''
-        #zip xx and yy
+        ###########################################################################
+        ###Zip xx and yy
+        ###########################################################################    
         xy = []
         [xy.append(jj) for jj in zip(xx, yy)]
         
-        #sort list by distance (x)
+        ###########################################################################
+        ###Sort list by distance (x)
+        ###########################################################################  
         sortedXY = sorted(xy, key=itemgetter(0))
         
-        #seperate into X and Y
+        ###########################################################################
+        ###Separate into X and Y
+        ########################################################################### 
         sortedX = [kk[0] for kk in sortedXY]
         sortedY = [ll[1] for ll in sortedXY]
         
@@ -163,18 +169,23 @@ class focusCurve(object):
         Find the first derivative of the poly1d
         Solve deriv =ax + b for deriv = 0 (point of best focus)
         '''
-        #calculate polynomial
+        ###########################################################################
+        ###Calculate polynomial
+        ########################################################################### 
         funct = np.poly1d(np.polyfit(xx, yy, order))
         
-        #calculate new x's and y's
+        ###########################################################################
+        ###Calculate new x's and y's
+        ########################################################################### 
         xFit = np.linspace(xx[0], xx[-1])
         yFit = funct(xFit)
         
-        #find slope = 0 for fit, this will be used to split the data to a left and right liner fit
-        ##find the first derivative of the poly1d
+        ###########################################################################
+        ###Find slope = 0 for fit, this will be used to split the data to a left and right liner fit
+        ########################################################################### 
+        #find the first derivative of the poly1d
         deriv = np.polyder(funct)
-        
-        ##solve deriv =ax + b for deriv = 0 (used to split data into left and right sides of the curve)
+        #solve deriv =ax + b for deriv = 0 (used to split data into left and right sides of the curve)
         bestFocus = (0-deriv.c[1])/(deriv.c[0])
         
         return xFit, yFit, funct, bestFocus
