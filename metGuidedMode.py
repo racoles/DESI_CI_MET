@@ -255,8 +255,17 @@ class fifPage(tk.Frame):
         
         nominalZ = a2 + a4 + a6 + a8 + a10
         '''
-        r = math.sqrt(x^2 + y^2)
+        r = math.sqrt(math.pow(x, 2) + math.pow(y, 2))
         inv_c = -4977.99
+        
+        ###########################################################################
+        ###Aspheric terms
+        ###########################################################################
+        a2 = ((r^2)/(inv_c))/(1+math.sqrt(1-(math.pow(r, 2)/math.pow(inv_c, 2))))
+        a4 = -0.00000000029648*math.pow(r, 4)
+        a6 = 0.0000000000000034523*math.pow(r, 6)
+        a8 = -1.8042E-20*math.pow(r, 8)
+        a10 = 3.2571E-26*math.pow(r, 10)
         #return nominalZ
 
 class conclusion(tk.Frame):
