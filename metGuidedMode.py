@@ -15,7 +15,7 @@ Classes and Modules:
 import tkinter as tk
 from tkinter import messagebox
 from tkinter.ttk import Separator
-import os, errno, re
+import os, errno, re, math
 from focusCurve import focusCurve
 from fileAndArrayHandling import fileAndArrayHandling
 from centroidFIF import centroidFIF
@@ -255,8 +255,8 @@ class fifPage(tk.Frame):
         
         nominalZ = a2 + a4 + a6 + a8 + a10
         '''
-        #r = sqrt(x^2 + y^2)
-        #inv_c = -4977.99
+        r = math.sqrt(x^2 + y^2)
+        inv_c = -4977.99
         #return nominalZ
 
 class conclusion(tk.Frame):
