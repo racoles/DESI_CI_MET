@@ -154,12 +154,12 @@ class fifPage(tk.Frame):
         ###Get images
         ###########################################################################
         fH = fileAndArrayHandling()
-        fC = focusCurve()
         imageArray4D, filelist = fH.openAllFITSImagesInDirectory()
         
         ###########################################################################
         ###Create focus curve
-        ###########################################################################        
+        ########################################################################### 
+        fC = focusCurve()       
         xInter = fC.stdFocusCurve(imageArray4D, filelist)
         metGuidedModeSelf.pageLogging(metGuidedModeSelf.consoleLog, metGuidedModeSelf.logFile, 
                                       "Measured Best focus for " + str(fiflabel) + " is: " + str(xInter) + "um")
