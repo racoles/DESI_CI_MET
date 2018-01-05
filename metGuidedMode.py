@@ -169,9 +169,9 @@ class fifPage(tk.Frame):
                                       str(fiflabel) + " center found at location: (" + str(xcen) + "," + str(ycen) + ")")
         #Save values to metGuidedMode dictionary: fifCentroidedLocationDict
         metGuidedModeSelf.fifCentroidedLocationDict[fiflabel] = (xcen, ycen)
-        #change button text
-        sensorButton.config(text = "Centroid Complete")
-        ############### make button color change
+        #change button text and color
+        sensorButton.config(text = "Centroid Complete", bg = 'green')
+
     
     def createDir(self, fiflabel, metGuidedModeSelf):
         #Get log start time
