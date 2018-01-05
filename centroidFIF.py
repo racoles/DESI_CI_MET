@@ -70,8 +70,10 @@ class centroidFIF(object):
         sz_image = np.shape(image)
         xsize = sz_image[1]
         ysize = sz_image[0]
-        
-        #find fwhm
+
+        ###########################################################################
+        ###Find fwhm
+        ###########################################################################
         maxi = np.amax(image)
         floor = np.median(image.flatten())
         height = maxi - floor
@@ -80,7 +82,9 @@ class centroidFIF(object):
             height = maxi - floor
         fwhm = np.sqrt(sum((image>floor+height/2.).flatten()))        
 
-        # Compute size of box needed to compute centroid
+        ###########################################################################
+        ###Compute size of box needed to compute centroid
+        ###########################################################################
         if not extendbox: extendbox = 0
         nhalf =  int(0.637*fwhm)  
         if nhalf < 2: nhalf = 2
@@ -135,25 +139,33 @@ class centroidFIF(object):
             xmax = ix[i]
             ymax = iy[i]
 
-        # check *new* center location for range (added by David Hogg)
+        ###########################################################################
+        ###Check *new* center location for range (added by David Hogg)
+        ###########################################################################
         if ((xmax < nhalf) or ((xmax + nhalf) > xsize-1) or
            (ymax < nhalf) or ((ymax + nhalf) > ysize-1)):
             xcen[i] = -1
             ycen[i] = -1
             print('Position '+ pos + ' moved too near edge of image')
 
-        # Extract smaller 'STRBOX' sized subimage centered on maximum pixel
+        ###########################################################################
+        ###Extract smaller 'STRBOX' sized subimage centered on maximum pixel
+        ###########################################################################
         strbox = image[int(ymax-nhalf) : int(ymax+nhalf+1), int(xmax-nhalf) : int(xmax+nhalf+1)]
 
         ir = (nhalf-1)
         if ir < 1: ir = 1
         dd = np.arange(nbox-1).astype(int) + 0.5 - nhalf
 
-        # Weighting factor W unity in center, 0.5 at end, and linear in between
+        ###########################################################################
+        ###Weighting factor W unity in center, 0.5 at end, and linear in between
+        ###########################################################################
         w = 1. - 0.5*(np.abs(dd)-0.5)/(nhalf-0.5)
         sumc   = np.sum(w)
 
-        # Find X centroid
+        ###########################################################################
+        ###Find X centroid
+        ###########################################################################
         deriv = np.roll(strbox,-1,axis=1) - strbox.astype(float)    #;Shift in X & subtract to get derivative
         deriv = deriv[nhalf-ir:nhalf+ir+1,0:nbox-1] #;Don't want edges of the array
         deriv = np.sum( deriv, 0 )                    #    ;Sum X derivatives over Y direction
@@ -171,7 +183,9 @@ class centroidFIF(object):
             print('Computed X centroid for position '+ pos + ' out of range')
         xcen[i] = xmax - dx    # X centroid in original array
 
-        #  Find Y Centroid
+        ###########################################################################
+        ###Find Y Centroid
+        ###########################################################################
         deriv = np.roll(strbox,-1,axis=0) - strbox.astype(float)    # Shift in X & subtract to get derivative
         deriv = deriv[0:nbox-1,nhalf-ir:nhalf+ir+1]
         deriv = np.sum( deriv,1 )
