@@ -241,6 +241,18 @@ class fifPage(tk.Frame):
         Use ZEMAX Image surface definition, of 10th order even 
         polynomial, to find best focus nominal Z (mm) for a FIF
         that has its center pinhole at location (x, y).
+        
+        r = sqrt(x^2 + y^2) (mm)
+        nominalZ = a2 + a4 + a6 + a8 + a10
+        1/c = -4977.99mm
+        k = 0
+        
+        Aspheric terms
+        a2 = ((r^2)/(1/c))/(1+SQRT(1-(r^2/(1/c)^2)))
+        a4 = (-0.00000000029648)r^4
+        a6 = (0.0000000000000034523)r^6
+        a8 = (-1.8042E-20)r^8
+        a10 = (3.2571E-26)r^10
         '''
         
         #return nominalZ
