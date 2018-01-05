@@ -135,7 +135,7 @@ class fifPage(tk.Frame):
                             command=lambda: metGuidedModeSelf.areYouSureExit()) #are you sure?
         ExitButton2.grid(row=6, column=0, columnspan=1, sticky='W')
         
-    def focusCurve(self, RefFIFF, fiflabel, metGuidedModeSelf):
+    def focusCurve(self, sensorButton, fiflabel, metGuidedModeSelf):
         ###########################################################################
         ###Create Dir
         ###########################################################################
@@ -166,7 +166,14 @@ class fifPage(tk.Frame):
         
         ###########################################################################
         ###Nominal best focus
-        ########################################################################### 
+        ###########################################################################
+        #asphericFocalCurve(self, x, y)
+        
+        ###########################################################################
+        ###Change button text and color
+        ###########################################################################
+        sensorButton.config(text = "Focus Curve Complete", bg = 'green')
+        
         
     def centroidFIF(self, sensorButton, fiflabel, metGuidedModeSelf):
         ###########################################################################
