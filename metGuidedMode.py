@@ -24,6 +24,7 @@ from centroidFIF import centroidFIF
 class metGuidedMode(tk.Tk):
     consoleLog = []
     logFile = []
+    fifCentroidedLocationDict = {}
         
     def __init__(self, master):
         '''
@@ -36,8 +37,10 @@ class metGuidedMode(tk.Tk):
     def guidedModeFrames(self):
         '''
         Guide the user through measuring all of the FIFs.
-        '''  
-        #Create pages
+        '''
+        ###########################################################################
+        ###Create pages
+        ###########################################################################
         container = tk.Frame(self)
         container.pack(side="top", fill="both", expand = True)
         container.grid_rowconfigure(0, weight=1)
@@ -106,10 +109,10 @@ class fifPage(tk.Frame):
         #Measurement grid
         # RefFIFLabel
         tk.Label(self, text="RefFIF", font=('consolas', '10')).grid(row=2, column=0, columnspan=1, sticky='W')
-        tk.Button(self, text="RefFIF Focus Curve",
-                            command=lambda: metGuidedModeSelf.show_frame(self.focusCurve("RefFIF", metGuidedModeSelf))).grid(row=3, column=0, sticky='W')
-        tk.Button(self, text="RefFIF Centroid",
-                            command=lambda: metGuidedModeSelf.show_frame(self.centroidFIF("RefFIF", metGuidedModeSelf))).grid(row=4, column=0, sticky='W')
+        RefFIFF = tk.Button(self, text="RefFIF Focus Curve",
+                            command=lambda: metGuidedModeSelf.show_frame(self.focusCurve(RefFIFF, "RefFIF", metGuidedModeSelf))).grid(row=3, column=0, sticky='W')
+        RefFIFC = tk.Button(self, text="RefFIF Centroid",
+                            command=lambda: metGuidedModeSelf.show_frame(self.centroidFIF(RefFIFC, "RefFIF", metGuidedModeSelf))).grid(row=4, column=0, sticky='W')
 
         #Exit Buttons
         Separator(self, orient="horizontal").grid(row=5, column=0, columnspan=6, sticky='ew') 
@@ -141,7 +144,7 @@ class fifPage(tk.Frame):
                                       "Measured Best focus for " + str(fiflabel) + " is: " + str(xInter) + "um")
         #add nominal BF
         
-    def centroidFIF(self, fiflabel, metGuidedModeSelf):
+    def centroidFIF(self, sensorButton, fiflabel, metGuidedModeSelf):
         #Create Dir
         dirName = self.createDir(fiflabel, metGuidedModeSelf)
         #Message user to fill dir (mention label names)
@@ -159,12 +162,16 @@ class fifPage(tk.Frame):
                                       str(fiflabel) + "FIF found at pixel location: (" + str(maxLoc[0]) + "," + str(maxLoc[1]) + "). Will now centroid using that location.")
         #Centroid
         xcen, ycen = centroidFIF.findCentroid(fifSubArray, int(subArrayBoxSize/2), int(subArrayBoxSize/2), extendbox = 3)
-        #Add offsets at account for subarray
+        #Add offsets to account for subarray
         xcen = xcen + maxLoc[0]-subArrayBoxSize/2
         ycen = ycen + maxLoc[1]-subArrayBoxSize/2
         metGuidedModeSelf.pageLogging(metGuidedModeSelf.consoleLog, metGuidedModeSelf.logFile, 
                                       str(fiflabel) + " center found at location: (" + str(xcen) + "," + str(ycen) + ")")
-        return xcen, ycen ############### make button color change and variables to hold data
+        #Save values to metGuidedMode dictionary: fifCentroidedLocationDict
+        metGuidedModeSelf.fifCentroidedLocationDict[fiflabel] = (xcen, ycen)
+        #change button text
+        sensorButton.config(text = "Centroid Complete")
+        ############### make button color change
     
     def createDir(self, fiflabel, metGuidedModeSelf):
         #Get log start time
