@@ -62,11 +62,19 @@ class metGuidedMode(tk.Tk):
         frame.tkraise()
         
     def pageLogging(self, cLog, lFile, logText):
-        # console
+        '''
+        Send text to console and log file.
+        '''
+        ###########################################################################
+        ###Send text to console
+        ###########################################################################
         cLog.configure(state="normal")
         cLog.insert(tk.END, str(logText) + '\n')
         cLog.configure(state="disable")
-        # log file
+        
+        ###########################################################################
+        ###Send text to log file
+        ###########################################################################
         lFile.write(str(logText) + '\n')
         
     def areYouSureExit(self):
@@ -101,6 +109,9 @@ class fifPage(tk.Frame):
     def __init__(self, container, metGuidedModeSelf):
         tk.Frame.__init__(self, container)
         
+        ###########################################################################
+        ###Buttons
+        ###########################################################################
         tk.Label(self, text="FIFs can be measured in the order shown below for maximum efficiency.             ", font=('consolas', '10')).grid(row=0, column=0, columnspan=5, sticky='W')
         tk.Button(self, text="Help",
                             command=lambda: metGuidedModeSelf.show_frame(helpPage)).grid(row=0, column=6, sticky='E')
@@ -125,33 +136,53 @@ class fifPage(tk.Frame):
         ExitButton2.grid(row=6, column=0, columnspan=1, sticky='W')
         
     def focusCurve(self, fiflabel, metGuidedModeSelf):
-        #Create Dir
+        ###########################################################################
+        ###Create Dir
+        ###########################################################################
         dirName = self.createDir(fiflabel, metGuidedModeSelf)
-        #Message user to fill dir (mention label names)
-        #    Log the message
+        
+        ###########################################################################
+        ###Message user to fill dir (mention label names)
+        ###########################################################################
         metGuidedModeSelf.pageLogging(metGuidedModeSelf.consoleLog, metGuidedModeSelf.logFile, 
                                       "Suggested " +  str(fiflabel) + " focus curve directory: \n" + str(os.getcwd()) + '\\' + dirName + 
                                       "\nNOTE: the file names will be used to create the Z axis values (distance)\n" +
                                         " so please label the FITS files appropriately\n" +
                                         "(example: 350.fit for the image taken at 350um).")
-        #Get images
+        
+        ###########################################################################
+        ###Get images
+        ###########################################################################
         fH = fileAndArrayHandling()
         fC = focusCurve()
         imageArray4D, filelist = fH.openAllFITSImagesInDirectory()
-        #Create focus curve
+        
+        ###########################################################################
+        ###Create focus curve
+        ###########################################################################        
         xInter = fC.stdFocusCurve(imageArray4D, filelist)
         metGuidedModeSelf.pageLogging(metGuidedModeSelf.consoleLog, metGuidedModeSelf.logFile, 
                                       "Measured Best focus for " + str(fiflabel) + " is: " + str(xInter) + "um")
-        #add nominal BF
+        
+        ###########################################################################
+        ###Add nominal BF
+        ########################################################################### 
         
     def centroidFIF(self, sensorButton, fiflabel, metGuidedModeSelf):
-        #Create Dir
+        ###########################################################################
+        ###Create Dir
+        ###########################################################################
         dirName = self.createDir(fiflabel, metGuidedModeSelf)
-        #Message user to fill dir (mention label names)
-        #    Log the message
+        
+        ###########################################################################
+        ###Message user to fill dir (mention label names)
+        ###########################################################################
         metGuidedModeSelf.pageLogging(metGuidedModeSelf.consoleLog, metGuidedModeSelf.logFile, 
                                       "Suggested " +  str(fiflabel) + " centroid directory: \n" + str(os.getcwd()) + '\\' + dirName)
-        #Get images
+        
+        ###########################################################################
+        ###Get images
+        ###########################################################################
         fH = fileAndArrayHandling()
         imageArray4D, filelist = fH.openAllFITSImagesInDirectory()
         #Find fif in image and create subarray
