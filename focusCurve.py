@@ -44,31 +44,43 @@ class focusCurve(object):
         Accepts a 4D numpy array and plots standard deviations of the images.
         note: assumes filenames are distances (int)
         '''
-        # Turn interactive plotting off
+        ###########################################################################
+        ###Turn interactive plotting off
+        ###########################################################################
         py.ioff()
         
-        #initialize std array
+        ###########################################################################
+        ###Initialize std array
+        ###########################################################################
         stdList = np.zeros(imageArray4D.shape[0])
-        
-        #get stds
+
+        ###########################################################################
+        ###Get stds
+        ###########################################################################
         for image in range(imageArray4D.shape[0]):
             flattenedArray = imageArray4D[image].flatten()
             stdList[image] = np.std(flattenedArray)
         
-        #create x values by remove extension from filenames and converting them to ints
+        ###########################################################################
+        ###Create x values by remove extension from filenames and converting them to ints
+        ###########################################################################
         xx = self.fileNameToInt(filelist)
         
-        ################### best fit (poly order=2) ###################
-        
+        ###########################################################################
+        ###Best fit (poly order=2)
+        ###########################################################################     
         #zip xx and yy = std values into array of tulups
         #sort list by distance (x) so xx (distances) are in the proper order in the plot
         sortedX, sortedY  = self.zipAndSort(xx, stdList)
         
-        #calculate new x's and y's, poly fuct, and best focus (xSplitPoint)
+        ###########################################################################
+        ###Calculate new x's and y's, poly fuct, and best focus (xSplitPoint)
+        ###########################################################################     
         xFit, yFit, f2, xSplitPoint = self.xyPolyFit(sortedX, sortedY, 2)
         
-        ################### find best focus ###################
-        
+        ###########################################################################
+        ###Find Best Focus
+        ########################################################################### 
         #get separate X and Y lists from sorted data
         sortedXL = [kk for kk in sortedX if kk <= xSplitPoint]
         sortedYL = sortedY[:len(sortedXL)]
@@ -89,7 +101,9 @@ class focusCurve(object):
         sortedXL.append(xInter)
         sortedXR.append(xInter)
         
-        ################## plot stds ##################
+        ###########################################################################
+        ###Plot stds
+        ########################################################################### 
         fig2 = py.figure()
         ax2 = fig2.add_subplot(111)
         ax2.plot(sortedX, sortedY, 'ro', xFit, yFit, 
@@ -106,7 +120,9 @@ class focusCurve(object):
         ax2.annotate('Best Focus = ' + str(xInter)[0:5] + ' um', xy=(xInter, yInter), 
                      xytext=(xInter+1, yInter+1), fontsize = 7,)
          
-        #save figure
+        ###########################################################################
+        ###Save figure
+        ###########################################################################          
         fig2.savefig('std_vs_position-fitted.png') 
         #return best focus
         return xInter
