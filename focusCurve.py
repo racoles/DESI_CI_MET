@@ -27,9 +27,10 @@ xyPolyFit
 # Import #######################################################################################
 import numpy as np
 import matplotlib.pyplot as py
-import os
+import os, time
 from os.path import basename
 from operator import itemgetter
+
 ################################################################################################
 
 class focusCurve(object):
@@ -39,7 +40,7 @@ class focusCurve(object):
         Constructor
         '''
 
-    def stdFocusCurve(self, imageArray4D, filelist):
+    def stdFocusCurve(self, fiflabel, imageArray4D, filelist):
         '''
         Accepts a 4D numpy array and plots standard deviations of the images.
         note: assumes filenames are distances (int)
@@ -122,8 +123,8 @@ class focusCurve(object):
          
         ###########################################################################
         ###Save figure
-        ###########################################################################          
-        fig2.savefig('std_vs_position-fitted.png') 
+        ###########################################################################        
+        fig2.savefig(str(fiflabel) + '_focus_curve_' +  time.strftime("%Y%m%d-%H%M%S") + '.png') 
         #return best focus
         return xInter
     
