@@ -243,7 +243,6 @@ class fifPage(tk.Frame):
         that has its center pinhole at location (x, y).
         
         r = sqrt(x^2 + y^2) (mm)
-        nominalZ = a2 + a4 + a6 + a8 + a10
         1/c = -4977.99mm
         k = 0
         
@@ -253,6 +252,8 @@ class fifPage(tk.Frame):
         a6 = (0.0000000000000034523)r^6
         a8 = (-1.8042E-20)r^8
         a10 = (3.2571E-26)r^10
+        
+        nominalZ = a2 + a4 + a6 + a8 + a10
         '''
         
         #return nominalZ
