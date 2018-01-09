@@ -217,7 +217,7 @@ class fifPage(tk.Frame):
                            "D3" : "(0,-185.00)",
                            "D4" : "(-185.00,0)",}
         
-        nominalZ = self.asphericFocalCurve(fifLocationsCS5[fiflabel], fifLocationsCS5[fiflabel])
+        nominalZ = self.asphericFocalCurve(fifLocationsCS5[fiflabel][0], fifLocationsCS5[fiflabel][1])
         
         ###########################################################################
         ###Change button text and color
