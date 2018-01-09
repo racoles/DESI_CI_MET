@@ -270,7 +270,7 @@ class fifPage(tk.Frame):
         except OSError as e:
             if e.errno != errno.EEXIST:
                 raise
-        return str(fiflabel + "_" +  logTime)
+        return str(fiflabel + "_" + dirType + '_' + logTime)
     
     def asphericFocalCurve(self, x, y):
         '''

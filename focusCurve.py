@@ -124,7 +124,7 @@ class focusCurve(object):
         ###########################################################################
         ###Save figure
         ###########################################################################        
-        fig2.savefig(str(fiflabel) + '_focus_curve_' +  time.strftime("%Y%m%d-%H%M%S") + '.png') 
+        fig2.savefig(str(fiflabel) + '_Focus_Curve_' +  time.strftime("%Y%m%d-%H%M%S") + '.png') 
         #return best focus
         return xInter
     
