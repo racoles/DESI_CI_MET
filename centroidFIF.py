@@ -232,7 +232,8 @@ class centroidFIF(object):
         ###Find FIF in image (minVal, maxVal, minLoc, maxLoc)
         ###########################################################################
         _, _, _, mL = cv2.minMaxLoc(gray)
-        maxLoc = (mL[1],mL[0])
+        maxLoc = (mL[1],mL[0]) #minMaxLoc returns (y,x) format. Converting to (x,y) format.
+        
         ###########################################################################
         ###Create subarray around FIF (slice array)
         ###########################################################################   
