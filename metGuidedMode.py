@@ -141,7 +141,7 @@ class fifPage(tk.Frame):
         ###########################################################################
         ###Create Dir
         ###########################################################################
-        dirName = self.createDir(fiflabel, metGuidedModeSelf)
+        dirName = self.createDir(fiflabel, metGuidedModeSelf, 'Focus_Curve')
         
         ###########################################################################
         ###Message user to fill dir (mention label names)
@@ -255,7 +255,7 @@ class fifPage(tk.Frame):
         sensorButton.config(text = "Centroid Complete", bg = 'green')
 
     
-    def createDir(self, fiflabel, metGuidedModeSelf):
+    def createDir(self, fiflabel, metGuidedModeSelf, dirType):
         ###########################################################################
         ###Get log start time
         ###########################################################################
@@ -266,7 +266,7 @@ class fifPage(tk.Frame):
         ###Create Dir
         ###########################################################################
         try:
-            os.makedirs(str(fiflabel + "_" + logTime))
+            os.makedirs(str(fiflabel + "_" + dirType + '_' + logTime))
         except OSError as e:
             if e.errno != errno.EEXIST:
                 raise
