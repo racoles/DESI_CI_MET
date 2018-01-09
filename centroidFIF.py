@@ -39,6 +39,7 @@ findFIFInImage
 
 # Import #######################################################################################
 import numpy as np
+np.set_printoptions(threshold=np.nan)
 #import argparse
 import cv2
 ################################################################################################
@@ -220,7 +221,7 @@ class centroidFIF(object):
         # |____________|
         # *(xOffset, yOffset)
 
-        subArrayBoxSize = 40 #subArrayBoxSize+1 pixels per side. Use even number!
+        subArrayBoxSize = 20 #subArrayBoxSize+1 pixels per side. Use even number!
 
         ###########################################################################
         ###Grayscale image
@@ -230,10 +231,18 @@ class centroidFIF(object):
         ###########################################################################
         ###Find FIF in image (minVal, maxVal, minLoc, maxLoc)
         ###########################################################################
-        _, _, _, maxLoc = cv2.minMaxLoc(gray)
-
+        _, _, _, mL = cv2.minMaxLoc(gray)
+        maxLoc = (mL[1],mL[0])
         ###########################################################################
         ###Create subarray around FIF (slice array)
-        ###########################################################################        
-        fifSubArray = image[maxLoc[0]-subArrayBoxSize/2:maxLoc[0]+subArrayBoxSize/2, maxLoc[1]-subArrayBoxSize/2:maxLoc[1]+subArrayBoxSize/2]
+        ###########################################################################   
+        xint = int(maxLoc[0]-subArrayBoxSize/2)
+        xfin = int(maxLoc[0]+subArrayBoxSize/2)
+        yint = int(maxLoc[1]-subArrayBoxSize/2)
+        yfin = int(maxLoc[1]+subArrayBoxSize/2)
+        fifSubArray = image[xint:xfin, yint:yfin]
+        print(xint, xfin, yint, yfin)
+        print(maxLoc)
+        cv2.imshow('image',fifSubArray)
+        print(image[maxLoc[0],maxLoc[1]])
         return fifSubArray, subArrayBoxSize, maxLoc

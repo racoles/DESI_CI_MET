@@ -138,30 +138,6 @@ class fifPage(tk.Frame):
         ExitButton2.grid(row=6, column=0, columnspan=1, sticky='W')
         
     def focusCurve(self, sensorButton, fiflabel, metGuidedModeSelf):
-        '''
-        RefFIF:(199.28,-345.15): 423.37mm
-        NFIF:(-108.31,-383.55): 423.37mm
-        WFIF:(-383.55,108.31): 423.37mm
-        SFIF:(108.31,383.55): 423.37mm
-        EFIF:(383.55,-108.31): 423.37mm
-        CFIF:(108.31,15): 167.01mm
-        A1:(281.82,-281.82): 423.37mm
-        A2:(-281.82,-281.82): 423.37mm
-        A3:(-281.82,281.82): 423.37mm
-        A4:(281.82,281.82): 423.37mm
-        B1:(293.64,136.93): 351.62mm
-        B2:(-293.64,136.93): 351.62mm
-        B3:(-293.64,-136.93): 351.62mm
-        B4:(-136.93,293.64): 351.62mm
-        C1:(96.44,232.82): 284.46mm
-        C2:(232.82,-96.44): 284.46mm
-        C3:(-96.44,-232.82): 284.46mm
-        C4:(-232.82,96.44): 284.46mm
-        D1:(0,185.00): 185.00mm
-        D2:(185.00,0): 185.00mm
-        D3:(0,-185.00): 185.00mm
-        D4:(-185.00,0): 185.00mm
-        '''
         ###########################################################################
         ###Create Dir
         ###########################################################################
@@ -252,12 +228,13 @@ class fifPage(tk.Frame):
                                       "Centroiding " + str(fiflabel) + " using FITs file:\n" + str(filelist[0]).replace('/', '\\'))
         fifSubArray, subArrayBoxSize, maxLoc  = centroidFIF.findFIFInImage(self, imageArray4D[0])
         metGuidedModeSelf.pageLogging(metGuidedModeSelf.consoleLog, metGuidedModeSelf.logFile, 
-                                      str(fiflabel) + "FIF found at pixel location: (" + str(maxLoc[0]) + "," + str(maxLoc[1]) + "). Will now centroid using that location.")
+                                      str(fiflabel) + " FIF found at pixel location: (" + str(maxLoc[0]) + "," + str(maxLoc[1]) + "). Will now centroid using that location.")
         
         ###########################################################################
         ###Centroid
         ###########################################################################
-        xcen, ycen = centroidFIF.findCentroid(fifSubArray, int(subArrayBoxSize/2), int(subArrayBoxSize/2), extendbox = 3)
+        cF = centroidFIF()
+        xcen, ycen = cF.findCentroid(fifSubArray, int(subArrayBoxSize/2), int(subArrayBoxSize/2), extendbox = 3)
         
         ###########################################################################
         ###Add offsets to account for subarray
