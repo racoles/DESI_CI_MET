@@ -239,5 +239,5 @@ class centroidFIF(object):
         ###########################################################################   
         fifSubArray = image[int(maxLoc[0]-subArrayBoxSize/2):int(maxLoc[0]+subArrayBoxSize/2), int(maxLoc[1]-subArrayBoxSize/2):int(maxLoc[1]+subArrayBoxSize/2)]
         #cv2.imshow('image',fifSubArray)
-        print(image[maxLoc[0],maxLoc[1]])
+        #print(image[maxLoc[0],maxLoc[1]])
         return fifSubArray, subArrayBoxSize, maxLoc
