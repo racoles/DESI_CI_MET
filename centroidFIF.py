@@ -238,6 +238,11 @@ class centroidFIF(object):
         ###Create subarray around FIF (slice array)
         ###########################################################################   
         fifSubArray = image[int(maxLoc[0]-subArrayBoxSize/2):int(maxLoc[0]+subArrayBoxSize/2), int(maxLoc[1]-subArrayBoxSize/2):int(maxLoc[1]+subArrayBoxSize/2)]
-        #cv2.imshow('image',fifSubArray)
+        
+        ###########################################################################
+        ###View subarray and value of max-value pixel
+        ########################################################################### 
+        #cv2.imshow('fifSubArray',fifSubArray)
         #print(image[maxLoc[0],maxLoc[1]])
+        
         return fifSubArray, subArrayBoxSize, maxLoc
