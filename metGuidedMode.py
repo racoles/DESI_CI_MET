@@ -218,6 +218,8 @@ class fifPage(tk.Frame):
                            "D4" : "(-185.00,0)",}
         
         nominalZ = self.asphericFocalCurve(fifLocationsCS5[fiflabel][0], fifLocationsCS5[fiflabel][1])
+        metGuidedModeSelf.pageLogging(metGuidedModeSelf.consoleLog, metGuidedModeSelf.logFile, 
+                                      "Nominal Z for " + str(fiflabel) + " is: " + str(nominalZ) + "um")
         
         ###########################################################################
         ###Change button text and color
