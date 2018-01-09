@@ -236,13 +236,7 @@ class centroidFIF(object):
         ###########################################################################
         ###Create subarray around FIF (slice array)
         ###########################################################################   
-        xint = int(maxLoc[0]-subArrayBoxSize/2)
-        xfin = int(maxLoc[0]+subArrayBoxSize/2)
-        yint = int(maxLoc[1]-subArrayBoxSize/2)
-        yfin = int(maxLoc[1]+subArrayBoxSize/2)
-        fifSubArray = image[xint:xfin, yint:yfin]
-        print(xint, xfin, yint, yfin)
-        print(maxLoc)
-        cv2.imshow('image',fifSubArray)
+        fifSubArray = image[int(maxLoc[0]-subArrayBoxSize/2):int(maxLoc[0]+subArrayBoxSize/2), int(maxLoc[1]-subArrayBoxSize/2):int(maxLoc[1]+subArrayBoxSize/2)]
+        #cv2.imshow('image',fifSubArray)
         print(image[maxLoc[0],maxLoc[1]])
         return fifSubArray, subArrayBoxSize, maxLoc
