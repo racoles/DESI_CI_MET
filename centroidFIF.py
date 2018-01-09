@@ -53,7 +53,7 @@ class centroidFIF(object):
     def findCentroid(self, image, x, y, extendbox = False):
         '''
         Take a numpy array of an image and centroid the pinholes within
-        Compute the centroid of a star using a derivative search 
+        Compute the centroid of a star (or FIF) using a derivative search 
         (adapted for IDL from DAOPHOT, then translated from IDL to Python).
         
         image  - 2D numpy array
