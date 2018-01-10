@@ -113,7 +113,7 @@ class fifPage(tk.Frame):
         ###########################################################################
         ###Buttons
         ###########################################################################
-        tk.Label(self, text="FIFs can be measured in the order shown below for maximum efficiency.             ", font=('consolas', '10')).grid(row=0, column=0, columnspan=5, sticky='W')
+        tk.Label(self, text="FIFs can be measured in the order shown below for maximum efficiency.   ", font=('consolas', '10')).grid(row=0, column=0, columnspan=6, sticky='W')
         tk.Button(self, text="Help",
                             command=lambda: metGuidedModeSelf.show_frame(helpPage)).grid(row=0, column=6, sticky='E')
         Separator(self, orient="horizontal").grid(row=1, column=0, columnspan=6, sticky='ew') 
@@ -174,11 +174,11 @@ class fifPage(tk.Frame):
         
         ExitButton1 = tk.Button(self, text="Conclude Measurements",
                             command=lambda: metGuidedModeSelf.show_frame(conclusion)) #are you sure?
-        ExitButton1.grid(row=11, column=1, columnspan=1, sticky='W')
+        ExitButton1.grid(row=11, column=2, columnspan=2, sticky='W')
         
         ExitButton2 = tk.Button(self, text="Exit to Map Screen", 
                             command=lambda: metGuidedModeSelf.areYouSureExit()) #are you sure?
-        ExitButton2.grid(row=11, column=0, columnspan=1, sticky='W')
+        ExitButton2.grid(row=11, column=0, columnspan=2, sticky='W')
         
     def focusCurve(self, sensorButton, fiflabel, metGuidedModeSelf):
         ###########################################################################
