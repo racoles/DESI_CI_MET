@@ -66,7 +66,7 @@ class inputGUI(object):
         #Guided Mode Description
         tk.Label(master, text="Be guided through measuring the CI FIFs.").grid(row=1, column=0, columnspan=2, sticky='W')
         #Guided Mode Button        
-        tk.Button(master, text="Begin Guided Mode",bg = "white", command=lambda:self._beginGuidedMode(master, self.consoleLog, self.logFile)).grid(row=2, column=0, columnspan=2, sticky='W')
+        tk.Button(master, text="Begin FIF Guided Mode",bg = "white", command=lambda:self._beginGuidedMode(master, self.consoleLog, self.logFile)).grid(row=2, column=0, columnspan=2, sticky='W')
         
         #FIF Map
         self.fifMAP = tk.PhotoImage(file="FPA.png", width=350, height=350)
