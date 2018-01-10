@@ -19,6 +19,7 @@ import os, errno, re, math
 from focusCurve import focusCurve
 from fileAndArrayHandling import fileAndArrayHandling
 from centroidFIF import centroidFIF
+import numpy as np
 ################################################################################################
 
 class metGuidedMode(tk.Tk):
@@ -197,7 +198,7 @@ class fifPage(tk.Frame):
         metGuidedModeSelf.pageLogging(metGuidedModeSelf.consoleLog, metGuidedModeSelf.logFile, 
                                       "Nominal Z for " + str(fiflabel) + " is: " + str(nominalZ) + "um in CS5 coordinates.")
         metGuidedModeSelf.pageLogging(metGuidedModeSelf.consoleLog, metGuidedModeSelf.logFile, 
-                                      "Absolute value of (Nominal Z - Measured best Focus) = " +  abs(nominalZ-xInter) + 'um')
+                                      "Absolute value of (Nominal Z - Measured Best Focus) = " +  str(np.absolute(nominalZ-xInter)) + 'um')
         ###########################################################################
         ###Change button text and color
         ###########################################################################
