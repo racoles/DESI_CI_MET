@@ -113,10 +113,10 @@ class fifPage(tk.Frame):
         ###########################################################################
         ###Buttons
         ###########################################################################
-        tk.Label(self, text="FIFs can be measured in the order shown below for maximum efficiency.   ", font=('consolas', '10')).grid(row=0, column=0, columnspan=6, sticky='W')
+        tk.Label(self, text="DESI CI FIFs", font=('consolas', '10')).grid(row=0, column=0, sticky='W')
         tk.Button(self, text="Help",
-                            command=lambda: metGuidedModeSelf.show_frame(helpPage)).grid(row=0, column=6, sticky='E')
-        Separator(self, orient="horizontal").grid(row=1, column=0, columnspan=6, sticky='ew') 
+                            command=lambda: metGuidedModeSelf.show_frame(helpPage)).grid(row=0, column=3, sticky='E')
+        Separator(self, orient="horizontal").grid(row=1, column=0, columnspan=4, sticky='ew') 
                            
         #Measurement grid
         # RefFIF
@@ -128,9 +128,9 @@ class fifPage(tk.Frame):
                             command=lambda: metGuidedModeSelf.show_frame(self.centroidFIF(refFIFC, "RefFIF", metGuidedModeSelf)))
         refFIFC.grid(row=4, column=0, sticky='W')
         Separator(self, orient="vertical").grid(row=1, column=0, rowspan=5, sticky='ens')
+        Separator(self, orient="horizontal").grid(row=5, column=0, columnspan=4, sticky='ew')
         
         #NFIF
-        Separator(self, orient="horizontal").grid(row=5, column=0, columnspan=7, sticky='ew')
         tk.Label(self, text="NFIF", font=('consolas', '10')).grid(row=6, column=0, sticky='W')
         NFIFF = tk.Button(self, text="Focus Curve",
                             command=lambda: metGuidedModeSelf.show_frame(self.focusCurve(NFIFF, "NFIF", metGuidedModeSelf)))
@@ -168,7 +168,7 @@ class fifPage(tk.Frame):
         SFIFC = tk.Button(self, text="Centroid",
                             command=lambda: metGuidedModeSelf.show_frame(self.centroidFIF(SFIFC, "SFIF", metGuidedModeSelf)))
         SFIFC.grid(row=8, column=3, sticky='W')
-        Separator(self, orient="horizontal").grid(row=9, column=0, columnspan=7, sticky='ew')
+        Separator(self, orient="horizontal").grid(row=9, column=0, columnspan=4, sticky='ew')
         Separator(self, orient="vertical").grid(row=5, column=3, rowspan=5, sticky='ens') 
         
         #A1
@@ -209,7 +209,7 @@ class fifPage(tk.Frame):
         A4C = tk.Button(self, text="Centroid",
                             command=lambda: metGuidedModeSelf.show_frame(self.centroidFIF(A4C, "A4", metGuidedModeSelf)))
         A4C.grid(row=12, column=3, sticky='W') 
-        Separator(self, orient="horizontal").grid(row=13, column=0, columnspan=7, sticky='ew')
+        Separator(self, orient="horizontal").grid(row=13, column=0, columnspan=4, sticky='ew')
         Separator(self, orient="vertical").grid(row=9, column=3, rowspan=5, sticky='ens') 
         
         #B1
@@ -250,7 +250,7 @@ class fifPage(tk.Frame):
         B4C = tk.Button(self, text="Centroid",
                             command=lambda: metGuidedModeSelf.show_frame(self.centroidFIF(B4C, "B4", metGuidedModeSelf)))
         B4C.grid(row=16, column=3, sticky='W')
-        Separator(self, orient="horizontal").grid(row=17, column=0, columnspan=7, sticky='ew') 
+        Separator(self, orient="horizontal").grid(row=17, column=0, columnspan=4, sticky='ew') 
         Separator(self, orient="vertical").grid(row=13, column=3, rowspan=5, sticky='ens')     
         
         #C1
@@ -291,7 +291,7 @@ class fifPage(tk.Frame):
         C4C = tk.Button(self, text="Centroid",
                             command=lambda: metGuidedModeSelf.show_frame(self.centroidFIF(C4C, "C4", metGuidedModeSelf)))
         C4C.grid(row=20, column=3, sticky='W')  
-        Separator(self, orient="horizontal").grid(row=21, column=0, columnspan=7, sticky='ew')
+        Separator(self, orient="horizontal").grid(row=21, column=0, columnspan=4, sticky='ew')
         Separator(self, orient="vertical").grid(row=17, column=3, rowspan=5, sticky='ens')  
         
         #D1
@@ -332,7 +332,7 @@ class fifPage(tk.Frame):
         D4C = tk.Button(self, text="Centroid",
                             command=lambda: metGuidedModeSelf.show_frame(self.centroidFIF(D4C, "D4", metGuidedModeSelf)))
         D4C.grid(row=24, column=3, sticky='W') 
-        Separator(self, orient="horizontal").grid(row=25, column=0, columnspan=7, sticky='ew') 
+        Separator(self, orient="horizontal").grid(row=25, column=0, columnspan=4, sticky='ew') 
         Separator(self, orient="vertical").grid(row=21, column=3, rowspan=5, sticky='ens') 
         
         #CFIF
@@ -346,7 +346,7 @@ class fifPage(tk.Frame):
         Separator(self, orient="vertical").grid(row=25, column=0, rowspan=5, sticky='ens') 
         
         #Exit Buttons
-        Separator(self, orient="horizontal").grid(row=29, column=0, columnspan=7, sticky='ew') 
+        Separator(self, orient="horizontal").grid(row=29, column=0, columnspan=4, sticky='ew') 
         tk.Label(self, text=" ", font=('consolas', '10')).grid(row=30, column=0, columnspan=1, sticky='W')
         
         ExitButton1 = tk.Button(self, text="Conclude Measurements",
