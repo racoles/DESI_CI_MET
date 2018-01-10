@@ -207,18 +207,29 @@ class fifPage(tk.Frame):
         A4C = tk.Button(self, text="Centroid",
                             command=lambda: metGuidedModeSelf.show_frame(self.centroidFIF(A4C, "A4", metGuidedModeSelf)))
         A4C.grid(row=12, column=3, sticky='W') 
+        Separator(self, orient="horizontal").grid(row=13, column=0, columnspan=7, sticky='ew')
+        
+        #B1
+        tk.Label(self, text="B1", font=('consolas', '10')).grid(row=14, column=0, sticky='W')
+        A1F = tk.Button(self, text="Focus Curve",
+                            command=lambda: metGuidedModeSelf.show_frame(self.focusCurve(A1F, "A1", metGuidedModeSelf)))
+        A1F.grid(row=15, column=0, sticky='W')
+        A1C = tk.Button(self, text="Centroid",
+                            command=lambda: metGuidedModeSelf.show_frame(self.centroidFIF(A1C, "A1", metGuidedModeSelf)))
+        A1C.grid(row=16, column=0, sticky='W')
+        Separator(self, orient="vertical").grid(row=9, column=0, rowspan=5, sticky='ens') 
         
         #Exit Buttons
-        Separator(self, orient="horizontal").grid(row=13, column=0, columnspan=7, sticky='ew') 
-        tk.Label(self, text=" ", font=('consolas', '10')).grid(row=14, column=0, columnspan=1, sticky='W')
+        Separator(self, orient="horizontal").grid(row=17, column=0, columnspan=7, sticky='ew') 
+        tk.Label(self, text=" ", font=('consolas', '10')).grid(row=18, column=0, columnspan=1, sticky='W')
         
         ExitButton1 = tk.Button(self, text="Conclude Measurements",
                             command=lambda: metGuidedModeSelf.show_frame(conclusion)) #are you sure?
-        ExitButton1.grid(row=15, column=2, columnspan=2, sticky='W')
+        ExitButton1.grid(row=19, column=2, columnspan=2, sticky='W')
         
         ExitButton2 = tk.Button(self, text="Exit to Map Screen", 
                             command=lambda: metGuidedModeSelf.areYouSureExit()) #are you sure?
-        ExitButton2.grid(row=15, column=0, columnspan=2, sticky='W')
+        ExitButton2.grid(row=19, column=0, columnspan=2, sticky='W')
         
     def focusCurve(self, sensorButton, fiflabel, metGuidedModeSelf):
         ###########################################################################
