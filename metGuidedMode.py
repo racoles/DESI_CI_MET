@@ -257,7 +257,37 @@ class fifPage(tk.Frame):
         C1C = tk.Button(self, text="Centroid",
                             command=lambda: metGuidedModeSelf.show_frame(self.centroidFIF(C1C, "C1", metGuidedModeSelf)))
         C1C.grid(row=20, column=0, sticky='W')
-        Separator(self, orient="vertical").grid(row=9, column=0, rowspan=5, sticky='ens')    
+        Separator(self, orient="vertical").grid(row=17, column=0, rowspan=5, sticky='ens')    
+        
+        #C2
+        tk.Label(self, text="C2", font=('consolas', '10')).grid(row=18, column=1, sticky='W')
+        C2F = tk.Button(self, text="Focus Curve",
+                            command=lambda: metGuidedModeSelf.show_frame(self.focusCurve(C2F, "C2", metGuidedModeSelf)))
+        C2F.grid(row=19, column=1, sticky='W')
+        C2C = tk.Button(self, text="Centroid",
+                            command=lambda: metGuidedModeSelf.show_frame(self.centroidFIF(C2C, "C2", metGuidedModeSelf)))
+        C2C.grid(row=20, column=1, sticky='W')
+        Separator(self, orient="vertical").grid(row=17, column=1, rowspan=5, sticky='ens')  
+        
+        #C3
+        tk.Label(self, text="C3", font=('consolas', '10')).grid(row=18, column=2, sticky='W')
+        C3F = tk.Button(self, text="Focus Curve",
+                            command=lambda: metGuidedModeSelf.show_frame(self.focusCurve(C3F, "C3", metGuidedModeSelf)))
+        C3F.grid(row=19, column=2, sticky='W')
+        C3C = tk.Button(self, text="Centroid",
+                            command=lambda: metGuidedModeSelf.show_frame(self.centroidFIF(C3C, "C3", metGuidedModeSelf)))
+        C3C.grid(row=20, column=2, sticky='W')
+        Separator(self, orient="vertical").grid(row=17, column=2, rowspan=5, sticky='ens')  
+        
+        #C4
+        tk.Label(self, text="C4", font=('consolas', '10')).grid(row=18, column=3, sticky='W')
+        C4F = tk.Button(self, text="Focus Curve",
+                            command=lambda: metGuidedModeSelf.show_frame(self.focusCurve(C4F, "C4", metGuidedModeSelf)))
+        C4F.grid(row=19, column=3, sticky='W')
+        C4C = tk.Button(self, text="Centroid",
+                            command=lambda: metGuidedModeSelf.show_frame(self.centroidFIF(C4C, "C4", metGuidedModeSelf)))
+        C4C.grid(row=20, column=3, sticky='W')  
+        Separator(self, orient="horizontal").grid(row=21, column=0, columnspan=7, sticky='ew') 
         
         #Exit Buttons
         Separator(self, orient="horizontal").grid(row=21, column=0, columnspan=7, sticky='ew') 
