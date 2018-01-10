@@ -169,7 +169,7 @@ class fifPage(tk.Frame):
         SFIFC.grid(row=8, column=3, sticky='W')
         Separator(self, orient="horizontal").grid(row=9, column=0, columnspan=7, sticky='ew') 
         
-        #A1FIF
+        #A1
         tk.Label(self, text="A1", font=('consolas', '10')).grid(row=10, column=0, sticky='W')
         A1F = tk.Button(self, text="Focus Curve",
                             command=lambda: metGuidedModeSelf.show_frame(self.focusCurve(A1F, "A1", metGuidedModeSelf)))
@@ -178,6 +178,35 @@ class fifPage(tk.Frame):
                             command=lambda: metGuidedModeSelf.show_frame(self.centroidFIF(A1C, "A1", metGuidedModeSelf)))
         A1C.grid(row=12, column=0, sticky='W')
         Separator(self, orient="vertical").grid(row=9, column=0, rowspan=5, sticky='ens')  
+        
+        #A2
+        tk.Label(self, text="A2", font=('consolas', '10')).grid(row=10, column=1, sticky='W')
+        A2F = tk.Button(self, text="Focus Curve",
+                            command=lambda: metGuidedModeSelf.show_frame(self.focusCurve(A2F, "A2", metGuidedModeSelf)))
+        A2F.grid(row=11, column=1, sticky='W')
+        A2C = tk.Button(self, text="Centroid",
+                            command=lambda: metGuidedModeSelf.show_frame(self.centroidFIF(A2C, "A2", metGuidedModeSelf)))
+        A2C.grid(row=12, column=1, sticky='W')
+        Separator(self, orient="vertical").grid(row=9, column=1, rowspan=5, sticky='ens')  
+        
+        #A3
+        tk.Label(self, text="A3", font=('consolas', '10')).grid(row=10, column=2, sticky='W')
+        A3F = tk.Button(self, text="Focus Curve",
+                            command=lambda: metGuidedModeSelf.show_frame(self.focusCurve(A3F, "A3", metGuidedModeSelf)))
+        A3F.grid(row=11, column=2, sticky='W')
+        A3C = tk.Button(self, text="Centroid",
+                            command=lambda: metGuidedModeSelf.show_frame(self.centroidFIF(A3C, "A3", metGuidedModeSelf)))
+        A3C.grid(row=12, column=2, sticky='W')
+        Separator(self, orient="vertical").grid(row=9, column=2, rowspan=5, sticky='ens')  
+        
+        #A4
+        tk.Label(self, text="A4", font=('consolas', '10')).grid(row=10, column=3, sticky='W')
+        A4F = tk.Button(self, text="Focus Curve",
+                            command=lambda: metGuidedModeSelf.show_frame(self.focusCurve(A4F, "A4", metGuidedModeSelf)))
+        A4F.grid(row=11, column=3, sticky='W')
+        A4C = tk.Button(self, text="Centroid",
+                            command=lambda: metGuidedModeSelf.show_frame(self.centroidFIF(A4C, "A4", metGuidedModeSelf)))
+        A4C.grid(row=12, column=3, sticky='W') 
         
         #Exit Buttons
         Separator(self, orient="horizontal").grid(row=13, column=0, columnspan=7, sticky='ew') 
