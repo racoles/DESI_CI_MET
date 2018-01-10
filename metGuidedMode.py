@@ -289,17 +289,27 @@ class fifPage(tk.Frame):
         C4C.grid(row=20, column=3, sticky='W')  
         Separator(self, orient="horizontal").grid(row=21, column=0, columnspan=7, sticky='ew') 
         
+        #D1
+        tk.Label(self, text="D1", font=('consolas', '10')).grid(row=22, column=0, sticky='W')
+        D1F = tk.Button(self, text="Focus Curve",
+                            command=lambda: metGuidedModeSelf.show_frame(self.focusCurve(D1F, "D1", metGuidedModeSelf)))
+        D1F.grid(row=23, column=0, sticky='W')
+        D1C = tk.Button(self, text="Centroid",
+                            command=lambda: metGuidedModeSelf.show_frame(self.centroidFIF(D1C, "D1", metGuidedModeSelf)))
+        D1C.grid(row=24, column=0, sticky='W')
+        Separator(self, orient="vertical").grid(row=21, column=0, rowspan=5, sticky='ens') 
+        
         #Exit Buttons
-        Separator(self, orient="horizontal").grid(row=21, column=0, columnspan=7, sticky='ew') 
-        tk.Label(self, text=" ", font=('consolas', '10')).grid(row=22, column=0, columnspan=1, sticky='W')
+        Separator(self, orient="horizontal").grid(row=25, column=0, columnspan=7, sticky='ew') 
+        tk.Label(self, text=" ", font=('consolas', '10')).grid(row=26, column=0, columnspan=1, sticky='W')
         
         ExitButton1 = tk.Button(self, text="Conclude Measurements",
                             command=lambda: metGuidedModeSelf.show_frame(conclusion)) #are you sure?
-        ExitButton1.grid(row=23, column=2, columnspan=2, sticky='W')
+        ExitButton1.grid(row=27, column=2, columnspan=2, sticky='W')
         
         ExitButton2 = tk.Button(self, text="Exit to Map Screen", 
                             command=lambda: metGuidedModeSelf.areYouSureExit()) #are you sure?
-        ExitButton2.grid(row=23, column=0, columnspan=2, sticky='W')
+        ExitButton2.grid(row=27, column=0, columnspan=2, sticky='W')
         
     def focusCurve(self, sensorButton, fiflabel, metGuidedModeSelf):
         ###########################################################################
