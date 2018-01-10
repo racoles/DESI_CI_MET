@@ -196,7 +196,8 @@ class fifPage(tk.Frame):
         nominalZ = self.asphericFocalCurve(fifLocationsCS5[fiflabel][0], fifLocationsCS5[fiflabel][1])
         metGuidedModeSelf.pageLogging(metGuidedModeSelf.consoleLog, metGuidedModeSelf.logFile, 
                                       "Nominal Z for " + str(fiflabel) + " is: " + str(nominalZ) + "um in CS5 coordinates.")
-        
+        metGuidedModeSelf.pageLogging(metGuidedModeSelf.consoleLog, metGuidedModeSelf.logFile, 
+                                      "Absolute value of (Nominal Z - Measured best Focus) = " +  abs(nominalZ-xInter) + 'um')
         ###########################################################################
         ###Change button text and color
         ###########################################################################
