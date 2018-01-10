@@ -14,4 +14,3 @@ if __name__ == '__main__':
     root = Tk()
     iGUI = inputGUI(root)
     root.mainloop()
-
