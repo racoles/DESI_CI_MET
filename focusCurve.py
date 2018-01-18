@@ -30,7 +30,6 @@ import matplotlib.pyplot as py
 import os, time
 from os.path import basename
 from operator import itemgetter
-
 ################################################################################################
 
 class focusCurve(object):

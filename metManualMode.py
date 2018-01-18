@@ -15,7 +15,6 @@ Classes and Modules:
 import tkinter as tk
 from focusCurve import focusCurve
 from fileAndArrayHandling import fileAndArrayHandling
-from centroidFIF import centroidFIF
 import os
 import numpy as np
 ################################################################################################
