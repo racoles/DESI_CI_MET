@@ -59,11 +59,11 @@ class focusCurve(object):
                         "D4" : (-185.00,0),
                         "Other" : (0,0)}
     
-    CCDLocationsCS5 = {"NCCD" : (),
-                       "WCCD" : (),
-                       "SCCD" : (),
-                       "ECCD" : (),
-                       "CCCD" : (),
+    CCDLocationsCS5 = {"NCCD" : (0,-387.26),
+                       "WCCD" : (-387.26,0),
+                       "SCCD" : (0,387.26),
+                       "ECCD" : (387.26,0),
+                       "CCCD" : (0,0),
                        "Other" : (0,0)}
     
     def __init__(self):
