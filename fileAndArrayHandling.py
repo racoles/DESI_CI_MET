@@ -56,11 +56,11 @@ class fileAndArrayHandling(object):
         '''
         return filedialog.askdirectory()
     
-    def createDir(self, fiflabel, metGuidedModeSelf, dirType):
+    def createDir(self, fiflabel, metModeSelf, dirType):
         ###########################################################################
         ###Get log start time
         ###########################################################################
-        logTime = re.findall(r'\d+', metGuidedModeSelf.logFile.name)
+        logTime = re.findall(r'\d+', metModeSelf.logFile.name)
         logTime = '-'.join(logTime[:])
         
         ###########################################################################

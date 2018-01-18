@@ -42,7 +42,7 @@ class metManualMode(tk.Tk):
         ###Create Dir Using self.fifSection
         ###########################################################################
         faah = fileAndArrayHandling()
-        dirName = faah.createDir(self.fifSection, metManualMode, 'Manual_Mode_Focus_Curve')
+        dirName = faah.createDir(self.fifSection, self, 'Manual_Mode_FIF_Focus_Curve')
         
         ###########################################################################
         ###Message user to fill dir (mention label names)
@@ -80,6 +80,12 @@ class metManualMode(tk.Tk):
         ###Get FIF Seletion from User
         ###########################################################################
         self._CCDSelectionWindow() 
+        
+        ###########################################################################
+        ###Create Dir Using self.CCDSection
+        ###########################################################################
+        faah = fileAndArrayHandling()
+        dirName = faah.createDir(self.CCDSection, self, 'Manual_Mode_CCD_Focus_Curve')
         
     def _setTrueAndExit(self, windowVariable, fifLabel=" ", CCDLabel=" "):
         self.fifSection = fifLabel
