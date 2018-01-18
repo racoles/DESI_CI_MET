@@ -15,7 +15,7 @@ Classes and Modules:
 import tkinter as tk
 from tkinter import messagebox
 from tkinter.ttk import Separator
-import os, errno, re, math
+import os, math
 from focusCurve import focusCurve
 from fileAndArrayHandling import fileAndArrayHandling
 from centroidFIF import centroidFIF
@@ -362,7 +362,8 @@ class fifPage(tk.Frame):
         ###########################################################################
         ###Create Dir
         ###########################################################################
-        dirName = self.createDir(fiflabel, metGuidedModeSelf, 'Focus_Curve')
+        faah = fileAndArrayHandling()
+        dirName = faah.createDir(fiflabel, metGuidedModeSelf, 'Focus_Curve')
         
         ###########################################################################
         ###Message user to fill dir (mention label names)
@@ -430,7 +431,8 @@ class fifPage(tk.Frame):
         ###########################################################################
         ###Create Dir
         ###########################################################################
-        dirName = self.createDir(fiflabel, metGuidedModeSelf)
+        faah = fileAndArrayHandling()
+        dirName = faah.createDir(fiflabel, metGuidedModeSelf, 'Centroid')
         
         ###########################################################################
         ###Message user to fill dir (mention label names)
@@ -476,24 +478,6 @@ class fifPage(tk.Frame):
         ###Change button text and color
         ###########################################################################
         sensorButton.config(text = "Centroid Complete", bg = 'green')
-
-    
-    def createDir(self, fiflabel, metGuidedModeSelf, dirType):
-        ###########################################################################
-        ###Get log start time
-        ###########################################################################
-        logTime = re.findall(r'\d+', metGuidedModeSelf.logFile.name)
-        logTime = '-'.join(logTime[:])
-        
-        ###########################################################################
-        ###Create Dir
-        ###########################################################################
-        try:
-            os.makedirs(str(fiflabel + "_" + dirType + '_' + logTime))
-        except OSError as e:
-            if e.errno != errno.EEXIST:
-                raise
-        return str(fiflabel + "_" + dirType + '_' + logTime)
     
     def asphericFocalCurve(self, x, y):
         '''

@@ -20,6 +20,7 @@ from numpy import array
 from glob import glob
 from astropy.io import fits
 from tkinter import filedialog
+import os, errno, re
 ################################################################################################
 
 class fileAndArrayHandling(object):
@@ -54,4 +55,19 @@ class fileAndArrayHandling(object):
         '''
         return filedialog.askdirectory()
     
-    
+    def createDir(self, fiflabel, metGuidedModeSelf, dirType):
+        ###########################################################################
+        ###Get log start time
+        ###########################################################################
+        logTime = re.findall(r'\d+', metGuidedModeSelf.logFile.name)
+        logTime = '-'.join(logTime[:])
+        
+        ###########################################################################
+        ###Create Dir
+        ###########################################################################
+        try:
+            os.makedirs(str(fiflabel + "_" + dirType + '_' + logTime))
+        except OSError as e:
+            if e.errno != errno.EEXIST:
+                raise
+        return str(fiflabel + "_" + dirType + '_' + logTime)
