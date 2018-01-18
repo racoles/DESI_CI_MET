@@ -64,16 +64,11 @@ class metManualMode():
         ###########################################################################
         ###Nominal best focus
         ###########################################################################
-
         nominalZ = self.asphericFocalCurve(fC.fifLocationsCS5[self.fifSection][0], fC.fifLocationsCS5[self.fifSection][1])
         faah.pageLogging(self.consoleLog, self.logFile, 
                                       "Nominal Z for " + str(self.fifSection) + " is: " + str(nominalZ) + "um in CS5 coordinates.")
         faah.pageLogging(self.consoleLog, self.logFile, 
                                       "Absolute value of (Nominal Z - Measured Best Focus) = " +  str(np.absolute(nominalZ-xInter)) + 'um')
-        
-    def _setTrueAndExit(self, fifLabel, windowVariable):
-        self.fifSection = fifLabel
-        windowVariable.destroy
     
     def _fifSelectionWindow(self):
         ###########################################################################
@@ -154,3 +149,7 @@ class metManualMode():
         # Other
         other = tk.Button(self, text="Other (will set x=0 y=0)", command=lambda: self._setTrueAndExit("Other", top))
         other.grid(row=8, column=0)
+
+    def _setTrueAndExit(self, fifLabel, windowVariable):
+        self.fifSection = fifLabel
+        windowVariable.destroy
