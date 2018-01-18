@@ -81,8 +81,8 @@ class inputGUI(object):
         tk.Label(master, text="Manual Mode", font="bold").grid(row=4, column=0, columnspan=2, sticky='W')
         #Manual Mode Description
         tk.Label(master, text="Perform manual measurements").grid(row=5, column=0, columnspan=2, sticky='W')
-        #Manual Mode Focus Curve
-        tk.Button(master, text="FIF Focus Curve",bg = "white", command=lambda:self._beginManualMode(master, self.consoleLog, self.logFile)).grid(row=6, column=0, columnspan=1, sticky='W')
+        #Manual Mode FIF Focus Curve
+        tk.Button(master, text="FIF Focus Curve",bg = "white", command=lambda:self._beginManualMode(master, self.consoleLog, self.logFile, "manualFocusCurve")).grid(row=6, column=0, columnspan=1, sticky='W')
         #Manual Mode CCD Focus Curve
         tk.Button(master, text="CCD Focus Curve",bg = "white", command=lambda:self._beginManualMode(master, self.consoleLog, self.logFile)).grid(row=6, column=1, columnspan=1, sticky='W')
         #Manual Mode CCD Tip/Tilt/Z
@@ -149,6 +149,7 @@ class inputGUI(object):
         mMode = metManualMode(master)
         mMode.consoleLog = consoleLog
         mMode.logFile = logFile
-        
+
+        #Manual Mode FIF Focus Curve
         if manualFunction == "manualFocusCurve":
             mMode.manualFocusCurve()
