@@ -391,7 +391,7 @@ class fifPage(tk.Frame):
         ###Nominal best focus
         ###########################################################################
         #Dict of (x,y) for FIFs
-        fifLocationsCS5 = {"RefFIF" : (199.28,-345.15), 
+        self.fifLocationsCS5 = {"RefFIF" : (199.28,-345.15), 
                            "NFIF" : (-108.31,-383.55), 
                            "WFIF" : (-383.55,108.31),
                            "SFIF" : (108.31,383.55), 
@@ -412,9 +412,10 @@ class fifPage(tk.Frame):
                            "D1" : (0,185.00),
                            "D2" : (185.00,0), 
                            "D3" : (0,-185.00),
-                           "D4" : (-185.00,0)}
+                           "D4" : (-185.00,0),
+                           "Other" : (0,0)}
 
-        nominalZ = self.asphericFocalCurve(fifLocationsCS5[fiflabel][0], fifLocationsCS5[fiflabel][1])
+        nominalZ = self.asphericFocalCurve(self.fifLocationsCS5[fiflabel][0], self.fifLocationsCS5[fiflabel][1])
         metGuidedModeSelf.pageLogging(metGuidedModeSelf.consoleLog, metGuidedModeSelf.logFile, 
                                       "Nominal Z for " + str(fiflabel) + " is: " + str(nominalZ) + "um in CS5 coordinates.")
         metGuidedModeSelf.pageLogging(metGuidedModeSelf.consoleLog, metGuidedModeSelf.logFile, 
