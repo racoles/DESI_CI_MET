@@ -48,8 +48,60 @@ class metManualMode():
         tk.Label(top, text="Which FIF would you like to measure?").grid(row=0, column=0, columnspan=2, sticky='W')
         
         # RefFIF
-        refFIF = tk.Button(self, text="RefFIF", command=lambda:)
-
+        refFIF = tk.Button(self, text="RefFIF", command=lambda: self._setTrueAndExit("RefFIF", top))
+        refFIF.grid(row=1, column=0)
+        # NFIF
+        NFIF = tk.Button(self, text="NFIF", command=lambda: self._setTrueAndExit("NFIF", top))
+        NFIF.grid(row=2, column=0)
+        # WFIF
+        WFIF = tk.Button(self, text="WFIF", command=lambda: self._setTrueAndExit("WFIF", top))
+        WFIF.grid(row=2, column=1)
+        # SFIF
+        SFIF = tk.Button(self, text="SFIF", command=lambda: self._setTrueAndExit("SFIF", top))
+        SFIF.grid(row=2, column=2)
+        # EFIF
+        EFIF = tk.Button(self, text="EFIF", command=lambda: self._setTrueAndExit("EFIF", top))
+        EFIF.grid(row=2, column=3)
+        # CFIF
+        CFIF = tk.Button(self, text="CFIF", command=lambda: self._setTrueAndExit("CFIF", top))
+        CFIF.grid(row=2, column=4)
+        # A1
+        A1 = tk.Button(self, text="A1", command=lambda: self._setTrueAndExit("A1", top))
+        A1.grid(row=3, column=0)
+        # A2
+        A2 = tk.Button(self, text="A2", command=lambda: self._setTrueAndExit("A2", top))
+        A2.grid(row=3, column=1)
+        # A3
+        A3 = tk.Button(self, text="A3", command=lambda: self._setTrueAndExit("A3", top))
+        A3.grid(row=3, column=2)
+        # A4
+        A4 = tk.Button(self, text="A4", command=lambda: self._setTrueAndExit("A4", top))
+        A4.grid(row=3, column=3)
+        # B1
+        B1 = tk.Button(self, text="B1", command=lambda: self._setTrueAndExit("B1", top))
+        B1.grid(row=4, column=0)
+        # B2
+        B2 = tk.Button(self, text="B2", command=lambda: self._setTrueAndExit("B2", top))
+        B2.grid(row=4, column=1)
+        # B3
+        B3 = tk.Button(self, text="B3", command=lambda: self._setTrueAndExit("B3", top))
+        B3.grid(row=4, column=2)
+        # B4
+        B4 = tk.Button(self, text="B4", command=lambda: self._setTrueAndExit("B4", top))
+        B4.grid(row=4, column=3)
+        # C1
+        C1 = tk.Button(self, text="C1", command=lambda: self._setTrueAndExit("C1", top))
+        C1.grid(row=5, column=0)
+        # C2
+        C2 = tk.Button(self, text="C2", command=lambda: self._setTrueAndExit("C2", top))
+        C2.grid(row=5, column=1)
+        # C3
+        C3 = tk.Button(self, text="C3", command=lambda: self._setTrueAndExit("C3", top))
+        C3.grid(row=5, column=2)
+        # C4
+        C4 = tk.Button(self, text="C4", command=lambda: self._setTrueAndExit("C4", top))
+        C4.grid(row=5, column=3)
+        
         button = tk.Button(top, text="Dismiss", command=top.destroy)
         button.pack()
         
@@ -118,3 +170,5 @@ class metManualMode():
                                       "Absolute value of (Nominal Z - Measured Best Focus) = " +  str(np.absolute(nominalZ-xInter)) + 'um')
         
     def _setTrueAndExit(self, fifLabel, windowVariable):
+        self.fifSelectionDict[fifLabel][0] = True
+        windowVariable.destroy
