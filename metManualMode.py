@@ -13,6 +13,7 @@ Classes and Modules:
 
 # Import #######################################################################################
 import tkinter as tk
+from fileAndArrayHandling import fileAndArrayHandling
 ################################################################################################
 
 class metManualMode():
@@ -114,8 +115,8 @@ class metManualMode():
         ###########################################################################
         ###Create Dir Using self.fifSection
         ###########################################################################
-        
-        dirName = self.createDir(self.fifSection, metGuidedModeSelf, 'Manual_Mode_Focus_Curve')
+        faah = fileAndArrayHandling()
+        dirName = faah.createDir(self.fifSection, metGuidedModeSelf, 'Manual_Mode_Focus_Curve')       
         
         ###########################################################################
         ###Message user to fill dir (mention label names)
