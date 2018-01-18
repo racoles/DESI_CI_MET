@@ -17,6 +17,7 @@ from focusCurve import focusCurve
 from fileAndArrayHandling import fileAndArrayHandling
 from centroidFIF import centroidFIF
 import os
+import numpy as np
 ################################################################################################
 
 class metManualMode():
@@ -63,47 +64,16 @@ class metManualMode():
         ###########################################################################
         ###Nominal best focus
         ###########################################################################
-        #Dict of (x,y) for FIFs
-        fifLocationsCS5 = {"RefFIF" : (199.28,-345.15), 
-                           "NFIF" : (-108.31,-383.55), 
-                           "WFIF" : (-383.55,108.31),
-                           "SFIF" : (108.31,383.55), 
-                           "EFIF" : (383.55,-108.31),
-                           "CFIF" : (108.31,15.00),
-                           "A1" : (281.82,-281.82),
-                           "A2" : (-281.82,-281.82), 
-                           "A3" : (-281.82,281.82),
-                           "A4" : (281.82,281.82),
-                           "B1" : (293.64,136.93),
-                           "B2" : (-293.64,136.93), 
-                           "B3" : (-293.64,-136.93),
-                           "B4" : (-136.93,293.64),
-                           "C1" : (96.44,232.82),
-                           "C2" : (232.82,-96.44), 
-                           "C3" : (-96.44,-232.82),
-                           "C4" : (-232.82,96.44),
-                           "D1" : (0,185.00),
-                           "D2" : (185.00,0), 
-                           "D3" : (0,-185.00),
-                           "D4" : (-185.00,0)}
 
-        nominalZ = self.asphericFocalCurve(fifLocationsCS5[fiflabel][0], fifLocationsCS5[fiflabel][1])
-        metGuidedModeSelf.pageLogging(metGuidedModeSelf.consoleLog, metGuidedModeSelf.logFile, 
-                                      "Nominal Z for " + str(fiflabel) + " is: " + str(nominalZ) + "um in CS5 coordinates.")
-        metGuidedModeSelf.pageLogging(metGuidedModeSelf.consoleLog, metGuidedModeSelf.logFile, 
+        nominalZ = self.asphericFocalCurve(fC.fifLocationsCS5[self.fifSection][0], fC.fifLocationsCS5[self.fifSection][1])
+        faah.pageLogging(self.consoleLog, self.logFile, 
+                                      "Nominal Z for " + str(self.fifSection) + " is: " + str(nominalZ) + "um in CS5 coordinates.")
+        faah.pageLogging(self.consoleLog, self.logFile, 
                                       "Absolute value of (Nominal Z - Measured Best Focus) = " +  str(np.absolute(nominalZ-xInter)) + 'um')
         
     def _setTrueAndExit(self, fifLabel, windowVariable):
         self.fifSection = fifLabel
         windowVariable.destroy
-        
-    def _createManualDir(self, fiflabel, dirType, ):
-        try:
-            os.makedirs(str(fiflabel + "_" + dirType + '_' + logTime))
-        except OSError as e:
-            if e.errno != errno.EEXIST:
-                raise
-        return str(fiflabel + "_" + dirType + '_' + logTime)
     
     def _fifSelectionWindow(self):
         ###########################################################################
