@@ -76,7 +76,7 @@ class inputGUI(object):
         Separator(master, orient="horizontal").grid(row=3, column=0, columnspan=4, sticky='ew')
         Style(master).configure("TSeparator", background="black")
         
-        #Manual Mode Label
+        #Manual Mode Labels
         tk.Label(master, text="Manual Mode", font="bold").grid(row=4, column=0, columnspan=2, sticky='W')
         #Manual Mode Description
         tk.Label(master, text="Perform manual measurements of the CI FIFs.").grid(row=5, column=0, columnspan=2, sticky='W')
