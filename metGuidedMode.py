@@ -77,6 +77,7 @@ class metGuidedMode(tk.Tk):
         ###Send text to log file
         ###########################################################################
         lFile.write(str(logText) + '\n')
+        lFile.flush()
         
     def areYouSureExit(self):
         if messagebox.askyesno("Exit Guided Mode", "You are about to exit Guided Mode.\nAre You Sure?", icon='warning'):

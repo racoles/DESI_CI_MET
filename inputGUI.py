@@ -125,6 +125,7 @@ class inputGUI(object):
         consoleLog.configure(state="disable")
         # log file
         logFile.write(str(noteBox.get()) + '\n')
+        logFile.flush()
         noteBox.delete(0, tk.END)
         
     def _beginGuidedMode(self, master, consoleLog, logFile):
