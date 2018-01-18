@@ -13,7 +13,9 @@ Classes and Modules:
 
 # Import #######################################################################################
 import tkinter as tk
+from focusCurve import focusCurve
 from fileAndArrayHandling import fileAndArrayHandling
+from centroidFIF import centroidFIF
 import os
 ################################################################################################
 
@@ -46,27 +48,17 @@ class metManualMode():
                                         "(example: 350.fit for the image taken at 350um).")     
         
         ###########################################################################
-        ###Message user to fill dir (mention label names)
-        ###########################################################################
-        metGuidedModeSelf.pageLogging(metGuidedModeSelf.consoleLog, metGuidedModeSelf.logFile, 
-                                      "Suggested " +  str(fiflabel) + " focus curve directory: \n" + str(os.getcwd()) + '\\' + dirName + 
-                                      "\nNOTE: the file names will be used to create the Z axis values (distance)\n" +
-                                        " so please label the FITS files appropriately\n" +
-                                        "(example: 350.fit for the image taken at 350um).")
-        
-        ###########################################################################
         ###Get images
         ###########################################################################
-        fH = fileAndArrayHandling()
-        imageArray4D, filelist = fH.openAllFITSImagesInDirectory()
+        imageArray4D, filelist = faah.openAllFITSImagesInDirectory()
         
         ###########################################################################
         ###Create focus curve
         ########################################################################### 
         fC = focusCurve()       
-        xInter = fC.stdFocusCurve(fiflabel, imageArray4D, filelist)
-        metGuidedModeSelf.pageLogging(metGuidedModeSelf.consoleLog, metGuidedModeSelf.logFile, 
-                                      "Measured Best focus for " + str(fiflabel) + " is: " + str(xInter) + "um")
+        xInter = fC.stdFocusCurve(self.fifSection, imageArray4D, filelist)
+        faah.pageLogging(self.consoleLog, self.logFile, 
+                                      "Measured Best focus for " + str(self.fifSection) + " is: " + str(xInter) + "um")
         
         ###########################################################################
         ###Nominal best focus
