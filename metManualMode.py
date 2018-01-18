@@ -32,7 +32,7 @@ class metManualMode(tk.Tk):
         self.master = master
         master.title("DESI CI Meterology Manual Mode")
         
-    def manualFocusCurve(self):
+    def manualFIFFocusCurve(self):
         ###########################################################################
         ###Get FIF Seletion from User
         ###########################################################################
