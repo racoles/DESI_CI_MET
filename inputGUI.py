@@ -21,6 +21,7 @@ import tkinter.scrolledtext as ScrolledText
 from tkinter.ttk import Separator, Style
 import time
 from metGuidedMode import metGuidedMode
+from metManualMode import metManualMode
 ################################################################################################
 
 class inputGUI(object):
@@ -139,3 +140,12 @@ class inputGUI(object):
         gMode.consoleLog = consoleLog
         gMode.logFile = logFile
         gMode.guidedModeFrames()
+        
+    def _beginManualMode(self, master, consoleLog, logFile):
+        '''
+        Set up frames for guided mode
+        '''
+        #Setup Manual Mode
+        gMode = metManualMode(master)
+        gMode.consoleLog = consoleLog
+        gMode.logFile = logFile

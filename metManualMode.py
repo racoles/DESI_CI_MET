@@ -20,7 +20,7 @@ import os
 import numpy as np
 ################################################################################################
 
-class metManualMode():
+class metManualMode(tk.Tk):
     consoleLog = []
     logFile = []
         
@@ -64,7 +64,7 @@ class metManualMode():
         fC = focusCurve()       
         xInter = fC.stdFocusCurve(self.fifSection, imageArray4D, filelist)
         faah.pageLogging(self.consoleLog, self.logFile, 
-                                      "Measured Best focus for " + str(self.fifSection) + " is: " + str(xInter) + "um")
+                                      "Manual Mode Measured Best focus for " + str(self.fifSection) + " is: " + str(xInter) + "um")
         
         ###########################################################################
         ###Nominal best focus
@@ -73,7 +73,7 @@ class metManualMode():
         faah.pageLogging(self.consoleLog, self.logFile, 
                                       "Nominal Z for " + str(self.fifSection) + " is: " + str(nominalZ) + "um in CS5 coordinates.")
         faah.pageLogging(self.consoleLog, self.logFile, 
-                                      "Absolute value of (Nominal Z - Measured Best Focus) = " +  str(np.absolute(nominalZ-xInter)) + 'um')
+                                      "Manual Mode Absolute value of (Nominal Z - Measured Best Focus) = " +  str(np.absolute(nominalZ-xInter)) + 'um')
     
     def _fifSelectionWindow(self):
         ###########################################################################
