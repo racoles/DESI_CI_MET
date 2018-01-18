@@ -73,7 +73,7 @@ class metManualMode(tk.Tk):
         faah.pageLogging(self.consoleLog, self.logFile, 
                                       "Nominal Z for " + str(self.fifSection) + " is: " + str(nominalZ) + "um in CS5 coordinates.")
         faah.pageLogging(self.consoleLog, self.logFile, 
-                                      "Manual Mode Absolute value of (Nominal Z - Measured Best Focus) = " +  str(np.absolute(nominalZ-xInter)) + 'um')
+                                      "FIF Manual Mode Absolute value of (Nominal Z - Measured Best Focus) = " +  str(np.absolute(nominalZ-xInter)) + 'um')
         
     def manualCCDFocusCurve(self):
         ###########################################################################
@@ -105,13 +105,18 @@ class metManualMode(tk.Tk):
         ###Create focus curve
         ########################################################################### 
         fC = focusCurve()       
-        xInter = fC.stdFocusCurve(self.fifSection, imageArray4D, filelist)
+        xInter = fC.stdFocusCurve(self.CCDSection, imageArray4D, filelist)
         faah.pageLogging(self.consoleLog, self.logFile, 
                                       "CCD Manual Mode Measured Best focus for " + str(self.CCDSection) + " is: " + str(xInter) + "um")
         
         ###########################################################################
         ###Nominal best focus
         ###########################################################################
+        nominalZ = self.asphericFocalCurve(fC.CCDLocationsCS5[self.CCDSection][0], fC.CCDLocationsCS5[self.CCDSection][1])
+        faah.pageLogging(self.consoleLog, self.logFile, 
+                                      "Nominal Z for " + str(self.CCDSection) + " is: " + str(nominalZ) + "um in CS5 coordinates.")
+        faah.pageLogging(self.consoleLog, self.logFile, 
+                                      "CCD Manual Mode Absolute value of (Nominal Z - Measured Best Focus) = " +  str(np.absolute(nominalZ-xInter)) + 'um')
         
     def _setTrueAndExit(self, windowVariable, fifLabel=" ", CCDLabel=" "):
         self.fifSection = fifLabel
