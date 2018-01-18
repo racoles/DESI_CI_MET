@@ -37,6 +37,7 @@ class metManualMode():
                            "C2" : False, "C3" : False, "C4" : False,
                            "D1" : False, "D2" : False, "D3" : False, 
                            "D4" : False, "Other" : False}
+        
         ###########################################################################
         ###FIF Button Option Window
         ###########################################################################   
@@ -47,7 +48,6 @@ class metManualMode():
         tk.Label(top, text="Which FIF would you like to measure?").grid(row=0, column=0, columnspan=2, sticky='W')
         
         # RefFIF
-        refFIF = False
         refFIF = tk.Button(self, text="RefFIF", command=lambda:)
 
         button = tk.Button(top, text="Dismiss", command=top.destroy)
@@ -117,4 +117,4 @@ class metManualMode():
         metGuidedModeSelf.pageLogging(metGuidedModeSelf.consoleLog, metGuidedModeSelf.logFile, 
                                       "Absolute value of (Nominal Z - Measured Best Focus) = " +  str(np.absolute(nominalZ-xInter)) + 'um')
         
-    
+    def _setTrueAndExit(self, fifLabel, windowVariable):
