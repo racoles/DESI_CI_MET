@@ -84,7 +84,7 @@ class inputGUI(object):
         #Manual Mode FIF Focus Curve
         tk.Button(master, text="FIF Focus Curve",bg = "white", command=lambda:self._beginManualMode(master, self.consoleLog, self.logFile, "manualFIFFocusCurve")).grid(row=6, column=0, columnspan=1, sticky='W')
         #Manual Mode CCD Focus Curve
-        tk.Button(master, text="CCD Focus Curve",bg = "white", command=lambda:self._beginManualMode(master, self.consoleLog, self.logFile)).grid(row=6, column=1, columnspan=1, sticky='W')
+        tk.Button(master, text="CCD Focus Curve",bg = "white", command=lambda:self._beginManualMode(master, self.consoleLog, self.logFile, "manualCCDFocusCurve")).grid(row=6, column=1, columnspan=1, sticky='W')
         #Manual Mode CCD Tip/Tilt/Z
         tk.Button(master, text="CCD Tip/Tilt/Z",bg = "white", command=lambda:self._beginManualMode(master, self.consoleLog, self.logFile)).grid(row=7, column=0, columnspan=2, sticky='W')
 
@@ -153,3 +153,8 @@ class inputGUI(object):
         #Manual Mode FIF Focus Curve
         if manualFunction == "manualFIFFocusCurve":
             mMode.manualFIFFocusCurve()
+            
+        #Manual Mode CCD Focus Curve
+        if manualFunction == "manualCCDFocusCurve":
+            mMode.manualCCDFocusCurve()
+            

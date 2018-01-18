@@ -75,6 +75,12 @@ class metManualMode(tk.Tk):
         faah.pageLogging(self.consoleLog, self.logFile, 
                                       "Manual Mode Absolute value of (Nominal Z - Measured Best Focus) = " +  str(np.absolute(nominalZ-xInter)) + 'um')
         
+    def manualCCDFocusCurve(self):
+        ###########################################################################
+        ###Get FIF Seletion from User
+        ###########################################################################
+        self._CCDSelectionWindow() 
+        
     def _setTrueAndExit(self, windowVariable, fifLabel=" ", CCDLabel=" "):
         self.fifSection = fifLabel
         self.CCDSection = CCDLabel
