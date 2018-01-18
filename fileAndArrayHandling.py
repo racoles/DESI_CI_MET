@@ -21,6 +21,7 @@ from glob import glob
 from astropy.io import fits
 from tkinter import filedialog
 import os, errno, re
+import tkinter as tk
 ################################################################################################
 
 class fileAndArrayHandling(object):
