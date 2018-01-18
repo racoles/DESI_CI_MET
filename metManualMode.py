@@ -27,18 +27,6 @@ class metManualMode():
         
     def manualFocusCurve(self):
         ###########################################################################
-        ###FIF Location Button Dictionary
-        ########################################################################### 
-        fifSelectionDict = {"RefFIF" : False, "NFIF" : False, "WFIF" : False,
-                           "SFIF" : False, "EFIF" : False, "CFIF" : False,
-                           "A1" : False, "A2" : False, "A3" : False,
-                           "A4" : False, "B1" : False, "B2" : False, 
-                           "B3" : False, "B4" : False, "C1" : False,
-                           "C2" : False, "C3" : False, "C4" : False,
-                           "D1" : False, "D2" : False, "D3" : False, 
-                           "D4" : False, "Other" : False}
-        
-        ###########################################################################
         ###FIF Button Option Window
         ###########################################################################   
         top = tk.Toplevel()
@@ -113,15 +101,22 @@ class metManualMode():
         # CFIF
         CFIF = tk.Button(self, text="CFIF", command=lambda: self._setTrueAndExit("CFIF", top))
         CFIF.grid(row=7, column=0)
+        # Other
+        other = tk.Button(self, text="Other (will set x=0 y=0)", command=lambda: self._setTrueAndExit("Other", top))
+        other.grid(row=8, column=0)
         
-        tk.Label(top, text=" ").grid(row=8, column=0, columnspan=2, sticky='W')
+        tk.Label(top, text=" ").grid(row=9, column=0, columnspan=2, sticky='W')
         dismissButton = tk.Button(top, text="Exit", command=top.destroy)
-        dismissButton.grid(row=9, column=0)
+        dismissButton.grid(row=10, column=0)
+        
+        ###########################################################################
+        ###Create Dir
+        ###########################################################################        
         
         ###########################################################################
         ###Create Dir
         ###########################################################################
-        dirName = self.createDir(fiflabel, metGuidedModeSelf, 'Focus_Curve')
+        dirName = self.createDir(fiflabel, metGuidedModeSelf, 'Manual_Mode_Focus_Curve')
         
         ###########################################################################
         ###Message user to fill dir (mention label names)
@@ -180,5 +175,5 @@ class metManualMode():
                                       "Absolute value of (Nominal Z - Measured Best Focus) = " +  str(np.absolute(nominalZ-xInter)) + 'um')
         
     def _setTrueAndExit(self, fifLabel, windowVariable):
-        self.fifSelectionDict[fifLabel][0] = True
+        self.fifSection = fifLabel
         windowVariable.destroy
