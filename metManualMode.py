@@ -30,6 +30,90 @@ class metManualMode():
         
     def manualFocusCurve(self):
         ###########################################################################
+        ###Create Dir Using self.fifSection
+        ###########################################################################
+        faah = fileAndArrayHandling()
+        dirName = faah.createDir(self.fifSection, metManualMode, 'Manual_Mode_Focus_Curve')
+        
+        ###########################################################################
+        ###Message user to fill dir (mention label names)
+        ###########################################################################
+        faah.pageLogging(metGuidedModeSelf.consoleLog, metGuidedModeSelf.logFile, 
+                                      "Suggested " +  str(fiflabel) + " focus curve directory: \n" + str(os.getcwd()) + '\\' + dirName + 
+                                      "\nNOTE: the file names will be used to create the Z axis values (distance)\n" +
+                                        " so please label the FITS files appropriately\n" +
+                                        "(example: 350.fit for the image taken at 350um).")     
+        
+        ###########################################################################
+        ###Message user to fill dir (mention label names)
+        ###########################################################################
+        metGuidedModeSelf.pageLogging(metGuidedModeSelf.consoleLog, metGuidedModeSelf.logFile, 
+                                      "Suggested " +  str(fiflabel) + " focus curve directory: \n" + str(os.getcwd()) + '\\' + dirName + 
+                                      "\nNOTE: the file names will be used to create the Z axis values (distance)\n" +
+                                        " so please label the FITS files appropriately\n" +
+                                        "(example: 350.fit for the image taken at 350um).")
+        
+        ###########################################################################
+        ###Get images
+        ###########################################################################
+        fH = fileAndArrayHandling()
+        imageArray4D, filelist = fH.openAllFITSImagesInDirectory()
+        
+        ###########################################################################
+        ###Create focus curve
+        ########################################################################### 
+        fC = focusCurve()       
+        xInter = fC.stdFocusCurve(fiflabel, imageArray4D, filelist)
+        metGuidedModeSelf.pageLogging(metGuidedModeSelf.consoleLog, metGuidedModeSelf.logFile, 
+                                      "Measured Best focus for " + str(fiflabel) + " is: " + str(xInter) + "um")
+        
+        ###########################################################################
+        ###Nominal best focus
+        ###########################################################################
+        #Dict of (x,y) for FIFs
+        fifLocationsCS5 = {"RefFIF" : (199.28,-345.15), 
+                           "NFIF" : (-108.31,-383.55), 
+                           "WFIF" : (-383.55,108.31),
+                           "SFIF" : (108.31,383.55), 
+                           "EFIF" : (383.55,-108.31),
+                           "CFIF" : (108.31,15.00),
+                           "A1" : (281.82,-281.82),
+                           "A2" : (-281.82,-281.82), 
+                           "A3" : (-281.82,281.82),
+                           "A4" : (281.82,281.82),
+                           "B1" : (293.64,136.93),
+                           "B2" : (-293.64,136.93), 
+                           "B3" : (-293.64,-136.93),
+                           "B4" : (-136.93,293.64),
+                           "C1" : (96.44,232.82),
+                           "C2" : (232.82,-96.44), 
+                           "C3" : (-96.44,-232.82),
+                           "C4" : (-232.82,96.44),
+                           "D1" : (0,185.00),
+                           "D2" : (185.00,0), 
+                           "D3" : (0,-185.00),
+                           "D4" : (-185.00,0)}
+
+        nominalZ = self.asphericFocalCurve(fifLocationsCS5[fiflabel][0], fifLocationsCS5[fiflabel][1])
+        metGuidedModeSelf.pageLogging(metGuidedModeSelf.consoleLog, metGuidedModeSelf.logFile, 
+                                      "Nominal Z for " + str(fiflabel) + " is: " + str(nominalZ) + "um in CS5 coordinates.")
+        metGuidedModeSelf.pageLogging(metGuidedModeSelf.consoleLog, metGuidedModeSelf.logFile, 
+                                      "Absolute value of (Nominal Z - Measured Best Focus) = " +  str(np.absolute(nominalZ-xInter)) + 'um')
+        
+    def _setTrueAndExit(self, fifLabel, windowVariable):
+        self.fifSection = fifLabel
+        windowVariable.destroy
+        
+    def _createManualDir(self, fiflabel, dirType, ):
+        try:
+            os.makedirs(str(fiflabel + "_" + dirType + '_' + logTime))
+        except OSError as e:
+            if e.errno != errno.EEXIST:
+                raise
+        return str(fiflabel + "_" + dirType + '_' + logTime)
+    
+    def _fifSelectionWindow(self):
+        ###########################################################################
         ###FIF Button Option Window
         ###########################################################################   
         top = tk.Toplevel()
@@ -107,81 +191,3 @@ class metManualMode():
         # Other
         other = tk.Button(self, text="Other (will set x=0 y=0)", command=lambda: self._setTrueAndExit("Other", top))
         other.grid(row=8, column=0)
-        
-        tk.Label(top, text=" ").grid(row=9, column=0, columnspan=2, sticky='W')
-        dismissButton = tk.Button(top, text="Exit", command=top.destroy)
-        dismissButton.grid(row=10, column=0)       
-        
-        ###########################################################################
-        ###Create Dir Using self.fifSection
-        ###########################################################################
-        faah = fileAndArrayHandling()
-        dirName = faah.createDir(self.fifSection, metManualMode, 'Manual_Mode_Focus_Curve')       
-        
-        ###########################################################################
-        ###Message user to fill dir (mention label names)
-        ###########################################################################
-        metGuidedModeSelf.pageLogging(metGuidedModeSelf.consoleLog, metGuidedModeSelf.logFile, 
-                                      "Suggested " +  str(fiflabel) + " focus curve directory: \n" + str(os.getcwd()) + '\\' + dirName + 
-                                      "\nNOTE: the file names will be used to create the Z axis values (distance)\n" +
-                                        " so please label the FITS files appropriately\n" +
-                                        "(example: 350.fit for the image taken at 350um).")
-        
-        ###########################################################################
-        ###Get images
-        ###########################################################################
-        fH = fileAndArrayHandling()
-        imageArray4D, filelist = fH.openAllFITSImagesInDirectory()
-        
-        ###########################################################################
-        ###Create focus curve
-        ########################################################################### 
-        fC = focusCurve()       
-        xInter = fC.stdFocusCurve(fiflabel, imageArray4D, filelist)
-        metGuidedModeSelf.pageLogging(metGuidedModeSelf.consoleLog, metGuidedModeSelf.logFile, 
-                                      "Measured Best focus for " + str(fiflabel) + " is: " + str(xInter) + "um")
-        
-        ###########################################################################
-        ###Nominal best focus
-        ###########################################################################
-        #Dict of (x,y) for FIFs
-        fifLocationsCS5 = {"RefFIF" : (199.28,-345.15), 
-                           "NFIF" : (-108.31,-383.55), 
-                           "WFIF" : (-383.55,108.31),
-                           "SFIF" : (108.31,383.55), 
-                           "EFIF" : (383.55,-108.31),
-                           "CFIF" : (108.31,15.00),
-                           "A1" : (281.82,-281.82),
-                           "A2" : (-281.82,-281.82), 
-                           "A3" : (-281.82,281.82),
-                           "A4" : (281.82,281.82),
-                           "B1" : (293.64,136.93),
-                           "B2" : (-293.64,136.93), 
-                           "B3" : (-293.64,-136.93),
-                           "B4" : (-136.93,293.64),
-                           "C1" : (96.44,232.82),
-                           "C2" : (232.82,-96.44), 
-                           "C3" : (-96.44,-232.82),
-                           "C4" : (-232.82,96.44),
-                           "D1" : (0,185.00),
-                           "D2" : (185.00,0), 
-                           "D3" : (0,-185.00),
-                           "D4" : (-185.00,0)}
-
-        nominalZ = self.asphericFocalCurve(fifLocationsCS5[fiflabel][0], fifLocationsCS5[fiflabel][1])
-        metGuidedModeSelf.pageLogging(metGuidedModeSelf.consoleLog, metGuidedModeSelf.logFile, 
-                                      "Nominal Z for " + str(fiflabel) + " is: " + str(nominalZ) + "um in CS5 coordinates.")
-        metGuidedModeSelf.pageLogging(metGuidedModeSelf.consoleLog, metGuidedModeSelf.logFile, 
-                                      "Absolute value of (Nominal Z - Measured Best Focus) = " +  str(np.absolute(nominalZ-xInter)) + 'um')
-        
-    def _setTrueAndExit(self, fifLabel, windowVariable):
-        self.fifSection = fifLabel
-        windowVariable.destroy
-        
-    def _createManualDir(self, fiflabel, dirType, ):
-        try:
-            os.makedirs(str(fiflabel + "_" + dirType + '_' + logTime))
-        except OSError as e:
-            if e.errno != errno.EEXIST:
-                raise
-        return str(fiflabel + "_" + dirType + '_' + logTime)
