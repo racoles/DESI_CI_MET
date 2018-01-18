@@ -62,9 +62,6 @@ class metManualMode():
         # EFIF
         EFIF = tk.Button(self, text="EFIF", command=lambda: self._setTrueAndExit("EFIF", top))
         EFIF.grid(row=2, column=3)
-        # CFIF
-        CFIF = tk.Button(self, text="CFIF", command=lambda: self._setTrueAndExit("CFIF", top))
-        CFIF.grid(row=2, column=4)
         # A1
         A1 = tk.Button(self, text="A1", command=lambda: self._setTrueAndExit("A1", top))
         A1.grid(row=3, column=0)
@@ -101,12 +98,25 @@ class metManualMode():
         # C4
         C4 = tk.Button(self, text="C4", command=lambda: self._setTrueAndExit("C4", top))
         C4.grid(row=5, column=3)
+        # D1
+        D1 = tk.Button(self, text="D1", command=lambda: self._setTrueAndExit("D1", top))
+        D1.grid(row=6, column=0)
+        # D2
+        D2 = tk.Button(self, text="D2", command=lambda: self._setTrueAndExit("D2", top))
+        D2.grid(row=6, column=1)
+        # D3
+        D3 = tk.Button(self, text="D3", command=lambda: self._setTrueAndExit("D3", top))
+        D3.grid(row=6, column=2)
+        # D4
+        D4 = tk.Button(self, text="D4", command=lambda: self._setTrueAndExit("D4", top))
+        D4.grid(row=6, column=3)
+        # CFIF
+        CFIF = tk.Button(self, text="CFIF", command=lambda: self._setTrueAndExit("CFIF", top))
+        CFIF.grid(row=7, column=0)
         
-        button = tk.Button(top, text="Dismiss", command=top.destroy)
-        button.pack()
-        
-        # RefFIF
-        refFIF = tk.Button(self, text="RefFIF", command=lambda:)
+        tk.Label(top, text=" ").grid(row=8, column=0, columnspan=2, sticky='W')
+        dismissButton = tk.Button(top, text="Exit", command=top.destroy)
+        dismissButton.grid(row=9, column=0)
         
         ###########################################################################
         ###Create Dir
