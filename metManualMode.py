@@ -107,16 +107,13 @@ class metManualMode():
         
         tk.Label(top, text=" ").grid(row=9, column=0, columnspan=2, sticky='W')
         dismissButton = tk.Button(top, text="Exit", command=top.destroy)
-        dismissButton.grid(row=10, column=0)
+        dismissButton.grid(row=10, column=0)       
         
         ###########################################################################
-        ###Create Dir
-        ###########################################################################        
+        ###Create Dir Using self.fifSection
+        ###########################################################################
         
-        ###########################################################################
-        ###Create Dir
-        ###########################################################################
-        dirName = self.createDir(fiflabel, metGuidedModeSelf, 'Manual_Mode_Focus_Curve')
+        dirName = self.createDir(self.fifSection, metGuidedModeSelf, 'Manual_Mode_Focus_Curve')
         
         ###########################################################################
         ###Message user to fill dir (mention label names)
@@ -177,3 +174,11 @@ class metManualMode():
     def _setTrueAndExit(self, fifLabel, windowVariable):
         self.fifSection = fifLabel
         windowVariable.destroy
+        
+    def _createManualDir(self, fiflabel, dirType, ):
+        try:
+            os.makedirs(str(fiflabel + "_" + dirType + '_' + logTime))
+        except OSError as e:
+            if e.errno != errno.EEXIST:
+                raise
+        return str(fiflabel + "_" + dirType + '_' + logTime)
