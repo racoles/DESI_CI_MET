@@ -64,7 +64,7 @@ class metManualMode(tk.Tk):
         fC = focusCurve()       
         xInter = fC.stdFocusCurve(self.fifSection, imageArray4D, filelist)
         faah.pageLogging(self.consoleLog, self.logFile, 
-                                      "Manual Mode Measured Best focus for " + str(self.fifSection) + " is: " + str(xInter) + "um")
+                                      "FIF Manual Mode Measured Best focus for " + str(self.fifSection) + " is: " + str(xInter) + "um")
         
         ###########################################################################
         ###Nominal best focus
@@ -86,6 +86,32 @@ class metManualMode(tk.Tk):
         ###########################################################################
         faah = fileAndArrayHandling()
         dirName = faah.createDir(self.CCDSection, self, 'Manual_Mode_CCD_Focus_Curve')
+        
+        ###########################################################################
+        ###Message user to fill dir (mention label names)
+        ###########################################################################
+        faah.pageLogging(self.consoleLog, self.logFile, 
+                                      "Suggested " +  str(self.CCDSection) + " manual mode focus curve directory: \n" + str(os.getcwd()) + '\\' + dirName + 
+                                      "\nNOTE: the file names will be used to create the Z axis values (distance)\n" +
+                                        " so please label the FITS files appropriately\n" +
+                                        "(example: 350.fit for the image taken at 350um).")  
+        
+        ###########################################################################
+        ###Get images
+        ###########################################################################
+        imageArray4D, filelist = faah.openAllFITSImagesInDirectory()
+        
+        ###########################################################################
+        ###Create focus curve
+        ########################################################################### 
+        fC = focusCurve()       
+        xInter = fC.stdFocusCurve(self.fifSection, imageArray4D, filelist)
+        faah.pageLogging(self.consoleLog, self.logFile, 
+                                      "CCD Manual Mode Measured Best focus for " + str(self.CCDSection) + " is: " + str(xInter) + "um")
+        
+        ###########################################################################
+        ###Nominal best focus
+        ###########################################################################
         
     def _setTrueAndExit(self, windowVariable, fifLabel=" ", CCDLabel=" "):
         self.fifSection = fifLabel
