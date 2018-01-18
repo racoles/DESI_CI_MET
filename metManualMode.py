@@ -14,6 +14,7 @@ Classes and Modules:
 # Import #######################################################################################
 import tkinter as tk
 from fileAndArrayHandling import fileAndArrayHandling
+import os
 ################################################################################################
 
 class metManualMode():
@@ -38,8 +39,8 @@ class metManualMode():
         ###########################################################################
         ###Message user to fill dir (mention label names)
         ###########################################################################
-        faah.pageLogging(metGuidedModeSelf.consoleLog, metGuidedModeSelf.logFile, 
-                                      "Suggested " +  str(fiflabel) + " focus curve directory: \n" + str(os.getcwd()) + '\\' + dirName + 
+        faah.pageLogging(self.consoleLog, self.logFile, 
+                                      "Suggested " +  str(self.fifSection) + " manual mode focus curve directory: \n" + str(os.getcwd()) + '\\' + dirName + 
                                       "\nNOTE: the file names will be used to create the Z axis values (distance)\n" +
                                         " so please label the FITS files appropriately\n" +
                                         "(example: 350.fit for the image taken at 350um).")     
