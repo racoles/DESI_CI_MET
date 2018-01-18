@@ -29,28 +29,14 @@ class metManualMode():
         ###########################################################################
         ###FIF Location Button Dictionary
         ########################################################################### 
-        fifSelectionDict = {"RefFIF" : False, 
-                           "NFIF" : False, 
-                           "WFIF" : False,
-                           "SFIF" : False, 
-                           "EFIF" : False,
-                           "CFIF" : False,
-                           "A1" : False,
-                           "A2" : False, 
-                           "A3" : False,
-                           "A4" : False,
-                           "B1" : False,
-                           "B2" : False, 
-                           "B3" : False,
-                           "B4" : False,
-                           "C1" : False,
-                           "C2" : False, 
-                           "C3" : False,
-                           "C4" : False,
-                           "D1" : False,
-                           "D2" : False, 
-                           "D3" : False,
-                           "D4" : False}
+        fifSelectionDict = {"RefFIF" : False, "NFIF" : False, "WFIF" : False,
+                           "SFIF" : False, "EFIF" : False, "CFIF" : False,
+                           "A1" : False, "A2" : False, "A3" : False,
+                           "A4" : False, "B1" : False, "B2" : False, 
+                           "B3" : False, "B4" : False, "C1" : False,
+                           "C2" : False, "C3" : False, "C4" : False,
+                           "D1" : False, "D2" : False, "D3" : False, 
+                           "D4" : False, "Other" : False}
         ###########################################################################
         ###FIF Button Option Window
         ###########################################################################   
