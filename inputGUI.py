@@ -79,11 +79,13 @@ class inputGUI(object):
         #Manual Mode Labels
         tk.Label(master, text="Manual Mode", font="bold").grid(row=4, column=0, columnspan=2, sticky='W')
         #Manual Mode Description
-        tk.Label(master, text="Perform manual measurements of the CI FIFs.").grid(row=5, column=0, columnspan=2, sticky='W')
+        tk.Label(master, text="Perform manual measurements").grid(row=5, column=0, columnspan=2, sticky='W')
         #Manual Mode Focus Curve
-        tk.Button(master, text="Focus Curve",bg = "white", command=lambda:self._loadInputDataFile()).grid(row=6, column=0, columnspan=2, sticky='W')
-        #Manual Mode Centroid FIF
-        tk.Button(master, text="Centroid FIF",bg = "white", command=lambda:self._loadInputDataFile()).grid(row=7, column=0, columnspan=2, sticky='W')
+        tk.Button(master, text="FIF Focus Curve",bg = "white", command=lambda:self._loadInputDataFile()).grid(row=6, column=0, columnspan=1, sticky='W')
+        #Manual Mode CCD Focus Curve
+        tk.Button(master, text="CCD Focus Curve",bg = "white", command=lambda:self._loadInputDataFile()).grid(row=6, column=1, columnspan=1, sticky='W')
+        #Manual Mode CCD Tip/Tilt/Z
+        tk.Button(master, text="CCD Tip/Tilt/Z",bg = "white", command=lambda:self._loadInputDataFile()).grid(row=7, column=0, columnspan=2, sticky='W')
 
         #Grid Separator
         Separator(master, orient="horizontal").grid(row=8, column=0, columnspan=4, sticky='ew')
