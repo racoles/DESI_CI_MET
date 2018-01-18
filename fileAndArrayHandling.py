@@ -71,3 +71,20 @@ class fileAndArrayHandling(object):
             if e.errno != errno.EEXIST:
                 raise
         return str(fiflabel + "_" + dirType + '_' + logTime)
+    
+    def pageLogging(self, cLog, lFile, logText):
+        '''
+        Send text to console and log file.
+        '''
+        ###########################################################################
+        ###Send text to console
+        ###########################################################################
+        cLog.configure(state="normal")
+        cLog.insert(tk.END, str(logText) + '\n')
+        cLog.configure(state="disable")
+        
+        ###########################################################################
+        ###Send text to log file
+        ###########################################################################
+        lFile.write(str(logText) + '\n')
+        lFile.flush()

@@ -116,7 +116,7 @@ class metManualMode():
         ###Create Dir Using self.fifSection
         ###########################################################################
         faah = fileAndArrayHandling()
-        dirName = faah.createDir(self.fifSection, metGuidedModeSelf, 'Manual_Mode_Focus_Curve')       
+        dirName = faah.createDir(self.fifSection, metManualMode, 'Manual_Mode_Focus_Curve')       
         
         ###########################################################################
         ###Message user to fill dir (mention label names)

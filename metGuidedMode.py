@@ -62,23 +62,6 @@ class metGuidedMode(tk.Tk):
         frame = self.frames[cont]
         frame.tkraise()
         
-    def pageLogging(self, cLog, lFile, logText):
-        '''
-        Send text to console and log file.
-        '''
-        ###########################################################################
-        ###Send text to console
-        ###########################################################################
-        cLog.configure(state="normal")
-        cLog.insert(tk.END, str(logText) + '\n')
-        cLog.configure(state="disable")
-        
-        ###########################################################################
-        ###Send text to log file
-        ###########################################################################
-        lFile.write(str(logText) + '\n')
-        lFile.flush()
-        
     def areYouSureExit(self):
         if messagebox.askyesno("Exit Guided Mode", "You are about to exit Guided Mode.\nAre You Sure?", icon='warning'):
             self.destroy()
@@ -368,7 +351,7 @@ class fifPage(tk.Frame):
         ###########################################################################
         ###Message user to fill dir (mention label names)
         ###########################################################################
-        metGuidedModeSelf.pageLogging(metGuidedModeSelf.consoleLog, metGuidedModeSelf.logFile, 
+        faah.pageLogging(metGuidedModeSelf.consoleLog, metGuidedModeSelf.logFile, 
                                       "Suggested " +  str(fiflabel) + " focus curve directory: \n" + str(os.getcwd()) + '\\' + dirName + 
                                       "\nNOTE: the file names will be used to create the Z axis values (distance)\n" +
                                         " so please label the FITS files appropriately\n" +
@@ -377,15 +360,14 @@ class fifPage(tk.Frame):
         ###########################################################################
         ###Get images
         ###########################################################################
-        fH = fileAndArrayHandling()
-        imageArray4D, filelist = fH.openAllFITSImagesInDirectory()
+        imageArray4D, filelist = faah.openAllFITSImagesInDirectory()
         
         ###########################################################################
         ###Create focus curve
         ########################################################################### 
         fC = focusCurve()       
         xInter = fC.stdFocusCurve(fiflabel, imageArray4D, filelist)
-        metGuidedModeSelf.pageLogging(metGuidedModeSelf.consoleLog, metGuidedModeSelf.logFile, 
+        faah.pageLogging(metGuidedModeSelf.consoleLog, metGuidedModeSelf.logFile, 
                                       "Measured Best focus for " + str(fiflabel) + " is: " + str(xInter) + "um")
         
         ###########################################################################
@@ -417,9 +399,9 @@ class fifPage(tk.Frame):
                            "Other" : (0,0)}
 
         nominalZ = self.asphericFocalCurve(self.fifLocationsCS5[fiflabel][0], self.fifLocationsCS5[fiflabel][1])
-        metGuidedModeSelf.pageLogging(metGuidedModeSelf.consoleLog, metGuidedModeSelf.logFile, 
+        faah.pageLogging(metGuidedModeSelf.consoleLog, metGuidedModeSelf.logFile, 
                                       "Nominal Z for " + str(fiflabel) + " is: " + str(nominalZ) + "um in CS5 coordinates.")
-        metGuidedModeSelf.pageLogging(metGuidedModeSelf.consoleLog, metGuidedModeSelf.logFile, 
+        faah.pageLogging(metGuidedModeSelf.consoleLog, metGuidedModeSelf.logFile, 
                                       "Absolute value of (Nominal Z - Measured Best Focus) = " +  str(np.absolute(nominalZ-xInter)) + 'um')
         ###########################################################################
         ###Change button text and color
@@ -437,22 +419,21 @@ class fifPage(tk.Frame):
         ###########################################################################
         ###Message user to fill dir (mention label names)
         ###########################################################################
-        metGuidedModeSelf.pageLogging(metGuidedModeSelf.consoleLog, metGuidedModeSelf.logFile, 
+        faah.pageLogging(metGuidedModeSelf.consoleLog, metGuidedModeSelf.logFile, 
                                       "Suggested " +  str(fiflabel) + " centroid directory: \n" + str(os.getcwd()) + '\\' + dirName)
         
         ###########################################################################
         ###Get images
         ###########################################################################
-        fH = fileAndArrayHandling()
-        imageArray4D, filelist = fH.openAllFITSImagesInDirectory()
+        imageArray4D, filelist = faah.openAllFITSImagesInDirectory()
         
         ###########################################################################
         ###Find fif in image and create subarray
         ###########################################################################
-        metGuidedModeSelf.pageLogging(metGuidedModeSelf.consoleLog, metGuidedModeSelf.logFile, 
+        faah.pageLogging(metGuidedModeSelf.consoleLog, metGuidedModeSelf.logFile, 
                                       "Centroiding " + str(fiflabel) + " using FITs file:\n" + str(filelist[0]).replace('/', '\\'))
         fifSubArray, subArrayBoxSize, maxLoc  = centroidFIF.findFIFInImage(self, imageArray4D[0])
-        metGuidedModeSelf.pageLogging(metGuidedModeSelf.consoleLog, metGuidedModeSelf.logFile, 
+        faah.pageLogging(metGuidedModeSelf.consoleLog, metGuidedModeSelf.logFile, 
                                       str(fiflabel) + " FIF found at pixel location: (" + str(maxLoc[0]) + "," + str(maxLoc[1]) + "). Will now centroid using that location.")
         
         ###########################################################################
@@ -466,7 +447,7 @@ class fifPage(tk.Frame):
         ###########################################################################
         xcen = xcen + maxLoc[0]-subArrayBoxSize/2
         ycen = ycen + maxLoc[1]-subArrayBoxSize/2
-        metGuidedModeSelf.pageLogging(metGuidedModeSelf.consoleLog, metGuidedModeSelf.logFile, 
+        faah.pageLogging(metGuidedModeSelf.consoleLog, metGuidedModeSelf.logFile, 
                                       str(fiflabel) + " center found at location: (" + str(xcen) + "," + str(ycen) + ")")
         
         ###########################################################################
