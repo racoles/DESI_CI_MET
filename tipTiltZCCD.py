@@ -20,3 +20,24 @@ class tipTiltZCCD(object):
         '''
         Constructor
         '''
+        
+    def tipCCD(self):
+        '''
+        Calculate CCD tip
+        '''
+         
+    def tiltCCD(self):
+        '''
+        Calculate CCD tilt
+        '''
+        
+    def ZCCD(self):
+        '''
+        Calculate CCD tip
+        '''
+        
+    def createEquilateralTriangle(self):
+        '''
+        Take focus curves at the points of an equilateral triangle
+        to find the CCD center
+        '''
