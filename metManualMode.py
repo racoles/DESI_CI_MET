@@ -178,19 +178,19 @@ class metManualMode(tk.Tk):
         
         #A
         A = tk.Button(top, text="A", command=lambda: self._setTrueAndExit(top, trianglePointLabel="A"))
-        A.grid(row=1, column=0)
+        A.grid(row=1, column=0, sticky='W')
         
         #B
         B = tk.Button(top, text="B", command=lambda: self._setTrueAndExit(top, trianglePointLabel="B"))
-        B.grid(row=2, column=0)
+        B.grid(row=2, column=0, sticky='W')
         
         #C
         C = tk.Button(top, text="C", command=lambda: self._setTrueAndExit(top, trianglePointLabel="C"))
-        C.grid(row=3, column=0)
+        C.grid(row=3, column=0, sticky='W')
         
         # Other (will set x=0 y=0)
         other = tk.Button(top, text="Other", command=lambda: self._setTrueAndExit(top, trianglePointLabel="Other"))
-        other.grid(row=6, column=0)  
+        other.grid(row=6, column=0, sticky='W')  
         
         #Map
         tk.Label(top, text=" ").grid(row=7, column=0, columnspan=2, sticky='W')
