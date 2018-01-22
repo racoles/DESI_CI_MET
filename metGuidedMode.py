@@ -93,7 +93,7 @@ class fifPage(tk.Frame):
     
     def __init__(self, container, metGuidedModeSelf):
         tk.Frame.__init__(self, container)
-        
+
         ###########################################################################
         ###Buttons
         ###########################################################################
@@ -327,7 +327,7 @@ class fifPage(tk.Frame):
         CFIFC = tk.Button(self, text="Centroid",
                             command=lambda: metGuidedModeSelf.show_frame(self.centroidFIF(CFIFC, "CFIF", metGuidedModeSelf)))
         CFIFC.grid(row=28, column=0, sticky='W') 
-        Separator(self, orient="vertical").grid(row=25, column=0, rowspan=5, sticky='ens') 
+        Separator(self, orient="vertical").grid(row=25, column=0, rowspan=2, sticky='ens') 
         
         #Exit Buttons
         Separator(self, orient="horizontal").grid(row=29, column=0, columnspan=4, sticky='ew') 
@@ -340,6 +340,12 @@ class fifPage(tk.Frame):
         ExitButton2 = tk.Button(self, text="Exit to Map Screen", 
                             command=lambda: metGuidedModeSelf.areYouSureExit()) #are you sure?
         ExitButton2.grid(row=31, column=0, columnspan=2, sticky='W')
+        
+        #FIF orientation diagram
+        fifOrMap = tk.Toplevel()
+        tk.Label(fifOrMap, text="FIF Pinhole Orientation Relative to CI Perimeter").grid(row=0, column=0, columnspan=2, sticky='W')
+        self.fifOrient = tk.PhotoImage(file="FIF-orientation.png", width=400, height=446)
+        tk.Label(fifOrMap, image=self.fifOrient).grid(row=1, column=0, rowspan=10, sticky='W')
         
     def focusCurve(self, sensorButton, fiflabel, metGuidedModeSelf):
         ###########################################################################
