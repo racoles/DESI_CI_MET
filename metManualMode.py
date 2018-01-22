@@ -88,7 +88,7 @@ class metManualMode(tk.Tk):
         ###Create Dir Using self.CCDSelection
         ###########################################################################
         faah = fileAndArrayHandling()
-        dirName = faah.createDir(self.CCDSelection + '_' + self.trianglePointSelection, self, 'Manual_Mode_CCD_Focus_Curve')
+        dirName = faah.createDir(str(self.CCDSelection + '_' + self.trianglePointSelection), self, 'Manual_Mode_CCD_Focus_Curve')
         
         ###########################################################################
         ###Message user to fill dir (mention label names)
@@ -191,6 +191,11 @@ class metManualMode(tk.Tk):
         # Other (will set x=0 y=0)
         other = tk.Button(top, text="Other", command=lambda: self._setTrueAndExit(top, trianglePointLabel="Other"))
         other.grid(row=6, column=0)  
+        
+        #Map
+        tk.Label(top, text=" ").grid(row=7, column=0, columnspan=2, sticky='W')
+        top.triangleMAP = tk.PhotoImage(file="FPA_triangles-300x300.png", width=300, height=300)
+        tk.Label(top, image=top.triangleMAP).grid(row=8, column=0, rowspan=3, sticky='W')
         
         top.wait_window()
     
