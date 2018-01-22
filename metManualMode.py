@@ -129,7 +129,8 @@ class metManualMode(tk.Tk):
         ###FIF Button Option Window
         ###########################################################################   
         top = tk.Toplevel()
-        top.title("CCD Manual Mode")        
+        top.title("CCD Manual Mode")
+        self.wm_withdraw()
         
         #Manual Mode Description
         tk.Label(top, text="Which CCD would you like to measure?").grid(row=0, column=0, columnspan=2, sticky='W')
