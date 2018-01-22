@@ -79,15 +79,17 @@ class metManualMode(tk.Tk):
         
     def manualCCDFocusCurve(self):
         ###########################################################################
-        ###Get FIF Seletion from User
+        ###Get CCD Seletion from User
         ###########################################################################
         self._CCDSelectionWindow() 
+        self._trianglePointSelectionWindow()
         
         ###########################################################################
         ###Create Dir Using self.CCDSelection
         ###########################################################################
         faah = fileAndArrayHandling()
-        dirName = faah.createDir(self.CCDSelection, self, 'Manual_Mode_CCD_Focus_Curve')
+        fiflabel = self.CCDSelection + '_' + self.trianglePointSelection
+        dirName = faah.createDir(fiflabel, self, 'Manual_Mode_CCD_Focus_Curve')
         
         ###########################################################################
         ###Message user to fill dir (mention label names)
@@ -163,7 +165,7 @@ class metManualMode(tk.Tk):
         
         top.wait_window()
         
-    def trianglePointSelectionWindow(self):
+    def _trianglePointSelectionWindow(self):
         ###########################################################################
         ###Triangle Point Button Option Window
         ###########################################################################   
