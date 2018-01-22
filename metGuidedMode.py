@@ -373,7 +373,7 @@ class fifPage(tk.Frame):
         ###########################################################################
         ###Nominal best focus
         ###########################################################################
-        nominalZ = self.asphericFocalCurve(fC.fifLocationsCS5[fiflabel][0], fC.fifLocationsCS5[fiflabel][1])
+        nominalZ = fC.asphericFocalCurve(fC.fifLocationsCS5[fiflabel][0], fC.fifLocationsCS5[fiflabel][1])
         faah.pageLogging(metGuidedModeSelf.consoleLog, metGuidedModeSelf.logFile, 
                                       "Nominal Z for " + str(fiflabel) + " is: " + str(nominalZ) + "um in CS5 coordinates.")
         faah.pageLogging(metGuidedModeSelf.consoleLog, metGuidedModeSelf.logFile, 
@@ -434,42 +434,6 @@ class fifPage(tk.Frame):
         ###Change button text and color
         ###########################################################################
         sensorButton.config(text = "Centroid Complete", bg = 'green')
-    
-    def asphericFocalCurve(self, x, y):
-        '''
-        Use ZEMAX Image surface definition, of 10th order even 
-        polynomial, to find best focus nominal Z (mm) for a FIF
-        that has its center pinhole at location (x, y).
-        
-        r = sqrt(x^2 + y^2) (mm)
-        1/c = -4977.99mm
-        k = 0
-        
-        Aspheric terms
-        a2 = ((r^2)/(1/c))/(1+SQRT(1-(r^2/(1/c)^2)))
-        a4 = (-0.00000000029648)r^4
-        a6 = (0.0000000000000034523)r^6
-        a8 = (-1.8042E-20)r^8
-        a10 = (3.2571E-26)r^10
-        
-        nominalZ = a2 + a4 + a6 + a8 + a10
-        '''
-        r = math.sqrt(math.pow(x, 2) + math.pow(y, 2))
-        inv_c = -4977.99
-        
-        ###########################################################################
-        ###Aspheric terms
-        ###########################################################################
-        a2 = (math.pow(r, 2)/inv_c)/(1+math.sqrt(1-(math.pow(r, 2)/math.pow(inv_c, 2))))
-        a4 = -0.00000000029648*math.pow(r, 4)
-        a6 = 0.0000000000000034523*math.pow(r, 6)
-        a8 = -1.8042E-20*math.pow(r, 8)
-        a10 = 3.2571E-26*math.pow(r, 10)
-        
-        ###########################################################################
-        ###Nominal Z
-        ###########################################################################
-        return a2 + a4 + a6 + a8 + a10
 
 class conclusion(tk.Frame):
     
