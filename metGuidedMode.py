@@ -344,7 +344,7 @@ class fifPage(tk.Frame):
         #FIF orientation diagram
         fifOrMap = tk.Toplevel()
         tk.Label(fifOrMap, text="FIF Pinhole Orientation Relative to CI Perimeter").grid(row=0, column=0, columnspan=2, sticky='W')
-        self.fifOrient = tk.PhotoImage(file="FIF-orientation.png", width=400, height=446)
+        self.fifOrient = tk.PhotoImage(file="FIF-orientation.png", width=500, height=558)
         tk.Label(fifOrMap, image=self.fifOrient).grid(row=1, column=0, rowspan=10, sticky='W')
         
     def focusCurve(self, sensorButton, fiflabel, metGuidedModeSelf):
