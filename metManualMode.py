@@ -88,8 +88,7 @@ class metManualMode(tk.Tk):
         ###Create Dir Using self.CCDSelection
         ###########################################################################
         faah = fileAndArrayHandling()
-        fiflabel = self.CCDSelection + '_' + self.trianglePointSelection
-        dirName = faah.createDir(fiflabel, self, 'Manual_Mode_CCD_Focus_Curve')
+        dirName = faah.createDir(self.CCDSelection + '_' + self.trianglePointSelection, self, 'Manual_Mode_CCD_Focus_Curve')
         
         ###########################################################################
         ###Message user to fill dir (mention label names)
