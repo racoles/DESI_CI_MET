@@ -120,10 +120,10 @@ class metManualMode(tk.Tk):
         faah.pageLogging(self.consoleLog, self.logFile, 
                                       "CCD Manual Mode Absolute value of (Nominal Z - Measured Best Focus) = " +  str(np.absolute(nominalZ-xInter)) + 'um')
         
-    def _setTrueAndExit(self, windowVariable, fifLabel=" ", CCDLabel=" ", trianglePointSelection=" "):
+    def _setTrueAndExit(self, windowVariable, fifLabel=" ", CCDLabel=" ", trianglePointLabel=" "):
         self.fifSelection = fifLabel
         self.CCDSelection = CCDLabel
-        self.trianglePointSelection = trianglePointSelection
+        self.trianglePointSelection = trianglePointLabel
         windowVariable.destroy()
         
     def _CCDSelectionWindow(self):
@@ -175,19 +175,19 @@ class metManualMode(tk.Tk):
         tk.Label(top, text="Which triangle point would you like to measure?").grid(row=0, column=0, columnspan=2, sticky='W')
         
         #A
-        A = tk.Button(top, text="A", command=lambda: self._setTrueAndExit(top, CCDLabel="A"))
+        A = tk.Button(top, text="A", command=lambda: self._setTrueAndExit(top, trianglePointLabel="A"))
         A.grid(row=1, column=0)
         
         #B
-        B = tk.Button(top, text="B", command=lambda: self._setTrueAndExit(top, CCDLabel="B"))
+        B = tk.Button(top, text="B", command=lambda: self._setTrueAndExit(top, trianglePointLabel="B"))
         B.grid(row=2, column=0)
         
         #C
-        C = tk.Button(top, text="C", command=lambda: self._setTrueAndExit(top, CCDLabel="C"))
+        C = tk.Button(top, text="C", command=lambda: self._setTrueAndExit(top, trianglePointLabel="C"))
         C.grid(row=3, column=0)
         
         # Other (will set x=0 y=0)
-        other = tk.Button(top, text="Other", command=lambda: self._setTrueAndExit(top, CCDLabel="Other"))
+        other = tk.Button(top, text="Other", command=lambda: self._setTrueAndExit(top, trianglePointLabel="Other"))
         other.grid(row=6, column=0)  
         
         top.wait_window()
