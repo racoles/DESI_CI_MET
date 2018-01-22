@@ -22,9 +22,9 @@ import numpy as np
 class metManualMode(tk.Tk):
     consoleLog = []
     logFile = []
-    CCDSelection = ""
-    fifSelection = ""
-    trianglePointSelection = ""
+    CCDSelection = " "
+    fifSelection = " "
+    trianglePointSelection = " "
         
     def __init__(self, master):
         '''
@@ -212,94 +212,94 @@ class metManualMode(tk.Tk):
         
         # RefFIF
         refFIF = tk.Button(top, text="RefFIF", command=lambda: self._setTrueAndExit(top, fifLabel="RefFIF"))
-        refFIF.grid(row=1, column=0)
+        refFIF.grid(row=1, column=0, sticky='W')
         
         # NFIF
         NFIF = tk.Button(top, text="NFIF", command=lambda: self._setTrueAndExit(top, fifLabel="NFIF"))
-        NFIF.grid(row=2, column=0)
+        NFIF.grid(row=2, column=0, sticky='W')
         
         # WFIF
         WFIF = tk.Button(top, text="WFIF", command=lambda: self._setTrueAndExit(top, fifLabel="WFIF"))
-        WFIF.grid(row=2, column=1)
+        WFIF.grid(row=2, column=1, sticky='W')
         
         # SFIF
         SFIF = tk.Button(top, text="SFIF", command=lambda: self._setTrueAndExit(top, fifLabel="SFIF"))
-        SFIF.grid(row=2, column=2)
+        SFIF.grid(row=2, column=2, sticky='W')
         
         # EFIF
         EFIF = tk.Button(top, text="EFIF", command=lambda: self._setTrueAndExit(top, fifLabel="EFIF"))
-        EFIF.grid(row=2, column=3)
+        EFIF.grid(row=2, column=3, sticky='W')
         
         # A1
         A1 = tk.Button(top, text="A1", command=lambda: self._setTrueAndExit(top, fifLabel="A1"))
-        A1.grid(row=3, column=0)
+        A1.grid(row=3, column=0, sticky='W')
         
         # A2
         A2 = tk.Button(top, text="A2", command=lambda: self._setTrueAndExit(top, fifLabel="A2"))
-        A2.grid(row=3, column=1)
+        A2.grid(row=3, column=1, sticky='W')
         
         # A3
         A3 = tk.Button(top, text="A3", command=lambda: self._setTrueAndExit(top, fifLabel="A3"))
-        A3.grid(row=3, column=2)
+        A3.grid(row=3, column=2, sticky='W')
         
         # A4
         A4 = tk.Button(top, text="A4", command=lambda: self._setTrueAndExit(top, fifLabel="A4"))
-        A4.grid(row=3, column=3)
+        A4.grid(row=3, column=3, sticky='W')
         
         # B1
         B1 = tk.Button(top, text="B1", command=lambda: self._setTrueAndExit(top, fifLabel="B1"))
-        B1.grid(row=4, column=0)
+        B1.grid(row=4, column=0, sticky='W')
         
         # B2
         B2 = tk.Button(top, text="B2", command=lambda: self._setTrueAndExit(top, fifLabel="B2"))
-        B2.grid(row=4, column=1)
+        B2.grid(row=4, column=1, sticky='W')
         
         # B3
         B3 = tk.Button(top, text="B3", command=lambda: self._setTrueAndExit(top, fifLabel="B3"))
-        B3.grid(row=4, column=2)
+        B3.grid(row=4, column=2, sticky='W')
         
         # B4
         B4 = tk.Button(top, text="B4", command=lambda: self._setTrueAndExit(top, fifLabel="B4"))
-        B4.grid(row=4, column=3)
+        B4.grid(row=4, column=3, sticky='W')
         
         # C1
         C1 = tk.Button(top, text="C1", command=lambda: self._setTrueAndExit(top, fifLabel="C1"))
-        C1.grid(row=5, column=0)
+        C1.grid(row=5, column=0, sticky='W')
         
         # C2
         C2 = tk.Button(top, text="C2", command=lambda: self._setTrueAndExit(top, fifLabel="C2"))
-        C2.grid(row=5, column=1)
+        C2.grid(row=5, column=1, sticky='W')
         
         # C3
         C3 = tk.Button(top, text="C3", command=lambda: self._setTrueAndExit(top, fifLabel="C3"))
-        C3.grid(row=5, column=2)
+        C3.grid(row=5, column=2, sticky='W')
         
         # C4
         C4 = tk.Button(top, text="C4", command=lambda: self._setTrueAndExit(top, fifLabel="C4"))
-        C4.grid(row=5, column=3)
+        C4.grid(row=5, column=3, sticky='W')
         
         # D1
         D1 = tk.Button(top, text="D1", command=lambda: self._setTrueAndExit(top, fifLabel="D1"))
-        D1.grid(row=6, column=0)
+        D1.grid(row=6, column=0, sticky='W')
         
         # D2
         D2 = tk.Button(top, text="D2", command=lambda: self._setTrueAndExit(top, fifLabel="D2"))
-        D2.grid(row=6, column=1)
+        D2.grid(row=6, column=1, sticky='W')
         
         # D3
         D3 = tk.Button(top, text="D3", command=lambda: self._setTrueAndExit(top, fifLabel="D3"))
-        D3.grid(row=6, column=2)
+        D3.grid(row=6, column=2, sticky='W')
         
         # D4
         D4 = tk.Button(top, text="D4", command=lambda: self._setTrueAndExit(top, fifLabel="D4"))
-        D4.grid(row=6, column=3)
+        D4.grid(row=6, column=3, sticky='W')
         
         # CFIF
         CFIF = tk.Button(top, text="CFIF", command=lambda: self._setTrueAndExit(top, fifLabel="CFIF"))
-        CFIF.grid(row=7, column=0)
+        CFIF.grid(row=7, column=0, sticky='W')
         
         # Other
         other = tk.Button(top, text="Other (will set x=0 y=0)", command=lambda: self._setTrueAndExit(top, fifLabel="Other"))
-        other.grid(row=8, column=0)
+        other.grid(row=8, column=0, columnspan=3, sticky='W')
         
         top.wait_window()
