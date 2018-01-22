@@ -120,9 +120,10 @@ class metManualMode(tk.Tk):
         faah.pageLogging(self.consoleLog, self.logFile, 
                                       "CCD Manual Mode Absolute value of (Nominal Z - Measured Best Focus) = " +  str(np.absolute(nominalZ-xInter)) + 'um')
         
-    def _setTrueAndExit(self, windowVariable, fifLabel=" ", CCDLabel=" "):
+    def _setTrueAndExit(self, windowVariable, fifLabel=" ", CCDLabel=" ", trianglePointSelection=" "):
         self.fifSelection = fifLabel
         self.CCDSelection = CCDLabel
+        self.trianglePointSelection = trianglePointSelection
         windowVariable.destroy()
         
     def _CCDSelectionWindow(self):
