@@ -129,7 +129,6 @@ class metManualMode(tk.Tk):
             self.CCDSelection = CCDLabel
         if trianglePointLabel != " ":
             self.trianglePointSelection = trianglePointLabel
-            
         windowVariable.destroy()
         
     def _CCDSelectionWindow(self):
