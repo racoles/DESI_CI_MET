@@ -157,6 +157,8 @@ class metManualMode(tk.Tk):
         # Other (will set x=0 y=0)
         other = tk.Button(top, text="Other", command=lambda: self._setTrueAndExit(top, CCDLabel="Other"))
         other.grid(row=6, column=0)  
+        
+        top.wait_window()
     
     def _fifSelectionWindow(self):
         ###########################################################################
