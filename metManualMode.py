@@ -167,6 +167,7 @@ class metManualMode(tk.Tk):
         ###########################################################################   
         top = tk.Toplevel()
         top.title("FIF Manual Mode")
+        self.wm_withdraw()
         
         #Manual Mode Description
         tk.Label(top, text="Which FIF would you like to measure?").grid(row=0, column=0, columnspan=2, sticky='W')
@@ -262,3 +263,5 @@ class metManualMode(tk.Tk):
         # Other
         other = tk.Button(top, text="Other (will set x=0 y=0)", command=lambda: self._setTrueAndExit(top, fifLabel="Other"))
         other.grid(row=8, column=0)
+        
+        top.wait_window()
