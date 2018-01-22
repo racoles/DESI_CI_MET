@@ -94,7 +94,8 @@ class metManualMode(tk.Tk):
         ###Message user to fill dir (mention label names)
         ###########################################################################
         faah.pageLogging(self.consoleLog, self.logFile, 
-                                      "Suggested " +  str(self.CCDSelection) + " manual mode focus curve directory: \n" + str(os.getcwd()) + '\\' + dirName + 
+                                      "Suggested " +  str(self.CCDSelection + ' ' + self.trianglePointSelection) + 
+                                      " manual mode focus curve directory: \n" + str(os.getcwd()) + '\\' + dirName + 
                                       "\nNOTE: the file names will be used to create the Z axis values (distance)\n" +
                                         " so please label the FITS files appropriately\n" +
                                         "(example: 350.fit for the image taken at 350um).")  
@@ -110,14 +111,14 @@ class metManualMode(tk.Tk):
         fC = focusCurve()       
         xInter = fC.stdFocusCurve(self.CCDSelection, imageArray4D, filelist)
         faah.pageLogging(self.consoleLog, self.logFile, 
-                                      "CCD Manual Mode Measured Best focus for " + str(self.CCDSelection) + " is: " + str(xInter) + "um")
+                                      "CCD Manual Mode Measured Best focus for " + str(self.CCDSelection + ' ' + self.trianglePointSelection) + " is: " + str(xInter) + "um")
         
         ###########################################################################
         ###Nominal best focus
         ###########################################################################
         nominalZ = fC.asphericFocalCurve(fC.CCDLocationsCS5[self.CCDSelection][0], fC.CCDLocationsCS5[self.CCDSelection][1])
         faah.pageLogging(self.consoleLog, self.logFile, 
-                                      "Nominal Z for " + str(self.CCDSelection) + " is: " + str(nominalZ) + "um in CS5 coordinates.")
+                                      "Nominal Z for " + str(self.CCDSelection + ' ' + self.trianglePointSelection) + " is: " + str(nominalZ) + "um in CS5 coordinates.")
         faah.pageLogging(self.consoleLog, self.logFile, 
                                       "CCD Manual Mode Absolute value of (Nominal Z - Measured Best Focus) = " +  str(np.absolute(nominalZ-xInter)) + 'um')
         
