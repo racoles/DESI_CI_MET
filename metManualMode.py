@@ -22,8 +22,9 @@ import numpy as np
 class metManualMode(tk.Tk):
     consoleLog = []
     logFile = []
-    CCDSection = ""
-    fifSection = ""
+    CCDSelection = ""
+    fifSelection = ""
+    trianglePointSelection = ""
         
     def __init__(self, master):
         '''
@@ -40,16 +41,16 @@ class metManualMode(tk.Tk):
         self._fifSelectionWindow()        
         
         ###########################################################################
-        ###Create Dir Using self.fifSection
+        ###Create Dir Using self.fifSelection
         ###########################################################################
         faah = fileAndArrayHandling()
-        dirName = faah.createDir(self.fifSection, self, 'Manual_Mode_FIF_Focus_Curve')
+        dirName = faah.createDir(self.fifSelection, self, 'Manual_Mode_FIF_Focus_Curve')
         
         ###########################################################################
         ###Message user to fill dir (mention label names)
         ###########################################################################
         faah.pageLogging(self.consoleLog, self.logFile, 
-                                      "Suggested " +  str(self.fifSection) + " manual mode focus curve directory: \n" + str(os.getcwd()) + '\\' + dirName + 
+                                      "Suggested " +  str(self.fifSelection) + " manual mode focus curve directory: \n" + str(os.getcwd()) + '\\' + dirName + 
                                       "\nNOTE: the file names will be used to create the Z axis values (distance)\n" +
                                         " so please label the FITS files appropriately\n" +
                                         "(example: 350.fit for the image taken at 350um).")     
@@ -63,16 +64,16 @@ class metManualMode(tk.Tk):
         ###Create focus curve
         ########################################################################### 
         fC = focusCurve()       
-        xInter = fC.stdFocusCurve(self.fifSection, imageArray4D, filelist)
+        xInter = fC.stdFocusCurve(self.fifSelection, imageArray4D, filelist)
         faah.pageLogging(self.consoleLog, self.logFile, 
-                                      "FIF Manual Mode Measured Best focus for " + str(self.fifSection) + " is: " + str(xInter) + "um")
+                                      "FIF Manual Mode Measured Best focus for " + str(self.fifSelection) + " is: " + str(xInter) + "um")
         
         ###########################################################################
         ###Nominal best focus
         ###########################################################################
-        nominalZ = fC.asphericFocalCurve(fC.fifLocationsCS5[self.fifSection][0], fC.fifLocationsCS5[self.fifSection][1])
+        nominalZ = fC.asphericFocalCurve(fC.fifLocationsCS5[self.fifSelection][0], fC.fifLocationsCS5[self.fifSelection][1])
         faah.pageLogging(self.consoleLog, self.logFile, 
-                                      "Nominal Z for " + str(self.fifSection) + " is: " + str(nominalZ) + "um in CS5 coordinates.")
+                                      "Nominal Z for " + str(self.fifSelection) + " is: " + str(nominalZ) + "um in CS5 coordinates.")
         faah.pageLogging(self.consoleLog, self.logFile, 
                                       "FIF Manual Mode Absolute value of (Nominal Z - Measured Best Focus) = " +  str(np.absolute(nominalZ-xInter)) + 'um')
         
@@ -83,16 +84,16 @@ class metManualMode(tk.Tk):
         self._CCDSelectionWindow() 
         
         ###########################################################################
-        ###Create Dir Using self.CCDSection
+        ###Create Dir Using self.CCDSelection
         ###########################################################################
         faah = fileAndArrayHandling()
-        dirName = faah.createDir(self.CCDSection, self, 'Manual_Mode_CCD_Focus_Curve')
+        dirName = faah.createDir(self.CCDSelection, self, 'Manual_Mode_CCD_Focus_Curve')
         
         ###########################################################################
         ###Message user to fill dir (mention label names)
         ###########################################################################
         faah.pageLogging(self.consoleLog, self.logFile, 
-                                      "Suggested " +  str(self.CCDSection) + " manual mode focus curve directory: \n" + str(os.getcwd()) + '\\' + dirName + 
+                                      "Suggested " +  str(self.CCDSelection) + " manual mode focus curve directory: \n" + str(os.getcwd()) + '\\' + dirName + 
                                       "\nNOTE: the file names will be used to create the Z axis values (distance)\n" +
                                         " so please label the FITS files appropriately\n" +
                                         "(example: 350.fit for the image taken at 350um).")  
@@ -106,22 +107,22 @@ class metManualMode(tk.Tk):
         ###Create focus curve
         ########################################################################### 
         fC = focusCurve()       
-        xInter = fC.stdFocusCurve(self.CCDSection, imageArray4D, filelist)
+        xInter = fC.stdFocusCurve(self.CCDSelection, imageArray4D, filelist)
         faah.pageLogging(self.consoleLog, self.logFile, 
-                                      "CCD Manual Mode Measured Best focus for " + str(self.CCDSection) + " is: " + str(xInter) + "um")
+                                      "CCD Manual Mode Measured Best focus for " + str(self.CCDSelection) + " is: " + str(xInter) + "um")
         
         ###########################################################################
         ###Nominal best focus
         ###########################################################################
-        nominalZ = fC.asphericFocalCurve(fC.CCDLocationsCS5[self.CCDSection][0], fC.CCDLocationsCS5[self.CCDSection][1])
+        nominalZ = fC.asphericFocalCurve(fC.CCDLocationsCS5[self.CCDSelection][0], fC.CCDLocationsCS5[self.CCDSelection][1])
         faah.pageLogging(self.consoleLog, self.logFile, 
-                                      "Nominal Z for " + str(self.CCDSection) + " is: " + str(nominalZ) + "um in CS5 coordinates.")
+                                      "Nominal Z for " + str(self.CCDSelection) + " is: " + str(nominalZ) + "um in CS5 coordinates.")
         faah.pageLogging(self.consoleLog, self.logFile, 
                                       "CCD Manual Mode Absolute value of (Nominal Z - Measured Best Focus) = " +  str(np.absolute(nominalZ-xInter)) + 'um')
         
     def _setTrueAndExit(self, windowVariable, fifLabel=" ", CCDLabel=" "):
-        self.fifSection = fifLabel
-        self.CCDSection = CCDLabel
+        self.fifSelection = fifLabel
+        self.CCDSelection = CCDLabel
         windowVariable.destroy()
         
     def _CCDSelectionWindow(self):
