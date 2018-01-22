@@ -123,9 +123,13 @@ class metManualMode(tk.Tk):
                                       "CCD Manual Mode Absolute value of (Nominal Z - Measured Best Focus) = " +  str(np.absolute(nominalZ-xInter)) + 'um')
         
     def _setTrueAndExit(self, windowVariable, fifLabel=" ", CCDLabel=" ", trianglePointLabel=" "):
-        self.fifSelection = fifLabel
-        self.CCDSelection = CCDLabel
-        self.trianglePointSelection = trianglePointLabel
+        if fifLabel != " ":
+            self.fifSelection = fifLabel
+        if CCDLabel != " ":
+            self.CCDSelection = CCDLabel
+        if trianglePointLabel != " ":
+            self.trianglePointSelection = trianglePointLabel
+            
         windowVariable.destroy()
         
     def _CCDSelectionWindow(self):
