@@ -12,9 +12,8 @@ Modules:
 '''
 
 # Import #######################################################################################
-import numpy as np
 from astropy.io import fits
-from binhex import hexbin
+from fileAndArrayHandling import fileAndArrayHandling
 ################################################################################################
 
 class CCDOpsPlanetMode(object):
@@ -56,6 +55,11 @@ class CCDOpsPlanetMode(object):
             yOffset = int(yOffset)/int(yBin)
             
             #log offsets
+            faah = fileAndArrayHandling()
+            faah.pageLogging(consoleLog, logFile, 
+                        "CCDOps Planet Mode Offsets; (x,y) position of upper-left pixel relative to whole frame: (" 
+                        + str(xOffset) + "," + str(yOffset) + ")")
+            
         else:
             #Message about using planet mode
             #image sizes check and warning
