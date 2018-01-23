@@ -39,14 +39,23 @@ class CCDOpsPlanetMode(object):
             #Message about using planet mode
             #image sizes check and warning
                 #imageArray4D[0]
+                
             #Read header of first image
             hdul = fits.open(filelist[0])
+            
             #Find X and Y bin sizes
             xBin = hdul[0].header['XBINNING']
             yBin = hdul[0].header['YBINNING']
+            
             #Find X and Y offsets
             xOffset = hdul[0].header['XORGSUBF']
             yOffset = hdul[0].header['YORGSUBF']
+            
+            #Convert from units of "bins" to pixels
+            xOffset = int(xOffset)/int(xBin)
+            yOffset = int(yOffset)/int(yBin)
+            
+            #log offsets
         else:
             #Message about using planet mode
             #image sizes check and warning
