@@ -36,6 +36,10 @@ class CCDOpsPlanetMode(object):
         ###########################################################################
         if planetModeBool == True:
             #Message about using planet mode
+            faah = fileAndArrayHandling()
+            faah.pageLogging(consoleLog, logFile, 
+                        "You have indicated that you WILL be using CCDOps Planet Mode")
+            
             #image sizes check and warning
                 #imageArray4D[0]
                 
@@ -55,7 +59,6 @@ class CCDOpsPlanetMode(object):
             yOffset = int(yOffset)/int(yBin)
             
             #log offsets
-            faah = fileAndArrayHandling()
             faah.pageLogging(consoleLog, logFile, 
                         "CCDOps Planet Mode Offsets; (x,y) position of upper-left pixel relative to whole frame: (" 
                         + str(xOffset) + "," + str(yOffset) + ")")
