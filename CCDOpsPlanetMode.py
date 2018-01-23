@@ -41,8 +41,12 @@ class CCDOpsPlanetMode(object):
                         "You have indicated that you WILL be using CCDOps Planet Mode")
             
             #image sizes check and warning
-                #imageArray4D[0]
-                
+            for ii in range(imageArray4D.shape[0]):
+                if imageArray4D[ii].shape != imageArray4D[ii-1].shape:
+                    faah.pageLogging(consoleLog, logFile, 
+                        "Image " + str(filelist[ii]) + " is not the same dimensions as the other images."
+                         + ' are you sure that all images in the directory were taken in planet mode?'
+                         + 'Not having all images be the same dimension WILL provoke centroid inaccuracies.')
             #Read header of first image
             hdul = fits.open(filelist[0])
             
@@ -65,5 +69,5 @@ class CCDOpsPlanetMode(object):
             
         else:
             #Message about using planet mode
-            #image sizes check and warning
-                #imageArray4D[0]
+            faah.pageLogging(consoleLog, logFile, 
+                        "You have indicated that you will NOT be using CCDOps Planet Mode")
