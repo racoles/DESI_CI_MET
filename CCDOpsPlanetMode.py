@@ -1,7 +1,7 @@
 '''
 @title CCDOpsPlanetMode
 @author: Rebecca Coles
-Updated on Jan 22, 2018
+Updated on Jan 23, 2018
 Created on Jan 22, 2018
 
 CCDOpsPlanetMode
