@@ -34,40 +34,33 @@ class CCDOpsPlanetMode(object):
         ###########################################################################
         ###planetModeBool == True Indicates Subframe
         ###########################################################################
-        if planetModeBool == True:
-            #Message about using planet mode
-            faah = fileAndArrayHandling()
-            faah.pageLogging(consoleLog, logFile, 
-                        "You have indicated that you WILL be using CCDOps Planet Mode")
+        faah = fileAndArrayHandling()
+        #image sizes check and warning
+        for ii in range(imageArray4D.shape[0]):
+            if imageArray4D[ii].shape != imageArray4D[ii-1].shape:
+                faah.pageLogging(consoleLog, logFile, 
+                    "Image " + str(filelist[ii]) + " is not the same dimensions as the other images."
+                    + ' are you sure that all images in the directory were taken in planet mode?'
+                    + 'Not having all images be the same dimension WILL provoke centroid inaccuracies.')
+                
+        #Read header of first image
+        hdul = fits.open(filelist[0])
             
-            #image sizes check and warning
-            for ii in range(imageArray4D.shape[0]):
-                if imageArray4D[ii].shape != imageArray4D[ii-1].shape:
-                    faah.pageLogging(consoleLog, logFile, 
-                        "Image " + str(filelist[ii]) + " is not the same dimensions as the other images."
-                         + ' are you sure that all images in the directory were taken in planet mode?'
-                         + 'Not having all images be the same dimension WILL provoke centroid inaccuracies.')
-            #Read header of first image
-            hdul = fits.open(filelist[0])
+        #Find X and Y bin sizes
+        xBin = hdul[0].header['XBINNING']
+        yBin = hdul[0].header['YBINNING']
             
-            #Find X and Y bin sizes
-            xBin = hdul[0].header['XBINNING']
-            yBin = hdul[0].header['YBINNING']
+        #Find X and Y offsets
+        xOffset = hdul[0].header['XORGSUBF']
+        yOffset = hdul[0].header['YORGSUBF']
             
-            #Find X and Y offsets
-            xOffset = hdul[0].header['XORGSUBF']
-            yOffset = hdul[0].header['YORGSUBF']
+        #Convert from units of "bins" to pixels
+        xOffset = int(xOffset)/int(xBin)
+        yOffset = int(yOffset)/int(yBin)
             
-            #Convert from units of "bins" to pixels
-            xOffset = int(xOffset)/int(xBin)
-            yOffset = int(yOffset)/int(yBin)
+        #log offsets
+        faah.pageLogging(consoleLog, logFile, 
+                    "CCDOps Planet Mode Offsets; (x,y) position of upper-left pixel relative to whole frame: (" 
+                    + str(xOffset) + "," + str(yOffset) + ")")
             
-            #log offsets
-            faah.pageLogging(consoleLog, logFile, 
-                        "CCDOps Planet Mode Offsets; (x,y) position of upper-left pixel relative to whole frame: (" 
-                        + str(xOffset) + "," + str(yOffset) + ")")
-            
-        else:
-            #Message about using planet mode
-            faah.pageLogging(consoleLog, logFile, 
-                        "You have indicated that you will NOT be using CCDOps Planet Mode")
+        return xOffset, yOffset
