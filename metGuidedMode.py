@@ -327,7 +327,7 @@ class fifPage(tk.Frame):
         CFIFC = tk.Button(self, text="Centroid",
                             command=lambda: metGuidedModeSelf.show_frame(self.centroidFIF(CFIFC, "CFIF", metGuidedModeSelf)))
         CFIFC.grid(row=28, column=0, sticky='W') 
-        Separator(self, orient="vertical").grid(row=25, column=0, rowspan=2, sticky='ens') 
+        Separator(self, orient="vertical").grid(row=25, column=0, rowspan=4, sticky='ens') 
         
         #Exit Buttons
         Separator(self, orient="horizontal").grid(row=29, column=0, columnspan=4, sticky='ew') 
