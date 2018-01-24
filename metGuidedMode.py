@@ -472,6 +472,8 @@ class fifPage(tk.Frame):
         pM = CCDOpsPlanetMode()
         xOffset, yOffset = pM.readFitsHeader(imageArray4D, filelist, metGuidedModeSelf.consoleLog, metGuidedModeSelf.logFile)
         
+        #Distance from center of FIF to origin of sensor (x=0, y=0)
+        
         #Add X and Y to fifCentroidedLocationDict
         metGuidedModeSelf[fiflabel][0] = xInter
         metGuidedModeSelf[fiflabel][1] = xInter
