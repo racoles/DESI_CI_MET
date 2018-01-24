@@ -20,6 +20,7 @@ from focusCurve import focusCurve
 from fileAndArrayHandling import fileAndArrayHandling
 from centroidFIF import centroidFIF
 import numpy as np
+from CCDOpsPlanetMode import CCDOpsPlanetMode
 ################################################################################################
 
 class metGuidedMode(tk.Tk):
@@ -468,6 +469,8 @@ class fifPage(tk.Frame):
         ###Add X and Y data to fifCentroidedLocationDict
         ###########################################################################
         #Account for planet mode
+        pM = CCDOpsPlanetMode()
+        xOffset, yOffset = pM.readFitsHeader(imageArray4D, filelist, metGuidedModeSelf.consoleLog, metGuidedModeSelf.logFile)
         
         #Add X and Y to fifCentroidedLocationDict
         metGuidedModeSelf[fiflabel][0] = xInter
