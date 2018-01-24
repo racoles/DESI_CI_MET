@@ -104,7 +104,7 @@ class fifPage(tk.Frame):
                            
         #Measurement grid
         # RefFIF
-        tk.Label(self, text="RefFIF", font=('consolas', '10')).grid(row=2, column=0, columnspan=1, sticky='W')
+        tk.Label(self, text="RefFIF: (199.28,-345.15)", font=('consolas', '10')).grid(row=2, column=0, columnspan=1, sticky='W')
         refFIFF = tk.Button(self, text="Focus Curve",
                             command=lambda: metGuidedModeSelf.show_frame(self.focusCurve(refFIFF, "RefFIF", metGuidedModeSelf)))
         refFIFF.grid(row=3, column=0, sticky='W')
@@ -115,7 +115,7 @@ class fifPage(tk.Frame):
         Separator(self, orient="horizontal").grid(row=5, column=0, columnspan=4, sticky='ew')
         
         #NFIF
-        tk.Label(self, text="NFIF", font=('consolas', '10')).grid(row=6, column=0, sticky='W')
+        tk.Label(self, text="NFIF: (-108.31,-383.55)", font=('consolas', '10')).grid(row=6, column=0, sticky='W')
         NFIFF = tk.Button(self, text="Focus Curve",
                             command=lambda: metGuidedModeSelf.show_frame(self.focusCurve(NFIFF, "NFIF", metGuidedModeSelf)))
         NFIFF.grid(row=7, column=0, sticky='W')
@@ -125,7 +125,7 @@ class fifPage(tk.Frame):
         Separator(self, orient="vertical").grid(row=5, column=0, rowspan=5, sticky='ens')
         
         #WFIF
-        tk.Label(self, text="WFIF", font=('consolas', '10')).grid(row=6, column=1, sticky='W')
+        tk.Label(self, text="WFIF: (-383.55,108.31)", font=('consolas', '10')).grid(row=6, column=1, sticky='W')
         WFIFF = tk.Button(self, text="Focus Curve",
                             command=lambda: metGuidedModeSelf.show_frame(self.focusCurve(WFIFF, "WFIF", metGuidedModeSelf)))
         WFIFF.grid(row=7, column=1, sticky='W')
@@ -135,7 +135,7 @@ class fifPage(tk.Frame):
         Separator(self, orient="vertical").grid(row=5, column=1, rowspan=5, sticky='ens')   
         
         #SFIF
-        tk.Label(self, text="SFIF", font=('consolas', '10')).grid(row=6, column=2, sticky='W')
+        tk.Label(self, text="SFIF: (108.31,383.55)", font=('consolas', '10')).grid(row=6, column=2, sticky='W')
         SFIFF = tk.Button(self, text="Focus Curve",
                             command=lambda: metGuidedModeSelf.show_frame(self.focusCurve(SFIFF, "SFIF", metGuidedModeSelf)))
         SFIFF.grid(row=7, column=2, sticky='W')
@@ -145,7 +145,7 @@ class fifPage(tk.Frame):
         Separator(self, orient="vertical").grid(row=5, column=2, rowspan=5, sticky='ens')  
         
         #EFIF
-        tk.Label(self, text="EFIF", font=('consolas', '10')).grid(row=6, column=3, sticky='W')
+        tk.Label(self, text="EFIF: (383.55,-108.31)", font=('consolas', '10')).grid(row=6, column=3, sticky='W')
         SFIFF = tk.Button(self, text="Focus Curve",
                             command=lambda: metGuidedModeSelf.show_frame(self.focusCurve(SFIFF, "SFIF", metGuidedModeSelf)))
         SFIFF.grid(row=7, column=3, sticky='W')
@@ -156,7 +156,7 @@ class fifPage(tk.Frame):
         Separator(self, orient="vertical").grid(row=5, column=3, rowspan=5, sticky='ens') 
         
         #A1
-        tk.Label(self, text="A1", font=('consolas', '10')).grid(row=10, column=0, sticky='W')
+        tk.Label(self, text="A1: (281.82,-281.82)", font=('consolas', '10')).grid(row=10, column=0, sticky='W')
         A1F = tk.Button(self, text="Focus Curve",
                             command=lambda: metGuidedModeSelf.show_frame(self.focusCurve(A1F, "A1", metGuidedModeSelf)))
         A1F.grid(row=11, column=0, sticky='W')
@@ -166,7 +166,7 @@ class fifPage(tk.Frame):
         Separator(self, orient="vertical").grid(row=9, column=0, rowspan=5, sticky='ens')  
         
         #A2
-        tk.Label(self, text="A2", font=('consolas', '10')).grid(row=10, column=1, sticky='W')
+        tk.Label(self, text="A2: (-281.82,-281.82)", font=('consolas', '10')).grid(row=10, column=1, sticky='W')
         A2F = tk.Button(self, text="Focus Curve",
                             command=lambda: metGuidedModeSelf.show_frame(self.focusCurve(A2F, "A2", metGuidedModeSelf)))
         A2F.grid(row=11, column=1, sticky='W')
@@ -176,7 +176,7 @@ class fifPage(tk.Frame):
         Separator(self, orient="vertical").grid(row=9, column=1, rowspan=5, sticky='ens')  
         
         #A3
-        tk.Label(self, text="A3", font=('consolas', '10')).grid(row=10, column=2, sticky='W')
+        tk.Label(self, text="A3: (-281.82,281.82)", font=('consolas', '10')).grid(row=10, column=2, sticky='W')
         A3F = tk.Button(self, text="Focus Curve",
                             command=lambda: metGuidedModeSelf.show_frame(self.focusCurve(A3F, "A3", metGuidedModeSelf)))
         A3F.grid(row=11, column=2, sticky='W')
@@ -186,7 +186,7 @@ class fifPage(tk.Frame):
         Separator(self, orient="vertical").grid(row=9, column=2, rowspan=5, sticky='ens')  
         
         #A4
-        tk.Label(self, text="A4", font=('consolas', '10')).grid(row=10, column=3, sticky='W')
+        tk.Label(self, text="A4: (281.82,281.82)", font=('consolas', '10')).grid(row=10, column=3, sticky='W')
         A4F = tk.Button(self, text="Focus Curve",
                             command=lambda: metGuidedModeSelf.show_frame(self.focusCurve(A4F, "A4", metGuidedModeSelf)))
         A4F.grid(row=11, column=3, sticky='W')
@@ -197,7 +197,7 @@ class fifPage(tk.Frame):
         Separator(self, orient="vertical").grid(row=9, column=3, rowspan=5, sticky='ens') 
         
         #B1
-        tk.Label(self, text="B1", font=('consolas', '10')).grid(row=14, column=0, sticky='W')
+        tk.Label(self, text="B1: (293.64,136.93)", font=('consolas', '10')).grid(row=14, column=0, sticky='W')
         B1F = tk.Button(self, text="Focus Curve",
                             command=lambda: metGuidedModeSelf.show_frame(self.focusCurve(B1F, "B1", metGuidedModeSelf)))
         B1F.grid(row=15, column=0, sticky='W')
@@ -207,7 +207,7 @@ class fifPage(tk.Frame):
         Separator(self, orient="vertical").grid(row=13, column=0, rowspan=5, sticky='ens') 
         
         #B2
-        tk.Label(self, text="B2", font=('consolas', '10')).grid(row=14, column=1, sticky='W')
+        tk.Label(self, text="B2: (-293.64,136.93)", font=('consolas', '10')).grid(row=14, column=1, sticky='W')
         B2F = tk.Button(self, text="Focus Curve",
                             command=lambda: metGuidedModeSelf.show_frame(self.focusCurve(B2F, "B2", metGuidedModeSelf)))
         B2F.grid(row=15, column=1, sticky='W')
@@ -217,7 +217,7 @@ class fifPage(tk.Frame):
         Separator(self, orient="vertical").grid(row=13, column=1, rowspan=5, sticky='ens') 
         
         #B3
-        tk.Label(self, text="B3", font=('consolas', '10')).grid(row=14, column=2, sticky='W')
+        tk.Label(self, text="B3: (-293.64,-136.93)", font=('consolas', '10')).grid(row=14, column=2, sticky='W')
         B3F = tk.Button(self, text="Focus Curve",
                             command=lambda: metGuidedModeSelf.show_frame(self.focusCurve(B3F, "B3", metGuidedModeSelf)))
         B3F.grid(row=15, column=2, sticky='W')
@@ -227,7 +227,7 @@ class fifPage(tk.Frame):
         Separator(self, orient="vertical").grid(row=13, column=2, rowspan=5, sticky='ens') 
         
         #B4
-        tk.Label(self, text="B4", font=('consolas', '10')).grid(row=14, column=3, sticky='W')
+        tk.Label(self, text="B4: (-136.93,293.64)", font=('consolas', '10')).grid(row=14, column=3, sticky='W')
         B4F = tk.Button(self, text="Focus Curve",
                             command=lambda: metGuidedModeSelf.show_frame(self.focusCurve(B4F, "B4", metGuidedModeSelf)))
         B4F.grid(row=15, column=3, sticky='W')
@@ -238,7 +238,7 @@ class fifPage(tk.Frame):
         Separator(self, orient="vertical").grid(row=13, column=3, rowspan=5, sticky='ens')     
         
         #C1
-        tk.Label(self, text="C1", font=('consolas', '10')).grid(row=18, column=0, sticky='W')
+        tk.Label(self, text="C1: (96.44,232.82)", font=('consolas', '10')).grid(row=18, column=0, sticky='W')
         C1F = tk.Button(self, text="Focus Curve",
                             command=lambda: metGuidedModeSelf.show_frame(self.focusCurve(C1F, "C1", metGuidedModeSelf)))
         C1F.grid(row=19, column=0, sticky='W')
@@ -248,7 +248,7 @@ class fifPage(tk.Frame):
         Separator(self, orient="vertical").grid(row=17, column=0, rowspan=5, sticky='ens')    
         
         #C2
-        tk.Label(self, text="C2", font=('consolas', '10')).grid(row=18, column=1, sticky='W')
+        tk.Label(self, text="C2: (232.82,-96.44)", font=('consolas', '10')).grid(row=18, column=1, sticky='W')
         C2F = tk.Button(self, text="Focus Curve",
                             command=lambda: metGuidedModeSelf.show_frame(self.focusCurve(C2F, "C2", metGuidedModeSelf)))
         C2F.grid(row=19, column=1, sticky='W')
@@ -258,7 +258,7 @@ class fifPage(tk.Frame):
         Separator(self, orient="vertical").grid(row=17, column=1, rowspan=5, sticky='ens')  
         
         #C3
-        tk.Label(self, text="C3", font=('consolas', '10')).grid(row=18, column=2, sticky='W')
+        tk.Label(self, text="C3: (-96.44,-232.82)", font=('consolas', '10')).grid(row=18, column=2, sticky='W')
         C3F = tk.Button(self, text="Focus Curve",
                             command=lambda: metGuidedModeSelf.show_frame(self.focusCurve(C3F, "C3", metGuidedModeSelf)))
         C3F.grid(row=19, column=2, sticky='W')
@@ -268,7 +268,7 @@ class fifPage(tk.Frame):
         Separator(self, orient="vertical").grid(row=17, column=2, rowspan=5, sticky='ens')  
         
         #C4
-        tk.Label(self, text="C4", font=('consolas', '10')).grid(row=18, column=3, sticky='W')
+        tk.Label(self, text="C4: (-232.82,96.44)", font=('consolas', '10')).grid(row=18, column=3, sticky='W')
         C4F = tk.Button(self, text="Focus Curve",
                             command=lambda: metGuidedModeSelf.show_frame(self.focusCurve(C4F, "C4", metGuidedModeSelf)))
         C4F.grid(row=19, column=3, sticky='W')
@@ -279,7 +279,7 @@ class fifPage(tk.Frame):
         Separator(self, orient="vertical").grid(row=17, column=3, rowspan=5, sticky='ens')  
         
         #D1
-        tk.Label(self, text="D1", font=('consolas', '10')).grid(row=22, column=0, sticky='W')
+        tk.Label(self, text="D1: (0,185.00)", font=('consolas', '10')).grid(row=22, column=0, sticky='W')
         D1F = tk.Button(self, text="Focus Curve",
                             command=lambda: metGuidedModeSelf.show_frame(self.focusCurve(D1F, "D1", metGuidedModeSelf)))
         D1F.grid(row=23, column=0, sticky='W')
@@ -289,7 +289,7 @@ class fifPage(tk.Frame):
         Separator(self, orient="vertical").grid(row=21, column=0, rowspan=5, sticky='ens')
         
         #D2
-        tk.Label(self, text="D2", font=('consolas', '10')).grid(row=22, column=1, sticky='W')
+        tk.Label(self, text="D2: (185.00,0)", font=('consolas', '10')).grid(row=22, column=1, sticky='W')
         D2F = tk.Button(self, text="Focus Curve",
                             command=lambda: metGuidedModeSelf.show_frame(self.focusCurve(D2F, "D2", metGuidedModeSelf)))
         D2F.grid(row=23, column=1, sticky='W')
@@ -299,7 +299,7 @@ class fifPage(tk.Frame):
         Separator(self, orient="vertical").grid(row=21, column=1, rowspan=5, sticky='ens')
         
         #D3
-        tk.Label(self, text="D3", font=('consolas', '10')).grid(row=22, column=2, sticky='W')
+        tk.Label(self, text="D3: (0,-185.00)", font=('consolas', '10')).grid(row=22, column=2, sticky='W')
         D3F = tk.Button(self, text="Focus Curve",
                             command=lambda: metGuidedModeSelf.show_frame(self.focusCurve(D3F, "D3", metGuidedModeSelf)))
         D3F.grid(row=23, column=2, sticky='W')
@@ -309,7 +309,7 @@ class fifPage(tk.Frame):
         Separator(self, orient="vertical").grid(row=21, column=2, rowspan=5, sticky='ens')  
         
         #D4
-        tk.Label(self, text="D4", font=('consolas', '10')).grid(row=22, column=3, sticky='W')
+        tk.Label(self, text="D4: (-185.00,0)", font=('consolas', '10')).grid(row=22, column=3, sticky='W')
         D4F = tk.Button(self, text="Focus Curve",
                             command=lambda: metGuidedModeSelf.show_frame(self.focusCurve(D4F, "D4", metGuidedModeSelf)))
         D4F.grid(row=23, column=3, sticky='W')
@@ -320,7 +320,7 @@ class fifPage(tk.Frame):
         Separator(self, orient="vertical").grid(row=21, column=3, rowspan=5, sticky='ens') 
         
         #CFIF
-        tk.Label(self, text="CFIF", font=('consolas', '10')).grid(row=26, column=0, sticky='W')
+        tk.Label(self, text="CFIF: (108.31,15.00)", font=('consolas', '10')).grid(row=26, column=0, sticky='W')
         CFIFF = tk.Button(self, text="Focus Curve",
                             command=lambda: metGuidedModeSelf.show_frame(self.focusCurve(CFIFF, "CFIF", metGuidedModeSelf)))
         CFIFF.grid(row=27, column=0, sticky='W')
