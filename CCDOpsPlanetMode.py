@@ -22,7 +22,7 @@ class CCDOpsPlanetMode(object):
         '''
         Constructor
         '''
-    def readFitsHeader(self, imageArray4D, filelist, planetModeBool, consoleLog, logFile):
+    def readFitsHeader(self, imageArray4D, filelist, consoleLog, logFile):
         '''
         Return offsets (in pixels) if an image is taken in CCDOps
         software Planet Mode.

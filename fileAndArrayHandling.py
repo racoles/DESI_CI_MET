@@ -89,3 +89,5 @@ class fileAndArrayHandling(object):
         ###########################################################################
         lFile.write(str(logText) + '\n')
         lFile.flush()
+        
+    def printDictToFile(self, dict, consoleLog, logFile):
