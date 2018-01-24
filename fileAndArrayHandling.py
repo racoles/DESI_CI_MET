@@ -91,3 +91,6 @@ class fileAndArrayHandling(object):
         lFile.flush()
         
     def printDictToFile(self, dict, consoleLog, logFile):
+        '''
+        Output dictionary data to file.
+        '''

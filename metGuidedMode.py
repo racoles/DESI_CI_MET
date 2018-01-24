@@ -25,7 +25,29 @@ import numpy as np
 class metGuidedMode(tk.Tk):
     consoleLog = []
     logFile = []
-    fifCentroidedLocationDict = {}
+    fifCentroidedLocationDict = {
+                        "RefFIF" : [0,0,0], 
+                        "NFIF" : [0,0,0], 
+                        "WFIF" : [0,0,0],
+                        "SFIF" : [0,0,0], 
+                        "EFIF" : [0,0,0],
+                        "CFIF" : [0,0,0],
+                        "A1" : [0,0,0],
+                        "A2" : [0,0,0], 
+                        "A3" : [0,0,0],
+                        "A4" : [0,0,0],
+                        "B1" : [0,0,0],
+                        "B2" : [0,0,0], 
+                        "B3" : [0,0,0],
+                        "B4" : [0,0,0],
+                        "C1" : [0,0,0],
+                        "C2" : [0,0,0], 
+                        "C3" : [0,0,0],
+                        "C4" : [0,0,0],
+                        "D1" : [0,0,0],
+                        "D2" : [0,0,0], 
+                        "D3" : [0,0,0],
+                        "D4" : [0,0,0]}
         
     def __init__(self, master):
         '''
