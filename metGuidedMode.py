@@ -15,7 +15,7 @@ Classes and Modules:
 import tkinter as tk
 from tkinter import messagebox
 from tkinter.ttk import Separator
-import os, math
+import os
 from focusCurve import focusCurve
 from fileAndArrayHandling import fileAndArrayHandling
 from centroidFIF import centroidFIF
@@ -97,7 +97,7 @@ class fifPage(tk.Frame):
         ###########################################################################
         ###Buttons
         ###########################################################################
-        tk.Label(self, text="DESI CI FIFs", font=('consolas', '10')).grid(row=0, column=0, sticky='W')
+        tk.Label(self, text="DESI CI FIFs      FIF thread: 0.5mm per turn", font=('consolas', '10')).grid(row=0, column=0, columnspan=2, sticky='W')
         tk.Button(self, text="Help",
                             command=lambda: metGuidedModeSelf.show_frame(helpPage)).grid(row=0, column=3, sticky='E')
         Separator(self, orient="horizontal").grid(row=1, column=0, columnspan=4, sticky='ew') 
