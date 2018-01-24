@@ -191,7 +191,7 @@ class metManualMode(tk.Tk):
         C = tk.Button(top, text="C", command=lambda: self._setTrueAndExit(top, trianglePointLabel="C"))
         C.grid(row=3, column=0, sticky='W')
         
-        # Other (will set x=0 y=0)
+        #Other (will set x=0 y=0)
         other = tk.Button(top, text="Other (will set x=0 y=0)", command=lambda: self._setTrueAndExit(top, trianglePointLabel="Other"))
         other.grid(row=6, column=0, sticky='W')  
         
