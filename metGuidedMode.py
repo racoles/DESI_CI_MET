@@ -461,11 +461,6 @@ class fifPage(tk.Frame):
                                       str(fiflabel) + " center found at location: (" + str(xcen) + "," + str(ycen) + ")")
         
         ###########################################################################
-        ###Save values to metGuidedMode dictionary: fifCentroidedLocationDict
-        ###########################################################################
-        metGuidedModeSelf.fifCentroidedLocationDict[fiflabel] = (xcen, ycen)
-        
-        ###########################################################################
         ###Add X and Y data to fifCentroidedLocationDict
         ###########################################################################
         #Account for planet mode
@@ -473,14 +468,16 @@ class fifPage(tk.Frame):
         xOffset, yOffset = pM.readFitsHeader(imageArray4D, filelist, metGuidedModeSelf.consoleLog, metGuidedModeSelf.logFile)
         
         #Distance from center of FIF to origin of sensor (x=0, y=0)
+        xDistToSensorOrigin = xcen + xOffset
+        yDistToSensorOrigin = ycen + yOffset
         
         #Distance from sensor origin to CS5
         
         #Distance from FIF center to CS5(0,0) in CS5 coordinates
         
         #Add X and Y to fifCentroidedLocationDict
-        metGuidedModeSelf[fiflabel][0] = xInter
-        metGuidedModeSelf[fiflabel][1] = xInter
+        metGuidedModeSelf.fifCentroidedLocationDict[fiflabel][0] = xInter
+        metGuidedModeSelf.fifCentroidedLocationDict[fiflabel][1] = xInter
         
         ###########################################################################
         ###Change button text and color
