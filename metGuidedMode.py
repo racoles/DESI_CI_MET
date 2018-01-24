@@ -474,6 +474,10 @@ class fifPage(tk.Frame):
         
         #Distance from center of FIF to origin of sensor (x=0, y=0)
         
+        #Distance from sensor origin to CS5
+        
+        #Distance from FIF center to CS5(0,0) in CS5 coordinates
+        
         #Add X and Y to fifCentroidedLocationDict
         metGuidedModeSelf[fiflabel][0] = xInter
         metGuidedModeSelf[fiflabel][1] = xInter
