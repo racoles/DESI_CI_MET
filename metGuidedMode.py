@@ -406,6 +406,12 @@ class fifPage(tk.Frame):
                                       "Nominal Z for " + str(fiflabel) + " is: " + str(nominalZ) + "um in CS5 coordinates.")
         faah.pageLogging(metGuidedModeSelf.consoleLog, metGuidedModeSelf.logFile, 
                                       "Absolute value of (Nominal Z - Measured Best Focus) = " +  str(np.absolute(nominalZ-xInter)) + 'um')
+        
+        ###########################################################################
+        ###Add Z data to fifCentroidedLocationDict
+        ###########################################################################
+        metGuidedModeSelf[fiflabel][2] = xInter
+        
         ###########################################################################
         ###Change button text and color
         ###########################################################################
@@ -457,6 +463,15 @@ class fifPage(tk.Frame):
         ###Save values to metGuidedMode dictionary: fifCentroidedLocationDict
         ###########################################################################
         metGuidedModeSelf.fifCentroidedLocationDict[fiflabel] = (xcen, ycen)
+        
+        ###########################################################################
+        ###Add X and Y data to fifCentroidedLocationDict
+        ###########################################################################
+        #Account for planet mode
+        
+        #Add X and Y to fifCentroidedLocationDict
+        metGuidedModeSelf[fiflabel][0] = xInter
+        metGuidedModeSelf[fiflabel][1] = xInter
         
         ###########################################################################
         ###Change button text and color
