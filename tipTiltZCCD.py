@@ -70,15 +70,38 @@ class tipTiltZCCD(object):
         ###Return Measured Az/Bz/Cz
         ###########################################################################     
         
-    def tiltCCD(self, Az, Bz, Cz, fifLabel, consoleLog, logFile):
+    def tiltCCD(self, Az, Bz, Cz, CCDLabel, consoleLog, logFile):
         '''
         Calculate CCD tilt
         
         A(Z) _measured = A(Z) _nominal 
         B(Z)_measured = C(Z) _measured = B(Z)_nominal = C(Z) _nominal
         '''
+        ###########################################################################
+        ###Get Nominal Az/Bz/Cz 
+        ###########################################################################
+        fC = focusCurve() 
+        Az_nominal = fC.trianglePonitCCDLocationsCS5[str(CCDLabel + 'A')]
+        Bz_nominal = fC.trianglePonitCCDLocationsCS5[str(CCDLabel + 'B')]
+        Cz_nominal = fC.trianglePonitCCDLocationsCS5[str(CCDLabel + 'C')]      
+                
+        ###########################################################################
+        ###Boundry Condition Check 
+        ###########################################################################
+        #N,W,S,E
+        #C
+        #Other
         
-    def ZCCD(self, Az, Bz, Cz, fifLabel, consoleLog, logFile):
+        ###########################################################################
+        ###Report Results to Log
+        ###########################################################################      
+        faah = fileAndArrayHandling()
+        
+        ###########################################################################
+        ###Return Measured Az/Bz/Cz
+        ###########################################################################  
+        
+    def ZCCD(self, Az, Bz, Cz, CCDLabel, consoleLog, logFile):
         '''
         Return CCD Z
         
@@ -86,3 +109,26 @@ class tipTiltZCCD(object):
         A(Z) _measured = A(Z) _nominal 
         B(Z)_measured = C(Z) _measured = B(Z)_nominal = C(Z) _nominal
         '''
+        ###########################################################################
+        ###Get Nominal Az/Bz/Cz 
+        ###########################################################################
+        fC = focusCurve() 
+        Az_nominal = fC.trianglePonitCCDLocationsCS5[str(CCDLabel + 'A')]
+        Bz_nominal = fC.trianglePonitCCDLocationsCS5[str(CCDLabel + 'B')]
+        Cz_nominal = fC.trianglePonitCCDLocationsCS5[str(CCDLabel + 'C')]      
+                
+        ###########################################################################
+        ###Boundry Condition Check 
+        ###########################################################################
+        #N,W,S,E
+        #C
+        #Other
+        
+        ###########################################################################
+        ###Report Results to Log
+        ###########################################################################      
+        faah = fileAndArrayHandling()
+        
+        ###########################################################################
+        ###Return Measured Az/Bz/Cz
+        ###########################################################################  
