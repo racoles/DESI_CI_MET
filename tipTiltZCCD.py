@@ -29,17 +29,33 @@ class tipTiltZCCD(object):
         Return tip/tilt/z
         '''
         
-    def tipCCD(self):
+    def tipCCD(self, Az, Bz, Cz):
         '''
         Calculate CCD tip
+        
+        A(Z) _measured = A(Z) _nominal 
+        B(Z)_measured = C(Z) _measured = B(Z)_nominal = C(Z) _nominal
+        North, West, South, and East CCDs:
+            A(Z) _measured > B(Z) _measured && C(Z) _measured (by a known distance)
+        Center CCD:
+            A(Z) _measured = B(Z) _measured = C(Z) _measured = A(Z) _nominal = B(Z) _nominal = C(Z) _nominal
         '''
          
-    def tiltCCD(self):
+    def tiltCCD(self, Az, Bz, Cz):
         '''
         Calculate CCD tilt
+        
+        A(Z) _measured = A(Z) _nominal 
+        B(Z)_measured = C(Z) _measured = B(Z)_nominal = C(Z) _nominal
+
         '''
         
-    def ZCCD(self):
+    def ZCCD(self, Az, Bz, Cz):
         '''
         Return CCD Z
+        
+        Z(Center) _measured = Z(Center) _nominal 
+        A(Z) _measured = A(Z) _nominal 
+        B(Z)_measured = C(Z) _measured = B(Z)_nominal = C(Z) _nominal
+
         '''
