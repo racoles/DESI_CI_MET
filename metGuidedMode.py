@@ -457,8 +457,6 @@ class fifPage(tk.Frame):
         ###########################################################################
         xcen = xcen + maxLoc[0]-subArrayBoxSize/2
         ycen = ycen + maxLoc[1]-subArrayBoxSize/2
-        faah.pageLogging(metGuidedModeSelf.consoleLog, metGuidedModeSelf.logFile, 
-                                      str(fiflabel) + " center found at location: (" + str(xcen) + "," + str(ycen) + ")")
         
         ###########################################################################
         ###Add X and Y data to fifCentroidedLocationDict
@@ -474,6 +472,12 @@ class fifPage(tk.Frame):
         #Add X and Y to fifCentroidedLocationDict
         metGuidedModeSelf.fifCentroidedLocationDict[fiflabel][0] = xDistToSensorOrigin
         metGuidedModeSelf.fifCentroidedLocationDict[fiflabel][1] = yDistToSensorOrigin
+        
+        ###########################################################################
+        ###Print Location of FIF Centroid
+        ###########################################################################
+        faah.pageLogging(metGuidedModeSelf.consoleLog, metGuidedModeSelf.logFile, 
+                str(fiflabel) + " center found at location: (" + str(xDistToSensorOrigin) + "," + str(yDistToSensorOrigin) + ")")
         
         ###########################################################################
         ###Change button text and color
