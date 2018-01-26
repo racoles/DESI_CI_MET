@@ -29,6 +29,9 @@ class tipTiltZCCD(object):
         
         Return tip/tilt/z
         '''
+        ###########################################################################
+        ###Take A/B/C Focus Curves
+        ########################################################################### 
         
     def tipCCD(self, Az, Bz, Cz, CCDLabel, consoleLog, logFile):
         '''
@@ -47,9 +50,9 @@ class tipTiltZCCD(object):
         ###Get Nominal Az/Bz/Cz 
         ###########################################################################
         fC = focusCurve() 
-        Az = fC.trianglePonitCCDLocationsCS5[str(CCDLabel + 'A')]
-        Bz = fC.trianglePonitCCDLocationsCS5[str(CCDLabel + 'B')]
-        Cz = fC.trianglePonitCCDLocationsCS5[str(CCDLabel + 'C')]
+        Az_nominal = fC.trianglePonitCCDLocationsCS5[str(CCDLabel + 'A')]
+        Bz_nominal = fC.trianglePonitCCDLocationsCS5[str(CCDLabel + 'B')]
+        Cz_nominal = fC.trianglePonitCCDLocationsCS5[str(CCDLabel + 'C')]      
                 
         faah = fileAndArrayHandling()
         
