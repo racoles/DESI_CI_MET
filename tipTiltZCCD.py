@@ -54,6 +54,13 @@ class tipTiltZCCD(object):
         Bz_nominal = fC.trianglePonitCCDLocationsCS5[str(CCDLabel + 'B')]
         Cz_nominal = fC.trianglePonitCCDLocationsCS5[str(CCDLabel + 'C')]      
                 
+        ###########################################################################
+        ###Boundry Condition Check 
+        ###########################################################################
+        #N,W,S,E
+        #C
+        #Other
+                        
         faah = fileAndArrayHandling()
         
     def tiltCCD(self, Az, Bz, Cz, fifLabel, consoleLog, logFile):
