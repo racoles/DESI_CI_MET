@@ -1,7 +1,7 @@
 '''
 @title tipTiltZCCD
 @author: Rebecca Coles
-Updated on Jan 19, 2018
+Updated on Jan 26, 2018
 Created on Jan 18, 2018
 
 tipTiltZCCD
