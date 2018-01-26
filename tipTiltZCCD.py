@@ -29,7 +29,7 @@ class tipTiltZCCD(object):
         Return tip/tilt/z
         '''
         
-    def tipCCD(self, Az, Bz, Cz):
+    def tipCCD(self, Az, Bz, Cz, fifLabel, consoleLog, logFile):
         '''
         Calculate CCD tip
         
@@ -40,22 +40,23 @@ class tipTiltZCCD(object):
         Center CCD:
             A(Z) _measured = B(Z) _measured = C(Z) _measured = A(Z) _nominal = B(Z) _nominal = C(Z) _nominal
         '''
-         
-    def tiltCCD(self, Az, Bz, Cz):
+        ###########################################################################
+        ###Get nominal 
+        ###########################################################################  
+        
+    def tiltCCD(self, Az, Bz, Cz, fifLabel, consoleLog, logFile):
         '''
         Calculate CCD tilt
         
         A(Z) _measured = A(Z) _nominal 
         B(Z)_measured = C(Z) _measured = B(Z)_nominal = C(Z) _nominal
-
         '''
         
-    def ZCCD(self, Az, Bz, Cz):
+    def ZCCD(self, Az, Bz, Cz, fifLabel, consoleLog, logFile):
         '''
         Return CCD Z
         
         Z(Center) _measured = Z(Center) _nominal 
         A(Z) _measured = A(Z) _nominal 
         B(Z)_measured = C(Z) _measured = B(Z)_nominal = C(Z) _nominal
-
         '''
