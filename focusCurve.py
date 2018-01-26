@@ -65,7 +65,7 @@ class focusCurve(object):
                        "CCCD" : (0,0),
                        "Other" : (0,0)}
     
-    trianglePonitsCCDLocationsCS5 = {'NA': (0,0,0),
+    trianglePonitCCDLocationsCS5 = {'NA': (0,0,0),
                                      'NB': (0,0,0),
                                      'NC': (0,0,0),
                                      'WA': (0,0,0),
