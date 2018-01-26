@@ -47,9 +47,9 @@ class tipTiltZCCD(object):
         ###Get Nominal Az/Bz/Cz 
         ###########################################################################
         fC = focusCurve() 
-        Az = fC.trianglePonitCCDLocationsCS5[CCDLabel]
-        Bz =
-        Cz =
+        Az = fC.trianglePonitCCDLocationsCS5[str(CCDLabel + 'A')]
+        Bz = fC.trianglePonitCCDLocationsCS5[str(CCDLabel + 'B')]
+        Cz = fC.trianglePonitCCDLocationsCS5[str(CCDLabel + 'C')]
                 
         faah = fileAndArrayHandling()
         
