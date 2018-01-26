@@ -17,7 +17,7 @@
    id="svg8"
    inkscape:version="0.92.2 (5c3e80d, 2017-08-06)"
    sodipodi:docname="FPA-Sudo-Code.svg"
-   inkscape:export-filename="C:\Users\coles.81\Desktop\bitmap2.png"
+   inkscape:export-filename="C:\Users\coles.81\Desktop\bitmap.png"
    inkscape:export-xdpi="96.300003"
    inkscape:export-ydpi="96.300003">
   <defs
@@ -95,11 +95,11 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.1476306"
-     inkscape:cx="226.23589"
-     inkscape:cy="336.99706"
+     inkscape:zoom="0.83972969"
+     inkscape:cx="194.95062"
+     inkscape:cy="382.59433"
      inkscape:document-units="mm"
-     inkscape:current-layer="layer4"
+     inkscape:current-layer="layer5"
      showgrid="false"
      inkscape:window-width="1920"
      inkscape:window-height="1017"
@@ -547,6 +547,17 @@
        d="M 171.82129,93.423495 C 42.39408,93.512625 42.39408,93.512625 42.39408,93.512625"
        id="path971-8"
        inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="22.791353"
+       y="169.43808"
+       id="text5283-2-5-2"><tspan
+         sodipodi:role="line"
+         id="tspan5281-1-0-6"
+         x="22.791353"
+         y="169.43808"
+         style="font-size:5.64444447px;stroke-width:0.26458332">CS5</tspan></text>
   </g>
   <g
      inkscape:groupmode="layer"
