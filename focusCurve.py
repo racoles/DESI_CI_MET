@@ -82,7 +82,7 @@ class focusCurve(object):
                                      'CC': (0,0,0),
                                      'OtherA': (0,0,0),
                                      'OtherB': (0,0,0),
-                                     'OtherC': (0,0,0),}
+                                     'OtherC': (0,0,0)}
     
     def __init__(self):
         '''
