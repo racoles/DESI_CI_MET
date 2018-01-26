@@ -30,9 +30,11 @@ class tipTiltZCCD(object):
         Return tip/tilt/z
         '''
         
-    def tipCCD(self, Az, Bz, Cz, fifLabel, consoleLog, logFile):
+    def tipCCD(self, Az, Bz, Cz, CCDLabel, consoleLog, logFile):
         '''
         Calculate CCD tip
+        
+        CCDLabel = N,W,S,E,C,Other
         
         A(Z) _measured = A(Z) _nominal 
         B(Z)_measured = C(Z) _measured = B(Z)_nominal = C(Z) _nominal
@@ -45,6 +47,9 @@ class tipTiltZCCD(object):
         ###Get Nominal Az/Bz/Cz 
         ###########################################################################
         fC = focusCurve() 
+        Az = fC.trianglePonitCCDLocationsCS5[CCDLabel]
+        Bz =
+        Cz =
                 
         faah = fileAndArrayHandling()
         
