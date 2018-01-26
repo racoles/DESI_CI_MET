@@ -65,6 +65,25 @@ class focusCurve(object):
                        "CCCD" : (0,0),
                        "Other" : (0,0)}
     
+    trianglePonitsCCDLocationsCS5 = {'NA': (0,0,0),
+                                     'NB': (0,0,0),
+                                     'NC': (0,0,0),
+                                     'WA': (0,0,0),
+                                     'WB': (0,0,0),
+                                     'WC': (0,0,0),
+                                     'SA': (0,0,0),
+                                     'SB': (0,0,0),
+                                     'SC': (0,0,0),
+                                     'EA': (0,0,0),
+                                     'EB': (0,0,0),
+                                     'EC': (0,0,0),
+                                     'CA': (0,0,0),
+                                     'CB': (0,0,0),
+                                     'CC': (0,0,0),
+                                     'OtherA': (0,0,0),
+                                     'OtherB': (0,0,0),
+                                     'OtherC': (0,0,0),}
+    
     def __init__(self):
         '''
         Constructor

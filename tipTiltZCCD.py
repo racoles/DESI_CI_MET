@@ -41,7 +41,7 @@ class tipTiltZCCD(object):
             A(Z) _measured = B(Z) _measured = C(Z) _measured = A(Z) _nominal = B(Z) _nominal = C(Z) _nominal
         '''
         ###########################################################################
-        ###Get nominal 
+        ###Get Nominal Az/Bz/Cz 
         ###########################################################################  
         
     def tiltCCD(self, Az, Bz, Cz, fifLabel, consoleLog, logFile):
