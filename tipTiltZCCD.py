@@ -11,7 +11,8 @@ Modules:
 '''
 
 # Import #######################################################################################
-import numpy as np
+from focusCurve import focusCurve
+from fileAndArrayHandling import fileAndArrayHandling
 ################################################################################################
 
 class tipTiltZCCD(object):
@@ -42,7 +43,10 @@ class tipTiltZCCD(object):
         '''
         ###########################################################################
         ###Get Nominal Az/Bz/Cz 
-        ###########################################################################  
+        ###########################################################################
+        fC = focusCurve() 
+                
+        faah = fileAndArrayHandling()
         
     def tiltCCD(self, Az, Bz, Cz, fifLabel, consoleLog, logFile):
         '''
