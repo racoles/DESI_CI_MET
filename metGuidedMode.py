@@ -471,13 +471,9 @@ class fifPage(tk.Frame):
         xDistToSensorOrigin = xcen + xOffset
         yDistToSensorOrigin = ycen + yOffset
         
-        #Distance from sensor origin to CS5
-        
-        #Distance from FIF center to CS5(0,0) in CS5 coordinates
-        
         #Add X and Y to fifCentroidedLocationDict
-        metGuidedModeSelf.fifCentroidedLocationDict[fiflabel][0] = xInter
-        metGuidedModeSelf.fifCentroidedLocationDict[fiflabel][1] = xInter
+        metGuidedModeSelf.fifCentroidedLocationDict[fiflabel][0] = xDistToSensorOrigin
+        metGuidedModeSelf.fifCentroidedLocationDict[fiflabel][1] = yDistToSensorOrigin
         
         ###########################################################################
         ###Change button text and color
