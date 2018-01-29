@@ -33,7 +33,7 @@ from operator import itemgetter
 ################################################################################################
 
 class focusCurve(object):
-    #Dict of (x,y) for FIFs
+    #Dict of (x,y) for FIFs (mm)
     fifLocationsCS5 = {"RefFIF" : (199.28,-345.15), 
                         "NFIF" : (-108.31,-383.55), 
                         "WFIF" : (-383.55,108.31),
@@ -272,6 +272,6 @@ class focusCurve(object):
         a10 = 3.2571E-26*math.pow(r, 10)
         
         ###########################################################################
-        ###Nominal Z
+        ###Nominal Z in (um)
         ###########################################################################
-        return a2 + a4 + a6 + a8 + a10
+        return (a2 + a4 + a6 + a8 + a10)*1000 #converted from mm to microns

@@ -89,7 +89,7 @@ class fileAndArrayHandling(object):
         ###Send text to console
         ###########################################################################
         cLog.configure(state="normal")
-        cLog.insert(tk.END, currentTime + ': ' + str(logText) + '\n')
+        cLog.insert(tk.END, currentTime + ': ' + str(logText) + '\n\n')
         cLog.configure(state="disable")
         
         ###########################################################################
