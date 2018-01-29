@@ -112,7 +112,7 @@ class inputGUI(object):
         self.consoleLog['font'] = ('consolas', '10')
         self.consoleLog.grid(row=12, column=0, columnspan=5, sticky='ew') 
         # start log
-        startTime = time.strftime("%Y%m%d-%H%M%S")
+        startTime = time.strftime("%Y-%m-%dT%H%M%SZ")
         self.logFile = open("DESI_CI_MET_" + startTime + "_log.txt", "w")
         self.logFile.write("Log started: " + startTime + '\n')
         self.consoleLog.insert(tk.END, "Log started: " + startTime + '\n')

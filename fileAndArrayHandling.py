@@ -22,6 +22,7 @@ from astropy.io import fits
 from tkinter import filedialog
 import os, errno, re
 import tkinter as tk
+import time
 ################################################################################################
 
 class fileAndArrayHandling(object):
@@ -76,18 +77,25 @@ class fileAndArrayHandling(object):
     def pageLogging(self, cLog, lFile, logText):
         '''
         Send text to console and log file.
+        
+        Using ISO 8601 for date-time
         '''
+        ###########################################################################
+        ###Current Time
+        ###########################################################################
+        currentTime = time.strftime("%Y-%m-%dT%H%M%SZ")
+        
         ###########################################################################
         ###Send text to console
         ###########################################################################
         cLog.configure(state="normal")
-        cLog.insert(tk.END, str(logText) + '\n')
+        cLog.insert(tk.END, currentTime + ': ' + str(logText) + '\n')
         cLog.configure(state="disable")
         
         ###########################################################################
         ###Send text to log file
         ###########################################################################
-        lFile.write(str(logText) + '\n')
+        lFile.write(currentTime + ': ' + str(logText) + '\n')
         lFile.flush()
         
     def printDictToFile(self, dict, consoleLog, logFile):
