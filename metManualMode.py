@@ -185,6 +185,17 @@ class metManualMode(tk.Tk):
         topC.wait_window()
         imageArray4DC, filelistC = faah.openAllFITSImagesInDirectory()
         
+        ###########################################################################
+        ###Create focus curve
+        ###########################################################################        
+        xInterA = fC.stdFocusCurve(self.CCDSelection, imageArray4DA, filelistA)
+        faah.pageLogging(self.consoleLog, self.logFile, 
+                                      "CCD Manual Mode Measured Best focus for Point A" + str(self.CCDSelection + 'A') + " is: " + str(xInterA) + "um")
+        nominalZA = fC.asphericFocalCurve(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'A'][0], fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'A'][1])
+        faah.pageLogging(self.consoleLog, self.logFile, 
+                                      "Nominal Z for " + str(self.CCDSelection + 'A') + " is: " + str(nominalZA) + "um in CS5 coordinates.")
+        
+        
         
     def _setTrueAndExit(self, windowVariable, fifLabel=" ", CCDLabel=" ", trianglePointLabel=" "):
         if fifLabel != " ":
