@@ -132,7 +132,21 @@ class metManualMode(tk.Tk):
         ###Create Dir Using self.CCDSelection
         ###########################################################################
         faah = fileAndArrayHandling()
-        dirName = faah.createDir(str(self.CCDSelection), self, 'Manual_Mode_CCD_Focus_Curve')
+        dirNameA = faah.createDir(str(self.CCDSelection + '_A'), self, 'Manual_Mode_CCD_Focus_Curve')
+        dirNameB = faah.createDir(str(self.CCDSelection + '_B'), self, 'Manual_Mode_CCD_Focus_Curve')
+        dirNameC = faah.createDir(str(self.CCDSelection + '_C'), self, 'Manual_Mode_CCD_Focus_Curve')
+        
+        ###########################################################################
+        ###Message user to fill dir (mention label names)
+        ###########################################################################
+        faah.pageLogging(self.consoleLog, self.logFile, 
+                                      "Suggested " +  str(self.CCDSelection) + 
+                                      " manual mode focus curve directories for points A, B, and C: \n" + str(os.getcwd()) + '\\' + dirNameA + 
+                                      str(os.getcwd()) + '\\' + dirNameB +
+                                      str(os.getcwd()) + '\\' + dirNameC +
+                                      "\nNOTE: the file names will be used to create the Z axis values (distance)\n" +
+                                        " so please label the FITS files appropriately\n" +
+                                        "(example: 350.fit for the image taken at 350um).")
         
     def _setTrueAndExit(self, windowVariable, fifLabel=" ", CCDLabel=" ", trianglePointLabel=" "):
         if fifLabel != " ":
