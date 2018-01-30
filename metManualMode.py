@@ -123,6 +123,10 @@ class metManualMode(tk.Tk):
                                       "CCD Manual Mode Absolute value of (Nominal Z - Measured Best Focus) = " +  str(np.absolute(nominalZ-xInter)) + 'um')
         
     def CCDTipTiltZ(self):
+        '''
+        Take focus curves at the points of an equilateral triangle
+        to find the CCD center
+        '''
         ###########################################################################
         ###Get CCD Seletion from User
         ###########################################################################
@@ -186,7 +190,7 @@ class metManualMode(tk.Tk):
         imageArray4DC, filelistC = faah.openAllFITSImagesInDirectory()
         
         ###########################################################################
-        ###Create focus curve
+        ###Create focus curves
         ###########################################################################
         faah.pageLogging(self.consoleLog, self.logFile, 
                                       "Z VALUES FOR " + str(self.CCDSelection) + " POINTS A, B, and C")
@@ -209,6 +213,10 @@ class metManualMode(tk.Tk):
         nominalZC = fC.asphericFocalCurve(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'C'][0], fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'C'][1])
         faah.pageLogging(self.consoleLog, self.logFile, 
                                       "C(" + str(self.CCDSelection) +  "Nominal Z ):" + str(nominalZC) + "um") 
+        
+        ###########################################################################
+        ###Check Tip and Tilt
+        ###########################################################################
         
         
     def _setTrueAndExit(self, windowVariable, fifLabel=" ", CCDLabel=" ", trianglePointLabel=" "):
