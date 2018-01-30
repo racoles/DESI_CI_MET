@@ -150,15 +150,36 @@ class metManualMode(tk.Tk):
         
         ###########################################################################
         ###Windows to Prompt Focus Curve Image Loading
-        ###########################################################################        
-        top = Toplevel()
-        top.title("About this application...")
-
-        msg = Message(top, text=about_message)
-        msg.pack()
-
-        button = Button(top, text="Dismiss", command=top.destroy)
-        button.pack()
+        ###########################################################################  
+        #Point A      
+        topA = tk.Toplevel()
+        topA.title("CCD tip/tilt/Z Triangle Point A")
+        aboutMessageA = 'Fill directory with focus curve images for point A:\n' + str(os.getcwd()) + '\\' + dirNameA
+        msgA = tk.Message(topA, text=aboutMessageA)
+        msgA.pack()
+        buttonA = tk.Button(topA, text="Ready", command=topA.destroy)
+        buttonA.pack()
+        topA.wait_window()
+        
+        #Point B      
+        topB = tk.Toplevel()
+        topB.title("CCD tip/tilt/Z Triangle Point B")
+        aboutMessageB = 'Fill directory with focus curve images for point B:\n' + str(os.getcwd()) + '\\' + dirNameB
+        msgB = tk.Message(topB, text=aboutMessageB)
+        msgB.pack()
+        buttonB = tk.Button(topB, text="Ready", command=topB.destroy)
+        buttonB.pack()
+        topB.wait_window()
+        
+        #Point C      
+        topC = tk.Toplevel()
+        topC.title("CCD tip/tilt/Z Triangle Point C")
+        aboutMessageC = 'Fill directory with focus curve images for point C:\n' + str(os.getcwd()) + '\\' + dirNameC
+        msgC = tk.Message(topC, text=aboutMessageC)
+        msgC.pack()
+        buttonC = tk.Button(topC, text="Ready", command=topC.destroy)
+        buttonC.pack()
+        topC.wait_window()
         
     def _setTrueAndExit(self, windowVariable, fifLabel=" ", CCDLabel=" ", trianglePointLabel=" "):
         if fifLabel != " ":
