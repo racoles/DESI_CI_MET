@@ -122,6 +122,18 @@ class metManualMode(tk.Tk):
         faah.pageLogging(self.consoleLog, self.logFile, 
                                       "CCD Manual Mode Absolute value of (Nominal Z - Measured Best Focus) = " +  str(np.absolute(nominalZ-xInter)) + 'um')
         
+    def CCDTipTiltZ(self):
+        ###########################################################################
+        ###Get CCD Seletion from User
+        ###########################################################################
+        self._CCDSelectionWindow()
+        
+        ###########################################################################
+        ###Create Dir Using self.CCDSelection
+        ###########################################################################
+        faah = fileAndArrayHandling()
+        dirName = faah.createDir(str(self.CCDSelection), self, 'Manual_Mode_CCD_Focus_Curve')
+        
     def _setTrueAndExit(self, windowVariable, fifLabel=" ", CCDLabel=" ", trianglePointLabel=" "):
         if fifLabel != " ":
             self.fifSelection = fifLabel
