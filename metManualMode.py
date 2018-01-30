@@ -187,7 +187,10 @@ class metManualMode(tk.Tk):
         
         ###########################################################################
         ###Create focus curve
-        ###########################################################################        
+        ###########################################################################
+        faah.pageLogging(self.consoleLog, self.logFile, 
+                                      "Z VALUES FOR " + str(self.CCDSelection) + " POINTS A, B, and C")
+            
         xInterA = fC.stdFocusCurve(self.CCDSelection, imageArray4DA, filelistA)
         faah.pageLogging(self.consoleLog, self.logFile, 
                                       "CCD Manual Mode Measured Best focus for Point A" + str(self.CCDSelection + 'A') + " is: " + str(xInterA) + "um")
