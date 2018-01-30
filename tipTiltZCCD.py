@@ -22,7 +22,7 @@ class tipTiltZCCD(object):
         Constructor
         '''
         
-    def createEquilateralTriangle(self):
+    def createEquilateralTriangle(self, Az, Bz, Cz, CCDLabel, consoleLog, logFile):
         '''
         Take focus curves at the points of an equilateral triangle
         to find the CCD center
