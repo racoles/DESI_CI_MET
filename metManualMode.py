@@ -127,6 +127,7 @@ class metManualMode(tk.Tk):
         ###Get CCD Seletion from User
         ###########################################################################
         self._CCDSelectionWindow()
+        fC = focusCurve()
         
         ###########################################################################
         ###Create Dir Using self.CCDSelection
@@ -154,7 +155,7 @@ class metManualMode(tk.Tk):
         #Point A      
         topA = tk.Toplevel()
         topA.title("CCD tip/tilt/Z Triangle Point A")
-        aboutMessageA = 'Fill directory with focus curve images for point A:\n' + str(os.getcwd()) + '\\' + dirNameA
+        aboutMessageA = 'Fill directory with focus curve images for point A' + "(" + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'A']) + '):\n' + str(os.getcwd()) + '\\' + dirNameA
         msgA = tk.Message(topA, text=aboutMessageA)
         msgA.pack()
         buttonA = tk.Button(topA, text="Ready", command=topA.destroy)
@@ -164,7 +165,7 @@ class metManualMode(tk.Tk):
         #Point B      
         topB = tk.Toplevel()
         topB.title("CCD tip/tilt/Z Triangle Point B")
-        aboutMessageB = 'Fill directory with focus curve images for point B:\n' + str(os.getcwd()) + '\\' + dirNameB
+        aboutMessageB = 'Fill directory with focus curve images for point B' + "(" + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'B']) + '):\n'  +str(os.getcwd()) + '\\' + dirNameB
         msgB = tk.Message(topB, text=aboutMessageB)
         msgB.pack()
         buttonB = tk.Button(topB, text="Ready", command=topB.destroy)
@@ -174,7 +175,7 @@ class metManualMode(tk.Tk):
         #Point C      
         topC = tk.Toplevel()
         topC.title("CCD tip/tilt/Z Triangle Point C")
-        aboutMessageC = 'Fill directory with focus curve images for point C:\n' + str(os.getcwd()) + '\\' + dirNameC
+        aboutMessageC = 'Fill directory with focus curve images for point C' + "(" + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'C']) + '):\n'  + str(os.getcwd()) + '\\' + dirNameC
         msgC = tk.Message(topC, text=aboutMessageC)
         msgC.pack()
         buttonC = tk.Button(topC, text="Ready", command=topC.destroy)
