@@ -161,6 +161,7 @@ class metManualMode(tk.Tk):
         buttonA = tk.Button(topA, text="Ready", command=topA.destroy)
         buttonA.pack()
         topA.wait_window()
+        imageArray4DA, filelistA = faah.openAllFITSImagesInDirectory()
         
         #Point B      
         topB = tk.Toplevel()
@@ -171,6 +172,7 @@ class metManualMode(tk.Tk):
         buttonB = tk.Button(topB, text="Ready", command=topB.destroy)
         buttonB.pack()
         topB.wait_window()
+        imageArray4DB, filelistB = faah.openAllFITSImagesInDirectory()
         
         #Point C      
         topC = tk.Toplevel()
@@ -181,6 +183,8 @@ class metManualMode(tk.Tk):
         buttonC = tk.Button(topC, text="Ready", command=topC.destroy)
         buttonC.pack()
         topC.wait_window()
+        imageArray4DC, filelistC = faah.openAllFITSImagesInDirectory()
+        
         
     def _setTrueAndExit(self, windowVariable, fifLabel=" ", CCDLabel=" ", trianglePointLabel=" "):
         if fifLabel != " ":
