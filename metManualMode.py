@@ -148,6 +148,18 @@ class metManualMode(tk.Tk):
                                         " so please label the FITS files appropriately\n" +
                                         "(example: 350.fit for the image taken at 350um).")
         
+        ###########################################################################
+        ###Windows to Prompt Focus Curve Image Loading
+        ###########################################################################        
+        top = Toplevel()
+        top.title("About this application...")
+
+        msg = Message(top, text=about_message)
+        msg.pack()
+
+        button = Button(top, text="Dismiss", command=top.destroy)
+        button.pack()
+        
     def _setTrueAndExit(self, windowVariable, fifLabel=" ", CCDLabel=" ", trianglePointLabel=" "):
         if fifLabel != " ":
             self.fifSelection = fifLabel
