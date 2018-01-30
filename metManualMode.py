@@ -199,7 +199,13 @@ class metManualMode(tk.Tk):
                                       "CCD Manual Mode Measured Best focus for Point B" + str(self.CCDSelection + 'B') + " is: " + str(xInterB) + "um")
         nominalZB = fC.asphericFocalCurve(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'B'][0], fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'B'][1])
         faah.pageLogging(self.consoleLog, self.logFile, 
-                                      "Nominal Z for " + str(self.CCDSelection + 'B') + " is: " + str(nominalZB) + "um in CS5 coordinates.")        
+                                      "Nominal Z for " + str(self.CCDSelection + 'B') + " is: " + str(nominalZB) + "um in CS5 coordinates.")  
+        xInterC = fC.stdFocusCurve(self.CCDSelection, imageArray4DC, filelistC)
+        faah.pageLogging(self.consoleLog, self.logFile, 
+                                      "CCD Manual Mode Measured Best focus for Point C" + str(self.CCDSelection + 'C') + " is: " + str(xInterC) + "um")
+        nominalZC = fC.asphericFocalCurve(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'C'][0], fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'C'][1])
+        faah.pageLogging(self.consoleLog, self.logFile, 
+                                      "Nominal Z for " + str(self.CCDSelection + 'C') + " is: " + str(nominalZC) + "um in CS5 coordinates.")      
         
         
     def _setTrueAndExit(self, windowVariable, fifLabel=" ", CCDLabel=" ", trianglePointLabel=" "):
