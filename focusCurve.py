@@ -67,9 +67,9 @@ class focusCurve(object):
                        "Other" : (0,0)}
     
     #Dict of (x,y) for CCD triangles around center point (mm)
-    trianglePonitCCDLocationsCS5 = { 'NA': (0,0,0),
-                                     'NB': (0,0,0),
-                                     'NC': (0,0,0),
+    trianglePonitCCDLocationsCS5 = { 'NA': (0,-379.26,0),
+                                     'NB': (-8.4327,-389.9266,0),
+                                     'NC': (8.4327,-389.9266,0),
                                      'WA': (0,0,0),
                                      'WB': (0,0,0),
                                      'WC': (0,0,0),
