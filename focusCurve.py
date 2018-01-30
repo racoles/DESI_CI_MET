@@ -58,15 +58,15 @@ class focusCurve(object):
                         "D4" : (-185.00,0),
                         "Other" : (0,0)}
     
-    #Dict of (x,y) for CCD centers(mm)
-    CCDLocationsCS5 = {"NCCD" : (0,-396.48),
-                       "WCCD" : (-396.48,0),
-                       "SCCD" : (0,396.48),
-                       "ECCD" : (396.48,0),
-                       "CCCD" : (0,0),
-                       "Other" : (0,0)}
+    #Dict of (x,y,z) for CCD centers(mm)
+    CCDLocationsCS5 = {"NCCD" : (0,-396.48,-17.71),
+                       "WCCD" : (-396.48,0,-17.71),
+                       "SCCD" : (0,396.48,-17.71),
+                       "ECCD" : (396.48,0,-17.71),
+                       "CCCD" : (0,0,0),
+                       "Other" : (0,0,0)}
     
-    #Dict of (x,y) for CCD triangles around center point (mm)
+    #Dict of (x,y,z) for CCD triangles around center point (mm)
     trianglePonitCCDLocationsCS5 = { 'NA': (0,-388.48,0),
                                      'NB': (-8.4327,-399.1466,0),
                                      'NC': (8.4327,-399.1466,0),
@@ -78,7 +78,7 @@ class focusCurve(object):
                                      'SC': (-8.4327,399.1466,0),
                                      'EA': (388.48,0,0),
                                      'EB': (399.1466,-8.4327,0),
-                                     'EC': (399.1466,8.4327,-17.71),
+                                     'EC': (399.1466,8.4327,0),
                                      'CA': (0,-8,0),
                                      'CB': (8.4327,2.6666,0),
                                      'CC': (-8.4327,2.6666,0),
