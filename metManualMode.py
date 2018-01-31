@@ -159,7 +159,7 @@ class metManualMode(tk.Tk):
         #Point A      
         topA = tk.Toplevel()
         topA.title("CCD tip/tilt/Z Triangle Point A")
-        aboutMessageA = 'Fill directory with focus curve images for point A' + "(" + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'A'])
+        aboutMessageA = 'Fill directory with focus curve images for point A' + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'A'])
         msgA = tk.Message(topA, text=aboutMessageA)
         msgA.pack()
         buttonA = tk.Button(topA, text="Ready", command=topA.destroy)
@@ -170,7 +170,7 @@ class metManualMode(tk.Tk):
         #Point B      
         topB = tk.Toplevel()
         topB.title("CCD tip/tilt/Z Triangle Point B")
-        aboutMessageB = 'Fill directory with focus curve images for point B' + "(" + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'B'])
+        aboutMessageB = 'Fill directory with focus curve images for point B' + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'B'])
         msgB = tk.Message(topB, text=aboutMessageB)
         msgB.pack()
         buttonB = tk.Button(topB, text="Ready", command=topB.destroy)
@@ -181,7 +181,7 @@ class metManualMode(tk.Tk):
         #Point C      
         topC = tk.Toplevel()
         topC.title("CCD tip/tilt/Z Triangle Point C")
-        aboutMessageC = 'Fill directory with focus curve images for point C' + "(" + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'C'])
+        aboutMessageC = 'Fill directory with focus curve images for point C' + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'C'])
         msgC = tk.Message(topC, text=aboutMessageC)
         msgC.pack()
         buttonC = tk.Button(topC, text="Ready", command=topC.destroy)
