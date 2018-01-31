@@ -3,6 +3,10 @@
 @author: Rebecca Coles
 Updated on Dec 15, 2017
 Created on Dec 11, 2017
+
+astropy
+matplotlib
+opencv-python
 '''
 
 # Import #######################################################################################
