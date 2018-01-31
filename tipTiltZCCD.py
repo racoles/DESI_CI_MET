@@ -11,8 +11,6 @@ Modules:
 '''
 
 # Import #######################################################################################
-from focusCurve import focusCurve
-from fileAndArrayHandling import fileAndArrayHandling
 ################################################################################################
 
 class tipTiltZCCD(object):
