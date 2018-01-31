@@ -86,7 +86,7 @@ class inputGUI(object):
         #Manual Mode CCD Focus Curve
         tk.Button(master, text="CCD Focus Curve",bg = "white", command=lambda:self._beginManualMode(master, self.consoleLog, self.logFile, "manualCCDFocusCurve")).grid(row=6, column=1, columnspan=1, sticky='W')
         #Manual Mode CCD Tip/Tilt/Z
-        tk.Button(master, text="CCD Tip/Tilt/Z",bg = "white", command=lambda:self._beginManualMode(master, self.consoleLog, self.logFile)).grid(row=7, column=0, columnspan=2, sticky='W')
+        tk.Button(master, text="CCD Tip/Tilt/Z",bg = "white", command=lambda:self._beginManualMode(master, self.consoleLog, self.logFile, "CCDTipTiltZ")).grid(row=7, column=0, columnspan=2, sticky='W')
 
         #Grid Separator
         Separator(master, orient="horizontal").grid(row=8, column=0, columnspan=4, sticky='ew')
@@ -158,3 +158,6 @@ class inputGUI(object):
         if manualFunction == "manualCCDFocusCurve":
             mMode.manualCCDFocusCurve()
             
+        #Manual Mode CCD Tip/Tilt/Z
+        if manualFunction == "CCDTipTiltZ":
+            mMode.CCDTipTiltZ()
