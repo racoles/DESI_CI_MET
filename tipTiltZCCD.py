@@ -41,6 +41,8 @@ class tipTiltZCCD(object):
         faah.pageLogging(self.consoleLog, self.logFile, 
                                       "Checking " + str(CCDLabel) + " TIP:")
         #N,W,S,E
+        if CCDLabel == "NCCD" or CCDLabel == "WCCD" or CCDLabel == "SCCD" or CCDLabel == "ECCD":
+
         #C
         #Other
         
