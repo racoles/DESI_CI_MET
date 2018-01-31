@@ -54,14 +54,14 @@ class tipTiltZCCD(object):
         #N,W,S,E
         if CCDLabel == "NCCD" or CCDLabel == "WCCD" or CCDLabel == "SCCD" or CCDLabel == "ECCD": 
             faah.pageLogging(self.consoleLog, self.logFile, 
-                                        "    Condition #3: A(Z)_measured > B(Z)_measured && C(Z)_measured (by a known distance)\n" + 
+                                        "    Condition #3: A(Z)_measured > B(Z)_measured && C(Z)_measured\n" + 
                                         "        A(Z)_measured = " + str(Az) + "um\n" + 
                                         "        B(Z)_measured = " + str(Bz) + "um\n" + 
                                         "        C(Z)_measured = " + str(Cz) + "um\n")
         #C
         if CCDLabel == "CCCD":
             faah.pageLogging(self.consoleLog, self.logFile, 
-                                        "    Condition #3: A(Z)_measured = B(Z)_measured = C(Z)_measured = A(Z)_nominal = B(Z)_nominal = C(Z)_nominal\n" + 
+                                        "    Condition #3: [A(Z) = B(Z) = C(Z)]_measured  = [A(Z) = B(Z) = C(Z)]_nominal\n" + 
                                         "        A(Z)_measured = " + str(Az) + "um\n" + 
                                         "        B(Z)_measured = " + str(Bz) + "um\n" + 
                                         "        C(Z)_measured = " + str(Cz) + "um\n")
