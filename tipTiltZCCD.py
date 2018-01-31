@@ -12,6 +12,7 @@ Modules:
 
 # Import #######################################################################################
 from fileAndArrayHandling import fileAndArrayHandling
+from focusCurve import focusCurve
 ################################################################################################
 
 class tipTiltZCCD(object):
@@ -107,20 +108,30 @@ class tipTiltZCCD(object):
             faah.pageLogging(consoleLog, logFile, 
                                         "CCD selection: Other. Not able to calculate Tilt.")
 
-    def ZCCD(self, Az, Bz, Cz, Az_nominal, Bz_nominal, Cz_nominal, CCDLabel, consoleLog, logFile):
+    def ZCCD(self, Az, Bz, Cz, CCDLabel, consoleLog, logFile):
         '''
         Return CCD Z
         
         Z(Center) _measured = Z(Center) _nominal 
         A(Z) _measured = A(Z) _nominal 
         B(Z)_measured = C(Z) _measured = B(Z)_nominal = C(Z) _nominal
-        '''                 
+        '''  
+        ###########################################################################
+        ###Get nominal Z for CCD center
+        ###########################################################################               
+        fC = focusCurve()
+        zCenter_measured = (Az + Bz + Cz)/3
+        zCenter_nominal = fC.asphericFocalCurve(fC.CCDLocationsCS5[CCDLabel][0], fC.CCDLocationsCS5[CCDLabel][1])
+        
         ###########################################################################
         ###Boundry Condition Check 
         ###########################################################################
         faah = fileAndArrayHandling()
         faah.pageLogging(self.consoleLog, self.logFile, 
-                                      "Checking " + str(CCDLabel) + " Z:")
-        #N,W,S,E
-        #C
+                                      "Checking " + str(CCDLabel) + " CCD Center Z:")
+        #N,W,S,E,C
+        faah.pageLogging(consoleLog, logFile, 
+                                        "Condition: Center(Z)_measured = Center(Z)_nominal\n" + 
+                                        "        Center(Z)_measured = " + str(zCenter_measured) + "um\n" + 
+                                        "        Center(Z)_nominal = " + str(zCenter_nominal) + "um\n" )
         #Other
