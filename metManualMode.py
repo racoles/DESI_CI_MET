@@ -193,26 +193,26 @@ class metManualMode(tk.Tk):
         ###Create focus curves
         ###########################################################################
         faah.pageLogging(self.consoleLog, self.logFile, 
-                                      "Z VALUES FOR " + str(self.CCDSelection) + " POINTS A, B, and C")
+                                      "Z VALUES FOR " + str(self.CCDSelection) + " POINTS A, B, and C:")
             
         xInterA = fC.stdFocusCurve(self.CCDSelection, imageArray4DA, filelistA)
         faah.pageLogging(self.consoleLog, self.logFile, 
-                                      "A(" + str(self.CCDSelection) +  "Best Focus):" + str(xInterA) + "um")
+                                      str(self.CCDSelection) + "A(Best Focus):" + str(xInterA) + "um")
         nominalZA = fC.asphericFocalCurve(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'A'][0], fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'A'][1])
         faah.pageLogging(self.consoleLog, self.logFile, 
-                                      "A(" + str(self.CCDSelection) +  "Nominal Z ):" + str(nominalZA) + "um")
+                                      str(self.CCDSelection) + "A(Nominal Z):" + str(nominalZA) + "um")
         xInterB = fC.stdFocusCurve(self.CCDSelection, imageArray4DB, filelistB)
         faah.pageLogging(self.consoleLog, self.logFile, 
-                                      "B(" + str(self.CCDSelection) +  "Best Focus):" + str(xInterB) + "um")
+                                      str(self.CCDSelection) + "B(Best Focus):" + str(xInterB) + "um")
         nominalZB = fC.asphericFocalCurve(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'B'][0], fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'B'][1])
         faah.pageLogging(self.consoleLog, self.logFile, 
-                                      "B(" + str(self.CCDSelection) +  "Nominal Z ):" + str(nominalZB) + "um")  
+                                      str(self.CCDSelection) + "B(Nominal Z):" + str(nominalZB) + "um")  
         xInterC = fC.stdFocusCurve(self.CCDSelection, imageArray4DC, filelistC)
         faah.pageLogging(self.consoleLog, self.logFile, 
-                                      "C(" + str(self.CCDSelection) +  "Best Focus):" + str(xInterC) + "um")
+                                      str(self.CCDSelection) + "C(Best Focus):" + str(xInterC) + "um")
         nominalZC = fC.asphericFocalCurve(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'C'][0], fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'C'][1])
         faah.pageLogging(self.consoleLog, self.logFile, 
-                                      "C(" + str(self.CCDSelection) +  "Nominal Z ):" + str(nominalZC) + "um") 
+                                      str(self.CCDSelection) + "C(Nominal Z):" + str(nominalZC) + "um") 
         
         ###########################################################################
         ###Check Tip and Tilt
