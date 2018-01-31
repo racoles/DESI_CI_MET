@@ -22,7 +22,7 @@ class tipTiltZCCD(object):
         Constructor
         '''
         
-    def tipCCD(self, Az, Bz, Cz, CCDLabel, consoleLog, logFile):
+    def tipCCD(self, Az, Bz, Cz, Az_nominal, Bz_nominal, Cz_nominal, CCDLabel, consoleLog, logFile):
         '''
         Calculate CCD tip
         
@@ -42,7 +42,7 @@ class tipTiltZCCD(object):
         #C
         #Other
         
-    def tiltCCD(self, Az, Bz, Cz, CCDLabel, consoleLog, logFile):
+    def tiltCCD(self, Az, Bz, Cz, Az_nominal, Bz_nominal, Cz_nominal, CCDLabel, consoleLog, logFile):
         '''
         Calculate CCD tilt
         
@@ -56,7 +56,7 @@ class tipTiltZCCD(object):
         #C
         #Other
 
-    def ZCCD(self, Az, Bz, Cz, CCDLabel, consoleLog, logFile):
+    def ZCCD(self, Az, Bz, Cz, Az_nominal, Bz_nominal, Cz_nominal, CCDLabel, consoleLog, logFile):
         '''
         Return CCD Z
         
