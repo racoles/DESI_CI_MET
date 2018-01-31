@@ -1,5 +1,5 @@
 '''
-@title RSA_Metrology
+@title DESI_CI_MET
 @author: Rebecca Coles
 Updated on Dec 15, 2017
 Created on Dec 11, 2017
