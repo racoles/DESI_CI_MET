@@ -117,7 +117,7 @@ class tipTiltZCCD(object):
         B(Z)_measured = C(Z) _measured = B(Z)_nominal = C(Z) _nominal
         '''  
         ###########################################################################
-        ###Get nominal Z for CCD center
+        ###Get nominal  and measured Z for CCD center
         ###########################################################################               
         fC = focusCurve()
         zCenter_measured = (Az + Bz + Cz)/3
@@ -129,9 +129,8 @@ class tipTiltZCCD(object):
         faah = fileAndArrayHandling()
         faah.pageLogging(self.consoleLog, self.logFile, 
                                       "Checking " + str(CCDLabel) + " CCD Center Z:")
-        #N,W,S,E,C
+        #N,W,S,E,C,Other
         faah.pageLogging(consoleLog, logFile, 
                                         "Condition: Center(Z)_measured = Center(Z)_nominal\n" + 
                                         "        Center(Z)_measured = " + str(zCenter_measured) + "um\n" + 
                                         "        Center(Z)_nominal = " + str(zCenter_nominal) + "um\n" )
-        #Other
