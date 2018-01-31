@@ -11,6 +11,7 @@ Modules:
 '''
 
 # Import #######################################################################################
+from fileAndArrayHandling import fileAndArrayHandling
 ################################################################################################
 
 class tipTiltZCCD(object):
@@ -36,6 +37,9 @@ class tipTiltZCCD(object):
         ###########################################################################
         ###Boundry Condition Check 
         ###########################################################################
+        faah = fileAndArrayHandling()
+        faah.pageLogging(self.consoleLog, self.logFile, 
+                                      "Checking " + str(CCDLabel) + " TIP:")
         #N,W,S,E
         #C
         #Other
@@ -50,6 +54,9 @@ class tipTiltZCCD(object):
         ###########################################################################
         ###Boundry Condition Check 
         ###########################################################################
+        faah = fileAndArrayHandling()
+        faah.pageLogging(self.consoleLog, self.logFile, 
+                                      "Checking " + str(CCDLabel) + " TILT:")
         #N,W,S,E
         #C
         #Other
@@ -65,6 +72,9 @@ class tipTiltZCCD(object):
         ###########################################################################
         ###Boundry Condition Check 
         ###########################################################################
+        faah = fileAndArrayHandling()
+        faah.pageLogging(self.consoleLog, self.logFile, 
+                                      "Checking " + str(CCDLabel) + " Z:")
         #N,W,S,E
         #C
         #Other
