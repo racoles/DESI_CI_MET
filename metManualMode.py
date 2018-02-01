@@ -194,20 +194,22 @@ class metManualMode(tk.Tk):
         ###########################################################################
         faah.pageLogging(self.consoleLog, self.logFile, 
                                       "Z VALUES FOR " + str(self.CCDSelection) + " POINTS A, B, and C:")
-            
-        xInterA = fC.stdFocusCurve(self.CCDSelection, imageArray4DA, filelistA)
+        #A    
+        xInterA = fC.stdFocusCurve(self.CCDSelection, imageArray4DA, filelistA, pointLabel = "A")
         faah.pageLogging(self.consoleLog, self.logFile, 
                                       str(self.CCDSelection) + "A(Best Focus):" + str(xInterA) + "um")
         nominalZA = fC.asphericFocalCurve(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'A'][0], fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'A'][1])
         faah.pageLogging(self.consoleLog, self.logFile, 
                                       str(self.CCDSelection) + "A(Nominal Z):" + str(nominalZA) + "um")
-        xInterB = fC.stdFocusCurve(self.CCDSelection, imageArray4DB, filelistB)
+        #B
+        xInterB = fC.stdFocusCurve(self.CCDSelection, imageArray4DB, filelistB, pointLabel = "B")
         faah.pageLogging(self.consoleLog, self.logFile, 
                                       str(self.CCDSelection) + "B(Best Focus):" + str(xInterB) + "um")
         nominalZB = fC.asphericFocalCurve(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'B'][0], fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'B'][1])
         faah.pageLogging(self.consoleLog, self.logFile, 
                                       str(self.CCDSelection) + "B(Nominal Z):" + str(nominalZB) + "um")  
-        xInterC = fC.stdFocusCurve(self.CCDSelection, imageArray4DC, filelistC)
+        #C
+        xInterC = fC.stdFocusCurve(self.CCDSelection, imageArray4DC, filelistC, pointLabel = "C")
         faah.pageLogging(self.consoleLog, self.logFile, 
                                       str(self.CCDSelection) + "C(Best Focus):" + str(xInterC) + "um")
         nominalZC = fC.asphericFocalCurve(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'C'][0], fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'C'][1])
