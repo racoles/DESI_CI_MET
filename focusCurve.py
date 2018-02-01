@@ -276,4 +276,4 @@ class focusCurve(object):
         ###########################################################################
         ###Nominal Z in (um)
         ###########################################################################
-        return (a2 + a4 + a6 + a8 + a10)*1000 #converted from mm to microns
+        return (a2 + a4 + a6 + a8 + a10) #*1000 #converted from mm to microns

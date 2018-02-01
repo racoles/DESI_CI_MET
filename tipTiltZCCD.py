@@ -127,7 +127,7 @@ class tipTiltZCCD(object):
         ###Boundry Condition Check 
         ###########################################################################
         faah = fileAndArrayHandling()
-        faah.pageLogging(self.consoleLog, self.logFile, 
+        faah.pageLogging(consoleLog, logFile, 
                                       "Checking " + str(CCDLabel) + " CCD Center Z:")
         #N,W,S,E,C,Other
         faah.pageLogging(consoleLog, logFile, 
