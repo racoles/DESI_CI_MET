@@ -196,25 +196,20 @@ class metManualMode(tk.Tk):
                                       "Z VALUES FOR " + str(self.CCDSelection) + " POINTS A, B, and C:")
         #A    
         xInterA = fC.stdFocusCurve(self.CCDSelection, imageArray4DA, filelistA, pointLabel = "A")
-        faah.pageLogging(self.consoleLog, self.logFile, 
-                                      str(self.CCDSelection) + "A(Best Focus):" + str(xInterA) + "um")
         nominalZA = fC.asphericFocalCurve(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'A'][0], fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'A'][1])
         faah.pageLogging(self.consoleLog, self.logFile, 
-                                      str(self.CCDSelection) + "A(Nominal Z):" + str(nominalZA) + "um")
+                                      str(self.CCDSelection) + "A(Best Focus):" + str(xInterA) + "um\n" + str(self.CCDSelection) + "A(Nominal Z):" + str(nominalZA) + "um")
+
         #B
         xInterB = fC.stdFocusCurve(self.CCDSelection, imageArray4DB, filelistB, pointLabel = "B")
-        faah.pageLogging(self.consoleLog, self.logFile, 
-                                      str(self.CCDSelection) + "B(Best Focus):" + str(xInterB) + "um")
         nominalZB = fC.asphericFocalCurve(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'B'][0], fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'B'][1])
         faah.pageLogging(self.consoleLog, self.logFile, 
-                                      str(self.CCDSelection) + "B(Nominal Z):" + str(nominalZB) + "um")  
+                                      str(self.CCDSelection) + "B(Best Focus):" + str(xInterB) + "um\n" + str(self.CCDSelection) + "B(Nominal Z):" + str(nominalZB) + "um") 
         #C
         xInterC = fC.stdFocusCurve(self.CCDSelection, imageArray4DC, filelistC, pointLabel = "C")
-        faah.pageLogging(self.consoleLog, self.logFile, 
-                                      str(self.CCDSelection) + "C(Best Focus):" + str(xInterC) + "um")
         nominalZC = fC.asphericFocalCurve(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'C'][0], fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'C'][1])
         faah.pageLogging(self.consoleLog, self.logFile, 
-                                      str(self.CCDSelection) + "C(Nominal Z):" + str(nominalZC) + "um") 
+                                      str(self.CCDSelection) + "C(Best Focus):" + str(xInterC) + "um\n" + str(self.CCDSelection) + "C(Nominal Z):" + str(nominalZC) + "um")
         
         ###########################################################################
         ###Check Tip and Tilt
