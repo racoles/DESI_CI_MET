@@ -17,6 +17,7 @@ from focusCurve import focusCurve
 from fileAndArrayHandling import fileAndArrayHandling
 import os
 import numpy as np
+from tipTiltZCCD import tipTiltZCCD
 ################################################################################################
 
 class metManualMode(tk.Tk):
@@ -214,6 +215,13 @@ class metManualMode(tk.Tk):
         ###########################################################################
         ###Check Tip and Tilt
         ###########################################################################
+        ttz = tipTiltZCCD()
+        #Tip
+        ttz.tipCCD(xInterA, xInterB, xInterC, nominalZA, nominalZB, nominalZC, self.CCDSelection, self.consoleLog, self.logFile)
+        #Tilt
+        ttz.tiltCCD(xInterA, xInterB, xInterC, nominalZA, nominalZB, nominalZC, self.CCDSelection, self.consoleLog, self.logFile)
+        #Z
+        ttz.ZCCD(xInterA, xInterB, xInterC, self.CCDSelection, self.consoleLog, self.logFile)
         
         
     def _setTrueAndExit(self, windowVariable, fifLabel=" ", CCDLabel=" ", trianglePointLabel=" "):
