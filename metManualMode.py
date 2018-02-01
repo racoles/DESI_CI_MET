@@ -1,7 +1,7 @@
 '''
 @title metManualMode
 @author: Rebecca Coles
-Updated on Jan 22, 2018
+Updated on Feb 01, 2018
 Created on Jan 18, 2018
 
 metManualMode
