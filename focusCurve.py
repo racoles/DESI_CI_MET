@@ -91,7 +91,7 @@ class focusCurve(object):
         Constructor
         '''
 
-    def stdFocusCurve(self, fiflabel, imageArray4D, filelist):
+    def stdFocusCurve(self, fiflabel, imageArray4D, filelist, pointLabel = ""):
         '''
         Accepts a 4D numpy array and plots standard deviations of the images.
         note: assumes filenames are distances (int)
@@ -175,7 +175,7 @@ class focusCurve(object):
         ###########################################################################
         ###Save figure
         ###########################################################################        
-        fig2.savefig(str(fiflabel) + '_Focus_Curve_' +  time.strftime("%Y%m%d-%H%M%S") + '.png') 
+        fig2.savefig(str(fiflabel) + '_' + str(pointLabel) + '_Focus_Curve_' +  time.strftime("%Y%m%d-%H%M%S") + '.png') 
         #return best focus
         return xInter
     
