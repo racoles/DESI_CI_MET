@@ -411,7 +411,7 @@ class fifPage(tk.Frame):
         ###########################################################################
         ###Add Z data to fifCentroidedLocationDict
         ###########################################################################
-        metGuidedModeSelf[fiflabel][2] = xInter
+        metGuidedModeSelf.fifCentroidedLocationDict[fiflabel][2] = xInter
         
         ###########################################################################
         ###Change button text and color
