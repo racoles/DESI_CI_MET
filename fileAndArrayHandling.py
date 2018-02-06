@@ -23,7 +23,7 @@ from tkinter import filedialog
 import os, errno, re
 import tkinter as tk
 import time
-from json import dumps
+from focusCurve import focusCurve
 ################################################################################################
 
 class fileAndArrayHandling(object):
@@ -75,7 +75,7 @@ class fileAndArrayHandling(object):
                 raise
         return str(fiflabel + "_" + dirType + '_' + logTime)
     
-    def pageLogging(self, cLog, lFile, logText):
+    def pageLogging(self, cLog, lFile, logText, doubleSpaceWithTime = True):
         '''
         Send text to console and log file.
         
@@ -89,9 +89,14 @@ class fileAndArrayHandling(object):
         ###########################################################################
         ###Send text to console
         ###########################################################################
-        cLog.configure(state="normal")
-        cLog.insert(tk.END, currentTime + ': ' + str(logText) + '\n\n')
-        cLog.configure(state="disable")
+        if doubleSpaceWithTime == True:
+            cLog.configure(state="normal")
+            cLog.insert(tk.END, currentTime + ': ' + str(logText) + '\n\n')
+            cLog.configure(state="disable")
+        else:
+            cLog.configure(state="normal")
+            cLog.insert(tk.END, str(logText) + '\n')
+            cLog.configure(state="disable")
         
         ###########################################################################
         ###Send text to log file
@@ -99,10 +104,16 @@ class fileAndArrayHandling(object):
         lFile.write(currentTime + ': ' + str(logText) + '\n')
         lFile.flush()
         
-    def printDictToFile(self, dict, title ,consoleLog, logFile):
+    def printDictToFile(self, dict, title ,consoleLog, logFile, printNominalDicts = False):
         '''
         Output dictionary data to file.
         '''
+        ###########################################################################
+        ###If printNominalDicts == True print Nominal Dict
+        ###########################################################################     
         self.pageLogging(consoleLog, logFile, str(title))
-        for key,value in dict.items():
-            self.pageLogging(consoleLog, logFile, str(key) + ": " + str(value))
+        if printNominalDicts == True:
+            fC = focusCurve()
+            for key,value in dict.items():
+                self.pageLogging(consoleLog, logFile, str(key) + ": " + str(value) +
+                                  fC.asphericFocalCurve(dict[str(key)][0], dict[str(key)][1]))
