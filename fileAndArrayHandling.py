@@ -110,8 +110,8 @@ class fileAndArrayHandling(object):
         '''
         ###########################################################################
         ###If printNominalDicts == True print Nominal Dict
-        ###########################################################################     
-        self.pageLogging(consoleLog, logFile, str(title), doubleSpaceWithTime = False)
+        ########################################################################### 
+        self.pageLogging(consoleLog, logFile, '\n' + str(title), doubleSpaceWithTime = False)
         if printNominalDicts == True:
             fC = focusCurve()
             for key,value in dict.items():
