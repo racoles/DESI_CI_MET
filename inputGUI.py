@@ -22,6 +22,8 @@ from tkinter.ttk import Separator, Style
 import time
 from metGuidedMode import metGuidedMode
 from metManualMode import metManualMode
+from focusCurve import focusCurve
+from fileAndArrayHandling import fileAndArrayHandling
 ################################################################################################
 
 class inputGUI(object):
@@ -117,6 +119,13 @@ class inputGUI(object):
         self.logFile.write("Log started: " + startTime + '\n')
         self.consoleLog.insert(tk.END, "Log started: " + startTime + '\n')
         self.consoleLog.configure(state="disable")
+        
+        ###########################################################################
+        ###Print focusCurve Dictionary of Nominal Values to Log/Console
+        ###########################################################################
+        faah = fileAndArrayHandling()
+        fc = focusCurve()
+               
         
     def _log_entry_field(self, noteBox, consoleLog, logFile):
         '''

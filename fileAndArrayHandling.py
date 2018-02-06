@@ -23,7 +23,7 @@ from tkinter import filedialog
 import os, errno, re
 import tkinter as tk
 import time
-from focusCurve import focusCurve
+from json import dumps
 ################################################################################################
 
 class fileAndArrayHandling(object):
@@ -99,7 +99,10 @@ class fileAndArrayHandling(object):
         lFile.write(currentTime + ': ' + str(logText) + '\n')
         lFile.flush()
         
-    def printDictToFile(self, dict, consoleLog, logFile):
+    def printDictToFile(self, dict, title ,consoleLog, logFile):
         '''
         Output dictionary data to file.
         '''
+        self.pageLogging(consoleLog, logFile, str(title))
+        for key,value in dict.items():
+            self.pageLogging(consoleLog, logFile, str(key) + ": " + str(value))
