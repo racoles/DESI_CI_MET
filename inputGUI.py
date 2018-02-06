@@ -89,6 +89,8 @@ class inputGUI(object):
         tk.Button(master, text="CCD Focus Curve",bg = "white", command=lambda:self._beginManualMode(master, self.consoleLog, self.logFile, "manualCCDFocusCurve")).grid(row=6, column=1, columnspan=1, sticky='W')
         #Manual Mode CCD Tip/Tilt/Z
         tk.Button(master, text="CCD Tip/Tilt/Z",bg = "white", command=lambda:self._beginManualMode(master, self.consoleLog, self.logFile, "CCDTipTiltZ")).grid(row=7, column=0, columnspan=2, sticky='W')
+        #Print focusCurve Dictionary of Nominal Values to Log/Console
+        tk.Button(master, text="Print Nominal Values",bg = "white", command=lambda:self._printDictOfNominalCIValues()).grid(row=7, column=1, columnspan=2, sticky='W')
 
         #Grid Separator
         Separator(master, orient="horizontal").grid(row=8, column=0, columnspan=4, sticky='ew')
@@ -119,17 +121,7 @@ class inputGUI(object):
         self.logFile.write("Log started: " + startTime + '\n')
         self.consoleLog.insert(tk.END, "Log started: " + startTime + '\n')
         self.consoleLog.configure(state="disable")
-        
-        ###########################################################################
-        ###Print focusCurve Dictionary of Nominal Values to Log/Console
-        ###########################################################################
-        faah = fileAndArrayHandling()
-        fC = focusCurve()
-        faah.printDictToFile(fC.fifLocationsCS5, "Nominal FIF Locations in CS5 (X mm, Y mm, Z mm)" , self.consoleLog, self.logFile, printNominalDicts = True)
-        faah.printDictToFile(fC.CCDLocationsCS5, "Nominal CCD Center Locations in CS5 (X mm, Y mm, Z mm)" , self.consoleLog, self.logFile, printNominalDicts = True)       
-        faah.printDictToFile(fC.trianglePonitCCDLocationsCS5, "Nominal CCD tip/tilt/Z Measurement Triangle Locations in CS5 (X mm, Y mm, Z mm)" , self.consoleLog, self.logFile, printNominalDicts = True)        
                
-        
     def _log_entry_field(self, noteBox, consoleLog, logFile):
         '''
         Manually enter text into log.
@@ -173,3 +165,13 @@ class inputGUI(object):
         #Manual Mode CCD Tip/Tilt/Z
         if manualFunction == "CCDTipTiltZ":
             mMode.CCDTipTiltZ()
+            
+    def _printDictOfNominalCIValues(self):
+        '''
+        Print focusCurve Dictionary of Nominal Values to Log/Console
+        '''
+        faah = fileAndArrayHandling()
+        fC = focusCurve()
+        faah.printDictToFile(fC.fifLocationsCS5, "Nominal FIF Locations in CS5 (X mm, Y mm, Z mm)" , self.consoleLog, self.logFile, printNominalDicts = True)
+        faah.printDictToFile(fC.CCDLocationsCS5, "Nominal CCD Center Locations in CS5 (X mm, Y mm, Z mm)" , self.consoleLog, self.logFile, printNominalDicts = True)       
+        faah.printDictToFile(fC.trianglePonitCCDLocationsCS5, "Nominal CCD tip/tilt/Z Measurement Triangle Locations in CS5 (X mm, Y mm, Z mm)" , self.consoleLog, self.logFile, printNominalDicts = True)        
