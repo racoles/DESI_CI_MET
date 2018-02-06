@@ -31,60 +31,60 @@ import os, time, math
 from os.path import basename
 from operator import itemgetter
 ################################################################################################
-
+        
 class focusCurve(object):
     #Dict of (x,y) for FIF centers (mm)
-    fifLocationsCS5 = {"RefFIF" : (199.28,-345.15), 
-                        "NFIF" : (-108.31,-383.55), 
-                        "WFIF" : (-383.55,108.31),
-                        "SFIF" : (108.31,383.55), 
-                        "EFIF" : (383.55,-108.31),
-                        "CFIF" : (108.31,15.00),
-                        "A1" : (281.82,-281.82),
-                        "A2" : (-281.82,-281.82), 
-                        "A3" : (-281.82,281.82),
-                        "A4" : (281.82,281.82),
-                        "B1" : (293.64,136.93),
-                        "B2" : (-293.64,136.93), 
-                        "B3" : (-293.64,-136.93),
-                        "B4" : (-136.93,293.64),
-                        "C1" : (96.44,232.82),
-                        "C2" : (232.82,-96.44), 
-                        "C3" : (-96.44,-232.82),
-                        "C4" : (-232.82,96.44),
-                        "D1" : (0,185.00),
-                        "D2" : (185.00,0), 
-                        "D3" : (0,-185.00),
-                        "D4" : (-185.00,0),
-                        "Other" : (0,0)}
+    fifLocationsCS5 = {"RefFIF" : (199.28,-345.15,focusCurve.asphericFocalCurve(focusCurve.fifLocationsCS5["RefFIF"][0], focusCurve.fifLocationsCS5["RefFIF"][1])), 
+                        "NFIF" : (-108.31,-383.55,focusCurve.asphericFocalCurve(focusCurve.fifLocationsCS5["NFIF"][0], focusCurve.fifLocationsCS5["NFIF"][1])), 
+                        "WFIF" : (-383.55,108.31,focusCurve.asphericFocalCurve(focusCurve.fifLocationsCS5["WFIF"][0], focusCurve.fifLocationsCS5["WFIF"][1])),
+                        "SFIF" : (108.31,383.55,focusCurve.asphericFocalCurve(focusCurve.fifLocationsCS5["SFIF"][0], focusCurve.fifLocationsCS5["SFIF"][1])), 
+                        "EFIF" : (383.55,-108.31,focusCurve.asphericFocalCurve(focusCurve.fifLocationsCS5["EFIF"][0], focusCurve.fifLocationsCS5["EFIF"][1])),
+                        "CFIF" : (108.31,15.00,focusCurve.asphericFocalCurve(focusCurve.fifLocationsCS5["CFIF"][0], focusCurve.fifLocationsCS5["CFIF"][1])),
+                        "A1" : (281.82,-281.82,focusCurve.asphericFocalCurve(focusCurve.fifLocationsCS5["A1"][0], focusCurve.fifLocationsCS5["A1"][1])),
+                        "A2" : (-281.82,-281.82,focusCurve.asphericFocalCurve(focusCurve.fifLocationsCS5["A2"][0], focusCurve.fifLocationsCS5["A2"][1])), 
+                        "A3" : (-281.82,281.82,focusCurve.asphericFocalCurve(focusCurve.fifLocationsCS5["A3"][0], focusCurve.fifLocationsCS5["A3"][1])),
+                        "A4" : (281.82,281.82,focusCurve.asphericFocalCurve(focusCurve.fifLocationsCS5["A4"][0], focusCurve.fifLocationsCS5["A4"][1])),
+                        "B1" : (293.64,136.93,focusCurve.asphericFocalCurve(focusCurve.fifLocationsCS5["B1"][0], focusCurve.fifLocationsCS5["B1"][1])),
+                        "B2" : (-293.64,136.93,focusCurve.asphericFocalCurve(focusCurve.fifLocationsCS5["B2"][0], focusCurve.fifLocationsCS5["B2"][1])), 
+                        "B3" : (-293.64,-136.93,focusCurve.asphericFocalCurve(focusCurve.fifLocationsCS5["B3"][0], focusCurve.fifLocationsCS5["B3"][1])),
+                        "B4" : (-136.93,293.64,focusCurve.asphericFocalCurve(focusCurve.fifLocationsCS5["B4"][0], focusCurve.fifLocationsCS5["B4"][1])),
+                        "C1" : (96.44,232.82,focusCurve.asphericFocalCurve(focusCurve.fifLocationsCS5["C1"][0], focusCurve.fifLocationsCS5["C1"][1])),
+                        "C2" : (232.82,-96.44,focusCurve.asphericFocalCurve(focusCurve.fifLocationsCS5["C2"][0], focusCurve.fifLocationsCS5["C2"][1])), 
+                        "C3" : (-96.44,-232.82,focusCurve.asphericFocalCurve(focusCurve.fifLocationsCS5["C3"][0], focusCurve.fifLocationsCS5["C3"][1])),
+                        "C4" : (-232.82,96.44,focusCurve.asphericFocalCurve(focusCurve.fifLocationsCS5["C4"][0], focusCurve.fifLocationsCS5["C4"][1])),
+                        "D1" : (0,185.00,focusCurve.asphericFocalCurve(focusCurve.fifLocationsCS5["D1"][0], focusCurve.fifLocationsCS5["D1"][1])),
+                        "D2" : (185.00,0,focusCurve.asphericFocalCurve(focusCurve.fifLocationsCS5["D2"][0], focusCurve.fifLocationsCS5["D2"][1])), 
+                        "D3" : (0,-185.00,focusCurve.asphericFocalCurve(focusCurve.fifLocationsCS5["D3"][0], focusCurve.fifLocationsCS5["D3"][1])),
+                        "D4" : (-185.00,0,focusCurve.asphericFocalCurve(focusCurve.fifLocationsCS5["D4"][0], focusCurve.fifLocationsCS5["D4"][1])),
+                        "Other" : (0,0,focusCurve.asphericFocalCurve(focusCurve.fifLocationsCS5["Other"][0], focusCurve.fifLocationsCS5["Other"][1]))}
     
     #Dict of (x,y,z) for CCD centers(mm)
-    CCDLocationsCS5 = {"NCCD" : (0,-396.48),
-                       "WCCD" : (-396.48,0),
-                       "SCCD" : (0,396.48),
-                       "ECCD" : (396.48,0),
-                       "CCCD" : (0,0,0),
-                       "Other" : (0,0,0)}
+    CCDLocationsCS5 = {"NCCD" : (0,-396.48,focusCurve.CCDLocationsCS5["NCCD"][0], focusCurve.CCDLocationsCS5["NCCD"][1]),
+                       "WCCD" : (-396.48,0,focusCurve.CCDLocationsCS5["WCCD"][0], focusCurve.CCDLocationsCS5["WCCD"][1]),
+                       "SCCD" : (0,396.48,focusCurve.CCDLocationsCS5["SCCD"][0], focusCurve.CCDLocationsCS5["SCCD"][1]),
+                       "ECCD" : (396.48,0,focusCurve.CCDLocationsCS5["ECCD"][0], focusCurve.CCDLocationsCS5["ECCD"][1]),
+                       "CCCD" : (0,0,focusCurve.CCDLocationsCS5["CCCD"][0], focusCurve.CCDLocationsCS5["CCCD"][1]),
+                       "Other" : (0,0,focusCurve.CCDLocationsCS5["Other"][0], focusCurve.CCDLocationsCS5["Other"][1])}
     
     #Dict of (x,y) for CCD triangles around center point (mm)
-    trianglePonitCCDLocationsCS5 = { 'NCCDA': (0,-388.48),
-                                     'NCCDB': (-8.4327,-399.1466),
-                                     'NCCDC': (8.4327,-399.1466),
-                                     'WCCDA': (-388.48,0),
-                                     'WCCDB': (-399.1466,8.4327),
-                                     'WCCDC': (-399.1466,-8.4327),
-                                     'SCCDA': (0,388.48),
-                                     'SCCDB': (8.4327,399.1466),
-                                     'SCCDC': (-8.4327,399.1466),
-                                     'ECCDA': (388.48,0),
-                                     'ECCDB': (399.1466,-8.4327),
-                                     'ECCDC': (399.1466,8.4327),
-                                     'CCCDA': (0,-8),
-                                     'CCCDB': (8.4327,2.6666),
-                                     'CCCDC': (-8.4327,2.6666),
-                                     'OtherA': (0,0),
-                                     'OtherB': (0,0),
-                                     'OtherC': (0,0)}
+    trianglePonitCCDLocationsCS5 = { 'NCCDA': (0,-388.48,focusCurve.trianglePonitCCDLocationsCS5['NCCDA'][0], focusCurve.trianglePonitCCDLocationsCS5['NCCDA'][1]),
+                                     'NCCDB': (-8.4327,-399.1466,focusCurve.trianglePonitCCDLocationsCS5['NCCDB'][0], focusCurve.trianglePonitCCDLocationsCS5['NCCDB'][1]),
+                                     'NCCDC': (8.4327,-399.1466,focusCurve.trianglePonitCCDLocationsCS5['NCCDC'][0], focusCurve.trianglePonitCCDLocationsCS5['NCCDC'][1]),
+                                     'WCCDA': (-388.48,0,focusCurve.trianglePonitCCDLocationsCS5['WCCDA'][0], focusCurve.trianglePonitCCDLocationsCS5['WCCDA'][1]),
+                                     'WCCDB': (-399.1466,8.4327,focusCurve.trianglePonitCCDLocationsCS5['WCCDB'][0], focusCurve.trianglePonitCCDLocationsCS5['WCCDB'][1]),
+                                     'WCCDC': (-399.1466,-8.4327,focusCurve.trianglePonitCCDLocationsCS5['WCCDC'][0], focusCurve.trianglePonitCCDLocationsCS5['WCCDC'][1]),
+                                     'SCCDA': (0,388.48,focusCurve.trianglePonitCCDLocationsCS5['SCCDA'][0], focusCurve.trianglePonitCCDLocationsCS5['SCCDA'][1]),
+                                     'SCCDB': (8.4327,399.1466,focusCurve.trianglePonitCCDLocationsCS5['SCCDB'][0], focusCurve.trianglePonitCCDLocationsCS5['SCCDB'][1]),
+                                     'SCCDC': (-8.4327,399.1466,focusCurve.trianglePonitCCDLocationsCS5['SCCDC'][0], focusCurve.trianglePonitCCDLocationsCS5['SCCDC'][1]),
+                                     'ECCDA': (388.48,0,focusCurve.trianglePonitCCDLocationsCS5['ECCDA'][0], focusCurve.trianglePonitCCDLocationsCS5['ECCDA'][1]),
+                                     'ECCDB': (399.1466,-8.4327,focusCurve.trianglePonitCCDLocationsCS5['ECCDB'][0], focusCurve.trianglePonitCCDLocationsCS5['ECCDB'][1]),
+                                     'ECCDC': (399.1466,8.4327,focusCurve.trianglePonitCCDLocationsCS5['ECCDC'][0], focusCurve.trianglePonitCCDLocationsCS5['ECCDC'][1]),
+                                     'CCCDA': (0,-8,focusCurve.trianglePonitCCDLocationsCS5['CCCDA'][0], focusCurve.trianglePonitCCDLocationsCS5['CCCDA'][1]),
+                                     'CCCDB': (8.4327,2.6666,focusCurve.trianglePonitCCDLocationsCS5['CCCDB'][0], focusCurve.trianglePonitCCDLocationsCS5['CCCDB'][1]),
+                                     'CCCDC': (-8.4327,2.6666,focusCurve.trianglePonitCCDLocationsCS5['CCCDC'][0], focusCurve.trianglePonitCCDLocationsCS5['CCCDC'][1]),
+                                     'OtherA': (0,0,focusCurve.trianglePonitCCDLocationsCS5['OtherA'][0], focusCurve.trianglePonitCCDLocationsCS5['OtherA'][1]),
+                                     'OtherB': (0,0,focusCurve.trianglePonitCCDLocationsCS5['OtherB'][0], focusCurve.trianglePonitCCDLocationsCS5['OtherB'][1]),
+                                     'OtherC': (0,0,focusCurve.trianglePonitCCDLocationsCS5['OtherC'][0], focusCurve.trianglePonitCCDLocationsCS5['OtherC'][1])}
     
     def __init__(self):
         '''

@@ -23,6 +23,7 @@ from tkinter import filedialog
 import os, errno, re
 import tkinter as tk
 import time
+from focusCurve import focusCurve
 ################################################################################################
 
 class fileAndArrayHandling(object):
