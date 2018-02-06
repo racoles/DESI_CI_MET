@@ -101,8 +101,12 @@ class fileAndArrayHandling(object):
         ###########################################################################
         ###Send text to log file
         ###########################################################################
-        lFile.write(currentTime + ': ' + str(logText) + '\n')
-        lFile.flush()
+        if doubleSpaceWithTime == True:
+            lFile.write(str(logText) + '\n')
+            lFile.flush()            
+        else:
+            lFile.write(currentTime + ': ' + str(logText) + '\n')
+            lFile.flush()
         
     def printDictToFile(self, dict, title ,consoleLog, logFile, printNominalDicts = False):
         '''
