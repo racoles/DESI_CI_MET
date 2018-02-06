@@ -124,7 +124,10 @@ class inputGUI(object):
         ###Print focusCurve Dictionary of Nominal Values to Log/Console
         ###########################################################################
         faah = fileAndArrayHandling()
-        fc = focusCurve()
+        fC = focusCurve()
+        faah.printDictToFile(fC.fifLocationsCS5, "Nominal FIF Locations in CS5 (mm)" , self.consoleLog, self.logFile)
+        faah.printDictToFile(fC.CCDLocationsCS5, "Nominal CCD Center Locations in CS5 (mm)" , self.consoleLog, self.logFile)       
+        faah.printDictToFile(fC.trianglePonitCCDLocationsCS5, "Nominal CCD tip/tilt/Z Measurement Triangle Locations in CS5 (mm)" , self.consoleLog, self.logFile)        
                
         
     def _log_entry_field(self, noteBox, consoleLog, logFile):
