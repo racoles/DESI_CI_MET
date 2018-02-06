@@ -111,9 +111,9 @@ class fileAndArrayHandling(object):
         ###########################################################################
         ###If printNominalDicts == True print Nominal Dict
         ###########################################################################     
-        self.pageLogging(consoleLog, logFile, str(title))
+        self.pageLogging(consoleLog, logFile, str(title), doubleSpaceWithTime = False)
         if printNominalDicts == True:
             fC = focusCurve()
             for key,value in dict.items():
-                self.pageLogging(consoleLog, logFile, str(key) + ": " + str(value) +
-                                  fC.asphericFocalCurve(dict[str(key)][0], dict[str(key)][1]))
+                self.pageLogging(consoleLog, logFile, str(key) + ": " + str(value).strip('()') + ', ' +
+                                  str(fC.asphericFocalCurve(dict[str(key)][0], dict[str(key)][1])), doubleSpaceWithTime = False)
