@@ -1,7 +1,7 @@
 '''
 @title fileAndArrayHandling
 @author: Rebecca Coles
-Updated on Dec 12, 2017
+Updated on Feb 6, 2017
 Created on Dec 12, 2017
 
 fileAndArrayHandling

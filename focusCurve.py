@@ -1,7 +1,7 @@
 '''
 @title focusCurve
 @author: Rebecca Coles
-Updated on Feb 01, 2017
+Updated on Feb 6, 2017
 Created on Dec 12, 2017
 
 focusCurve
