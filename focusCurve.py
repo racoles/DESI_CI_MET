@@ -33,6 +33,9 @@ from operator import itemgetter
 ################################################################################################
         
 class focusCurve(object):
+    
+    #tip/tilt/Z triangle circumscribed circle radius (mm)
+    tccr = 8
 
     #Dict of (x,y) for FIF centers (mm)
     fifLocationsCS5 = {"RefFIF" : (199.28,-345.15), 
@@ -60,29 +63,29 @@ class focusCurve(object):
                         "Other" : (0,0)}
     
     #Dict of (x,y,z) for CCD centers(mm)
-    CCDLocationsCS5 = {"NCCD" : (0,-396.48),
-                       "WCCD" : (-396.48,0),
-                       "SCCD" : (0,396.48),
-                       "ECCD" : (396.48,0),
+    CCDLocationsCS5 = {"NCCD" : (0,-396.480),
+                       "WCCD" : (-396.480,0),
+                       "SCCD" : (0,396.480),
+                       "ECCD" : (396.480,0),
                        "CCCD" : (0,0),
                        "Other" : (0,0)}
     
     #Dict of (x,y) for CCD triangles around center point (mm)
-    trianglePonitCCDLocationsCS5 = { 'NCCDA': (0,-388.48),
-                                     'NCCDB': (-8.4327,-399.1466),
-                                     'NCCDC': (8.4327,-399.1466),
-                                     'WCCDA': (-388.48,0),
-                                     'WCCDB': (-399.1466,8.4327),
-                                     'WCCDC': (-399.1466,-8.4327),
-                                     'SCCDA': (0,388.48),
-                                     'SCCDB': (8.4327,399.1466),
-                                     'SCCDC': (-8.4327,399.1466),
-                                     'ECCDA': (388.48,0),
-                                     'ECCDB': (399.1466,-8.4327),
-                                     'ECCDC': (399.1466,8.4327),
-                                     'CCCDA': (0,-8),
-                                     'CCCDB': (8.4327,2.6666),
-                                     'CCCDC': (-8.4327,2.6666),
+    trianglePonitCCDLocationsCS5 = { 'NCCDA': (0,CCDLocationsCS5["NCCD"][1]+tccr),
+                                     'NCCDB': ((-tccr*np.sqrt(3))/2, CCDLocationsCS5["NCCD"][1]+(tccr*np.sin(30))),
+                                     'NCCDC': ((tccr*np.sqrt(3))/2, CCDLocationsCS5["NCCD"][1]+(tccr*np.sin(30))),
+                                     'WCCDA': (CCDLocationsCS5["WCCD"][0]+tccr,0),
+                                     'WCCDB': (CCDLocationsCS5["WCCD"][0]+(tccr*np.sin(30)), (tccr*np.sqrt(3))/2),
+                                     'WCCDC': (CCDLocationsCS5["WCCD"][0]+(tccr*np.sin(30)), (-tccr*np.sqrt(3))/2),
+                                     'SCCDA': (0, CCDLocationsCS5["SCCD"][1]-tccr),
+                                     'SCCDB': ((tccr*np.sqrt(3))/2, CCDLocationsCS5["SCCD"][1]-(tccr*np.sin(30))),
+                                     'SCCDC': ((-tccr*np.sqrt(3))/2, CCDLocationsCS5["SCCD"][1]-(tccr*np.sin(30))),
+                                     'ECCDA': (CCDLocationsCS5["ECCD"][0]-tccr, 0),
+                                     'ECCDB': (CCDLocationsCS5["ECCD"][0]-(tccr*np.sin(30)), (-tccr*np.sqrt(3))/2),
+                                     'ECCDC': (CCDLocationsCS5["ECCD"][0]-(tccr*np.sin(30)), (tccr*np.sqrt(3))/2),
+                                     'CCCDA': (0,-tccr),
+                                     'CCCDB': ((tccr*np.sqrt(3))/2, -(tccr*np.sin(30))),
+                                     'CCCDC': ((-tccr*np.sqrt(3))/2, -(tccr*np.sin(30))),
                                      'OtherA': (0,0),
                                      'OtherB': (0,0),
                                      'OtherC': (0,0)}
