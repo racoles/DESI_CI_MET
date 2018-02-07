@@ -1,7 +1,7 @@
 '''
 @title fileAndArrayHandling
 @author: Rebecca Coles
-Updated on Feb 6, 2017
+Updated on Feb 7, 2017
 Created on Dec 12, 2017
 
 fileAndArrayHandling
@@ -120,7 +120,7 @@ class fileAndArrayHandling(object):
             fC = focusCurve()
             for key,value in dict.items():
                 self.pageLogging(consoleLog, logFile, str(key) + ": " + str(self.to_precision(value[0], 6)) + ' ' + str(self.to_precision(value[1], 6)) + ', ' +
-                                  str(fC.asphericFocalCurve(self.to_precision(dict[str(key)][0], 6), self.to_precision(dict[str(key)][1], 6))), doubleSpaceWithTime = False)
+                                  str(self.to_precision(fC.asphericFocalCurve(dict[str(key)][0], dict[str(key)][1]), 6)), doubleSpaceWithTime = False)
                 
     def to_precision(self, x, p):
         '''
