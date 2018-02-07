@@ -40,11 +40,14 @@ findFIFInImage
 # Import #######################################################################################
 import numpy as np
 np.set_printoptions(threshold=np.nan)
-#import argparse
-import cv2
+import cv2, math
+from fileAndArrayHandling import fileAndArrayHandling
 ################################################################################################
 
 class centroidFIF(object):
+    
+    #Camera pixel size in um
+    pixelSize = 9
     
     def __init__(self):
         '''
@@ -67,7 +70,7 @@ class centroidFIF(object):
                        A list/array of [X,Y] coordinates defines a rectangle.
                        Default is 0; prior to June 2004, the default was extendbox = 3
         ''' 
-        
+
         sz_image = np.shape(image)
         xsize = sz_image[1]
         ysize = sz_image[0]
@@ -246,3 +249,26 @@ class centroidFIF(object):
         #print(image[maxLoc[0],maxLoc[1]])
         
         return fifSubArray, subArrayBoxSize, maxLoc
+    
+    def distanceFromPinholeImagetoOrigin(self, rows, columns, consoleLog, logFile):
+        '''
+        Find FIF in image using intensity.
+        '''
+        ###########################################################################
+        ###Print pixel size
+        ###########################################################################
+        faah = fileAndArrayHandling()
+        faah.pageLogging(consoleLog, logFile, 
+                    "Camera pixel size: " + str(self.pixelSize))
+
+        ###########################################################################
+        ###Find distance in um to Origin
+        ###########################################################################        
+        hypotenuse = np.sqrt(math.pow((rows*self.pixelSize),2)+math.pow((columns*self.pixelSize),2))
+        faah.pageLogging(consoleLog, logFile, 
+                    "Distance from pinhole center to sensor origin: " + str(hypotenuse) + 'um')       
+        
+        ###########################################################################
+        ###Find distance in um to Origin
+        ###########################################################################  
+        

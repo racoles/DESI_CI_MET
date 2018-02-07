@@ -483,6 +483,8 @@ class fifPage(tk.Frame):
         ###Change button text and color
         ###########################################################################
         sensorButton.config(text = "Centroid Complete", bg = 'green')
+        
+        return xDistToSensorOrigin, yDistToSensorOrigin
 
 class conclusion(tk.Frame):
     

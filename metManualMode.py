@@ -18,6 +18,8 @@ from fileAndArrayHandling import fileAndArrayHandling
 import os
 import numpy as np
 from tipTiltZCCD import tipTiltZCCD
+from CCDOpsPlanetMode import CCDOpsPlanetMode
+from centroidFIF import centroidFIF
 ################################################################################################
 
 class metManualMode(tk.Tk):
@@ -122,6 +124,68 @@ class metManualMode(tk.Tk):
                                       "Nominal Z for " + str(self.CCDSelection + ' ' + self.trianglePointSelection) + " is: " + str(nominalZ) + "um in CS5 coordinates.")
         faah.pageLogging(self.consoleLog, self.logFile, 
                                       "CCD Manual Mode Absolute value of (Nominal Z - Measured Best Focus) = " +  str(np.absolute(nominalZ-xInter)) + 'um')
+        
+    def manualCentroidFIF(self, fiflabel):
+        ###########################################################################
+        ###Create Dir
+        ###########################################################################
+        faah = fileAndArrayHandling()
+        dirName = faah.createDir(fiflabel, self, 'Centroid')
+        
+        ###########################################################################
+        ###Message user to fill dir (mention label names)
+        ###########################################################################
+        faah.pageLogging(self.consoleLog, self.logFile, 
+                                      "Suggested " +  str(fiflabel) + " centroid directory: \n" + str(os.getcwd()) + '\\' + dirName)
+        
+        ###########################################################################
+        ###Get images
+        ###########################################################################
+        imageArray4D, filelist = faah.openAllFITSImagesInDirectory()
+        
+        ###########################################################################
+        ###Find fif in image and create subarray
+        ###########################################################################
+        faah.pageLogging(self.consoleLog, self.logFile, 
+                                      "Centroiding " + str(fiflabel) + " using FITs file:\n" + str(filelist[0]).replace('/', '\\'))
+        fifSubArray, subArrayBoxSize, maxLoc  = centroidFIF.findFIFInImage(self, imageArray4D[0])
+        faah.pageLogging(self.consoleLog, self.logFile, 
+                                      str(fiflabel) + " FIF found at pixel location: (" + str(maxLoc[0]) + "," + str(maxLoc[1]) + "). Will now centroid using that location.")
+        
+        ###########################################################################
+        ###Centroid
+        ###########################################################################
+        cF = centroidFIF()
+        xcen, ycen = cF.findCentroid(fifSubArray, int(subArrayBoxSize/2), int(subArrayBoxSize/2), extendbox = 3)
+        
+        ###########################################################################
+        ###Add offsets to account for subarray
+        ###########################################################################
+        xcen = xcen + maxLoc[0]-subArrayBoxSize/2
+        ycen = ycen + maxLoc[1]-subArrayBoxSize/2
+        
+        ###########################################################################
+        ###Add X and Y data to fifCentroidedLocationDict
+        ###########################################################################
+        #Account for planet mode
+        pM = CCDOpsPlanetMode()
+        xOffset, yOffset = pM.readFitsHeader(imageArray4D, filelist, self.consoleLog, self.logFile)
+        
+        #Distance from center of FIF to origin of sensor (x=0, y=0)
+        xDistToSensorOrigin = xcen + xOffset
+        yDistToSensorOrigin = ycen + yOffset
+        
+        #Add X and Y to fifCentroidedLocationDict
+        self.fifCentroidedLocationDict[fiflabel][0] = xDistToSensorOrigin
+        self.fifCentroidedLocationDict[fiflabel][1] = yDistToSensorOrigin
+        
+        ###########################################################################
+        ###Print Location of FIF Centroid
+        ###########################################################################
+        faah.pageLogging(self.consoleLog, self.logFile, 
+                str(fiflabel) + " center found at location: (" + str(xDistToSensorOrigin) + "," + str(yDistToSensorOrigin) + ")")
+        
+        return xDistToSensorOrigin, yDistToSensorOrigin
         
     def CCDTipTiltZ(self):
         '''
