@@ -250,7 +250,7 @@ class centroidFIF(object):
         
         return fifSubArray, subArrayBoxSize, maxLoc
     
-    def distanceFromPinholeImagetoOrigin(self, rows, columns, consoleLog, logFile):
+    def distanceFromPinholeImagetoOrigin(self, rows, columns, isFIF = False, fifLabel = '', isCCD = False, CCDLabel = '', triangleLabel = '', consoleLog, logFile):
         '''
         Find FIF in image using intensity.
         '''
@@ -269,6 +269,9 @@ class centroidFIF(object):
                     "Distance from pinhole center to sensor origin: " + str(hypotenuse) + 'um')       
         
         ###########################################################################
-        ###Find distance in um to Origin
+        ###Find distance from image origin to CS5 origin
         ###########################################################################  
         
+        ###########################################################################
+        ###Find distance from pinhole center to CS5 origin
+        ########################################################################### 
