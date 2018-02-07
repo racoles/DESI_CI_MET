@@ -269,7 +269,7 @@ class centroidFIF(object):
                     "Distance from pinhole center to sensor origin: " + str(hypotenuse) + 'um')       
         
         ###########################################################################
-        ###Find distance from image origin to CS5 origin
+        ###Find distance from image origin to CS5 origin using dictionaries 
         ###########################################################################  
         
         ###########################################################################
