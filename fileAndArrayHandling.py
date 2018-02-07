@@ -20,7 +20,7 @@ from numpy import array
 from glob import glob
 from astropy.io import fits
 from tkinter import filedialog
-import os, errno, re
+import os, errno, re, math
 import tkinter as tk
 import time
 from focusCurve import focusCurve
@@ -113,11 +113,71 @@ class fileAndArrayHandling(object):
         Output dictionary data to file.
         '''
         ###########################################################################
-        ###If printNominalDicts == True print Nominal Dict
+        ###If printNominalDicts == True print Nominal Dict .strip('()')
         ########################################################################### 
         self.pageLogging(consoleLog, logFile, '\n' + str(title), doubleSpaceWithTime = False)
         if printNominalDicts == True:
             fC = focusCurve()
             for key,value in dict.items():
-                self.pageLogging(consoleLog, logFile, str(key) + ": " + str(value).strip('()') + ', ' +
-                                  str(fC.asphericFocalCurve(dict[str(key)][0], dict[str(key)][1])), doubleSpaceWithTime = False)
+                self.pageLogging(consoleLog, logFile, str(key) + ": " + str(self.to_precision(value[0], 6)) + ' ' + str(self.to_precision(value[1], 6)) + ', ' +
+                                  str(fC.asphericFocalCurve(self.to_precision(dict[str(key)][0], 6), self.to_precision(dict[str(key)][1], 6))), doubleSpaceWithTime = False)
+                
+    def to_precision(self, x, p):
+        '''
+        returns a string representation of x formatted with a precision of p
+    
+        Based on the webkit javascript implementation taken from here:
+        https://code.google.com/p/webkit-mirror/source/browse/JavaScriptCore/kjs/number_object.cpp
+        
+        Converted by Randle Taylor
+        http://randlet.com/blog/python-significant-figures-format/
+        '''
+        x = float(x)
+        if x == 0.:
+            return "0." + "0"*(p-1)
+        out = []
+    
+        if x < 0:
+            out.append("-")
+            x = -x
+    
+        e = int(math.log10(x))
+        tens = math.pow(10, e - p + 1)
+        n = math.floor(x/tens)
+    
+        if n < math.pow(10, p - 1):
+            e = e -1
+            tens = math.pow(10, e - p+1)
+            n = math.floor(x / tens)
+    
+        if abs((n + 1.) * tens - x) <= abs(n * tens -x):
+            n = n + 1
+    
+        if n >= math.pow(10,p):
+            n = n / 10.
+            e = e + 1
+    
+        m = "%.*g" % (p, n)
+    
+        if e < -2 or e >= p:
+            out.append(m[0])
+            if p > 1:
+                out.append(".")
+                out.extend(m[1:p])
+            out.append('e')
+            if e > 0:
+                out.append("+")
+            out.append(str(e))
+        elif e == (p -1):
+            out.append(m)
+        elif e >= 0:
+            out.append(m[:e+1])
+            if e+1 < len(m):
+                out.append(".")
+                out.extend(m[e+1:])
+        else:
+            out.append("0.")
+            out.extend(["0"]*-(e+1))
+            out.append(m)
+    
+        return "".join(out)
