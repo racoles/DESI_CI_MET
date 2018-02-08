@@ -250,7 +250,7 @@ class centroidFIF(object):
         
         return fifSubArray, subArrayBoxSize, maxLoc
     
-    def distanceFromPinholeImagetoOrigin(self, rows, columns, isFIF = False, fifLabel = '', isCCD = False, CCDLabel = '', triangleLabel = '', consoleLog, logFile):
+    def distanceFromPinholeImagetoOrigin(self, rows, columns, consoleLog, logFile, isFIF = False, fifLabel = '', isCCD = False, CCDLabel = '', triangleLabel = ''):
         '''
         Find FIF in image using intensity.
         '''
