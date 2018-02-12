@@ -262,20 +262,8 @@ class centroidFIF(object):
                     "Camera pixel size: " + str(self.pixelSize))
 
         ###########################################################################
-        ###Find distance in um to Origin
+        ###Find distance in um to CCD Origin
         ###########################################################################        
         hypotenuse = np.sqrt(math.pow((rows*self.pixelSize),2)+math.pow((columns*self.pixelSize),2))
         faah.pageLogging(consoleLog, logFile, 
                     "Distance from pinhole center to sensor origin: " + str(hypotenuse) + 'um')       
-        
-        ###########################################################################
-        ###Find distance from image origin to CS5 origin using dictionaries 
-        ###########################################################################  
-        
-        ###########################################################################
-        ###Find distance from pinhole center to CS5 origin
-        ########################################################################### 
-        
-        ###########################################################################
-        ###Distance of CCD center to Nominal CCD center
-        ###########################################################################
