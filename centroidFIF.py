@@ -266,4 +266,4 @@ class centroidFIF(object):
         ###########################################################################        
         hypotenuse = np.sqrt(math.pow((rows*self.pixelSize),2)+math.pow((columns*self.pixelSize),2))
         faah.pageLogging(consoleLog, logFile, 
-                    "Distance from pinhole center to sensor origin: " + str(hypotenuse) + 'um')       
+                    "Distance from pinhole center to sensor origin: " + str(hypotenuse) + 'um')
