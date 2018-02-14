@@ -65,47 +65,47 @@ class inputGUI(object):
         ###Buttons
         ########################################################################### 
         #Guided Mode Label
-        tk.Label(master, text="Guided Mode", font="bold").grid(row=0, column=0, columnspan=2, sticky='W')
+        tk.Label(master, text="Guided Mode", font="bold").grid(row=2, column=0, columnspan=2, sticky='W')
         #Guided Mode Description
-        tk.Label(master, text="Be guided through measuring the CI FIFs.").grid(row=1, column=0, columnspan=2, sticky='W')
+        tk.Label(master, text="Be guided through measuring the CI FIFs.").grid(row=3, column=0, columnspan=2, sticky='W')
         #Guided Mode Button        
-        tk.Button(master, text="Begin FIF Guided Mode",bg = "white", command=lambda:self._beginGuidedMode(master, self.consoleLog, self.logFile)).grid(row=2, column=0, columnspan=2, sticky='W')
+        tk.Button(master, text="Begin FIF Guided Mode",bg = "white", command=lambda:self._beginGuidedMode(master, self.consoleLog, self.logFile)).grid(row=4, column=0, columnspan=2, sticky='W')
         
         #FIF Map
-        self.fifMAP = tk.PhotoImage(file="FPA.png", width=350, height=350)
-        tk.Label(image=self.fifMAP).grid(row=0, column=4, rowspan=11, sticky='W')  
+        self.fifMAP = tk.PhotoImage(file="FPA.png", width=400, height=400)
+        tk.Label(image=self.fifMAP).grid(row=0, column=4, rowspan=13, sticky='W')  
         
         #Grid Separator
-        Separator(master, orient="horizontal").grid(row=3, column=0, columnspan=4, sticky='ew')
+        Separator(master, orient="horizontal").grid(row=5, column=0, columnspan=4, sticky='ew')
         Style(master).configure("TSeparator", background="black")
         
         #Manual Mode Labels
-        tk.Label(master, text="Manual Mode", font="bold").grid(row=4, column=0, columnspan=2, sticky='W')
+        tk.Label(master, text="Manual Mode", font="bold").grid(row=6, column=0, columnspan=2, sticky='W')
         #Manual Mode Description
-        tk.Label(master, text="Perform manual measurements").grid(row=5, column=0, columnspan=2, sticky='W')
+        tk.Label(master, text="Perform manual measurements").grid(row=7, column=0, columnspan=2, sticky='W')
         #Manual Mode FIF Focus Curve
-        tk.Button(master, text="FIF Focus Curve",bg = "white", command=lambda:self._beginManualMode(master, self.consoleLog, self.logFile, "manualFIFFocusCurve")).grid(row=6, column=0, columnspan=1, sticky='W')
+        tk.Button(master, text="FIF Focus Curve",bg = "white", command=lambda:self._beginManualMode(master, self.consoleLog, self.logFile, "manualFIFFocusCurve")).grid(row=8, column=0, columnspan=1, sticky='W')
         #Manual Mode CCD Focus Curve
-        tk.Button(master, text="CCD Focus Curve",bg = "white", command=lambda:self._beginManualMode(master, self.consoleLog, self.logFile, "manualCCDFocusCurve")).grid(row=6, column=1, columnspan=1, sticky='W')
+        tk.Button(master, text="CCD Focus Curve",bg = "white", command=lambda:self._beginManualMode(master, self.consoleLog, self.logFile, "manualCCDFocusCurve")).grid(row=8, column=1, columnspan=1, sticky='W')
         #Manual Mode CCD Tip/Tilt/Z
-        tk.Button(master, text="CCD Tip/Tilt/Z",bg = "white", command=lambda:self._beginManualMode(master, self.consoleLog, self.logFile, "CCDTipTiltZ")).grid(row=7, column=0, columnspan=2, sticky='W')
+        tk.Button(master, text="CCD Tip/Tilt/Z",bg = "white", command=lambda:self._beginManualMode(master, self.consoleLog, self.logFile, "CCDTipTiltZ")).grid(row=9, column=0, columnspan=2, sticky='W')
         #Print focusCurve Dictionary of Nominal Values to Log/Console
-        tk.Button(master, text="Print Nominal Values",bg = "white", command=lambda:self._printDictOfNominalCIValues()).grid(row=7, column=1, columnspan=2, sticky='W')
+        tk.Button(master, text="Print Nominal Values",bg = "white", command=lambda:self._printDictOfNominalCIValues()).grid(row=9, column=1, columnspan=2, sticky='W')
 
         #Grid Separator
-        Separator(master, orient="horizontal").grid(row=8, column=0, columnspan=4, sticky='ew')
+        Separator(master, orient="horizontal").grid(row=10, column=0, columnspan=4, sticky='ew')
         #Style(master).configure("TSeparator", background="black")   
  
         #Note Text Box Label
-        tk.Label(master, text="Add Note to Log", font="bold").grid(row=9, column=0, columnspan=2, sticky='W')
+        tk.Label(master, text="Add Note to Log", font="bold").grid(row=11, column=0, columnspan=2, sticky='W')
         #Note Text Box
         noteBox = tk.Entry(master, width=40)
-        noteBox.grid(row=10, column=0, columnspan=5, sticky='W')
+        noteBox.grid(row=12, column=0, columnspan=5, sticky='W')
         #Note Text Submit Button
-        tk.Button(master, text='Submit', bg = "white", command=lambda:self._log_entry_field(noteBox, self.consoleLog, self.logFile)).grid(row=10, column=2, columnspan=2)
+        tk.Button(master, text='Submit', bg = "white", command=lambda:self._log_entry_field(noteBox, self.consoleLog, self.logFile)).grid(row=12, column=2, columnspan=2)
         
         #Grid Separator
-        Separator(master, orient="horizontal").grid(row=11, column=0, columnspan=4, sticky='ew')
+        Separator(master, orient="horizontal").grid(row=13, column=0, columnspan=4, sticky='ew')
         #Style(master).configure("TSeparator", background="black")   
 
         ###########################################################################
@@ -114,7 +114,7 @@ class inputGUI(object):
         # create a Text widget with a Scrollbar attached
         self.consoleLog = ScrolledText.ScrolledText(self.master, undo=True)
         self.consoleLog['font'] = ('consolas', '10')
-        self.consoleLog.grid(row=12, column=0, columnspan=5, sticky='ew') 
+        self.consoleLog.grid(row=14, column=0, columnspan=5, sticky='ew') 
         # start log
         startTime = time.strftime("%Y-%m-%dT%H%M%SZ")
         self.logFile = open("DESI_CI_MET_" + startTime + "_log.txt", "w")

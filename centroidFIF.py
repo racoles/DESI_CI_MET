@@ -1,7 +1,7 @@
 '''
 @title centroidFIF
 @author: Rebecca Coles
-Updated on Jan 14, 2018
+Updated on Feb 14, 2018
 Created on Dec 12, 2017
 
 centroidPinHoleImage
@@ -253,17 +253,9 @@ class centroidFIF(object):
         Find FIF in image using intensity.
         '''
         ###########################################################################
-        ###Read pixel size from header
-        ###########################################################################
-        #Camera pixel size in um
-
-        faah = fileAndArrayHandling()
-        faah.pageLogging(consoleLog, logFile, 
-                    "Camera pixel size: " + str(self.pixelSize)) #!!!!!!!!!!!!!!!!!READ FROM HEADER
-
-        ###########################################################################
         ###Find distance in um to CCD Origin
-        ###########################################################################        
+        ###########################################################################       
+        faah = fileAndArrayHandling() 
         hypotenuse = np.sqrt(math.pow((rows*self.pixelSize),2)+math.pow((columns*self.pixelSize),2))
         faah.pageLogging(consoleLog, logFile, 
                     "Distance from pinhole center to sensor origin: " + str(hypotenuse) + 'um')
