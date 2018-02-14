@@ -30,6 +30,9 @@ class CCDOpsPlanetMode(object):
         Note from SBFITSEXT Version 1.0:
         XORGSUBF: Sub frame X position of upper-left pixel relative to whole frame in binned pixel units
         YORGSUBF: Sub frame Y position of upper-left pixel relative to whole frame in binned pixel units
+        
+        XPIXSZ Floating Point - Pixel width in microns (after binning)
+        YPIXSZ Floating Point - Pixel height in microns (after binning)
         '''
         ###########################################################################
         ###planetModeBool == True Indicates Subframe
@@ -57,10 +60,17 @@ class CCDOpsPlanetMode(object):
         #Convert from units of "bins" to pixels
         xOffset = int(xOffset)/int(xBin)
         yOffset = int(yOffset)/int(yBin)
+        
+        #Find pixel size (um)
+        pixelSize = hdul[0].header['XPIXSZ']
             
         #log offsets
         faah.pageLogging(consoleLog, logFile, 
                     "CCDOps Planet Mode Offsets; (x,y) position of upper-left pixel relative to whole frame: (" 
                     + str(xOffset) + "," + str(yOffset) + ")")
+        
+        faah.pageLogging(consoleLog, logFile, 
+                    "Camera Pixel Size: " 
+                    + str(pixelSize))
             
-        return xOffset, yOffset
+        return xOffset, yOffset, pixelSize

@@ -35,6 +35,7 @@ findCentroid
     xcen and ycen are set to -1 and a message is displayed.
 findFIFInImage
     Find FIF in image using intensity.
+
 '''
 
 # Import #######################################################################################
@@ -45,9 +46,6 @@ from fileAndArrayHandling import fileAndArrayHandling
 ################################################################################################
 
 class centroidFIF(object):
-    
-    #Camera pixel size in um
-    pixelSize = 9 #!!!!!!!!!!!!!!!!!READ FROM HEADER
     
     def __init__(self):
         '''
@@ -250,13 +248,15 @@ class centroidFIF(object):
         
         return fifSubArray, subArrayBoxSize, maxLoc
     
-    def distanceFromPinholeImagetoOrigin(self, rows, columns, consoleLog, logFile, isFIF = False, fifLabel = '', isCCD = False, CCDLabel = '', triangleLabel = ''):
+    def distanceFromPinholeImagetoOrigin(self, rows, columns, consoleLog, logFile, pixelSize, isFIF = False, fifLabel = '', isCCD = False, CCDLabel = '', triangleLabel = ''):
         '''
         Find FIF in image using intensity.
         '''
         ###########################################################################
-        ###Print pixel size
+        ###Read pixel size from header
         ###########################################################################
+        #Camera pixel size in um
+
         faah = fileAndArrayHandling()
         faah.pageLogging(consoleLog, logFile, 
                     "Camera pixel size: " + str(self.pixelSize)) #!!!!!!!!!!!!!!!!!READ FROM HEADER
