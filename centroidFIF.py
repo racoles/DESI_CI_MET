@@ -1,7 +1,7 @@
 '''
 @title centroidFIF
 @author: Rebecca Coles
-Updated on Dec 20, 2017
+Updated on Jan 14, 2018
 Created on Dec 12, 2017
 
 centroidPinHoleImage
@@ -47,7 +47,7 @@ from fileAndArrayHandling import fileAndArrayHandling
 class centroidFIF(object):
     
     #Camera pixel size in um
-    pixelSize = 9
+    pixelSize = 9 #!!!!!!!!!!!!!!!!!READ FROM HEADER
     
     def __init__(self):
         '''
@@ -224,7 +224,7 @@ class centroidFIF(object):
         # |____________|
         # *(xOffset, yOffset)
 
-        subArrayBoxSize = 20 #subArrayBoxSize+1 pixels per side. Use even number!
+        subArrayBoxSize = 50 #subArrayBoxSize+1 pixels per side. Use even number!
 
         ###########################################################################
         ###Grayscale image
@@ -259,7 +259,7 @@ class centroidFIF(object):
         ###########################################################################
         faah = fileAndArrayHandling()
         faah.pageLogging(consoleLog, logFile, 
-                    "Camera pixel size: " + str(self.pixelSize))
+                    "Camera pixel size: " + str(self.pixelSize)) #!!!!!!!!!!!!!!!!!READ FROM HEADER
 
         ###########################################################################
         ###Find distance in um to CCD Origin
