@@ -1,7 +1,7 @@
 '''
 @title inputGUI
 @author: Rebecca Coles
-Updated on Feb 6, 2017
+Updated on Feb 14, 2017
 Created on Dec 8, 2017
 
 inputGUI
@@ -64,6 +64,11 @@ class inputGUI(object):
         ###########################################################################
         ###Buttons
         ########################################################################### 
+        #CS5 Calibration
+        tk.Label(master, text="CS5 Calibration", font="bold").grid(row=0, column=0, columnspan=2, sticky='W')
+        
+        #ADD EXTRA ROW
+        
         #Guided Mode Label
         tk.Label(master, text="Guided Mode", font="bold").grid(row=2, column=0, columnspan=2, sticky='W')
         #Guided Mode Description
