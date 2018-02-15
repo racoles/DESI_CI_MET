@@ -222,7 +222,7 @@ class centroidFIF(object):
         # |____________|
         # *(xOffset, yOffset)
 
-        subArrayBoxSize = 50 #subArrayBoxSize+1 pixels per side. Use even number!
+        subArrayBoxSize = 30 #subArrayBoxSize+1 pixels per side. Use even number!
 
         ###########################################################################
         ###Grayscale image
