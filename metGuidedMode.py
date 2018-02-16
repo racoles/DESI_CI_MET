@@ -477,7 +477,7 @@ class fifPage(tk.Frame):
         ###Print Location of FIF Centroid
         ###########################################################################
         faah.pageLogging(metGuidedModeSelf.consoleLog, metGuidedModeSelf.logFile, 
-                str(fiflabel) + " center found at location: (" + str(xDistToSensorOrigin) + "," + str(yDistToSensorOrigin) + ")")
+                str(fiflabel) + " center found at location: (" + str(yDistToSensorOrigin) + "," + str(xDistToSensorOrigin) + ")")
         
         ###########################################################################
         ###Change button text and color
