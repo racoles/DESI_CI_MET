@@ -186,6 +186,13 @@ class inputGUI(object):
         '''
         Centroid pinhole image using alternate methods.
         '''
+        #Get image
         faah = fileAndArrayHandling()
         dirName = faah.createDir('Alternate_Method', self, 'Centroid')
-        imageArray4D, filelist = faah.openAllFITSImagesInDirectory()    
+        imageArray4D, filelist = faah.openAllFITSImagesInDirectory()
+        
+        #Use alternate methods to centroid pinhole image
+        #    gmsCentroid: Gaussian Marginal Sum (GMS) Centroid Method.
+        #    smsBisector: Sobel Marginal Sum (SMS) Bisector Method.
+        #    findCentroid: iterative GMS method centroid fitting.
+        
