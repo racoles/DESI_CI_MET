@@ -1,11 +1,11 @@
 '''
 @title alternateCentroidMethods
-@author: Rebecca Coles and Rick Pogge
+@author: Rick Pogge
 Updated on Feb 21, 2018
 Created on Feb 21, 2018
 
 alternateCentroidMethods
-    Alternate centroiding methods. Created by Rick Pogge and adapted for use my Rebecca Coles.
+    Alternate centroiding methods. Created by Rick Pogge.
 '''
 
 # Import #######################################################################################
