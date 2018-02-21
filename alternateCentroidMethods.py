@@ -5,7 +5,7 @@ Updated on Feb 21, 2018
 Created on Feb 21, 2018
 
 alternateCentroidMethods
-    Alternate centroiding methods. Created by Rick Pogge.
+    Alternate centroiding methods. Created by Rick Pogge (pogge.1@osu.edu).
 '''
 
 # Import #######################################################################################
