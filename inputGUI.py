@@ -88,7 +88,7 @@ class inputGUI(object):
         #Manual Mode Labels
         tk.Label(master, text="Manual Mode", font="bold").grid(row=7, column=0, columnspan=2, sticky='W')
         #Manual Mode Description
-        tk.Label(master, text="Perform manual measurements").grid(row=8, column=0, columnspan=2, sticky='W')
+        tk.Label(master, text="Perform manual measurements").grid(row=8, column=0, columnspan=2, sticky='W')######################################################
         #Manual Mode FIF Focus Curve
         tk.Button(master, text="FIF Focus Curve",bg = "white", command=lambda:self._beginManualMode(master, self.consoleLog, self.logFile, "manualFIFFocusCurve")).grid(row=9, column=0, columnspan=1, sticky='W')
         #Manual Mode CCD Focus Curve
@@ -180,4 +180,12 @@ class inputGUI(object):
         fC = focusCurve()
         faah.printDictToFile(fC.fifLocationsCS5, "Nominal FIF Locations in CS5 (X mm, Y mm, Z mm)" , self.consoleLog, self.logFile, printNominalDicts = True)
         faah.printDictToFile(fC.CCDLocationsCS5, "Nominal CCD Center Locations in CS5 (X mm, Y mm, Z mm)" , self.consoleLog, self.logFile, printNominalDicts = True)       
-        faah.printDictToFile(fC.trianglePonitCCDLocationsCS5, "Nominal CCD tip/tilt/Z Measurement Triangle Locations in CS5 (X mm, Y mm, Z mm)" , self.consoleLog, self.logFile, printNominalDicts = True)        
+        faah.printDictToFile(fC.trianglePonitCCDLocationsCS5, "Nominal CCD tip/tilt/Z Measurement Triangle Locations in CS5 (X mm, Y mm, Z mm)" , self.consoleLog, self.logFile, printNominalDicts = True)
+        
+    def _alternateCentroid(self):
+        '''
+        Centroid pinhole image using alternate methods.
+        '''
+        faah = fileAndArrayHandling()
+        dirName = faah.createDir('Alternate_Method', self, 'Centroid')
+        imageArray4D, filelist = faah.openAllFITSImagesInDirectory()    
