@@ -189,7 +189,6 @@ class inputGUI(object):
         '''
         #Get image
         faah = fileAndArrayHandling()
-        dirName = faah.createDir('Alternate_Method', self, 'Centroid')
         imageArray4D, filelist = faah.openAllFITSImagesInDirectory()
         
         #Log image that will be used for centroiding
