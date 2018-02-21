@@ -196,6 +196,7 @@ class inputGUI(object):
         faah = fileAndArrayHandling()
         faah.pageLogging(consoleLog, logFile, 
                          "Centroiding image: " +  str(filelist[0]).replace('/', '\\'))
+        
         #Get subarray
         cF = centroidFIF()
         fifSubArray, subArrayBoxSize, maxLoc = cF.findFIFInImage(imageArray4D[0])
