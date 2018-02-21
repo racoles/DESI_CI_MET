@@ -1,7 +1,7 @@
 '''
 @title inputGUI
 @author: Rebecca Coles
-Updated on Feb 14, 2017
+Updated on Feb 21, 2017
 Created on Dec 8, 2017
 
 inputGUI
@@ -24,6 +24,7 @@ from metGuidedMode import metGuidedMode
 from metManualMode import metManualMode
 from focusCurve import focusCurve
 from fileAndArrayHandling import fileAndArrayHandling
+from centroidFIF import centroidFIF
 ################################################################################################
 
 class inputGUI(object):
@@ -182,7 +183,7 @@ class inputGUI(object):
         faah.printDictToFile(fC.CCDLocationsCS5, "Nominal CCD Center Locations in CS5 (X mm, Y mm, Z mm)" , self.consoleLog, self.logFile, printNominalDicts = True)       
         faah.printDictToFile(fC.trianglePonitCCDLocationsCS5, "Nominal CCD tip/tilt/Z Measurement Triangle Locations in CS5 (X mm, Y mm, Z mm)" , self.consoleLog, self.logFile, printNominalDicts = True)
         
-    def _alternateCentroid(self):
+    def _alternateCentroid(self, consoleLog, logFile):
         '''
         Centroid pinhole image using alternate methods.
         '''
@@ -190,6 +191,14 @@ class inputGUI(object):
         faah = fileAndArrayHandling()
         dirName = faah.createDir('Alternate_Method', self, 'Centroid')
         imageArray4D, filelist = faah.openAllFITSImagesInDirectory()
+        
+        #Log image that will be used for centroiding
+        faah = fileAndArrayHandling()
+        faah.pageLogging(consoleLog, logFile, 
+                         "Centroiding image " +  str(filelist[0]))
+        #Get subarray
+        cF = centroidFIF()
+        fifSubArray, subArrayBoxSize, maxLoc = cF.findFIFInImage(imageArray4D[0])
         
         #Use alternate methods to centroid pinhole image
         #    gmsCentroid: Gaussian Marginal Sum (GMS) Centroid Method.
