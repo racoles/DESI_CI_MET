@@ -9,11 +9,7 @@ alternateCentroidMethods
 '''
 
 # Import #######################################################################################
-import os, sys
-import getopt
-import subprocess, shlex
-import signal
-
+import os, sys, getopt, subprocess, shlex, signal
 import math
 import numpy as np
 from astropy.io import fits
