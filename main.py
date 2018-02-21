@@ -12,7 +12,9 @@ Using external packages:
 Testing:
     DESI_CI_MET_1.0: DESI CI Camera Back Focus Focus Curve Modules Test (02/22/2018)
 Pending Testing:
-    Omatech Sheffield Cordax RS 70 DCC
+    Ometech
+        Sheffield Cordax RS70 DCC CMM – 40” x 50” x 40” with Renishaw AR1probe changer, PH10 head, PH7 probe. 
+        CMM manager software with reverse engineering capabilities as well as automated scanning.
 '''
 
 # Import #######################################################################################
