@@ -197,9 +197,9 @@ class inputGUI(object):
         faah.pageLogging(consoleLog, logFile, 
                          "Centroiding image: " +  str(filelist[0]).replace('/', '\\'))
         
-        #Get subarray
+        #Get location of pinhole image in (rows, columns)
         cF = centroidFIF()
-        fifSubArray, subArrayBoxSize, maxLoc = cF.findFIFInImage(imageArray4D[0])
+        _, _, maxLoc = cF.findFIFInImage(imageArray4D[0])
         
         #Use alternate methods to centroid pinhole image
         #    gmsCentroid: Gaussian Marginal Sum (GMS) Centroid Method.
