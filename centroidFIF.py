@@ -222,7 +222,7 @@ class centroidFIF(object):
         # |____________|
         # *(xOffset, yOffset)
 
-        subArrayBoxSize = 30 #subArrayBoxSize+1 pixels per side.
+        subArrayBoxSize = 20 #subArrayBoxSize+1 pixels per side. Size of side of box. Box will be (subArrayBoxSize x subArrayBoxSize)
 
         ###########################################################################
         ###Grayscale image
@@ -246,7 +246,7 @@ class centroidFIF(object):
         #cv2.imshow('fifSubArray',fifSubArray)
         #print(image[maxLoc[0],maxLoc[1]])
         
-        return fifSubArray, int(round(subArrayBoxSize/2)), maxLoc
+        return fifSubArray, subArrayBoxSize, maxLoc
     
     def distanceFromPinholeImagetoOrigin(self, rows, columns, consoleLog, logFile, pixelSize, isFIF = False, fifLabel = '', isCCD = False, CCDLabel = '', triangleLabel = ''):
         '''

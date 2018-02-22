@@ -26,6 +26,7 @@ from focusCurve import focusCurve
 from fileAndArrayHandling import fileAndArrayHandling
 from centroidFIF import centroidFIF
 from alternateCentroidMethods import gmsCentroid, smsBisector, findCentroid
+from CCDOpsPlanetMode import CCDOpsPlanetMode
 ################################################################################################
 
 class inputGUI(object):
@@ -201,24 +202,38 @@ class inputGUI(object):
         
         #Get location of pinhole image in (rows, columns)
         cF = centroidFIF()
-        _, _, maxLoc = cF.findFIFInImage(imageArray4D[0])
+        fifSubArray, subArrayBoxSize, maxLoc = cF.findFIFInImage(imageArray4D[0])
         
+        #Account for planet mode
+        pM = CCDOpsPlanetMode()
+        #xOffset, yOffset, _ = pM.readFitsHeader(imageArray4D, filelist, consoleLog, logFile)
+        xOffset = 0
+        yOffset = 0
+        
+        print(maxLoc)
+        print(subArrayBoxSize)
+        print(fifSubArray.shape)
         #Use alternate methods to centroid pinhole image
         #    gmsCentroid: Gaussian Marginal Sum (GMS) Centroid Method.
-        xCenGMS, yCenGMS, xErrGMS, yErrGMS = gmsCentroid(imageArray4D[0], maxLoc[0], maxLoc[1], int(round(widthOfSubimage/2)), int(round(widthOfSubimage/2)), axis='both', verbose=False)
+        xCenGMS, yCenGMS, xErrGMS, yErrGMS = gmsCentroid(imageArray4D[0], maxLoc[1], maxLoc[0], int(round(widthOfSubimage/2)), int(round(widthOfSubimage/2)), axis='both', verbose=False)
         #    smsBisector: Sobel Marginal Sum (SMS) Bisector Method.
-        xCenSMS, yCenSMS, _ = smsBisector(imageArray4D[0], maxLoc[0], maxLoc[1], int(round(widthOfSubimage/2)), int(round(widthOfSubimage/2)), axis='both', clipStars=False, wfac=1, verbose=False)
+        xCenSMS, yCenSMS, _ = smsBisector(imageArray4D[0], maxLoc[1], maxLoc[0], int(round(widthOfSubimage/2)), int(round(widthOfSubimage/2)), axis='both', clipStars=False, wfac=1, verbose=False)
         #    alternateCentroidMethods.findCentroid: iterative GMS method centroid fitting.
         xCenFC, yCenFC, xErrFC, yErrFC = findCentroid(imageArray4D[0], maxLoc[0], maxLoc[1], int(round(widthOfSubimage/2)), maxiter=5, tol=0.01, verbose=False)
         #    centroidFIF.findCentroid
-        xCencF, yCencF = cF.findCentroid(imageArray4D[0], maxLoc[0], maxLoc[1])
+        xCencF, yCencF = cF.findCentroid(fifSubArray, int(round(subArrayBoxSize/2)), int(round(subArrayBoxSize/2)), extendbox = 3)
+        xCencF = xCencF + maxLoc[0]-subArrayBoxSize/2
+        yCencF = yCencF + maxLoc[1]-subArrayBoxSize/2
+        print(xCencF)
+        print(yCencF)
         
         #Print Results
         faah.pageLogging(consoleLog, logFile,
-                        "Pinhole image found at (rows, columns): " +  str(maxLoc) + '\n' +
-                        "GMS Centroid (rows, columns): (" +  format(yCenGMS, '.2f') + ' +/- ' + format(yErrGMS, '.2f') + ', ' + format(xCenGMS, '.2f') + ' +/- ' + format(xErrGMS, '.2f') + ')\n' +
-                        "SMS Bisector Centroid (rows, columns): (" +  format(yCenSMS, '.2f') + ', ' + format(xCenSMS, '.2f') + ')\n' +
-                        "Iterative GMS Centroid (rows, columns): (" +  format(yCenFC, '.2f') + ' +/- ' + format(yErrFC, '.2f') + ', ' +
-                         format(xCenFC, '.2f') + '+/-' + format(xErrFC, '.2f') + ')\n' +
-                        "IDL DAOPHOT Centroid (rows, columns): (" + format(yCencF, '.2f') + ', ' + format(xCencF, '.2f') + ')', 
+                        "Pinhole image found at (rows, columns): (" +  str(maxLoc[1] + yOffset) + ', ' + str(maxLoc[0] + xOffset) + '\n' +
+                        "GMS Centroid (rows, columns): (" +  format(yCenGMS + yOffset, '.2f') + ' +/- ' + format(yErrGMS + yOffset, '.2f') + 
+                        ', ' + format(xCenGMS + xOffset, '.2f') + ' +/- ' + format(xErrGMS + xOffset, '.2f') + ')\n' +
+                        "SMS Bisector Centroid (rows, columns): (" +  format(yCenSMS + yOffset, '.2f') + ', ' + format(xCenSMS + xOffset, '.2f') + ')\n' +
+                        "Iterative GMS Centroid (rows, columns): (" +  format(yCenFC + yOffset, '.2f') + ' +/- ' + format(yErrFC + yOffset, '.2f') + ', ' +
+                         format(xCenFC + xOffset, '.2f') + '+/-' + format(xErrFC + xOffset, '.2f') + ')\n' +
+                        "IDL DAOPHOT Centroid (rows, columns): (" + format(yCencF + yOffset, '.2f') + ', ' + format(xCencF + xOffset, '.2f') + ')', 
                         doubleSpaceWithTime = False)

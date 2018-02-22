@@ -463,7 +463,7 @@ class fifPage(tk.Frame):
         ###########################################################################
         #Account for planet mode
         pM = CCDOpsPlanetMode()
-        xOffset, yOffset, pizelSize = pM.readFitsHeader(imageArray4D, filelist, metGuidedModeSelf.consoleLog, metGuidedModeSelf.logFile)
+        xOffset, yOffset, _ = pM.readFitsHeader(imageArray4D, filelist, metGuidedModeSelf.consoleLog, metGuidedModeSelf.logFile)
         
         #Distance from center of FIF to origin of sensor (x=0, y=0)
         xDistToSensorOrigin = xcen + xOffset
