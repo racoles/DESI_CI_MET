@@ -215,3 +215,7 @@ class inputGUI(object):
         #    centroidFIF.findCentroid
         xCencF, yCencF = cF.findCentroid(imageArray4D[0], maxLoc[0], maxLoc[1])
         
+        #Print Results
+        faah.pageLogging(consoleLog, logFile, 
+                        "GMS Centroid (rows, columns): (" +  str(xCenGMS) + '+/-' + str(xErrGMS) + ', ' + str(yCenGMS) + '+/-' + str(yErrGMS))
+        
