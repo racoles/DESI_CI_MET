@@ -209,7 +209,7 @@ class inputGUI(object):
         #    gmsCentroid: Gaussian Marginal Sum (GMS) Centroid Method.
         xCenGMS, yCenGMS, xErrGMS, yErrGMS = gmsCentroid(imageArray4D[0], maxLoc[0], maxLoc[1], int(round(widthOfSubimage/2)), int(round(widthOfSubimage/2)), axis='both', verbose=False)
         #    smsBisector: Sobel Marginal Sum (SMS) Bisector Method.
-        xCenSMS, yCenSMS, bkgMed = smsBisector(imageArray4D[0], maxLoc[0], maxLoc[1], int(round(widthOfSubimage/2)), int(round(widthOfSubimage/2)), axis='both', clipStars=False, wfac=1, verbose=False)
+        xCenSMS, yCenSMS, _ = smsBisector(imageArray4D[0], maxLoc[0], maxLoc[1], int(round(widthOfSubimage/2)), int(round(widthOfSubimage/2)), axis='both', clipStars=False, wfac=1, verbose=False)
         #    alternateCentroidMethods.findCentroid: iterative GMS method centroid fitting.
         xCenFC, yCenFC, xErrFC, yErrFC = findCentroid(imageArray4D[0], maxLoc[0], maxLoc[1], int(round(widthOfSubimage/2)), maxiter=5, tol=0.01, verbose=False)
         #    centroidFIF.findCentroid
@@ -217,5 +217,8 @@ class inputGUI(object):
         
         #Print Results
         faah.pageLogging(consoleLog, logFile, 
-                        "GMS Centroid (rows, columns): (" +  str(xCenGMS) + '+/-' + str(xErrGMS) + ', ' + str(yCenGMS) + '+/-' + str(yErrGMS))
-        
+                        "GMS Centroid (rows, columns): (" +  str(xCenGMS) + '+/-' + str(xErrGMS) + ', ' + str(yCenGMS) + '+/-' + str(yErrGMS) + ')\n' +
+                        "SMS Bisector Centroid (rows, columns): (" +  str(xCenSMS) + ', ' + str(yCenSMS) + ')\n' +
+                        "Iterative GMS Centroid (rows, columns): (" +  str(xCenFC) + '+/-' + str(xErrFC) + ', ' + str(yCenFC) + '+/-' + str(yErrFC) + ')\n' +
+                        "IDL DAOPHOT Centroid (default DESI CI MET software method) (rows, columns): (" + str(xCencF) + ', ' + str(yCencF) + ')'
+                        , doubleSpaceWithTime = False)
