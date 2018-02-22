@@ -225,10 +225,10 @@ class inputGUI(object):
         #Print Results
         faah.pageLogging(consoleLog, logFile,
                         "Pinhole image found at (rows, columns): (" +  str(maxLoc[1] + yOffset) + ', ' + str(maxLoc[0] + xOffset) + ')\n' +
-                        "GMS Centroid (rows, columns): (" +  format(yCenGMS + yOffset, '.2f') + ' +/- ' + format(yErrGMS + yOffset, '.2f') + 
-                        ', ' + format(xCenGMS + xOffset, '.2f') + ' +/- ' + format(xErrGMS + xOffset, '.2f') + ')\n' +
-                        "SMS Bisector Centroid (rows, columns): (" +  format(yCenSMS + yOffset, '.2f') + ', ' + format(xCenSMS + xOffset, '.2f') + ')\n' +
-                        "Iterative GMS Centroid (rows, columns): (" +  format(yCenFC + yOffset, '.2f') + ' +/- ' + format(yErrFC + yOffset, '.2f') + ', ' +
-                         format(xCenFC + xOffset, '.2f') + '+/-' + format(xErrFC + xOffset, '.2f') + ')\n' +
+                        "GMS Centroid (rows, columns): (" +  format(xCenGMS + xOffset, '.2f') + ' +/- ' + format(xErrGMS, '.2f') + 
+                        ', ' + format(yCenGMS + yOffset, '.2f') + ' +/- ' + format(yErrGMS, '.2f') + ')\n' +
+                        "SMS Bisector Centroid (rows, columns): (" +  format(xCenSMS + xOffset, '.2f') + ', ' + format(yCenSMS + yOffset, '.2f') + ')\n' +
+                        "Iterative GMS Centroid (rows, columns): (" +  format(xCenFC + xOffset, '.2f') + ' +/- ' + format(xErrFC, '.2f') + ', ' +
+                         format(yCenFC + yOffset, '.2f') + '+/-' + format(yErrFC, '.2f') + ')\n' +
                         "IDL DAOPHOT Centroid (rows, columns): (" + format(yCencF + yOffset, '.2f') + ', ' + format(xCencF + xOffset, '.2f') + ')', 
                         doubleSpaceWithTime = False)
