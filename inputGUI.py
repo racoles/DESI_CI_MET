@@ -90,7 +90,7 @@ class inputGUI(object):
         #Manual Mode Labels
         tk.Label(master, text="Manual Mode", font="bold").grid(row=7, column=0, columnspan=2, sticky='W')
         #Manual Mode Description
-        tk.Label(master, text="Perform manual measurements").grid(row=8, column=0, columnspan=2, sticky='W')######################################################
+        tk.Button(master, text="Centroid Pinhole Image",bg = "white",command=lambda:self._alternateCentroid(self.consoleLog, self.logFile)).grid(row=8, column=0, columnspan=2, sticky='W')
         #Manual Mode FIF Focus Curve
         tk.Button(master, text="FIF Focus Curve",bg = "white", command=lambda:self._beginManualMode(master, self.consoleLog, self.logFile, "manualFIFFocusCurve")).grid(row=9, column=0, columnspan=1, sticky='W')
         #Manual Mode CCD Focus Curve
@@ -202,8 +202,6 @@ class inputGUI(object):
         #Get location of pinhole image in (rows, columns)
         cF = centroidFIF()
         _, _, maxLoc = cF.findFIFInImage(imageArray4D[0])
-        faah.pageLogging(consoleLog, logFile, 
-                         "Pinhole image found at (rows, columns): " +  str(maxLoc))
         
         #Use alternate methods to centroid pinhole image
         #    gmsCentroid: Gaussian Marginal Sum (GMS) Centroid Method.
@@ -216,9 +214,11 @@ class inputGUI(object):
         xCencF, yCencF = cF.findCentroid(imageArray4D[0], maxLoc[0], maxLoc[1])
         
         #Print Results
-        faah.pageLogging(consoleLog, logFile, 
-                        "GMS Centroid (rows, columns): (" +  str(xCenGMS) + '+/-' + str(xErrGMS) + ', ' + str(yCenGMS) + '+/-' + str(yErrGMS) + ')\n' +
-                        "SMS Bisector Centroid (rows, columns): (" +  str(xCenSMS) + ', ' + str(yCenSMS) + ')\n' +
-                        "Iterative GMS Centroid (rows, columns): (" +  str(xCenFC) + '+/-' + str(xErrFC) + ', ' + str(yCenFC) + '+/-' + str(yErrFC) + ')\n' +
-                        "IDL DAOPHOT Centroid (default DESI CI MET software method) (rows, columns): (" + str(xCencF) + ', ' + str(yCencF) + ')'
-                        , doubleSpaceWithTime = False)
+        faah.pageLogging(consoleLog, logFile,
+                        "Pinhole image found at (rows, columns): " +  str(maxLoc) + '\n' +
+                        "GMS Centroid (rows, columns): (" +  format(yCenGMS, '.2f') + ' +/- ' + format(yErrGMS, '.2f') + ', ' + format(xCenGMS, '.2f') + ' +/- ' + format(xErrGMS, '.2f') + ')\n' +
+                        "SMS Bisector Centroid (rows, columns): (" +  format(yCenSMS, '.2f') + ', ' + format(xCenSMS, '.2f') + ')\n' +
+                        "Iterative GMS Centroid (rows, columns): (" +  format(yCenFC, '.2f') + ' +/- ' + format(yErrFC, '.2f') + ', ' +
+                         format(xCenFC, '.2f') + '+/-' + format(xErrFC, '.2f') + ')\n' +
+                        "IDL DAOPHOT Centroid (rows, columns): (" + format(yCencF, '.2f') + ', ' + format(xCencF, '.2f') + ')', 
+                        doubleSpaceWithTime = False)

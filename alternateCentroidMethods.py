@@ -1,6 +1,6 @@
 '''
 @title alternateCentroidMethods
-@author: Rick Pogge
+@author: Rick Pogge (edited by Rebecca Coles)
 Updated on Feb 21, 2018
 Created on Feb 21, 2018
 
@@ -132,11 +132,11 @@ def gmsCentroid(image,x,y,xWid,yWid,axis='both',verbose=False):
     # If either fit sigma is <0, probable failure even if a formal
     # fit was found (curve_fit raised no exceptions)
 
-    if doXaxis and xCoeff[3] < s0:
-        raise Exception('Cannot compute X centroid - sigX=%.3f < %.3f' % (xCoeff[3],s0))
+    #if doXaxis and xCoeff[3] < s0:
+    #    raise Exception('Cannot compute X centroid - sigX=%.3f < %.3f' % (xCoeff[3],s0))
 
-    if doYaxis and yCoeff[3] < s0:
-        raise Exception('Cannot compute Y centroid - sigY=%.3f < %.3f' % (yCoeff[3],s0))
+    #if doYaxis and yCoeff[3] < s0:
+    #    raise Exception('Cannot compute Y centroid - sigY=%.3f < %.3f' % (yCoeff[3],s0))
 
     # Cleanup
 
@@ -263,12 +263,13 @@ def smsBisector(image,x,y,xWid,yWid,axis='both',clipStars=False,wfac=1,verbose=F
     xRight = 0.0
     yRight = 0.0
     if doXaxis:
-        xm1 = xmin + np.argmax(xSobel[:(len(xSobel)/2)])
-        xa1 = np.amax(xSobel[:(len(xSobel)/2)])
+        lengthSobelX = int(round(len(xSobel)/2))
+        xm1 = xmin + np.argmax(xSobel[:(lengthSobelX)])
+        xa1 = np.amax(xSobel[:(lengthSobelX)])
         xs1 = 1.0
 
-        xm2 = xmin + 0.5*len(xSobel) + np.argmax(xSobel[(len(xSobel)/2):])
-        xa2 = np.amax(xSobel[(len(xSobel)/2):])
+        xm2 = xmin + 0.5*int(round(len(xSobel))) + np.argmax(xSobel[(lengthSobelX):])
+        xa2 = np.amax(xSobel[(lengthSobelX):])
         xs2 = 1.0
 
         px = [xa1,xm1,xs1,xa2,xm2,xs2]
@@ -284,12 +285,13 @@ def smsBisector(image,x,y,xWid,yWid,axis='both',clipStars=False,wfac=1,verbose=F
         xRight = xCoeff[4]
 
     if doYaxis:
-        ym1 = ymin + np.argmax(ySobel[:(len(ySobel)/2)])
-        ya1 = np.amax(ySobel[:(len(ySobel)/2)])
+        lengthSobelY = int(round(len(ySobel)/2))
+        ym1 = ymin + np.argmax(ySobel[:(lengthSobelY)])
+        ya1 = np.amax(ySobel[:(lengthSobelY)])
         ys1 = 1.0
 
-        ym2 = ymin + 0.5*len(ySobel) + np.argmax(ySobel[(len(ySobel)/2):]) 
-        ya2 = np.amax(ySobel[(len(ySobel)/2):])
+        ym2 = ymin + 0.5*int(round(len(ySobel))) + np.argmax(ySobel[(lengthSobelY):]) 
+        ya2 = np.amax(ySobel[(lengthSobelY):])
         ys2 = 1.0
 
         py = [ya1,ym1,ys1,ya2,ym2,ys2]
