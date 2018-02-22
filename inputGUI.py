@@ -210,9 +210,6 @@ class inputGUI(object):
         xOffset = 0
         yOffset = 0
         
-        print(maxLoc)
-        print(subArrayBoxSize)
-        print(fifSubArray.shape)
         #Use alternate methods to centroid pinhole image
         #    gmsCentroid: Gaussian Marginal Sum (GMS) Centroid Method.
         xCenGMS, yCenGMS, xErrGMS, yErrGMS = gmsCentroid(imageArray4D[0], maxLoc[1], maxLoc[0], int(round(widthOfSubimage/2)), int(round(widthOfSubimage/2)), axis='both', verbose=False)
@@ -224,12 +221,10 @@ class inputGUI(object):
         xCencF, yCencF = cF.findCentroid(fifSubArray, int(round(subArrayBoxSize/2)), int(round(subArrayBoxSize/2)), extendbox = 3)
         xCencF = xCencF + maxLoc[0]-subArrayBoxSize/2
         yCencF = yCencF + maxLoc[1]-subArrayBoxSize/2
-        print(xCencF)
-        print(yCencF)
         
         #Print Results
         faah.pageLogging(consoleLog, logFile,
-                        "Pinhole image found at (rows, columns): (" +  str(maxLoc[1] + yOffset) + ', ' + str(maxLoc[0] + xOffset) + '\n' +
+                        "Pinhole image found at (rows, columns): (" +  str(maxLoc[1] + yOffset) + ', ' + str(maxLoc[0] + xOffset) + ')\n' +
                         "GMS Centroid (rows, columns): (" +  format(yCenGMS + yOffset, '.2f') + ' +/- ' + format(yErrGMS + yOffset, '.2f') + 
                         ', ' + format(xCenGMS + xOffset, '.2f') + ' +/- ' + format(xErrGMS + xOffset, '.2f') + ')\n' +
                         "SMS Bisector Centroid (rows, columns): (" +  format(yCenSMS + yOffset, '.2f') + ', ' + format(xCenSMS + xOffset, '.2f') + ')\n' +
