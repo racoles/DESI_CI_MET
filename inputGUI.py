@@ -188,6 +188,8 @@ class inputGUI(object):
         '''
         Centroid pinhole image using alternate methods.
         '''
+        widthOfSubimage = 80 #pixels
+        
         #Get image
         faah = fileAndArrayHandling()
         imageArray4D, filelist = faah.openAllFITSImagesInDirectory()
@@ -205,9 +207,9 @@ class inputGUI(object):
         
         #Use alternate methods to centroid pinhole image
         #    gmsCentroid: Gaussian Marginal Sum (GMS) Centroid Method.
-        xCen, yCen, xErr, yErr = gmsCentroid(imageArray4D[0], maxLoc[0], maxLoc[1], 40, 40, axis='both', verbose=False)
+        xCen, yCen, xErr, yErr = gmsCentroid(imageArray4D[0], maxLoc[0], maxLoc[1], int(round(widthOfSubimage/2)), int(round(widthOfSubimage/2)), axis='both', verbose=False)
         #    smsBisector: Sobel Marginal Sum (SMS) Bisector Method.
-        xCen, yCen, bkgMed = smsBisector(imageArray4D[0], maxLoc[0], maxLoc[1], 40, 40, axis='both', clipStars=False, wfac=1, verbose=False)
+        xCen, yCen, bkgMed = smsBisector(imageArray4D[0], maxLoc[0], maxLoc[1], int(round(widthOfSubimage/2)), int(round(widthOfSubimage/2)), axis='both', clipStars=False, wfac=1, verbose=False)
         #    findCentroid: iterative GMS method centroid fitting.
-        xCen, yCen, xErr, yErr = findCentroid(imageArray4D[0], maxLoc[0], maxLoc[1], 40, maxiter=5, tol=0.01, verbose=False)
+        xCen, yCen, xErr, yErr = findCentroid(imageArray4D[0], maxLoc[0], maxLoc[1], int(round(widthOfSubimage/2)), maxiter=5, tol=0.01, verbose=False)
         
