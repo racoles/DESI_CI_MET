@@ -200,12 +200,14 @@ class inputGUI(object):
         #Get location of pinhole image in (rows, columns)
         cF = centroidFIF()
         _, _, maxLoc = cF.findFIFInImage(imageArray4D[0])
+        faah.pageLogging(consoleLog, logFile, 
+                         "Pinhole image found at (rows, columns): " +  str(maxLoc))
         
         #Use alternate methods to centroid pinhole image
         #    gmsCentroid: Gaussian Marginal Sum (GMS) Centroid Method.
-        xCen, yCen, xErr, yErr = gmsCentroid(imageArray4D[0], x, y, xWid, yWid,axis='both', verbose=False)
+        xCen, yCen, xErr, yErr = gmsCentroid(imageArray4D[0], maxLoc[0], maxLoc[1], 40, 40, axis='both', verbose=False)
         #    smsBisector: Sobel Marginal Sum (SMS) Bisector Method.
-        xCen, yCen, bkgMed = smsBisector(imageArray4D[0], x, y, xWid, yWid,axis='both', clipStars=False, wfac=1, verbose=False)
+        xCen, yCen, bkgMed = smsBisector(imageArray4D[0], maxLoc[0], maxLoc[1], 40, 40, axis='both', clipStars=False, wfac=1, verbose=False)
         #    findCentroid: iterative GMS method centroid fitting.
-        xCen, yCen, xErr, yErr = findCentroid(imageArray4D[0], x0, y0, cenRad, maxiter=5, tol=0.01, verbose=False)
+        xCen, yCen, xErr, yErr = findCentroid(imageArray4D[0], maxLoc[0], maxLoc[1], 40, maxiter=5, tol=0.01, verbose=False)
         
