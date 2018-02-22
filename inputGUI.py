@@ -25,6 +25,7 @@ from metManualMode import metManualMode
 from focusCurve import focusCurve
 from fileAndArrayHandling import fileAndArrayHandling
 from centroidFIF import centroidFIF
+from alternateCentroidMethods import gmsCentroid, smsBisector, findCentroid
 ################################################################################################
 
 class inputGUI(object):
@@ -202,6 +203,9 @@ class inputGUI(object):
         
         #Use alternate methods to centroid pinhole image
         #    gmsCentroid: Gaussian Marginal Sum (GMS) Centroid Method.
+        gmsCentroid(image,x,y,xWid,yWid,axis='both',verbose=False)
         #    smsBisector: Sobel Marginal Sum (SMS) Bisector Method.
+        smsBisector(image,x,y,xWid,yWid,axis='both',clipStars=False,wfac=1,verbose=False)
         #    findCentroid: iterative GMS method centroid fitting.
+        findCentroid(img,x0,y0,cenRad,maxiter=5,tol=0.01,verbose=False)
         
