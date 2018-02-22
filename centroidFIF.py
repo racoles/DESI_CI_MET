@@ -222,7 +222,7 @@ class centroidFIF(object):
         # |____________|
         # *(xOffset, yOffset)
 
-        subArrayBoxSize = 30 #subArrayBoxSize+1 pixels per side. Use even number!
+        subArrayBoxSize = 30 #subArrayBoxSize+1 pixels per side.
 
         ###########################################################################
         ###Grayscale image
@@ -237,8 +237,8 @@ class centroidFIF(object):
         
         ###########################################################################
         ###Create subarray around FIF (slice array)
-        ###########################################################################   
-        fifSubArray = image[int(maxLoc[0]-subArrayBoxSize/2):int(maxLoc[0]+subArrayBoxSize/2), int(maxLoc[1]-subArrayBoxSize/2):int(maxLoc[1]+subArrayBoxSize/2)]
+        ###########################################################################   int(round(widthOfSubimage/2))
+        fifSubArray = image[int(maxLoc[0]-int(round(subArrayBoxSize/2))):int(maxLoc[0]+int(round(subArrayBoxSize/2))), int(maxLoc[1]-int(round(subArrayBoxSize/2))):int(maxLoc[1]+int(round(subArrayBoxSize/2)))]
         
         ###########################################################################
         ###View subarray and value of max-value pixel
@@ -246,7 +246,7 @@ class centroidFIF(object):
         #cv2.imshow('fifSubArray',fifSubArray)
         #print(image[maxLoc[0],maxLoc[1]])
         
-        return fifSubArray, subArrayBoxSize, maxLoc
+        return fifSubArray, int(round(subArrayBoxSize/2)), maxLoc
     
     def distanceFromPinholeImagetoOrigin(self, rows, columns, consoleLog, logFile, pixelSize, isFIF = False, fifLabel = '', isCCD = False, CCDLabel = '', triangleLabel = ''):
         '''
