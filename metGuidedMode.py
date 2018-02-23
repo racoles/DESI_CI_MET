@@ -444,7 +444,7 @@ class fifPage(tk.Frame):
                                       "Centroiding " + str(fiflabel) + " using FITs file:\n" + str(filelist[0]).replace('/', '\\'))
         fifSubArray, subArrayBoxSize, maxLoc  = centroidFIF.findFIFInImage(self, imageArray4D[0])
         faah.pageLogging(metGuidedModeSelf.consoleLog, metGuidedModeSelf.logFile, 
-                                      str(fiflabel) + " FIF found at pixel location: (" + str(maxLoc[0]) + "," + str(maxLoc[1]) + "). Will now centroid using that location.")
+                                      str(fiflabel) + " FIF found at pixel location: (" + str(maxLoc[1]) + "," + str(maxLoc[0]) + "). Will now centroid using that location.")
         
         ###########################################################################
         ###Centroid
@@ -466,8 +466,8 @@ class fifPage(tk.Frame):
         xOffset, yOffset, _ = pM.readFitsHeader(imageArray4D, filelist, metGuidedModeSelf.consoleLog, metGuidedModeSelf.logFile)
         
         #Distance from center of FIF to origin of sensor (x=0, y=0)
-        xDistToSensorOrigin = xcen + xOffset
-        yDistToSensorOrigin = ycen + yOffset
+        xDistToSensorOrigin = ycen + xOffset 
+        yDistToSensorOrigin = xcen + yOffset
         
         #Add X and Y to fifCentroidedLocationDict
         metGuidedModeSelf.fifCentroidedLocationDict[fiflabel][0] = xDistToSensorOrigin
@@ -477,7 +477,7 @@ class fifPage(tk.Frame):
         ###Print Location of FIF Centroid
         ###########################################################################
         faah.pageLogging(metGuidedModeSelf.consoleLog, metGuidedModeSelf.logFile, 
-                str(fiflabel) + " center found at location: (" + str(yDistToSensorOrigin) + "," + str(xDistToSensorOrigin) + ")")
+                str(fiflabel) + " center found at location: (" + str(xDistToSensorOrigin) + "," + str(yDistToSensorOrigin) + ")")
         
         ###########################################################################
         ###Change button text and color
