@@ -207,7 +207,7 @@ class centroidFIF(object):
 
         if npts == 1:
             xcen,ycen = xcen[0]+1,ycen[0]+1
-        return xcen, ycen
+        return xcen-1, ycen-1
     
     def findFIFInImage(self, image):
         '''

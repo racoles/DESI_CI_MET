@@ -206,9 +206,7 @@ class inputGUI(object):
         
         #Account for planet mode
         pM = CCDOpsPlanetMode()
-        #xOffset, yOffset, _ = pM.readFitsHeader(imageArray4D, filelist, consoleLog, logFile)
-        xOffset = 0
-        yOffset = 0
+        xOffset, yOffset, _ = pM.readFitsHeader(imageArray4D, filelist, consoleLog, logFile)
         
         #Use alternate methods to centroid pinhole image
         #    gmsCentroid: Gaussian Marginal Sum (GMS) Centroid Method.
@@ -224,11 +222,11 @@ class inputGUI(object):
         
         #Print Results
         faah.pageLogging(consoleLog, logFile,
-                        "Pinhole image found at (rows, columns): (" +  str(maxLoc[1] + yOffset) + ', ' + str(maxLoc[0] + xOffset) + ')\n' +
+                        "Pinhole image found at (rows, columns): (" + str(maxLoc[1] + xOffset) + ', ' + str(maxLoc[0] + yOffset)+ ')\n' +
                         "GMS Centroid (rows, columns): (" +  format(xCenGMS + xOffset, '.2f') + ' +/- ' + format(xErrGMS, '.2f') + 
                         ', ' + format(yCenGMS + yOffset, '.2f') + ' +/- ' + format(yErrGMS, '.2f') + ')\n' +
                         "SMS Bisector Centroid (rows, columns): (" +  format(xCenSMS + xOffset, '.2f') + ', ' + format(yCenSMS + yOffset, '.2f') + ')\n' +
                         "Iterative GMS Centroid (rows, columns): (" +  format(xCenFC + xOffset, '.2f') + ' +/- ' + format(xErrFC, '.2f') + ', ' +
                          format(yCenFC + yOffset, '.2f') + '+/-' + format(yErrFC, '.2f') + ')\n' +
-                        "IDL DAOPHOT Centroid (rows, columns): (" + format(yCencF + yOffset, '.2f') + ', ' + format(xCencF + xOffset, '.2f') + ')', 
+                        "IDL DAOPHOT Centroid (rows, columns): (" + format(yCencF + xOffset, '.2f') + ', ' + format(xCencF + yOffset, '.2f')+ ')', 
                         doubleSpaceWithTime = False)
