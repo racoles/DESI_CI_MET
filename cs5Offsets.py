@@ -45,3 +45,6 @@ class cs5Offsets(object):
         origin is in ST-I images.
         '''
     
+    def _moveToIlluminatedDowel(self):
+        '''
+        '''
