@@ -36,7 +36,7 @@ class tipTiltZCCD(object):
         #Tilt
         self.tiltCCD(Az, Bz, Cz, Az_nominal, Bz_nominal, Cz_nominal, CCDLabel, triangleSideLength, micrometerDistance, consoleLog, logFile)
         #Z
-        self.ZCCD(Az, Bz, Cz, CCDLabel, triangleSideLength, micrometerDistance, consoleLog, logFile)
+        zCenterDelta = self.ZCCD(Az, Bz, Cz, CCDLabel, triangleSideLength, micrometerDistance, consoleLog, logFile)
         
     def tipCCD(self, Az, Bz, Cz, Az_nominal, Bz_nominal, Cz_nominal, CCDLabel, consoleLog, logFile):
         '''
