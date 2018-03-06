@@ -39,6 +39,9 @@ class focusCurve(object):
     
     #tip/tilt/Z length of a side of the ABC equilateral triangle
     tccs = tccr*np.sqrt(3)
+    
+    #tip/tilt/Z distance between micrometers on the TTF
+    micrometer_distance = 220 #mm
 
     #Dict of (x,y) for FIF centers (mm)
     fifLocationsCS5 = {"RefFIF" : (199.28,-345.15), 
