@@ -36,6 +36,13 @@ class tipTiltZCCD(object):
             A(Z) _measured = B(Z) _measured = C(Z) _measured = A(Z) _nominal = B(Z) _nominal = C(Z) _nominal
         '''            
         ###########################################################################
+        ###Get adjustment ratios
+        ###########################################################################     
+        #Since the triangle of micrometers is much larger than the small ABC
+        #imaginary triangle that we create on the sensor surface, we need to
+        #calculate how an adjustment to the micrometers affect the ABC heights. 
+        
+        ###########################################################################
         ###Boundary Condition Check 
         ###########################################################################
         faah = fileAndArrayHandling()
