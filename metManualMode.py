@@ -103,7 +103,8 @@ class metManualMode(tk.Tk):
             #Issue warning
             faah.pageLogging(self.consoleLog, self.logFile, 
                                       "WARNING: the FIF Z height is " + str(xInter)[0:5] + "um away from nominal.\n The current FIF thread pitch is " +
-                                      str(fifThread) + "mm.\n To adjust this FIF to the nominal height, you will need to turn the FIF " + 
+                                      str(fifThread) + "mm, with a OD of " + str(fifThreadOD) + 
+                                      "mm.\n To adjust this FIF to the nominal height, you will need to turn the FIF " + 
                                        str(turnDistanceDegrees) + " degrees " + turn +" (" + 
                                        str(turnFraction).replace('(', '').replace(')', '') + 
                                        "th of a turn).")
