@@ -13,6 +13,8 @@ Modules:
 # Import #######################################################################################
 from fileAndArrayHandling import fileAndArrayHandling
 from focusCurve import focusCurve
+from fractions import Fraction
+import numpy as np
 ################################################################################################
 
 class tipTiltZCCD(object):
@@ -44,33 +46,53 @@ class tipTiltZCCD(object):
         ###########################################################################
         ###Find Needed Micrometer Adjustments 
         ###########################################################################
+        faah = fileAndArrayHandling()
+        fC = focusCurve()
+        
         #If the A height isn't equal to the nominal height
         if AzDeltaTip or AzDeltaTilt != 0:
-            #is the FIF too low or too high (clockwise = down, counter-clockwise = up)
-            if xInter < 0: 
-                turn = 'counter-clockwise' 
+            #is A too low or too high (clockwise = down, counter-clockwise = up)
+            if AzDeltaTip < 0: 
+                turnA = 'counter-clockwise' 
             else: 
-                turn = 'clockwise'
+                turnA = 'clockwise'
             #How many turns will it take to reach nominal height?
-            turnDistance_um = np.absolute(xInter)/(fifThread*1000) #X turns = needed height / fif pitch (height per one full turn). Convert mm to microns.
-            turnDistanceDegrees = faah.decNonZeroRound(np.absolute(turnDistance_um/((fifThreadOD*1000)/360))) #to get number of degrees. 1 degree = fifThreadODMicrons/360 um. Convert mm to microns.
-            turnFraction = np.absolute(Fraction(turnDistance_um).limit_denominator()) #turnFraction-th of a turn
-            #Issue warning
-            faah.pageLogging(self.consoleLog, self.logFile, 
+            AturnDistance_um = np.absolute(xInter)/(fifThread*1000) #X turns = needed height / fif pitch (height per one full turn). Convert mm to microns.
+            AturnDistanceDegrees = faah.decNonZeroRound(np.absolute(turnDistance_um/((fifThreadOD*1000)/360))) #to get number of degrees. 1 degree = fifThreadODMicrons/360 um. Convert mm to microns.
+            AturnFraction = np.absolute(Fraction(turnDistance_um).limit_denominator()) #turnFraction-th of a turn
+            
+        #If the B height isn't equal to the nominal height
+        if BzDeltaTip or BzDeltaTilt != 0:
+            #is B too low or too high (clockwise = down, counter-clockwise = up)
+            if BzDeltaTip < 0: 
+                turnB = 'counter-clockwise' 
+            else: 
+                turnB = 'clockwise'
+            #How many turns will it take to reach nominal height?
+            AturnDistance_um = np.absolute(xInter)/(fifThread*1000) #X turns = needed height / fif pitch (height per one full turn). Convert mm to microns.
+            AturnDistanceDegrees = faah.decNonZeroRound(np.absolute(turnDistance_um/((fifThreadOD*1000)/360))) #to get number of degrees. 1 degree = fifThreadODMicrons/360 um. Convert mm to microns.
+            AturnFraction = np.absolute(Fraction(turnDistance_um).limit_denominator()) #turnFraction-th of a turn
+        
+        #If the C height isn't equal to the nominal height
+        if CzDeltaTip or CzDeltaTilt or CenterDeltaZ != 0:
+            #is A too low or too high (clockwise = down, counter-clockwise = up)
+            if CzDeltaTip < 0: 
+                turnC = 'counter-clockwise' 
+            else: 
+                turnC = 'clockwise'
+            #How many turns will it take to reach nominal height?
+            AturnDistance_um = np.absolute(xInter)/(fifThread*1000) #X turns = needed height / fif pitch (height per one full turn). Convert mm to microns.
+            AturnDistanceDegrees = faah.decNonZeroRound(np.absolute(turnDistance_um/((fifThreadOD*1000)/360))) #to get number of degrees. 1 degree = fifThreadODMicrons/360 um. Convert mm to microns.
+            AturnFraction = np.absolute(Fraction(turnDistance_um).limit_denominator()) #turnFraction-th of a turn
+            
+        #Issue warning
+        faah.pageLogging(self.consoleLog, self.logFile, 
                                       "WARNING: the FIF Z height is " + str(xInter)[0:5] + "um away from nominal.\n The current FIF thread pitch is " +
                                       str(fifThread) + "mm (" + str(fifThread*1000) + "um), with a OD of " + str(fifThreadOD) + "mm (" +  str(fifThreadOD*1000) + "um)." + 
                                       "\n To adjust this FIF to the nominal height, you will need to turn the FIF\n " + 
                                        str(turnDistanceDegrees) + " degrees " + turn +" (" + 
                                        str(turnFraction).replace('(', '').replace(')', '') + 
                                        "th of a turn).", warning = True)
-            
-        #If the B height isn't equal to the nominal height
-        if BzDeltaTip or BzDeltaTilt != 0:
-            pass
-        
-        #If the C height isn't equal to the nominal height
-        if CzDeltaTip or CzDeltaTilt or CenterDeltaZ != 0:
-            pass
                     
         ###########################################################################
         ###Send Warning Message
