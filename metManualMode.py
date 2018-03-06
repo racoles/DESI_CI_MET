@@ -20,6 +20,7 @@ import numpy as np
 from tipTiltZCCD import tipTiltZCCD
 from CCDOpsPlanetMode import CCDOpsPlanetMode
 from centroidFIF import centroidFIF
+from fractions import Fraction
 ################################################################################################
 
 class metManualMode(tk.Tk):
@@ -37,7 +38,12 @@ class metManualMode(tk.Tk):
         self.master = master
         master.title("DESI CI Meterology Manual Mode")
         
-    def manualFIFFocusCurve(self):
+    def manualFIFFocusCurve(self, fifThread = 0.5):
+        '''
+        Creates a focus curve for FIFs using FITs images.
+        
+        Default FIF threading: fifThread = 0.5mm Z increase/decrease per turn.
+        '''
         ###########################################################################
         ###Get FIF Seletion from User
         ###########################################################################
@@ -77,12 +83,27 @@ class metManualMode(tk.Tk):
         nominalZ = fC.asphericFocalCurve(fC.fifLocationsCS5[self.fifSelection][0], fC.fifLocationsCS5[self.fifSelection][1])
         faah.pageLogging(self.consoleLog, self.logFile, 
                                       "Nominal Z for " + str(self.fifSelection) + " is: " + str(nominalZ) + "um in CS5 coordinates.")
-        faah.pageLogging(self.consoleLog, self.logFile, 
-                                      "FIF Manual Mode Absolute value of (Nominal Z - Measured Best Focus) = " +  str(np.absolute(nominalZ-xInter)) + 'um')
         
         ###########################################################################
         ###Make FIF Height Adjustment
-        ###########################################################################        
+        ###########################################################################
+        #If the FIF height isn't equal to the nominal height
+        if xInter != nominalZ:
+            #is the FIF too low or too high (clockwise = down, counter-clockwise = up)
+            if xInter < 0: 
+                turn = 'counter-clockwise' 
+            else: 
+                turn = 'clockwise'
+            #How many turns will it take to reach nominal height?
+            fifThreadMicrons = fifThread/1000 #convert mm to microns
+            turnDistance_um = xInter/fifThreadMicrons
+            turnFraction = Fraction(xInter, fifThreadMicrons)
+            #Issue warning
+            faah.pageLogging(self.consoleLog, self.logFile, 
+                                      "WARNING: the FIF Z height is " + str(xInter) + "um away from nominal. The current FIF thread is " +
+                                      str(fifThread) + "mm per turn. To adjust this FIF to the nominal height, you will need to ")
+        
+        
         
     def manualCCDFocusCurve(self):
         ###########################################################################
