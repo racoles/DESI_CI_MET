@@ -80,6 +80,10 @@ class metManualMode(tk.Tk):
         faah.pageLogging(self.consoleLog, self.logFile, 
                                       "FIF Manual Mode Absolute value of (Nominal Z - Measured Best Focus) = " +  str(np.absolute(nominalZ-xInter)) + 'um')
         
+        ###########################################################################
+        ###Make FIF Height Adjustment
+        ###########################################################################        
+        
     def manualCCDFocusCurve(self):
         ###########################################################################
         ###Get CCD Seletion from User
