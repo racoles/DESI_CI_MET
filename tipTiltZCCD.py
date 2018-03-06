@@ -78,6 +78,10 @@ class tipTiltZCCD(object):
         if CCDLabel == "Other":
             faah.pageLogging(consoleLog, logFile, 
                                         "CCD selection: Other. Not able to calculate Tip.")
+
+        ###########################################################################
+        ###Warning if Boundary Conditions Aren't Met
+        ###########################################################################
         
     def tiltCCD(self, Az, Bz, Cz, Az_nominal, Bz_nominal, Cz_nominal, CCDLabel, triangleSideLength, micrometerDistance, consoleLog, logFile):
         '''
