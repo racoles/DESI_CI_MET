@@ -101,8 +101,9 @@ class metManualMode(tk.Tk):
             turnFraction = np.absolute(Fraction(xInter,fifThreadMicrons).limit_denominator()) #turnFraction-th of a turn
             #Issue warning
             faah.pageLogging(self.consoleLog, self.logFile, 
-                                      "WARNING: the FIF Z height is " + str(xInter)[0:5] + "um away from nominal. The current FIF thread is " +
-                                      str(fifThread) + "mm per turn. To adjust this FIF to the nominal height, you will need to ")
+                                      "WARNING: the FIF Z height is " + str(xInter)[0:5] + "um away from nominal. The current FIF thread pitch is " +
+                                      str(fifThread) + "mm per turn. To adjust this FIF to the nominal height, you will need to turn the FIF " + 
+                                       str(turnDistanceDegrees)[0:3]+ " degrees " + turn +" (" + str(turnFraction) + "of a turn.")
         
         
         
