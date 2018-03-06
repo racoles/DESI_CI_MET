@@ -87,9 +87,8 @@ class tipTiltZCCD(object):
             faah.pageLogging(consoleLog, logFile, 
                                         "CCD selection: Other. Not able to calculate Tip.")
 
-        ###########################################################################
-        ###Warning if Boundary Conditions Aren't Met
-        ###########################################################################
+        #Return deltas
+        return Az_nominal-Az, Bz_nominal-Bz, Cz_nominal-Cz
         
     def tiltCCD(self, Az, Bz, Cz, Az_nominal, Bz_nominal, Cz_nominal, CCDLabel, consoleLog, logFile):
         '''
@@ -128,6 +127,9 @@ class tipTiltZCCD(object):
             faah.pageLogging(consoleLog, logFile, 
                                         "CCD selection: Other. Not able to calculate Tilt.")
 
+        #Return deltas
+        return Az_nominal-Az, Bz_nominal-Bz, Cz_nominal-Cz
+
     def ZCCD(self, Az, Bz, Cz, CCDLabel, consoleLog, logFile):
         '''
         Return CCD Z
@@ -154,3 +156,6 @@ class tipTiltZCCD(object):
                                         "Condition: Center(Z)_measured = Center(Z)_nominal\n" + 
                                         "        Center(Z)_measured = " + str(zCenter_measured) + "um\n" + 
                                         "        Center(Z)_nominal = " + str(zCenter_nominal) + "um\n" )
+
+        #Return deltas
+        return zCenter_nominal-zCenter_measured
