@@ -97,10 +97,8 @@ class metManualMode(tk.Tk):
             fifThreadMicrons = fifThread/1000 #convert mm to microns
             fifThreadODMicrons = fifThreadOD/1000 #convert mm to microns
             turnDistance_um = xInter/fifThreadMicrons #X turns = needed height / fif pitch (height per one full turn)
-            turnDistanceDegrees = turnDistance_um/fifThreadODMicrons
-            
-            
-            turnFraction = np.absolute(Fraction(xInter/fifThreadMicrons).limit_denominator()) #turnFraction-th of a turn
+            turnDistanceDegrees = turnDistance_um/(fifThreadODMicrons/360) #to get number of degrees. 1 degree = fifThreadODMicrons/360 um
+            turnFraction = np.absolute(Fraction(xInter,fifThreadMicrons).limit_denominator()) #turnFraction-th of a turn
             #Issue warning
             faah.pageLogging(self.consoleLog, self.logFile, 
                                       "WARNING: the FIF Z height is " + str(xInter)[0:5] + "um away from nominal. The current FIF thread is " +
