@@ -31,12 +31,23 @@ class tipTiltZCCD(object):
         #calculate how an adjustment to the micrometers affect the ABC heights. 
         triangleAdjustmentRatio = micrometerDistance/triangleSideLength
         
+        ###########################################################################
+        ###Get the tip/tilt/z deltas
+        ###########################################################################   
         #Tip
-        self.tipCCD(Az, Bz, Cz, Az_nominal, Bz_nominal, Cz_nominal, CCDLabel, triangleSideLength, micrometerDistance, consoleLog, logFile)
+        AzDeltaTip, BzDeltaTip, CzDeltaTip = self.tipCCD(Az, Bz, Cz, Az_nominal, Bz_nominal, Cz_nominal, CCDLabel, triangleSideLength, micrometerDistance, consoleLog, logFile)
         #Tilt
-        self.tiltCCD(Az, Bz, Cz, Az_nominal, Bz_nominal, Cz_nominal, CCDLabel, triangleSideLength, micrometerDistance, consoleLog, logFile)
+        AzDeltaTilt, BzDeltaTilt, CzDeltaTilt = self.tiltCCD(Az, Bz, Cz, Az_nominal, Bz_nominal, Cz_nominal, CCDLabel, triangleSideLength, micrometerDistance, consoleLog, logFile)
         #Z
-        zCenterDelta = self.ZCCD(Az, Bz, Cz, CCDLabel, triangleSideLength, micrometerDistance, consoleLog, logFile)
+        CenterDeltaZ = self.ZCCD(Az, Bz, Cz, CCDLabel, triangleSideLength, micrometerDistance, consoleLog, logFile)
+
+        ###########################################################################
+        ###Find Needed Micrometer Adjustments 
+        ########################################################################### 
+        
+        ###########################################################################
+        ###Send Warning Message
+        ###########################################################################
         
     def tipCCD(self, Az, Bz, Cz, Az_nominal, Bz_nominal, Cz_nominal, CCDLabel, consoleLog, logFile):
         '''
