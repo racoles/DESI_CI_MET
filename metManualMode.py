@@ -309,11 +309,11 @@ class metManualMode(tk.Tk):
         ###########################################################################
         ttz = tipTiltZCCD()
         #Tip
-        ttz.tipCCD(xInterA, xInterB, xInterC, nominalZA, nominalZB, nominalZC, self.CCDSelection, self.consoleLog, self.logFile)
+        ttz.tipCCD(xInterA, xInterB, xInterC, nominalZA, nominalZB, nominalZC, self.CCDSelection, fC.tccs, self.consoleLog, self.logFile)
         #Tilt
-        ttz.tiltCCD(xInterA, xInterB, xInterC, nominalZA, nominalZB, nominalZC, self.CCDSelection, self.consoleLog, self.logFile)
+        ttz.tiltCCD(xInterA, xInterB, xInterC, nominalZA, nominalZB, nominalZC, self.CCDSelection, fC.tccs, self.consoleLog, self.logFile)
         #Z
-        ttz.ZCCD(xInterA, xInterB, xInterC, self.CCDSelection, self.consoleLog, self.logFile)
+        ttz.ZCCD(xInterA, xInterB, xInterC, self.CCDSelection, fC.tccs, self.consoleLog, self.logFile)
         
         
     def _setTrueAndExit(self, windowVariable, fifLabel=" ", CCDLabel=" ", trianglePointLabel=" "):

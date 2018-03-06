@@ -22,7 +22,7 @@ class tipTiltZCCD(object):
         Constructor
         '''
         
-    def tipCCD(self, Az, Bz, Cz, Az_nominal, Bz_nominal, Cz_nominal, CCDLabel, consoleLog, logFile):
+    def tipCCD(self, Az, Bz, Cz, Az_nominal, Bz_nominal, Cz_nominal, CCDLabel, triangleSideLength, consoleLog, logFile):
         '''
         Calculate CCD tip
         
@@ -71,7 +71,7 @@ class tipTiltZCCD(object):
             faah.pageLogging(consoleLog, logFile, 
                                         "CCD selection: Other. Not able to calculate Tip.")
         
-    def tiltCCD(self, Az, Bz, Cz, Az_nominal, Bz_nominal, Cz_nominal, CCDLabel, consoleLog, logFile):
+    def tiltCCD(self, Az, Bz, Cz, Az_nominal, Bz_nominal, Cz_nominal, CCDLabel, triangleSideLength, consoleLog, logFile):
         '''
         Calculate CCD tilt
         
@@ -108,7 +108,7 @@ class tipTiltZCCD(object):
             faah.pageLogging(consoleLog, logFile, 
                                         "CCD selection: Other. Not able to calculate Tilt.")
 
-    def ZCCD(self, Az, Bz, Cz, CCDLabel, consoleLog, logFile):
+    def ZCCD(self, Az, Bz, Cz, CCDLabel, triangleSideLength, consoleLog, logFile):
         '''
         Return CCD Z
         
