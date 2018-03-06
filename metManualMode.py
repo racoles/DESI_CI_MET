@@ -38,7 +38,7 @@ class metManualMode(tk.Tk):
         self.master = master
         master.title("DESI CI Meterology Manual Mode")
         
-    def manualFIFFocusCurve(self, fifThread = 0.5):
+    def manualFIFFocusCurve(self, fifThread = 0.5, fifThreadOD = 6):
         '''
         Creates a focus curve for FIFs using FITs images.
         
@@ -95,9 +95,12 @@ class metManualMode(tk.Tk):
                 turn = 'clockwise'
             #How many turns will it take to reach nominal height?
             fifThreadMicrons = fifThread/1000 #convert mm to microns
-            turnDistance_um = xInter/fifThreadMicrons
-            turnFraction = np.absolute(Fraction(xInter/fifThreadMicrons).limit_denominator(10)) #th of a turn
-            print(turnFraction)
+            fifThreadODMicrons = fifThreadOD/1000 #convert mm to microns
+            turnDistance_um = xInter/fifThreadMicrons #X turns = needed height / fif pitch (height per one full turn)
+            turnDistanceDegrees = turnDistance_um/fifThreadODMicrons
+            
+            
+            turnFraction = np.absolute(Fraction(xInter/fifThreadMicrons).limit_denominator()) #turnFraction-th of a turn
             #Issue warning
             faah.pageLogging(self.consoleLog, self.logFile, 
                                       "WARNING: the FIF Z height is " + str(xInter)[0:5] + "um away from nominal. The current FIF thread is " +
