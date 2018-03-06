@@ -74,15 +74,14 @@ class metManualMode(tk.Tk):
         ########################################################################### 
         fC = focusCurve()       
         xInter = fC.stdFocusCurve(self.fifSelection, imageArray4D, filelist)
-        faah.pageLogging(self.consoleLog, self.logFile, 
-                                      "FIF Manual Mode Measured Best focus for " + str(self.fifSelection) + " is: " + str(xInter) + "um")
         
         ###########################################################################
         ###Nominal best focus
         ###########################################################################
         nominalZ = fC.asphericFocalCurve(fC.fifLocationsCS5[self.fifSelection][0], fC.fifLocationsCS5[self.fifSelection][1])
         faah.pageLogging(self.consoleLog, self.logFile, 
-                                      "Nominal Z for " + str(self.fifSelection) + " is: " + str(nominalZ) + "um in CS5 coordinates.")
+                                    "FIF Manual Mode Measured Best focus for " + str(self.fifSelection) + " is: " + str(xInter) + "um.\n"
+                                    "Nominal Z for " + str(self.fifSelection) + " is: " + str(nominalZ) + "um (in CS5 coordinates).")
         
         ###########################################################################
         ###Make FIF Height Adjustment
@@ -97,10 +96,11 @@ class metManualMode(tk.Tk):
             #How many turns will it take to reach nominal height?
             fifThreadMicrons = fifThread/1000 #convert mm to microns
             turnDistance_um = xInter/fifThreadMicrons
-            turnFraction = Fraction(xInter, fifThreadMicrons)
+            turnFraction = np.absolute(Fraction(xInter/fifThreadMicrons).limit_denominator(10)) #th of a turn
+            print(turnFraction)
             #Issue warning
             faah.pageLogging(self.consoleLog, self.logFile, 
-                                      "WARNING: the FIF Z height is " + str(xInter) + "um away from nominal. The current FIF thread is " +
+                                      "WARNING: the FIF Z height is " + str(xInter)[0:5] + "um away from nominal. The current FIF thread is " +
                                       str(fifThread) + "mm per turn. To adjust this FIF to the nominal height, you will need to ")
         
         
