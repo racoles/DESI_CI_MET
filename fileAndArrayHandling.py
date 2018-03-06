@@ -181,3 +181,16 @@ class fileAndArrayHandling(object):
             out.append(m)
     
         return "".join(out)
+    
+    def decNonZeroRound(self, n):
+        '''
+        Round a decimal to the first non-zero value
+        '''
+        if n == 0:
+            return 0
+        sgn = -1 if n < 0 else 1
+        scale = int(-math.floor(math.log10(abs(n))))
+        if scale <= 0:
+            scale = 1
+            factor = 10**scale
+        return sgn*math.floor(abs(n)*factor)/factor
