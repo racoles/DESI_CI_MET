@@ -94,16 +94,19 @@ class metManualMode(tk.Tk):
             else: 
                 turn = 'clockwise'
             #How many turns will it take to reach nominal height?
-            fifThreadMicrons = fifThread/1000 #convert mm to microns
-            fifThreadODMicrons = fifThreadOD/1000 #convert mm to microns
-            turnDistance_um = xInter/fifThreadMicrons #X turns = needed height / fif pitch (height per one full turn)
-            turnDistanceDegrees = turnDistance_um/(fifThreadODMicrons/360) #to get number of degrees. 1 degree = fifThreadODMicrons/360 um
-            turnFraction = np.absolute(Fraction(xInter,fifThreadMicrons).limit_denominator()) #turnFraction-th of a turn
+            turnDistance_um = np.absolute(xInter)/(fifThread*1000) #X turns = needed height / fif pitch (height per one full turn). Convert mm to microns.
+            turnDistanceDegrees = np.absolute(turnDistance_um/((fifThreadOD*1000)/360)) #to get number of degrees. 1 degree = fifThreadODMicrons/360 um. Convert mm to microns.
+            turnFraction = np.absolute(Fraction(turnDistance_um).limit_denominator()) #turnFraction-th of a turn
+            print(xInter)
+            print(fifThread/1000)
+            print(turnDistance_um)
             #Issue warning
             faah.pageLogging(self.consoleLog, self.logFile, 
-                                      "WARNING: the FIF Z height is " + str(xInter)[0:5] + "um away from nominal. The current FIF thread pitch is " +
-                                      str(fifThread) + "mm per turn. To adjust this FIF to the nominal height, you will need to turn the FIF " + 
-                                       str(turnDistanceDegrees)[0:3]+ " degrees " + turn +" (" + str(turnFraction) + "of a turn.")
+                                      "WARNING: the FIF Z height is " + str(xInter)[0:5] + "um away from nominal.\n The current FIF thread pitch is " +
+                                      str(fifThread) + "mm.\n To adjust this FIF to the nominal height, you will need to turn the FIF " + 
+                                       str(turnDistanceDegrees) + " degrees " + turn +" (" + 
+                                       str(turnFraction).replace('(', '').replace(')', '') + 
+                                       "th of a turn).")
         
         
         
