@@ -75,7 +75,7 @@ class fileAndArrayHandling(object):
                 raise
         return str(fiflabel + "_" + dirType + '_' + logTime)
     
-    def pageLogging(self, cLog, lFile, logText, doubleSpaceWithTime = True):
+    def pageLogging(self, cLog, lFile, logText, doubleSpaceWithTime = True, warning = False):
         '''
         Send text to console and log file.
         
@@ -89,14 +89,26 @@ class fileAndArrayHandling(object):
         ###########################################################################
         ###Send text to console
         ###########################################################################
-        if doubleSpaceWithTime == True:
-            cLog.configure(state="normal")
-            cLog.insert(tk.END, currentTime + ': ' + str(logText) + '\n\n')
-            cLog.configure(state="disable")
+        if warning == True:
+            if doubleSpaceWithTime == True:
+                cLog.configure(state="normal")
+                cLog.insert(tk.END, currentTime + ': ' + str(logText) + '\n\n', 'warning')
+                cLog.tag_config('warning', foreground='red')
+                cLog.configure(state="disable")
+            else:
+                cLog.configure(state="normal")
+                cLog.insert(tk.END, str(logText) +'\n', 'warning')
+                cLog.tag_config('warning', foreground='red')
+                cLog.configure(state="disable")
         else:
-            cLog.configure(state="normal")
-            cLog.insert(tk.END, str(logText) + '\n')
-            cLog.configure(state="disable")
+            if doubleSpaceWithTime == True:
+                cLog.configure(state="normal")
+                cLog.insert(tk.END, currentTime + ': ' + str(logText) + '\n\n')
+                cLog.configure(state="disable")
+            else:
+                cLog.configure(state="normal")
+                cLog.insert(tk.END, str(logText) + '\n')
+                cLog.configure(state="disable")
         
         ###########################################################################
         ###Send text to log file
@@ -182,15 +194,11 @@ class fileAndArrayHandling(object):
     
         return "".join(out)
     
-    def decNonZeroRound(self, n):
+    def decNonZeroRound(self, num):
         '''
         Round a decimal to the first non-zero value
         '''
-        if n == 0:
-            return 0
-        sgn = -1 if n < 0 else 1
-        scale = int(-math.floor(math.log10(abs(n))))
-        if scale <= 0:
-            scale = 1
-            factor = 10**scale
-        return sgn*math.floor(abs(n)*factor)/factor
+        working = str(num-int(num))
+        for i, e in enumerate(working[2:]):
+            if e != '0':
+                return int(num) + float(working[:i+3])

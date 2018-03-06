@@ -104,7 +104,7 @@ class metManualMode(tk.Tk):
                                       "\n To adjust this FIF to the nominal height, you will need to turn the FIF\n " + 
                                        str(turnDistanceDegrees) + " degrees " + turn +" (" + 
                                        str(turnFraction).replace('(', '').replace(')', '') + 
-                                       "th of a turn).")
+                                       "th of a turn).", warning = True)
         
         
         
