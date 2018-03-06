@@ -1,7 +1,7 @@
 '''
 @title tipTiltZCCD
 @author: Rebecca Coles
-Updated on Jan 31, 2018
+Updated on Mar 06, 2018
 Created on Jan 18, 2018
 
 tipTiltZCCD
@@ -91,6 +91,14 @@ class tipTiltZCCD(object):
         B(Z)_measured = C(Z) _measured = B(Z)_nominal = C(Z) _nominal
         '''          
         ###########################################################################
+        ###Get adjustment ratios
+        ###########################################################################     
+        #Since the triangle of micrometers is much larger than the small ABC
+        #imaginary triangle that we create on the sensor surface, we need to
+        #calculate how an adjustment to the micrometers affect the ABC heights. 
+        triangleAdjustmentRatio = micrometerDistance/triangleSideLength
+        
+        ###########################################################################
         ###Boundry Condition Check 
         ###########################################################################
         faah = fileAndArrayHandling()
@@ -128,6 +136,14 @@ class tipTiltZCCD(object):
         A(Z) _measured = A(Z) _nominal 
         B(Z)_measured = C(Z) _measured = B(Z)_nominal = C(Z) _nominal
         '''  
+        ###########################################################################
+        ###Get adjustment ratios
+        ###########################################################################     
+        #Since the triangle of micrometers is much larger than the small ABC
+        #imaginary triangle that we create on the sensor surface, we need to
+        #calculate how an adjustment to the micrometers affect the ABC heights. 
+        triangleAdjustmentRatio = micrometeDistance/triangleSideLength
+                
         ###########################################################################
         ###Get nominal  and measured Z for CCD center
         ###########################################################################               
