@@ -308,12 +308,7 @@ class metManualMode(tk.Tk):
         ###Check Tip and Tilt
         ###########################################################################
         ttz = tipTiltZCCD()
-        #Tip
-        ttz.tipCCD(xInterA, xInterB, xInterC, nominalZA, nominalZB, nominalZC, self.CCDSelection, fC.tccs, fC.micrometerDistance, self.consoleLog, self.logFile)
-        #Tilt
-        ttz.tiltCCD(xInterA, xInterB, xInterC, nominalZA, nominalZB, nominalZC, self.CCDSelection, fC.tccs, fC.micrometerDistance, self.consoleLog, self.logFile)
-        #Z
-        ttz.ZCCD(xInterA, xInterB, xInterC, self.CCDSelection, fC.tccs, fC.micrometerDistance, self.consoleLog, self.logFile)
+        ttz.findTipTiltZ(xInterA, xInterB, xInterC, nominalZA, nominalZB, nominalZC, self.CCDSelection, fC.tccs, fC.micrometerDistance, self.consoleLog, self.logFile)
         
         
     def _setTrueAndExit(self, windowVariable, fifLabel=" ", CCDLabel=" ", trianglePointLabel=" "):

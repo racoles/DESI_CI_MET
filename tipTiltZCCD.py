@@ -21,8 +21,24 @@ class tipTiltZCCD(object):
         '''
         Constructor
         '''
+    
+    def findTipTiltZ(self, Az, Bz, Cz, Az_nominal, Bz_nominal, Cz_nominal, CCDLabel, triangleSideLength, micrometerDistance, consoleLog, logFile):
+        ###########################################################################
+        ###Get adjustment ratios
+        ###########################################################################     
+        #Since the triangle of micrometers is much larger than the small ABC
+        #imaginary triangle that we create on the sensor surface, we need to
+        #calculate how an adjustment to the micrometers affect the ABC heights. 
+        triangleAdjustmentRatio = micrometerDistance/triangleSideLength
         
-    def tipCCD(self, Az, Bz, Cz, Az_nominal, Bz_nominal, Cz_nominal, CCDLabel, triangleSideLength, micrometerDistance, consoleLog, logFile):
+        #Tip
+        self.tipCCD(Az, Bz, Cz, Az_nominal, Bz_nominal, Cz_nominal, CCDLabel, triangleSideLength, micrometerDistance, consoleLog, logFile)
+        #Tilt
+        self.tiltCCD(Az, Bz, Cz, Az_nominal, Bz_nominal, Cz_nominal, CCDLabel, triangleSideLength, micrometerDistance, consoleLog, logFile)
+        #Z
+        self.ZCCD(Az, Bz, Cz, CCDLabel, triangleSideLength, micrometerDistance, consoleLog, logFile)
+        
+    def tipCCD(self, Az, Bz, Cz, Az_nominal, Bz_nominal, Cz_nominal, CCDLabel, consoleLog, logFile):
         '''
         Calculate CCD tip
         
@@ -34,15 +50,7 @@ class tipTiltZCCD(object):
             A(Z) _measured > B(Z) _measured && C(Z) _measured (by a known distance)
         Center CCD:
             A(Z) _measured = B(Z) _measured = C(Z) _measured = A(Z) _nominal = B(Z) _nominal = C(Z) _nominal
-        '''            
-        ###########################################################################
-        ###Get adjustment ratios
-        ###########################################################################     
-        #Since the triangle of micrometers is much larger than the small ABC
-        #imaginary triangle that we create on the sensor surface, we need to
-        #calculate how an adjustment to the micrometers affect the ABC heights. 
-        triangleAdjustmentRatio = micrometerDistance/triangleSideLength
-        
+        '''                    
         ###########################################################################
         ###Boundary Condition Check 
         ###########################################################################
@@ -83,21 +91,13 @@ class tipTiltZCCD(object):
         ###Warning if Boundary Conditions Aren't Met
         ###########################################################################
         
-    def tiltCCD(self, Az, Bz, Cz, Az_nominal, Bz_nominal, Cz_nominal, CCDLabel, triangleSideLength, micrometerDistance, consoleLog, logFile):
+    def tiltCCD(self, Az, Bz, Cz, Az_nominal, Bz_nominal, Cz_nominal, CCDLabel, consoleLog, logFile):
         '''
         Calculate CCD tilt
         
         A(Z) _measured = A(Z) _nominal 
         B(Z)_measured = C(Z) _measured = B(Z)_nominal = C(Z) _nominal
         '''          
-        ###########################################################################
-        ###Get adjustment ratios
-        ###########################################################################     
-        #Since the triangle of micrometers is much larger than the small ABC
-        #imaginary triangle that we create on the sensor surface, we need to
-        #calculate how an adjustment to the micrometers affect the ABC heights. 
-        triangleAdjustmentRatio = micrometerDistance/triangleSideLength
-        
         ###########################################################################
         ###Boundry Condition Check 
         ###########################################################################
@@ -128,22 +128,14 @@ class tipTiltZCCD(object):
             faah.pageLogging(consoleLog, logFile, 
                                         "CCD selection: Other. Not able to calculate Tilt.")
 
-    def ZCCD(self, Az, Bz, Cz, CCDLabel, triangleSideLength, micrometeDistance, consoleLog, logFile):
+    def ZCCD(self, Az, Bz, Cz, CCDLabel, consoleLog, logFile):
         '''
         Return CCD Z
         
         Z(Center) _measured = Z(Center) _nominal 
         A(Z) _measured = A(Z) _nominal 
         B(Z)_measured = C(Z) _measured = B(Z)_nominal = C(Z) _nominal
-        '''  
-        ###########################################################################
-        ###Get adjustment ratios
-        ###########################################################################     
-        #Since the triangle of micrometers is much larger than the small ABC
-        #imaginary triangle that we create on the sensor surface, we need to
-        #calculate how an adjustment to the micrometers affect the ABC heights. 
-        triangleAdjustmentRatio = micrometeDistance/triangleSideLength
-                
+        '''            
         ###########################################################################
         ###Get nominal  and measured Z for CCD center
         ###########################################################################               
