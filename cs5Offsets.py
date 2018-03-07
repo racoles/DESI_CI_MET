@@ -12,17 +12,47 @@ SBIG ST-I and STXL-6303 cameras that is attached to the DMM, while the DMM is at
 
 # Import #######################################################################################
 import tkinter as tk
+from tkinter.ttk import Separator
 ################################################################################################
 
 class cs5Offsets(object):
+    pinholeImageDistnceToSenorOrigin_rows = 293.48
+    pinholeImageDistnceToSenorOrigin_columns = 205.93
+    
     
     def __init__(self):
         '''
         Constructor
         '''
+    
+    def calibrationScreen(self):
+        '''
+        To find the CS5 location of an illuminated object that is imaged using the
+        SBIG ST-I and STXL-6303 cameras that is attached to the DMM, while the DMM 
+        is attached to a CMM.
+        '''
+        ###########################################################################
+        ###Calibration Window
+        ###########################################################################   
+        top = tk.Toplevel()
+        top.title("DESI CI Metrology Software Calibration")
+        self.wm_withdraw()
+        
+        #Manual Mode Description
+        tk.Label(top, text="Goal: To find the CS5 location of an illuminated object that is imaged using the\n" + 
+                 "SBIG ST-I and STXL-6303 cameras that is attached to the DMM, while the DMM is attached to a CMM.").grid(row=0, column=0, columnspan=6, rowspan = 2, sticky='W')
+        Separator(top, orient="horizontal").grid(row=2, column=0, columnspan=6, sticky='ew')
+        
+        #
+        
+        # RefFIF
+        refFIF = tk.Button(top, text="RefFIF: (199.28,-345.15)", command=lambda: self._setTrueAndExit(top, fifLabel="RefFIF"))
+        refFIF.grid(row=1, column=0, sticky='W')
+        
     def offsetCS5LocationInImage(self):
         '''
         '''
+        
     
     def _moveToIlluminatedDowelAndImage(self):
         '''
@@ -49,17 +79,3 @@ class cs5Offsets(object):
         directly in the center of the image, and this offset tells us where the imaged-object 
         origin is in ST-I images.
         '''
-        ###########################################################################
-        ###FIF Button Option Window
-        ###########################################################################   
-        top = tk.Toplevel()
-        top.title("DESI CI Metrology Software Calibration")
-        self.wm_withdraw()
-        
-        #Manual Mode Description
-        tk.Label(top, text="Which FIF would you like to measure?").grid(row=0, column=0, columnspan=2, sticky='W')
-        
-        # RefFIF
-        refFIF = tk.Button(top, text="RefFIF: (199.28,-345.15)", command=lambda: self._setTrueAndExit(top, fifLabel="RefFIF"))
-        refFIF.grid(row=1, column=0, sticky='W')
-        
