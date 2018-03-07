@@ -131,7 +131,7 @@ class cs5Offsets(object):
         
         #Get location of pinhole image in (rows, columns)
         cF = centroidFIF()
-        fifSubArray, subArrayBoxSize, maxLoc = cF.findFIFInImage(imageArray4D[0])
+        _ , _ , maxLoc = cF.findFIFInImage(imageArray4D[0])
         
         #Account for planet mode
         pM = CCDOpsPlanetMode()
