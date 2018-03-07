@@ -74,13 +74,14 @@ class cs5Offsets(object):
                  "\t2. After attaching the DMM to the CMM, tell the CMM to move to the CS5 location of the illuminated divot.\n\n" +
                  "\t3. Take an image of the illuminated divot using the ST-I camera on the DMM.\n\n" +
                  "\t4. Input the image into the DESI CI Metrology software using the input button below. The software will\n" +
-                 "\t\x20\x20\x20\x20locate the location of the illuminated divot in units of (rows, columns).", wraplength=700, justify="left").grid(row=8, column=0, sticky='W')
+                 "\t\x20\x20\x20\x20locate the location of the illuminated divot in units of (rows, columns).\n", wraplength=700, justify="left").grid(row=8, column=0, sticky='W')
         offset2Button = tk.Button(top, text="Load Image of Illuminated Divot", command=lambda: self._offset2_moveToIlluminatedDowelAndImage(offset2Button))
         offset2Button.grid(row=9, column=0, sticky='W')
         
         ###########################################################################
-        ###Calibration Window
-        ########################################################################### 
+        ###Change button text and color
+        ###########################################################################
+        inputGUIcalibrationScreenButton.config(text = "CS5 Calibration Complete", bg = 'green')
         
     def _offset1_PinholeImageDistnceToSensorOrigin(self):
         '''
