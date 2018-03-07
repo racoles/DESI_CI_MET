@@ -103,4 +103,8 @@ class cs5Offsets(object):
         directly in the center of the image, and this offset tells us where the imaged-object 
         origin is in ST-I images.
         '''
+        
+        ###########################################################################
+        ###Change button text and color
+        ###########################################################################
         offset2Button.config(text = "Illuminated Dowel Calibration Complete", bg = 'green')
