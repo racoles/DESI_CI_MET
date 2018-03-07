@@ -22,6 +22,10 @@ class cs5Offsets(object):
         '''
     def offsetCS5LocationInImage(self):
         '''
+        '''
+    
+    def _moveToIlluminatedDowelAndImage(self):
+        '''
         AKA: The Dowel Measurement
         
         When we tell the CS5 calibrated CMM to move to a given CS5 location, we will need to know
@@ -44,10 +48,6 @@ class cs5Offsets(object):
         image. Put simply, the ST-I is not mounted on the DMM such that an imaged object appears 
         directly in the center of the image, and this offset tells us where the imaged-object 
         origin is in ST-I images.
-        '''
-    
-    def _moveToIlluminatedDowelAndImage(self):
-        '''
         '''
         ###########################################################################
         ###FIF Button Option Window
