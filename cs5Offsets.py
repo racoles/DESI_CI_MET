@@ -16,6 +16,7 @@ from tkinter.ttk import Separator
 ################################################################################################
 
 class cs5Offsets(object):
+    
     pinholeImageDistnceToSenorOrigin_rows = 293.48
     pinholeImageDistnceToSenorOrigin_columns = 205.93
     
@@ -49,7 +50,7 @@ class cs5Offsets(object):
         refFIF = tk.Button(top, text="RefFIF: (199.28,-345.15)", command=lambda: self._setTrueAndExit(top, fifLabel="RefFIF"))
         refFIF.grid(row=1, column=0, sticky='W')
         
-    def offsetCS5LocationInImage(self):
+    def _offsetCS5LocationInImage(self):
         '''
         '''
         
