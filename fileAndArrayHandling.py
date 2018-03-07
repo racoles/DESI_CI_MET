@@ -75,7 +75,7 @@ class fileAndArrayHandling(object):
                 raise
         return str(fiflabel + "_" + dirType + '_' + logTime)
     
-    def pageLogging(self, cLog, lFile, logText, doubleSpaceWithTime = True, warning = False):
+    def pageLogging(self, cLog, lFile, logText, doubleSpaceWithTime = True, warning = False, calibration = False):
         '''
         Send text to console and log file.
         
@@ -100,6 +100,17 @@ class fileAndArrayHandling(object):
                 cLog.insert(tk.END, str(logText) +'\n', 'warning')
                 cLog.tag_config('warning', foreground='red')
                 cLog.configure(state="disable")
+        elif calibration == False:
+            if doubleSpaceWithTime == True:
+                cLog.configure(state="normal")
+                cLog.insert(tk.END, currentTime + ': ' + str(logText) + '\n\n', 'warning')
+                cLog.tag_config('warning', foreground='blue')
+                cLog.configure(state="disable")
+            else:
+                cLog.configure(state="normal")
+                cLog.insert(tk.END, str(logText) +'\n', 'warning')
+                cLog.tag_config('warning', foreground='blue')
+                cLog.configure(state="disable")            
         else:
             if doubleSpaceWithTime == True:
                 cLog.configure(state="normal")

@@ -69,8 +69,9 @@ class cs5Offsets(object):
                  wraplength=700, justify="left").grid(row=5, column=0, sticky='W')
                  
         faah = fileAndArrayHandling()
-        faah.pageLogging(consoleLog, logFile, "The current predetermined offsets show that the center the 100um pinhole on the DMM, when imaged with the ST-i" + 
-                 " is located at: (row = " + str(self.PIDTSO_rows) + ", column = " + str(self.PIDTSO_columns) + ")")
+        faah.pageLogging(consoleLog, logFile, "Beginning Calibration Routine", calibration = True)
+        faah.pageLogging(consoleLog, logFile, "The current predetermined offset for the DMM's 100um pinhole as imaged with the ST-i" + 
+                 " is: (row = " + str(self.PIDTSO_rows) + ", column = " + str(self.PIDTSO_columns) + ")", calibration = True)
                        
         #Offset 2: CS5 Point on CI Dowel as shown in ST-I Image (Needed for FIF and CCD Metrology Measurements)
         Separator(top, orient="horizontal").grid(row=6, column=0, sticky='ew')
@@ -127,7 +128,7 @@ class cs5Offsets(object):
         #Log image that will be used for centroiding
         faah = fileAndArrayHandling()
         faah.pageLogging(consoleLog, logFile, 
-                         "Centroiding image: " +  str(filelist[0]).replace('/', '\\'))
+                         "Centroiding image: " +  str(filelist[0]).replace('/', '\\'), calibration = True)
         
         #Get location of pinhole image in (rows, columns)
         cF = centroidFIF()
@@ -156,10 +157,11 @@ class cs5Offsets(object):
         faah.pageLogging(consoleLog, logFile, "Calibration Pinhole image found at (rows, columns): (" + str(maxLoc[1] + xOffset) + ', ' + str(maxLoc[0] + yOffset)+ ')\n' +
                         "Calibration GMS Centroid (rows, columns): (" +  format(xCenGMS + xOffset, '.2f') + ' +/- ' + format(xErrGMS, '.2f') + 
                         ', ' + format(yCenGMS + yOffset, '.2f') + ' +/- ' + format(yErrGMS, '.2f') + ')\n' + "Illuminated point on CI illuminated dowel, as shown in ST-I image," +
-                        " offset will be set to: ("+  format(xCenGMS + xOffset, '.2f') + ', ' + format(yCenGMS + yOffset, '.2f') + ")")
+                        " offset will be set to: ("+  format(xCenGMS + xOffset, '.2f') + ', ' + format(yCenGMS + yOffset, '.2f') + ")", calibration = True)
                         
         ###########################################################################
         ###Set Offset2
         ###########################################################################
         self.CPOCID_rows = xCenGMS
         self.CPOCID_columns = yCenGMS
+        faah.pageLogging(consoleLog, logFile, "Calibration Routine Complete", calibration = True)
