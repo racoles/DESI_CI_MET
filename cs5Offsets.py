@@ -136,7 +136,7 @@ class cs5Offsets(object):
         
         #Account for planet mode
         pM = CCDOpsPlanetMode()
-        xOffset, yOffset, _ = pM.readFitsHeader(imageArray4D, filelist, consoleLog, logFile)
+        xOffset, yOffset, _ = pM.readFitsHeader(imageArray4D, filelist, consoleLog, logFile, calibration = True)
              
         ###########################################################################
         ###Centroid Pinhole
