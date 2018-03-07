@@ -233,8 +233,8 @@ class metManualMode(tk.Tk):
         ###########################################################################
         triangleOrMap = tk.Toplevel()
         tk.Label(triangleOrMap, text="Camera Tip/Tilt/Z Equilateral Triangle Orientation").grid(row=0, column=0, columnspan=2, sticky='W')
-        self.triangleOrient = tk.PhotoImage(file="FPA_triangles-300x300.png", width=300, height=300)
-        tk.Label(triangleOrMap, image=self.fifOrient).grid(row=1, column=0, rowspan=10, sticky='W')
+        self.triangleOrient = tk.PhotoImage(file="FPA_triangles.png", width=600, height=600)
+        tk.Label(triangleOrMap, image=self.triangleOrient).grid(row=1, column=0, rowspan=10, sticky='W')
         
         ###########################################################################
         ###Get CCD Seletion from User

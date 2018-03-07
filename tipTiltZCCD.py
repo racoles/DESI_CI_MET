@@ -37,11 +37,11 @@ class tipTiltZCCD(object):
         ###Get the tip/tilt/z deltas
         ###########################################################################   
         #Tip
-        AzDeltaTip, BzDeltaTip, CzDeltaTip = self.tipCCD(Az, Bz, Cz, Az_nominal, Bz_nominal, Cz_nominal, CCDLabel, triangleSideLength, micrometerDistance, consoleLog, logFile)
+        AzDeltaTip, BzDeltaTip, CzDeltaTip = self.tipCCD(Az, Bz, Cz, Az_nominal, Bz_nominal, Cz_nominal, CCDLabel, consoleLog, logFile)
         #Tilt
-        AzDeltaTilt, BzDeltaTilt, CzDeltaTilt = self.tiltCCD(Az, Bz, Cz, Az_nominal, Bz_nominal, Cz_nominal, CCDLabel, triangleSideLength, micrometerDistance, consoleLog, logFile)
+        AzDeltaTilt, BzDeltaTilt, CzDeltaTilt = self.tiltCCD(Az, Bz, Cz, Az_nominal, Bz_nominal, Cz_nominal, CCDLabel, consoleLog, logFile)
         #Z
-        CenterDeltaZ = self.ZCCD(Az, Bz, Cz, CCDLabel, triangleSideLength, micrometerDistance, consoleLog, logFile)
+        CenterDeltaZ = self.ZCCD(Az, Bz, Cz, CCDLabel, consoleLog, logFile)
 
         ###########################################################################
         ###Find Needed Micrometer Adjustments 
@@ -88,7 +88,7 @@ class tipTiltZCCD(object):
         ###########################################################################
         ###Send Warning Message
         ###########################################################################
-        faah.pageLogging(self.consoleLog, self.logFile, 
+        faah.pageLogging(consoleLog, logFile, 
                 "WARNING: the" + str(CCDLabel) +" camera Z height is not equal to the nominal height.\n" + "The current micrometer thread pitch is " +
                 str(TTFThread) + "mm (" + str(TTFThread*1000) + "um), with a OD of " + str(TTFThreadOD) + "mm (" +  str(TTFThreadOD*1000) + "um)." + 
                 "\n To adjust this camera to the nominal height, you will need to adjust the micrometers as:\n " + 
