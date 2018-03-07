@@ -69,8 +69,7 @@ class cs5Offsets(object):
                  "\t2. After attaching the DMM to the CMM, tell the CMM to move to the CS5 location of the illuminated divot.\n\n" +
                  "\t3. Take an image of the illuminated divot using the ST-I camera on the DMM.\n\n" +
                  "\t4. Input the image into the DESI CI Metrology software using the input button below. The software will\n" +
-                 "\t\x20\x20\x20\x20locate the location of the illuminated divot in units of (rows, columns)."
-                 , wraplength=700, justify="left").grid(row=8, column=0, sticky='W')
+                 "\t\x20\x20\x20\x20locate the location of the illuminated divot in units of (rows, columns).", wraplength=700, justify="left").grid(row=8, column=0, sticky='W')
                          
         # RefFIF
         #refFIF = tk.Button(top, text="RefFIF: (199.28,-345.15)", command=lambda: self._setTrueAndExit(top, fifLabel="RefFIF"))
