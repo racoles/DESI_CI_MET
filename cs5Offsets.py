@@ -14,6 +14,7 @@ SBIG ST-I and STXL-6303 cameras that is attached to the DMM, while the DMM is at
 import tkinter as tk
 from tkinter.ttk import Separator
 from fileAndArrayHandling import fileAndArrayHandling
+from centroidFIF import centroidFIF
 ################################################################################################
 
 class cs5Offsets(object):
@@ -22,13 +23,20 @@ class cs5Offsets(object):
     PIDTSO_rows = 293.48
     PIDTSO_columns = 205.93
     
+    #CS5 Point on CI Dowel as shown in ST-I Image
+    CPOCID_rows = 0
+    CPOCID_columns = 0
+    
+    #Width of sub-image for GMS centroiding
+    widthOfSubimage = 80 #pixels
+    
     
     def __init__(self):
         '''
         Constructor
         '''
     
-    def calibrationScreen(self, inputGUIcalibrationScreenButton ,consoleLog, logFile):
+    def calibrationScreen(self, inputGUIcalibrationScreenButton , consoleLog, logFile):
         '''
         To find the CS5 location of an illuminated object that is imaged using the
         SBIG ST-I and STXL-6303 cameras that is attached to the DMM, while the DMM 
@@ -75,20 +83,15 @@ class cs5Offsets(object):
                  "\t3. Take an image of the illuminated divot using the ST-I camera on the DMM.\n\n" +
                  "\t4. Input the image into the DESI CI Metrology software using the input button below. The software will\n" +
                  "\t\x20\x20\x20\x20locate the location of the illuminated divot in units of (rows, columns).\n", wraplength=700, justify="left").grid(row=8, column=0, sticky='W')
-        offset2Button = tk.Button(top, text="Load Image of Illuminated Divot", command=lambda: self._offset2_moveToIlluminatedDowelAndImage(offset2Button))
+        offset2Button = tk.Button(top, text="Load Image of Illuminated Divot", command=lambda: self._offset2_moveToIlluminatedDowelAndImage(inputGUIcalibrationScreenButton, offset2Button, consoleLog, logFile))
         offset2Button.grid(row=9, column=0, sticky='W')
-        
-        ###########################################################################
-        ###Change button text and color
-        ###########################################################################
-        inputGUIcalibrationScreenButton.config(text = "CS5 Calibration Complete", bg = 'green')
         
     def _offset1_PinholeImageDistnceToSensorOrigin(self):
         '''
         '''
         
     
-    def _offset2_moveToIlluminatedDowelAndImage(self, offset2Button):
+    def _offset2_moveToIlluminatedDowelAndImage(self, inputGUIcalibrationScreenButton, offset2Button, consoleLog, logFile):
         '''
         AKA: The Dowel Measurement
         
@@ -113,8 +116,34 @@ class cs5Offsets(object):
         directly in the center of the image, and this offset tells us where the imaged-object 
         origin is in ST-I images.
         '''
+        ###########################################################################
+        ###Load Caliberation Image
+        ###########################################################################
+        faah = fileAndArrayHandling()
+        imageArray4D, filelist = faah.openAllFITSImagesInDirectory()
+        
+        #Log image that will be used for centroiding
+        faah = fileAndArrayHandling()
+        faah.pageLogging(consoleLog, logFile, 
+                         "Centroiding image: " +  str(filelist[0]).replace('/', '\\'))
+        
+        #Get location of pinhole image in (rows, columns)
+        cF = centroidFIF()
+        fifSubArray, subArrayBoxSize, maxLoc = cF.findFIFInImage(imageArray4D[0])
+             
+        ###########################################################################
+        ###Centroid Pinhole
+        ###########################################################################
+        #Use alternate methods to centroid pinhole image
+        #    gmsCentroid: Gaussian Marginal Sum (GMS) Centroid Method.
+        xCenGMS, yCenGMS, xErrGMS, yErrGMS = gmsCentroid(imageArray4D[0], maxLoc[1], maxLoc[0], int(round(widthOfSubimage/2)), int(round(widthOfSubimage/2)), axis='both', verbose=False)
         
         ###########################################################################
         ###Change button text and color
         ###########################################################################
         offset2Button.config(text = "Illuminated Dowel Calibration Complete", bg = 'green')
+        inputGUIcalibrationScreenButton.config(text = "CS5 Calibration Complete", bg = 'green')
+        
+        ###########################################################################
+        ###Return Offset2
+        ###########################################################################
