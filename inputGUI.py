@@ -125,7 +125,7 @@ class inputGUI(object):
         ###Log Console
         ###########################################################################         
         # create a Text widget with a Scrollbar attached
-        self.consoleLog = ScrolledText.ScrolledText(self.master, undo=True)
+        self.consoleLog = ScrolledText.ScrolledText(self.master, undo=True, height=15)
         self.consoleLog['font'] = ('consolas', '10')
         self.consoleLog.grid(row=15, column=0, columnspan=5, sticky='ew') 
         # start log
