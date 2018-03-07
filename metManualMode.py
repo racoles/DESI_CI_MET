@@ -220,8 +220,9 @@ class metManualMode(tk.Tk):
         Take focus curves at the points of an equilateral triangle
         to find the CCD center
         '''
-        
-        #FIF orientation diagram
+        ###########################################################################
+        ###Equilateral Triangle Orientation Diagram
+        ###########################################################################
         triangleOrMap = tk.Toplevel()
         tk.Label(triangleOrMap, text="Camera Tip/Tilt/Z Equilateral Triangle Orientation").grid(row=0, column=0, columnspan=2, sticky='W')
         self.triangleOrient = tk.PhotoImage(file="FPA_triangles-300x300.png", width=300, height=300)
