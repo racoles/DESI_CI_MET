@@ -223,7 +223,7 @@ class inputGUI(object):
         xCencF, yCencF = cF.findCentroid(fifSubArray, int(round(subArrayBoxSize/2)), int(round(subArrayBoxSize/2)), extendbox = 3)
         xCencF = xCencF + maxLoc[0]-subArrayBoxSize/2
         yCencF = yCencF + maxLoc[1]-subArrayBoxSize/2
-        
+       
         #Print Results
         faah.pageLogging(consoleLog, logFile,
                         "Pinhole image found at (rows, columns): (" + str(maxLoc[1] + xOffset) + ', ' + str(maxLoc[0] + yOffset)+ ')\n' +
