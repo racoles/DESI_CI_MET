@@ -89,13 +89,13 @@ class tipTiltZCCD(object):
         ###Send Warning Message
         ###########################################################################
         faah.pageLogging(self.consoleLog, self.logFile, 
-                                      "WARNING: the" + str(CCDLabel) +" camera Z height is not equal to the nominal height.\n" + "The current micrometer thread pitch is " +
-                                      str(TTFThread) + "mm (" + str(TTFThread*1000) + "um), with a OD of " + str(TTFThreadOD) + "mm (" +  str(TTFThreadOD*1000) + "um)." + 
-                                      "\n To adjust this camera to the nominal height, you will need to adjust the micrometers as:\n " + 
-                                       "Micrometer A: " + str(AturnDistanceDegrees) + " degrees " + turnA +" (" + str(AturnFraction).replace('(', '').replace(')', '') + "th of a turn)." +
-                                       "Micrometer B: " + str(BturnDistanceDegrees) + " degrees " + turnB +" (" + str(BturnFraction).replace('(', '').replace(')', '') + "th of a turn)." +
-                                       "Micrometer C: " + str(CturnDistanceDegrees) + " degrees " + turnC +" (" + str(CturnFraction).replace('(', '').replace(')', '') + "th of a turn)."
-                                       , warning = True)
+                "WARNING: the" + str(CCDLabel) +" camera Z height is not equal to the nominal height.\n" + "The current micrometer thread pitch is " +
+                str(TTFThread) + "mm (" + str(TTFThread*1000) + "um), with a OD of " + str(TTFThreadOD) + "mm (" +  str(TTFThreadOD*1000) + "um)." + 
+                "\n To adjust this camera to the nominal height, you will need to adjust the micrometers as:\n " + 
+                "Micrometer A: " + str(AturnDistanceDegrees) + " degrees " + turnA +" (" + str(AturnFraction).replace('(', '').replace(')', '') + "th of a turn)." +
+                "Micrometer B: " + str(BturnDistanceDegrees) + " degrees " + turnB +" (" + str(BturnFraction).replace('(', '').replace(')', '') + "th of a turn)." +
+                "Micrometer C: " + str(CturnDistanceDegrees) + " degrees " + turnC +" (" + str(CturnFraction).replace('(', '').replace(')', '') + "th of a turn).", 
+                warning = True)
         
     def tipCCD(self, Az, Bz, Cz, Az_nominal, Bz_nominal, Cz_nominal, CCDLabel, consoleLog, logFile):
         '''
