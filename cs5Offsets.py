@@ -70,15 +70,15 @@ class cs5Offsets(object):
                  "\t3. Take an image of the illuminated divot using the ST-I camera on the DMM.\n\n" +
                  "\t4. Input the image into the DESI CI Metrology software using the input button below. The software will\n" +
                  "\t\x20\x20\x20\x20locate the location of the illuminated divot in units of (rows, columns).", wraplength=700, justify="left").grid(row=8, column=0, sticky='W')
-        #refFIF = tk.Button(top, text="RefFIF: (199.28,-345.15)", command=lambda: self._setTrueAndExit(top, fifLabel="RefFIF"))
-        #refFIF.grid(row=1, column=0, sticky='W')
+        offset2Button = tk.Button(top, text="Load Image of Illuminated Divot", command=lambda: self._offset2_moveToIlluminatedDowelAndImage(offset2Button))
+        offset2Button.grid(row=9, column=0, sticky='W')
         
-    def _offsetCS5LocationInImage(self):
+    def _offset1_PinholeImageDistnceToSensorOrigin(self):
         '''
         '''
         
     
-    def _moveToIlluminatedDowelAndImage(self):
+    def _offset2_moveToIlluminatedDowelAndImage(self, offset2Button):
         '''
         AKA: The Dowel Measurement
         
@@ -103,3 +103,4 @@ class cs5Offsets(object):
         directly in the center of the image, and this offset tells us where the imaged-object 
         origin is in ST-I images.
         '''
+        offset2Button.config(text = "Illuminated Dowel Calibration Complete", bg = 'green')
