@@ -26,7 +26,7 @@ class cs5Offsets(object):
         Constructor
         '''
     
-    def calibrationScreen(self):
+    def calibrationScreen(self, consoleLog, logFile):
         '''
         To find the CS5 location of an illuminated object that is imaged using the
         SBIG ST-I and STXL-6303 cameras that is attached to the DMM, while the DMM 
@@ -44,7 +44,8 @@ class cs5Offsets(object):
                  "SBIG ST-I and STXL-6303 cameras that is attached to the DMM, while the DMM is attached to a CMM.").grid(row=0, column=0, columnspan=6, rowspan = 2, sticky='W')
         Separator(top, orient="horizontal").grid(row=2, column=0, columnspan=6, sticky='ew')
         
-        #
+        #Offset 1: Light from 100um DMM Pinhole in ST-I Image (Needed for CCD Metrology Measurements)
+        tk.Label(top, text="Light from 100um DMM Pinhole in ST-I Image (Needed for CCD Metrology Measurements)", font="bold").grid(row=0, column=0, columnspan=6, rowspan = 1, sticky='W')
         
         # RefFIF
         refFIF = tk.Button(top, text="RefFIF: (199.28,-345.15)", command=lambda: self._setTrueAndExit(top, fifLabel="RefFIF"))
