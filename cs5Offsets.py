@@ -1,11 +1,11 @@
 '''
 @title cs5Offsets
 @author: Rebecca Coles
-Updated on Feb 14, 2018
+Updated on Mar 06, 2018
 Created on Feb 14, 2018
 
 cs5Offsets
-This moduel is used to find the CS5 location of an illuminated object that is imaged using the 
+This module is used to find the CS5 location of an illuminated object that is imaged using the 
 SBIG ST-I and STXL-6303 cameras that is attached to the DMM, while the DMM is attached to a CMM.
 
 '''
@@ -27,9 +27,9 @@ class cs5Offsets(object):
         where the specified point will show up in the associated ST-I image taken with the DMM for 
         that point. To find this offset in units of (rows, columns), we perform the following 
         measurements prior to mounting the DMM on the CMM:
-        1.    The CI will have two dowels placed at know locations. Each dowel will have a 
-                divot machined on top. Prior to mounting the DMM on the CS5 calibrated CMM, 
-                we use the CMM’s touch probe to find the exact location of the divots in CS5 
+        1.    The CI will have two dowels placed at know locations. Each dowel will have an 
+                illuminated divot on top. Prior to mounting the DMM on the CS5 calibrated CMM, 
+                we use the CMM's touch probe to find the exact location of the divots in CS5 
                 coordinates.
         2.    After attaching the DMM to the CMM, we tell the CMM to move to the CS5 
                 location of the divot.
