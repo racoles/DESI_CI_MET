@@ -11,6 +11,7 @@ SBIG ST-I and STXL-6303 cameras that is attached to the DMM, while the DMM is at
 '''
 
 # Import #######################################################################################
+import tkinter as tk
 ################################################################################################
 
 class cs5Offsets(object):
@@ -48,4 +49,17 @@ class cs5Offsets(object):
     def _moveToIlluminatedDowelAndImage(self):
         '''
         '''
+        ###########################################################################
+        ###FIF Button Option Window
+        ###########################################################################   
+        top = tk.Toplevel()
+        top.title("DESI CI Metrology Software Calibration")
+        self.wm_withdraw()
+        
+        #Manual Mode Description
+        tk.Label(top, text="Which FIF would you like to measure?").grid(row=0, column=0, columnspan=2, sticky='W')
+        
+        # RefFIF
+        refFIF = tk.Button(top, text="RefFIF: (199.28,-345.15)", command=lambda: self._setTrueAndExit(top, fifLabel="RefFIF"))
+        refFIF.grid(row=1, column=0, sticky='W')
         
