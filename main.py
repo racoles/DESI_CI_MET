@@ -11,6 +11,7 @@ Using external packages:
     
 Testing:
     DESI_CI_MET_1.0: Haas Probe test (02/26/2018)
+    DESI_CI_MET_1.1: Haas Software test (03/07/2018)
 Pending Testing:
     Ometech
         Sheffield Cordax RS70 DCC CMM – 40” x 50” x 40” with Renishaw AR1probe changer, PH10 head, PH7 probe. 
