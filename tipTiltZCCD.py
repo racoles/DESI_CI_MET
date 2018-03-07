@@ -24,7 +24,7 @@ class tipTiltZCCD(object):
         Constructor
         '''
     
-    def findTipTiltZ(self, Az, Bz, Cz, Az_nominal, Bz_nominal, Cz_nominal, CCDLabel, triangleSideLength, micrometerDistance, consoleLog, logFile):
+    def findTipTiltZ(self, Az, Bz, Cz, Az_nominal, Bz_nominal, Cz_nominal, CCDLabel, triangleSideLength, micrometerDistance, consoleLog, logFile, TTFThread = 0.5, TTFThreadOD = 6):
         ###########################################################################
         ###Get adjustment ratios
         ###########################################################################     
@@ -57,9 +57,9 @@ class tipTiltZCCD(object):
             else: 
                 turnA = 'clockwise'
             #How many turns will it take to reach nominal height?
-            AturnDistance_um = np.absolute(xInter)/(fifThread*1000) #X turns = needed height / fif pitch (height per one full turn). Convert mm to microns.
-            AturnDistanceDegrees = faah.decNonZeroRound(np.absolute(turnDistance_um/((fifThreadOD*1000)/360))) #to get number of degrees. 1 degree = fifThreadODMicrons/360 um. Convert mm to microns.
-            AturnFraction = np.absolute(Fraction(turnDistance_um).limit_denominator()) #turnFraction-th of a turn
+            AturnDistance_um = np.absolute(AzDeltaTip)/(TTFThread*1000) #X turns = needed height / fif pitch (height per one full turn). Convert mm to microns.
+            AturnDistanceDegrees = faah.decNonZeroRound(np.absolute(AturnDistance_um/((TTFThreadOD*1000)/360))) #to get number of degrees. 1 degree = fifThreadODMicrons/360 um. Convert mm to microns.
+            AturnFraction = np.absolute(Fraction(AturnDistance_um).limit_denominator()) #turnFraction-th of a turn
             
         #If the B height isn't equal to the nominal height
         if BzDeltaTip or BzDeltaTilt != 0:
@@ -69,9 +69,9 @@ class tipTiltZCCD(object):
             else: 
                 turnB = 'clockwise'
             #How many turns will it take to reach nominal height?
-            AturnDistance_um = np.absolute(xInter)/(fifThread*1000) #X turns = needed height / fif pitch (height per one full turn). Convert mm to microns.
-            AturnDistanceDegrees = faah.decNonZeroRound(np.absolute(turnDistance_um/((fifThreadOD*1000)/360))) #to get number of degrees. 1 degree = fifThreadODMicrons/360 um. Convert mm to microns.
-            AturnFraction = np.absolute(Fraction(turnDistance_um).limit_denominator()) #turnFraction-th of a turn
+            BturnDistance_um = np.absolute(BzDeltaTip)/(TTFThread*1000) #X turns = needed height / fif pitch (height per one full turn). Convert mm to microns.
+            BturnDistanceDegrees = faah.decNonZeroRound(np.absolute(BturnDistance_um/((TTFThreadOD*1000)/360))) #to get number of degrees. 1 degree = fifThreadODMicrons/360 um. Convert mm to microns.
+            BturnFraction = np.absolute(Fraction(BturnDistance_um).limit_denominator()) #turnFraction-th of a turn
         
         #If the C height isn't equal to the nominal height
         if CzDeltaTip or CzDeltaTilt or CenterDeltaZ != 0:
@@ -81,9 +81,9 @@ class tipTiltZCCD(object):
             else: 
                 turnC = 'clockwise'
             #How many turns will it take to reach nominal height?
-            AturnDistance_um = np.absolute(xInter)/(fifThread*1000) #X turns = needed height / fif pitch (height per one full turn). Convert mm to microns.
-            AturnDistanceDegrees = faah.decNonZeroRound(np.absolute(turnDistance_um/((fifThreadOD*1000)/360))) #to get number of degrees. 1 degree = fifThreadODMicrons/360 um. Convert mm to microns.
-            AturnFraction = np.absolute(Fraction(turnDistance_um).limit_denominator()) #turnFraction-th of a turn
+            CturnDistance_um = np.absolute(CzDeltaTip)/(TTFThread*1000) #X turns = needed height / fif pitch (height per one full turn). Convert mm to microns.
+            CturnDistanceDegrees = faah.decNonZeroRound(np.absolute(CturnDistance_um/((TTFThreadOD*1000)/360))) #to get number of degrees. 1 degree = fifThreadODMicrons/360 um. Convert mm to microns.
+            CturnFraction = np.absolute(Fraction(CturnDistance_um).limit_denominator()) #turnFraction-th of a turn
             
         #Issue warning
         faah.pageLogging(self.consoleLog, self.logFile, 
