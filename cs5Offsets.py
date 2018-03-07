@@ -15,6 +15,8 @@ import tkinter as tk
 from tkinter.ttk import Separator
 from fileAndArrayHandling import fileAndArrayHandling
 from centroidFIF import centroidFIF
+from CCDOpsPlanetMode import CCDOpsPlanetMode
+from alternateCentroidMethods import gmsCentroid
 ################################################################################################
 
 class cs5Offsets(object):
@@ -117,7 +119,7 @@ class cs5Offsets(object):
         origin is in ST-I images.
         '''
         ###########################################################################
-        ###Load Caliberation Image
+        ###Load Calibration Image
         ###########################################################################
         faah = fileAndArrayHandling()
         imageArray4D, filelist = faah.openAllFITSImagesInDirectory()
@@ -130,13 +132,17 @@ class cs5Offsets(object):
         #Get location of pinhole image in (rows, columns)
         cF = centroidFIF()
         fifSubArray, subArrayBoxSize, maxLoc = cF.findFIFInImage(imageArray4D[0])
+        
+        #Account for planet mode
+        pM = CCDOpsPlanetMode()
+        xOffset, yOffset, _ = pM.readFitsHeader(imageArray4D, filelist, consoleLog, logFile)
              
         ###########################################################################
         ###Centroid Pinhole
         ###########################################################################
         #Use alternate methods to centroid pinhole image
         #    gmsCentroid: Gaussian Marginal Sum (GMS) Centroid Method.
-        xCenGMS, yCenGMS, xErrGMS, yErrGMS = gmsCentroid(imageArray4D[0], maxLoc[1], maxLoc[0], int(round(widthOfSubimage/2)), int(round(widthOfSubimage/2)), axis='both', verbose=False)
+        xCenGMS, yCenGMS, xErrGMS, yErrGMS = gmsCentroid(imageArray4D[0], maxLoc[1], maxLoc[0], int(round(self.widthOfSubimage/2)), int(round(self.widthOfSubimage/2)), axis='both', verbose=False)
         
         ###########################################################################
         ###Change button text and color
@@ -146,4 +152,12 @@ class cs5Offsets(object):
         
         ###########################################################################
         ###Return Offset2
+        ###########################################################################
+        faah.pageLogging(consoleLog, logFile, "Calibration Pinhole image found at (rows, columns): (" + str(maxLoc[1] + xOffset) + ', ' + str(maxLoc[0] + yOffset)+ ')\n' +
+                        "Calibration GMS Centroid (rows, columns): (" +  format(xCenGMS + xOffset, '.2f') + ' +/- ' + format(xErrGMS, '.2f') + 
+                        ', ' + format(yCenGMS + yOffset, '.2f') + ' +/- ' + format(yErrGMS, '.2f') + ')\n' + "Illuminated point on CI illuminated dowel, as shown in ST-I image," +
+                        " offset now set to: ("+  format(xCenGMS + xOffset, '.2f') + ', ' + format(yCenGMS + yOffset, '.2f') + ")")
+                        
+        ###########################################################################
+        ###Set Offset2
         ###########################################################################
