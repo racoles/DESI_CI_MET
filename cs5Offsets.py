@@ -156,8 +156,10 @@ class cs5Offsets(object):
         faah.pageLogging(consoleLog, logFile, "Calibration Pinhole image found at (rows, columns): (" + str(maxLoc[1] + xOffset) + ', ' + str(maxLoc[0] + yOffset)+ ')\n' +
                         "Calibration GMS Centroid (rows, columns): (" +  format(xCenGMS + xOffset, '.2f') + ' +/- ' + format(xErrGMS, '.2f') + 
                         ', ' + format(yCenGMS + yOffset, '.2f') + ' +/- ' + format(yErrGMS, '.2f') + ')\n' + "Illuminated point on CI illuminated dowel, as shown in ST-I image," +
-                        " offset now set to: ("+  format(xCenGMS + xOffset, '.2f') + ', ' + format(yCenGMS + yOffset, '.2f') + ")")
+                        " offset will be set to: ("+  format(xCenGMS + xOffset, '.2f') + ', ' + format(yCenGMS + yOffset, '.2f') + ")")
                         
         ###########################################################################
         ###Set Offset2
         ###########################################################################
+        self.CPOCID_rows = xCenGMS
+        self.CPOCID_columns = yCenGMS
