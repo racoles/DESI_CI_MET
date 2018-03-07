@@ -402,7 +402,7 @@ class metManualMode(tk.Tk):
         
         #Map
         tk.Label(top, text=" ").grid(row=7, column=0, columnspan=2, sticky='W')
-        top.triangleMAP = tk.PhotoImage(file="FPA_triangles-300x300.png", width=300, height=300)
+        top.triangleMAP = tk.PhotoImage(file="FPA_triangles.png", width=600, height=600)
         tk.Label(top, image=top.triangleMAP).grid(row=8, column=0, rowspan=3, sticky='W')
         
         top.wait_window()
