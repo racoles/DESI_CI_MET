@@ -85,7 +85,9 @@ class tipTiltZCCD(object):
             CturnDistanceDegrees = faah.decNonZeroRound(np.absolute(CturnDistance_um/((TTFThreadOD*1000)/360))) #to get number of degrees. 1 degree = fifThreadODMicrons/360 um. Convert mm to microns.
             CturnFraction = np.absolute(Fraction(CturnDistance_um).limit_denominator()) #turnFraction-th of a turn
             
-        #Issue warning
+        ###########################################################################
+        ###Send Warning Message
+        ###########################################################################
         faah.pageLogging(self.consoleLog, self.logFile, 
                                       "WARNING: the FIF Z height is " + str(xInter)[0:5] + "um away from nominal.\n The current FIF thread pitch is " +
                                       str(fifThread) + "mm (" + str(fifThread*1000) + "um), with a OD of " + str(fifThreadOD) + "mm (" +  str(fifThreadOD*1000) + "um)." + 
@@ -93,10 +95,6 @@ class tipTiltZCCD(object):
                                        str(turnDistanceDegrees) + " degrees " + turn +" (" + 
                                        str(turnFraction).replace('(', '').replace(')', '') + 
                                        "th of a turn).", warning = True)
-                    
-        ###########################################################################
-        ###Send Warning Message
-        ###########################################################################
         
     def tipCCD(self, Az, Bz, Cz, Az_nominal, Bz_nominal, Cz_nominal, CCDLabel, consoleLog, logFile):
         '''
