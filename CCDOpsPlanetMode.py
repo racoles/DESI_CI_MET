@@ -22,7 +22,7 @@ class CCDOpsPlanetMode(object):
         '''
         Constructor
         '''
-    def readFitsHeader(self, imageArray4D, filelist, consoleLog, logFile):
+    def readFitsHeader(self, imageArray4D, filelist, consoleLog, logFile, calibration = False):
         '''
         Return offsets (in pixels) if an image is taken in CCDOps
         software Planet Mode.
@@ -65,12 +65,19 @@ class CCDOpsPlanetMode(object):
         pixelSize = hdul[0].header['XPIXSZ']
             
         #log offsets
-        faah.pageLogging(consoleLog, logFile, 
-                    "CCDOps Planet Mode Offsets; (x,y) position of upper-left pixel relative to whole frame: (" 
-                    + str(xOffset) + "," + str(yOffset) + ")")
-        
-        faah.pageLogging(consoleLog, logFile, 
-                    "Camera Pixel Size: " 
-                    + str(pixelSize))
+        if calibration == True:
+            faah.pageLogging(consoleLog, logFile, 
+                             "CCDOps Planet Mode Offsets; (x,y) position of upper-left pixel relative to whole frame: (" 
+                             + str(xOffset) + "," + str(yOffset) + ")", calibration = True)
+            
+            faah.pageLogging(consoleLog, logFile, 
+                    "Camera Pixel Size: " + str(pixelSize), calibration = True)
+        else:
+            faah.pageLogging(consoleLog, logFile, 
+                             "CCDOps Planet Mode Offsets; (x,y) position of upper-left pixel relative to whole frame: (" 
+                             + str(xOffset) + "," + str(yOffset) + ")")
+            
+            faah.pageLogging(consoleLog, logFile, 
+                    "Camera Pixel Size: " + str(pixelSize))            
             
         return xOffset, yOffset, pixelSize

@@ -100,11 +100,11 @@ class fileAndArrayHandling(object):
                 cLog.insert(tk.END, str(logText) +'\n', 'warning')
                 cLog.tag_config('warning', foreground='red')
                 cLog.configure(state="disable")
-        elif calibration == False:
+        elif calibration == True:
             if doubleSpaceWithTime == True:
                 cLog.configure(state="normal")
-                cLog.insert(tk.END, currentTime + ': ' + str(logText) + '\n\n', 'warning')
-                cLog.tag_config('warning', foreground='blue')
+                cLog.insert(tk.END, currentTime + ': ' + str(logText) + '\n\n', 'calibration')
+                cLog.tag_config('calibration', foreground='blue')
                 cLog.configure(state="disable")
             else:
                 cLog.configure(state="normal")
@@ -114,11 +114,13 @@ class fileAndArrayHandling(object):
         else:
             if doubleSpaceWithTime == True:
                 cLog.configure(state="normal")
-                cLog.insert(tk.END, currentTime + ': ' + str(logText) + '\n\n')
+                cLog.insert(tk.END, currentTime + ': ' + str(logText) + '\n\n', 'regular')
+                cLog.tag_config('regular', foreground='black')
                 cLog.configure(state="disable")
             else:
                 cLog.configure(state="normal")
                 cLog.insert(tk.END, str(logText) + '\n')
+                cLog.tag_config('regular', foreground='black')
                 cLog.configure(state="disable")
         
         ###########################################################################
