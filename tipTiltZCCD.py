@@ -57,7 +57,7 @@ class tipTiltZCCD(object):
             else: 
                 turnA = 'clockwise'
             #How many turns will it take to reach nominal height?
-            AturnDistance_um = np.absolute(AzDeltaTip)/(TTFThread*1000) #X turns = needed height / fif pitch (height per one full turn). Convert mm to microns.
+            AturnDistance_um = np.absolute(AzDeltaTip*triangleAdjustmentRatio)/(TTFThread*1000) #X turns = needed height / micrometer pitch (height per one full turn). Convert mm to microns.
             AturnDistanceDegrees = faah.decNonZeroRound(np.absolute(AturnDistance_um/((TTFThreadOD*1000)/360))) #to get number of degrees. 1 degree = fifThreadODMicrons/360 um. Convert mm to microns.
             AturnFraction = np.absolute(Fraction(AturnDistance_um).limit_denominator()) #turnFraction-th of a turn
             
@@ -69,7 +69,7 @@ class tipTiltZCCD(object):
             else: 
                 turnB = 'clockwise'
             #How many turns will it take to reach nominal height?
-            BturnDistance_um = np.absolute(BzDeltaTip)/(TTFThread*1000) #X turns = needed height / fif pitch (height per one full turn). Convert mm to microns.
+            BturnDistance_um = np.absolute(BzDeltaTip*triangleAdjustmentRatio)/(TTFThread*1000) #X turns = needed height / fif pitch (height per one full turn). Convert mm to microns.
             BturnDistanceDegrees = faah.decNonZeroRound(np.absolute(BturnDistance_um/((TTFThreadOD*1000)/360))) #to get number of degrees. 1 degree = fifThreadODMicrons/360 um. Convert mm to microns.
             BturnFraction = np.absolute(Fraction(BturnDistance_um).limit_denominator()) #turnFraction-th of a turn
         
@@ -81,7 +81,7 @@ class tipTiltZCCD(object):
             else: 
                 turnC = 'clockwise'
             #How many turns will it take to reach nominal height?
-            CturnDistance_um = np.absolute(CzDeltaTip)/(TTFThread*1000) #X turns = needed height / fif pitch (height per one full turn). Convert mm to microns.
+            CturnDistance_um = np.absolute(CzDeltaTip*triangleAdjustmentRatio)/(TTFThread*1000) #X turns = needed height / fif pitch (height per one full turn). Convert mm to microns.
             CturnDistanceDegrees = faah.decNonZeroRound(np.absolute(CturnDistance_um/((TTFThreadOD*1000)/360))) #to get number of degrees. 1 degree = fifThreadODMicrons/360 um. Convert mm to microns.
             CturnFraction = np.absolute(Fraction(CturnDistance_um).limit_denominator()) #turnFraction-th of a turn
             
@@ -89,12 +89,13 @@ class tipTiltZCCD(object):
         ###Send Warning Message
         ###########################################################################
         faah.pageLogging(self.consoleLog, self.logFile, 
-                                      "WARNING: the FIF Z height is " + str(xInter)[0:5] + "um away from nominal.\n The current FIF thread pitch is " +
-                                      str(fifThread) + "mm (" + str(fifThread*1000) + "um), with a OD of " + str(fifThreadOD) + "mm (" +  str(fifThreadOD*1000) + "um)." + 
-                                      "\n To adjust this FIF to the nominal height, you will need to turn the FIF\n " + 
-                                       str(turnDistanceDegrees) + " degrees " + turn +" (" + 
-                                       str(turnFraction).replace('(', '').replace(')', '') + 
-                                       "th of a turn).", warning = True)
+                                      "WARNING: the" + str(CCDLabel) +" camera Z height is not equal to the nominal height.\n" + "The current micrometer thread pitch is " +
+                                      str(TTFThread) + "mm (" + str(TTFThread*1000) + "um), with a OD of " + str(TTFThreadOD) + "mm (" +  str(TTFThreadOD*1000) + "um)." + 
+                                      "\n To adjust this camera to the nominal height, you will need to adjust the micrometers as:\n " + 
+                                       "Micrometer A: " + str(AturnDistanceDegrees) + " degrees " + turnA +" (" + str(AturnFraction).replace('(', '').replace(')', '') + "th of a turn)." +
+                                       "Micrometer B: " + str(BturnDistanceDegrees) + " degrees " + turnB +" (" + str(BturnFraction).replace('(', '').replace(')', '') + "th of a turn)." +
+                                       "Micrometer C: " + str(CturnDistanceDegrees) + " degrees " + turnC +" (" + str(CturnFraction).replace('(', '').replace(')', '') + "th of a turn)."
+                                       , warning = True)
         
     def tipCCD(self, Az, Bz, Cz, Az_nominal, Bz_nominal, Cz_nominal, CCDLabel, consoleLog, logFile):
         '''
