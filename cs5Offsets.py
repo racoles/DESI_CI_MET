@@ -13,6 +13,7 @@ SBIG ST-I and STXL-6303 cameras that is attached to the DMM, while the DMM is at
 # Import #######################################################################################
 import tkinter as tk
 from tkinter.ttk import Separator
+from fileAndArrayHandling import fileAndArrayHandling
 ################################################################################################
 
 class cs5Offsets(object):
@@ -27,7 +28,7 @@ class cs5Offsets(object):
         Constructor
         '''
     
-    def calibrationScreen(self, consoleLog, logFile):
+    def calibrationScreen(self, inputGUIcalibrationScreenButton ,consoleLog, logFile):
         '''
         To find the CS5 location of an illuminated object that is imaged using the
         SBIG ST-I and STXL-6303 cameras that is attached to the DMM, while the DMM 
@@ -56,6 +57,10 @@ class cs5Offsets(object):
                  "The current predetermined offsets show that the center the 100um pinhole on the DMM, when imaged with the ST-i" + 
                  " is located at:\n\n (row = " + str(self.PIDTSO_rows) + ", column = " + str(self.PIDTSO_columns) + ")\n", 
                  wraplength=700, justify="left").grid(row=5, column=0, sticky='W')
+                 
+        faah = fileAndArrayHandling()
+        faah.pageLogging(consoleLog, logFile, "The current predetermined offsets show that the center the 100um pinhole on the DMM, when imaged with the ST-i" + 
+                 " is located at: (row = " + str(self.PIDTSO_rows) + ", column = " + str(self.PIDTSO_columns) + ")")
                        
         #Offset 2: CS5 Point on CI Dowel as shown in ST-I Image (Needed for FIF and CCD Metrology Measurements)
         Separator(top, orient="horizontal").grid(row=6, column=0, sticky='ew')
@@ -72,6 +77,10 @@ class cs5Offsets(object):
                  "\t\x20\x20\x20\x20locate the location of the illuminated divot in units of (rows, columns).", wraplength=700, justify="left").grid(row=8, column=0, sticky='W')
         offset2Button = tk.Button(top, text="Load Image of Illuminated Divot", command=lambda: self._offset2_moveToIlluminatedDowelAndImage(offset2Button))
         offset2Button.grid(row=9, column=0, sticky='W')
+        
+        ###########################################################################
+        ###Calibration Window
+        ########################################################################### 
         
     def _offset1_PinholeImageDistnceToSensorOrigin(self):
         '''

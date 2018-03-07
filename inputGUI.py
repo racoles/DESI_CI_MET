@@ -71,7 +71,8 @@ class inputGUI(object):
         #CS5 Calibration
         cs5off = cs5Offsets()
         tk.Label(master, text="CS5 Calibration", font="bold").grid(row=0, column=0, columnspan=2, sticky='W')
-        tk.Button(master, text="Centroid Pinhole Image",bg = "white",command=lambda:cs5off.calibrationScreen(self.consoleLog, self.logFile)).grid(row=1, column=0, columnspan=2, sticky='W')
+        calibrationScreenButton = tk.Button(master, text="Centroid Pinhole Image",bg = "white",command=lambda:cs5off.calibrationScreen(calibrationScreenButton, self.consoleLog, self.logFile))
+        calibrationScreenButton.grid(row=1, column=0, columnspan=2, sticky='W')
         
         #Grid Separator
         Separator(master, orient="horizontal").grid(row=2, column=0, columnspan=4, sticky='ew')
