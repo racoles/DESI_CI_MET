@@ -40,7 +40,7 @@ class cs5Offsets(object):
         
         #Manual Mode Description
         tk.Label(top, text="Goal: To find the CS5 location of an illuminated object that is imaged using the " +
-                            "SBIG ST-I and STXL-6303 cameras that is attached to the DMM, while the DMM is attached to a CMM.").grid(row=1, column=0, sticky='W')
+                            "SBIG ST-I and STXL-6303 cameras that is attached to the DMM, while the DMM is attached to a CMM.", wraplength=650).grid(row=1, column=0, sticky='W')
         Separator(top, orient="horizontal").grid(row=2, column=0, sticky='ew')
         
         #Offset 1: Light from 100um DMM Pinhole in ST-I Image (Needed for CCD Metrology Measurements)
