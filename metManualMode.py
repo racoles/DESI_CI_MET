@@ -45,6 +45,14 @@ class metManualMode(tk.Tk):
         Default FIF threading: fifThread = 0.5mm Z increase/decrease per turn.
         '''
         ###########################################################################
+        ###FIF Orientation Diagram
+        ###########################################################################
+        fifOrMap = tk.Toplevel()
+        tk.Label(fifOrMap, text="FIF Pinhole Orientation Relative to CI Perimeter").grid(row=0, column=0, columnspan=2, sticky='W')
+        self.fifOrient = tk.PhotoImage(file="FIF-orientation.png", width=500, height=558)
+        tk.Label(fifOrMap, image=self.fifOrient).grid(row=1, column=0, rowspan=10, sticky='W')
+        
+        ###########################################################################
         ###Get FIF Seletion from User
         ###########################################################################
         self._fifSelectionWindow()        
