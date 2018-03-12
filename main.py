@@ -1,5 +1,5 @@
 '''
-@title DESI_CI_MET 1.1
+@title DESI_CI_MET 1.2
 @author: Rebecca Coles
 Updated on Feb 21, 2017
 Created on Dec 11, 2017
