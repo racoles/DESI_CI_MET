@@ -243,27 +243,27 @@ class tipTiltZCCD(object):
 #########################################        
         #If B and C aren't aligned (in either X or Y depending on the camera location)
         
-        if CCDLabel == "NCCD" or CCDLabel == "CCCD":
+        if CCDLabel == "NCCD":
             _, ycenB = cF.findCentroid(fifSubArrayB, int(subArrayBoxSizeB/2), int(subArrayBoxSizeB/2), extendbox = 3) 
             _, ycenC = cF.findCentroid(fifSubArrayC, int(subArrayBoxSizeC/2), int(subArrayBoxSizeC/2), extendbox = 3)
             if ycenB != ycenC:
                 if ycenB < ycenC:
-                #calculate angle between B and C. Report in CS5 
-                    angleRz = #np.arctan(ycenC/triangleSideLength)
-                if ycenB > ycenC:                
-                #calculate angle between B and C. Report in CS5                 
-                    angleRz = #np.arctan(ycenB/triangleSideLength)
+                #calculate angle between B and C. Report in CS5 relative to +X: 180 degrees + BC angle
+                    angleRz = np.arctan(ycenC/triangleSideLength)
+                if ycenB > ycenC:     
+                #calculate angle between B and C. Report in CS5 relative to +X: 180 degrees - BC angle                
+                    angleRz = np.arctan(ycenB/triangleSideLength)
                     
-        if CCDLabel == "SCCD":
+        if CCDLabel == "SCCD" or CCDLabel == "CCCD":
             _, ycenB = cF.findCentroid(fifSubArrayB, int(subArrayBoxSizeB/2), int(subArrayBoxSizeB/2), extendbox = 3) 
             _, ycenC = cF.findCentroid(fifSubArrayC, int(subArrayBoxSizeC/2), int(subArrayBoxSizeC/2), extendbox = 3)
             if ycenB != ycenC:
                 if ycenB < ycenC:
-                #calculate angle between B and C. Report in CS5 
-                    angleRz = #np.arctan(ycenC/triangleSideLength)
+                #calculate angle between B and C. Report in CS5 relative to +X: 
+                    angleRz =
                 if ycenB > ycenC:                
-                #calculate angle between B and C. Report in CS5                 
-                    angleRz = #np.arctan(ycenB/triangleSideLength)
+                #calculate angle between B and C. Report in CS5 relative to +X:                 
+                    angleRz =
                 
         if CCDLabel == "ECCD":
             xcenB, _ = cF.findCentroid(fifSubArrayB, int(subArrayBoxSizeB/2), int(subArrayBoxSizeB/2), extendbox = 3) 
@@ -271,10 +271,10 @@ class tipTiltZCCD(object):
             if xcenB != xcenC:
                 if xcenB > xcenC:
                 #calculate angle between B and C. Report in CS5 
-                    angleRz = 
+                    angleRz =
                 if xcenB < xcenC:                
                 #calculate angle between B and C. Report in CS5                 
-                    angleRz =          
+                    angleRz =         
                     
         if CCDLabel == "WCCD":        
             xcenB, _ = cF.findCentroid(fifSubArrayB, int(subArrayBoxSizeB/2), int(subArrayBoxSizeB/2), extendbox = 3) 
