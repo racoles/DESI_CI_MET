@@ -243,20 +243,11 @@ class tipTiltZCCD(object):
         
         #If B and C aren't aligned (in either X or Y depending on the camera location)
         if CCDLabel == "NCCD" or CCDLabel == "CCCD" or CCDLabel == "SCCD":
-            #If North camera
-            if CCDLabel == "NCCD":
-                #xcen, ycen = cF.findCentroid(fifSubArray, int(subArrayBoxSize/2), int(subArrayBoxSize/2), extendbox = 3) 
-            #If Center camera
-            if CCDLabel == "CCCD":   
-            #If South camera
-            if CCDLabel == "SCCD":   
+            xcenB, _ = cF.findCentroid(imageB, int(subArrayBoxSizeB/2), int(subArrayBoxSizeB/2), extendbox = 3) 
+            xcenC, _ = cF.findCentroid(imageC, int(subArrayBoxSizeC/2), int(subArrayBoxSizeC/2), extendbox = 3)   
                 
-
          if CCDLabel == "ECCD" or CCDLabel == "WCCD":
-            #If East camera
-            if CCDLabel == "ECCD":    
-            #If West camera
-            if CCDLabel == "WCCD":                 
+                
        
     def distanceBetweenTrianglePointsBandC(self, imageB, imageC, CCDLabel, consoleLog, logFile):             
         #Distance between B and C (using centroiding and pixel size) versus nominal
