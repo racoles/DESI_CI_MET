@@ -235,11 +235,10 @@ class tipTiltZCCD(object):
         For East and West Cameras:
             B(y) = C(y)
         '''             
-        #Access centroid
+        #Centroid images
         cF = centroidFIF()
         fifSubArrayB, subArrayBoxSizeB, _  = cF.findFIFInImage(imageB)
         fifSubArrayC, subArrayBoxSizeC, _  = cF.findFIFInImage(imageC)
-        
         
 #########################################        
         #If B and C aren't aligned (in either X or Y depending on the camera location)
