@@ -101,9 +101,9 @@ class tipTiltZCCD(object):
                 "WARNING: the" + str(CCDLabel) +" camera Z height is not equal to the nominal height.\n" + "The current micrometer thread pitch is " +
                 str(TTFThread) + "mm (" + str(TTFThread*1000) + "um), with a OD of " + str(TTFThreadOD) + "mm (" +  str(TTFThreadOD*1000) + "um)." + 
                 "\n To adjust this camera to the nominal height, you will need to adjust the micrometers as:\n " + 
-                "Micrometer A: " + str(AturnDistanceDegrees) + " degrees, " + "\n" +
-                "Micrometer B: " + str(BturnDistanceDegrees) + " degrees " + "\n" +
-                "Micrometer C: " + str(CturnDistanceDegrees) + " degrees " + "\n", 
+                "Micrometer A: " + str(AturnDistanceDegrees) + " degrees " + turnA + ", or " + str(AturnDistanceDegrees/7.2) + " ticks on the micrometer.\n" +
+                "Micrometer B: " + str(BturnDistanceDegrees) + " degrees " + turnB + ", or " + str(BturnDistanceDegrees/7.2) + " ticks on the micrometer.\n" +
+                "Micrometer C: " + str(CturnDistanceDegrees) + " degrees " + turnC +  ", or " + str(CturnDistanceDegrees/7.2) + " ticks on the micrometer.\n",
                 warning = True)
         
     def tipCCD(self, Az, Bz, Cz, Az_nominal, Bz_nominal, Cz_nominal, CCDLabel, consoleLog, logFile):
