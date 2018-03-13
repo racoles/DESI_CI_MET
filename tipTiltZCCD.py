@@ -88,13 +88,20 @@ class tipTiltZCCD(object):
         ###########################################################################
         ###Send Warning Message
         ###########################################################################
+        
+        ####ADD Rz
+        
+        ####ADD B-C distance
+        
+        #######ADD MICROMETER TICK DISTANCE
+        
         faah.pageLogging(consoleLog, logFile, 
                 "WARNING: the" + str(CCDLabel) +" camera Z height is not equal to the nominal height.\n" + "The current micrometer thread pitch is " +
                 str(TTFThread) + "mm (" + str(TTFThread*1000) + "um), with a OD of " + str(TTFThreadOD) + "mm (" +  str(TTFThreadOD*1000) + "um)." + 
                 "\n To adjust this camera to the nominal height, you will need to adjust the micrometers as:\n " + 
-                "Micrometer A: " + str(AturnDistanceDegrees) + " degrees " + turnA +" (" + str(AturnFraction).replace('(', '').replace(')', '') + "th of a turn)." +
-                "Micrometer B: " + str(BturnDistanceDegrees) + " degrees " + turnB +" (" + str(BturnFraction).replace('(', '').replace(')', '') + "th of a turn)." +
-                "Micrometer C: " + str(CturnDistanceDegrees) + " degrees " + turnC +" (" + str(CturnFraction).replace('(', '').replace(')', '') + "th of a turn).", 
+                "Micrometer A: " + str(AturnDistanceDegrees) + " degrees " + turnA +" (" + str(AturnFraction).replace('(', '').replace(')', '') + "th of a turn).\n" +
+                "Micrometer B: " + str(BturnDistanceDegrees) + " degrees " + turnB +" (" + str(BturnFraction).replace('(', '').replace(')', '') + "th of a turn).\n" +
+                "Micrometer C: " + str(CturnDistanceDegrees) + " degrees " + turnC +" (" + str(CturnFraction).replace('(', '').replace(')', '') + "th of a turn).\n", 
                 warning = True)
         
     def tipCCD(self, Az, Bz, Cz, Az_nominal, Bz_nominal, Cz_nominal, CCDLabel, consoleLog, logFile):
@@ -218,3 +225,30 @@ class tipTiltZCCD(object):
 
         #Return deltas
         return zCenter_nominal-zCenter_measured
+    
+    def Rz(self):
+        '''
+        Camera Rz (angle) 
+        
+        For North, Center, Or South Cameras
+        For East and West Cameras
+        '''             
+        #If B and C aren't aligned (in either X or Y depending on the camera location)
+        if CCDLabel == "NCCD" or CCDLabel == "CCCD" or CCDLabel == "SCCD":
+            #If North camera
+            if CCDLabel == "NCCD":
+                if fC.CCDLocationsCS5["NCCD"][0] 
+            #If Center camera
+            if CCDLabel == "CCCD":   
+            #If South camera
+            if CCDLabel == "SCCD":   
+                
+
+         if CCDLabel == "ECCD" or CCDLabel == "WCCD":
+            #If East camera
+            if CCDLabel == "ECCD":    
+            #If West camera
+            if CCDLabel == "WCCD":                 
+       
+    def distanceBetweenTrianglePointsBandC(self):             
+        #Distance between B and C (using centroiding and pixel size) versus nominal
