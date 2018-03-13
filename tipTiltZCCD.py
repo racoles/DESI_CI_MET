@@ -281,10 +281,10 @@ class tipTiltZCCD(object):
             xcenC, _ = cF.findCentroid(fifSubArrayC, int(subArrayBoxSizeC/2), int(subArrayBoxSizeC/2), extendbox = 3)  
             if xcenB != xcenC:
                 if xcenB > xcenC:
-                #calculate angle between B and C. Report in CS5 
+                #calculate angle between B and C. Report in CS5 relative to +X: 90 degrees - BC angle
                     #angleRz = 
                 if xcenB < xcenC:                
-                #calculate angle between B and C. Report in CS5                 
+                #calculate angle between B and C. Report in CS5 relative to +X: 90 degrees + BC angle                 
                     #angleRz =            
        
     def distanceBetweenTrianglePointsBandC(self, imageB, imageC, CCDLabel, consoleLog, logFile):             
