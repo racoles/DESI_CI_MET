@@ -230,8 +230,10 @@ class tipTiltZCCD(object):
         '''
         Camera Rz (angle) 
         
-        For North, Center, Or South Cameras
-        For East and West Cameras
+        For North, Center, Or South Cameras:
+            B(x) = C(x)
+        For East and West Cameras:
+            B(y) = C(y)
         '''             
         #If B and C aren't aligned (in either X or Y depending on the camera location)
         if CCDLabel == "NCCD" or CCDLabel == "CCCD" or CCDLabel == "SCCD":
