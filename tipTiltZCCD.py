@@ -246,14 +246,23 @@ class tipTiltZCCD(object):
             _, ycenB = cF.findCentroid(fifSubArrayB, int(subArrayBoxSizeB/2), int(subArrayBoxSizeB/2), extendbox = 3) 
             _, ycenC = cF.findCentroid(fifSubArrayC, int(subArrayBoxSizeC/2), int(subArrayBoxSizeC/2), extendbox = 3)
             if ycenB != ycenC:
+                if ycenB > ycenC:
                 #calculate angle between B and C
-                
+                    angleRz = 
+                if ycenB < ycenC:                
+                #calculate angle between B and C                
+                    angleRz =
                 
         if CCDLabel == "ECCD" or CCDLabel == "WCCD":
             xcenB, _ = cF.findCentroid(fifSubArrayB, int(subArrayBoxSizeB/2), int(subArrayBoxSizeB/2), extendbox = 3) 
             xcenC, _ = cF.findCentroid(fifSubArrayC, int(subArrayBoxSizeC/2), int(subArrayBoxSizeC/2), extendbox = 3)  
             if xcenB != xcenC:
-                #calculate angle between B and C                 
+                if xcenB > xcenC:
+                #calculate angle between B and C
+                    angleRz = 
+                if xcenB < xcenC:                
+                #calculate angle between B and C                
+                    angleRz =                
        
     def distanceBetweenTrianglePointsBandC(self, imageB, imageC, CCDLabel, consoleLog, logFile):             
         #Distance between B and C (using centroiding and pixel size) versus nominal
