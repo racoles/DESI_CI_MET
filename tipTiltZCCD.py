@@ -226,7 +226,7 @@ class tipTiltZCCD(object):
         #Return deltas
         return zCenter_nominal-zCenter_measured
     
-    def Rz(self):
+    def rz(self, imageB, imageC, CCDLabel, consoleLog, logFile):
         '''
         Camera Rz (angle) 
         
@@ -252,5 +252,5 @@ class tipTiltZCCD(object):
             #If West camera
             if CCDLabel == "WCCD":                 
        
-    def distanceBetweenTrianglePointsBandC(self):             
+    def distanceBetweenTrianglePointsBandC(self, imageB, imageC, CCDLabel, consoleLog, logFile):             
         #Distance between B and C (using centroiding and pixel size) versus nominal
