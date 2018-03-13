@@ -15,6 +15,7 @@ from fileAndArrayHandling import fileAndArrayHandling
 from focusCurve import focusCurve
 from fractions import Fraction
 import numpy as np
+from centroidFIF import centroidFIF
 ################################################################################################
 
 class tipTiltZCCD(object):
@@ -235,11 +236,16 @@ class tipTiltZCCD(object):
         For East and West Cameras:
             B(y) = C(y)
         '''             
+        #Access centroid
+        cF = centroidFIF()
+        fifSubArrayB, subArrayBoxSizeB, maxLocB  = cF.findFIFInImage(self, imageB)
+        fifSubArrayC, subArrayBoxSizeC, maxLocC  = cF.findFIFInImage(self, imageC)
+        
         #If B and C aren't aligned (in either X or Y depending on the camera location)
         if CCDLabel == "NCCD" or CCDLabel == "CCCD" or CCDLabel == "SCCD":
             #If North camera
             if CCDLabel == "NCCD":
-                if fC.CCDLocationsCS5["NCCD"][0] 
+                #xcen, ycen = cF.findCentroid(fifSubArray, int(subArrayBoxSize/2), int(subArrayBoxSize/2), extendbox = 3) 
             #If Center camera
             if CCDLabel == "CCCD":   
             #If South camera
