@@ -227,7 +227,7 @@ class tipTiltZCCD(object):
         #Return deltas
         return zCenter_nominal-zCenter_measured
     
-    def rz(self, imageB, imageC, CCDLabel, consoleLog, logFile):
+    def rz(self, imageB, imageC, CCDLabel, triangleSideLength, consoleLog, logFile):
         '''
         Camera Rz (angle) 
         
@@ -238,17 +238,17 @@ class tipTiltZCCD(object):
         '''             
         #Access centroid
         cF = centroidFIF()
-        fifSubArrayB, subArrayBoxSizeB, maxLocB  = cF.findFIFInImage(self, imageB)
-        fifSubArrayC, subArrayBoxSizeC, maxLocC  = cF.findFIFInImage(self, imageC)
+        fifSubArrayB, subArrayBoxSizeB, _  = cF.findFIFInImage(self, imageB)
+        fifSubArrayC, subArrayBoxSizeC, _  = cF.findFIFInImage(self, imageC)
         
         #If B and C aren't aligned (in either X or Y depending on the camera location)
         if CCDLabel == "NCCD" or CCDLabel == "CCCD" or CCDLabel == "SCCD":
-            xcenB, _ = cF.findCentroid(imageB, int(subArrayBoxSizeB/2), int(subArrayBoxSizeB/2), extendbox = 3) 
-            xcenC, _ = cF.findCentroid(imageC, int(subArrayBoxSizeC/2), int(subArrayBoxSizeC/2), extendbox = 3)   
+            xcenB, _ = cF.findCentroid(fifSubArrayB, int(subArrayBoxSizeB/2), int(subArrayBoxSizeB/2), extendbox = 3) 
+            xcenC, _ = cF.findCentroid(fifSubArrayC, int(subArrayBoxSizeC/2), int(subArrayBoxSizeC/2), extendbox = 3)   
                 
         if CCDLabel == "ECCD" or CCDLabel == "WCCD":
-            _, ycenB = cF.findCentroid(imageB, int(subArrayBoxSizeB/2), int(subArrayBoxSizeB/2), extendbox = 3) 
-            _, ycenC = cF.findCentroid(imageC, int(subArrayBoxSizeC/2), int(subArrayBoxSizeC/2), extendbox = 3)                 
+            _, ycenB = cF.findCentroid(fifSubArrayB, int(subArrayBoxSizeB/2), int(subArrayBoxSizeB/2), extendbox = 3) 
+            _, ycenC = cF.findCentroid(fifSubArrayC, int(subArrayBoxSizeC/2), int(subArrayBoxSizeC/2), extendbox = 3)               
        
     def distanceBetweenTrianglePointsBandC(self, imageB, imageC, CCDLabel, consoleLog, logFile):             
         #Distance between B and C (using centroiding and pixel size) versus nominal
