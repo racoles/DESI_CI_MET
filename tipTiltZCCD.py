@@ -95,6 +95,7 @@ class tipTiltZCCD(object):
         ####ADD B-C distance
         
         #######ADD MICROMETER TICK DISTANCE
+        #360 degrees / 50 ticks on TTF micrometers = 7.2
         
         faah.pageLogging(consoleLog, logFile, 
                 "WARNING: the" + str(CCDLabel) +" camera Z height is not equal to the nominal height.\n" + "The current micrometer thread pitch is " +
@@ -241,16 +242,18 @@ class tipTiltZCCD(object):
         fifSubArrayB, subArrayBoxSizeB, _  = cF.findFIFInImage(imageB)
         fifSubArrayC, subArrayBoxSizeC, _  = cF.findFIFInImage(imageC)
         
+        
+#########################################        
         #If B and C aren't aligned (in either X or Y depending on the camera location)
         if CCDLabel == "NCCD" or CCDLabel == "CCCD" or CCDLabel == "SCCD":
             _, ycenB = cF.findCentroid(fifSubArrayB, int(subArrayBoxSizeB/2), int(subArrayBoxSizeB/2), extendbox = 3) 
             _, ycenC = cF.findCentroid(fifSubArrayC, int(subArrayBoxSizeC/2), int(subArrayBoxSizeC/2), extendbox = 3)
             if ycenB != ycenC:
                 if ycenB < ycenC:
-                #calculate angle between B and C
+                #calculate angle between B and C. Report in CS5 
                     angleRz = #np.arctan(ycenC/triangleSideLength)
                 if ycenB > ycenC:                
-                #calculate angle between B and C                
+                #calculate angle between B and C. Report in CS5                 
                     angleRz = #np.arctan(ycenB/triangleSideLength)
                 
         if CCDLabel == "ECCD" or CCDLabel == "WCCD":
@@ -258,10 +261,10 @@ class tipTiltZCCD(object):
             xcenC, _ = cF.findCentroid(fifSubArrayC, int(subArrayBoxSizeC/2), int(subArrayBoxSizeC/2), extendbox = 3)  
             if xcenB != xcenC:
                 if xcenB > xcenC:
-                #calculate angle between B and C
+                #calculate angle between B and C. Report in CS5 
                     angleRz = 
                 if xcenB < xcenC:                
-                #calculate angle between B and C                
+                #calculate angle between B and C. Report in CS5                 
                     angleRz =                
        
     def distanceBetweenTrianglePointsBandC(self, imageB, imageC, CCDLabel, consoleLog, logFile):             
