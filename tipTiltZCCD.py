@@ -246,12 +246,12 @@ class tipTiltZCCD(object):
             _, ycenB = cF.findCentroid(fifSubArrayB, int(subArrayBoxSizeB/2), int(subArrayBoxSizeB/2), extendbox = 3) 
             _, ycenC = cF.findCentroid(fifSubArrayC, int(subArrayBoxSizeC/2), int(subArrayBoxSizeC/2), extendbox = 3)
             if ycenB != ycenC:
-                if ycenB > ycenC:
+                if ycenB < ycenC:
                 #calculate angle between B and C
-                    angleRz = 
-                if ycenB < ycenC:                
+                    angleRz = #np.arctan(ycenC/triangleSideLength)
+                if ycenB > ycenC:                
                 #calculate angle between B and C                
-                    angleRz =
+                    angleRz = #np.arctan(ycenB/triangleSideLength)
                 
         if CCDLabel == "ECCD" or CCDLabel == "WCCD":
             xcenB, _ = cF.findCentroid(fifSubArrayB, int(subArrayBoxSizeB/2), int(subArrayBoxSizeB/2), extendbox = 3) 
