@@ -323,9 +323,9 @@ class metManualMode(tk.Tk):
         ###########################################################################
         ###Check Tip and Tilt
         ###########################################################################
-        aa = round(filelistA.shape/2) #select a focused image from array a
-        bb = round(filelistB.shape/2) #select a focused image from array b
-        cc = round(filelistC.shape/2) #select a focused image from array c
+        aa = round(len(filelistA)/2) #select a focused image from array a
+        bb = round(len(filelistB)/2) #select a focused image from array b
+        cc = round(len(filelistC)/2) #select a focused image from array c
         ttz = tipTiltZCCD()
         ttz.findTipTiltZ(imageArray4DA[aa], imageArray4DB[bb], imageArray4DC[cc], xInterA, xInterB, xInterC, nominalZA, nominalZB, nominalZC, self.CCDSelection, fC.tccs, fC.micrometerDistance, self.consoleLog, self.logFile)
         

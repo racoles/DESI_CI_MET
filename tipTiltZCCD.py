@@ -49,6 +49,13 @@ class tipTiltZCCD(object):
         ###########################################################################
         ###Find Needed Micrometer Adjustments 
         ###########################################################################
+        AturnDistanceDegrees = 99999999
+        BturnDistanceDegrees = 99999999
+        CturnDistanceDegrees = 99999999
+        turnA = "None"
+        turnB = "None"
+        turnC = "None"
+        
         faah = fileAndArrayHandling()
         fC = focusCurve()
         
@@ -241,6 +248,8 @@ class tipTiltZCCD(object):
         ###########################################################################
         ###Report Rz 
         ###########################################################################
+        angleRz = 99999
+        
         faah = fileAndArrayHandling()
         faah.pageLogging(consoleLog, logFile, 
                                       "Checking " + str(CCDLabel) + " Rz about CS5X:")
@@ -328,7 +337,11 @@ class tipTiltZCCD(object):
             else:
                 angleRz = 90
                 faah.pageLogging(consoleLog, logFile, "Side BC Should be parallel to CS5Y.\n" + 
-                                     CCDLabel + "Sensor origin is " + str(angleRz) + "degrees about CS5X.\n Sensor is properly aligned in Rz" )        
+                                     CCDLabel + "Sensor origin is " + str(angleRz) + "degrees about CS5X.\n Sensor is properly aligned in Rz" )    
+        
+        if CCDLabel == "Other":
+                faah.pageLogging(consoleLog, logFile, "Side BC Should be parallel to CS5Y.\n" + 
+                                     CCDLabel + "Sensor Other selected. Can't find Rz." )    
         
         return angleRz
        
