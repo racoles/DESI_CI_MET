@@ -60,7 +60,6 @@ class tipTiltZCCD(object):
             #How many turns will it take to reach nominal height?
             AturnDistance_um = np.absolute(AzDeltaTip*triangleAdjustmentRatio)/(TTFThread*1000) #X turns = needed height / micrometer pitch (height per one full turn). Convert mm to microns.
             AturnDistanceDegrees = faah.decNonZeroRound(np.absolute(AturnDistance_um/((TTFThreadOD*1000)/360))) #to get number of degrees. 1 degree = fifThreadODMicrons/360 um. Convert mm to microns.
-            #AturnFraction = np.absolute(Fraction(AturnDistance_um).limit_denominator()) #turnFraction-th of a turn
             
         #If the B height isn't equal to the nominal height
         if BzDeltaTip or BzDeltaTilt != 0:
@@ -72,7 +71,6 @@ class tipTiltZCCD(object):
             #How many turns will it take to reach nominal height?
             BturnDistance_um = np.absolute(BzDeltaTip*triangleAdjustmentRatio)/(TTFThread*1000) #X turns = needed height / fif pitch (height per one full turn). Convert mm to microns.
             BturnDistanceDegrees = faah.decNonZeroRound(np.absolute(BturnDistance_um/((TTFThreadOD*1000)/360))) #to get number of degrees. 1 degree = fifThreadODMicrons/360 um. Convert mm to microns.
-            #BturnFraction = np.absolute(Fraction(BturnDistance_um).limit_denominator()) #turnFraction-th of a turn
         
         #If the C height isn't equal to the nominal height
         if CzDeltaTip or CzDeltaTilt or CenterDeltaZ != 0:
@@ -84,7 +82,6 @@ class tipTiltZCCD(object):
             #How many turns will it take to reach nominal height?
             CturnDistance_um = np.absolute(CzDeltaTip*triangleAdjustmentRatio)/(TTFThread*1000) #X turns = needed height / fif pitch (height per one full turn). Convert mm to microns.
             CturnDistanceDegrees = faah.decNonZeroRound(np.absolute(CturnDistance_um/((TTFThreadOD*1000)/360))) #to get number of degrees. 1 degree = fifThreadODMicrons/360 um. Convert mm to microns.
-            #CturnFraction = np.absolute(Fraction(CturnDistance_um).limit_denominator()) #turnFraction-th of a turn
             
         ###########################################################################
         ###Send Warning Message
@@ -292,7 +289,7 @@ class tipTiltZCCD(object):
                     #angleRz = 
                 if xcenB < xcenC:                
                 #calculate angle between B and C. Report in CS5 relative to +X: 90 degrees + BC angle  
-                #BC Should be parallel to CS5Y. CCDLabel sensor origin is [90 degrees + BC angle] degrees Rz about CS5X.                
+                #BC Should be parallel to CS5Y. CCDLabel sensor origin is [90 degrees + BC angle] degrees Rz about CS5X.           
                     #angleRz =            
        
     def distanceBetweenTrianglePointsBandC(self, imageB, imageC, CCDLabel, consoleLog, logFile):             
