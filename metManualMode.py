@@ -178,13 +178,14 @@ class metManualMode(tk.Tk):
         ###Get images
         ###########################################################################
         imageArray4D, filelist = faah.openAllFITSImagesInDirectory()
+        aa = round(len(filelist)/2) #select a focused image from array a
         
         ###########################################################################
         ###Find fif in image and create subarray
         ###########################################################################
         faah.pageLogging(self.consoleLog, self.logFile, 
-                                      "Centroiding " + str(fiflabel) + " using FITs file:\n" + str(filelist[0]).replace('/', '\\'))
-        fifSubArray, subArrayBoxSize, maxLoc  = centroidFIF.findFIFInImage(self, imageArray4D[0])
+                                      "Centroiding " + str(fiflabel) + " using FITs file:\n" + str(filelist[aa]).replace('/', '\\'))
+        fifSubArray, subArrayBoxSize, maxLoc  = centroidFIF.findFIFInImage(self, imageArray4D[aa])
         faah.pageLogging(self.consoleLog, self.logFile, 
                                       str(fiflabel) + " FIF found at pixel location: (" + str(maxLoc[0]) + "," + str(maxLoc[1]) + "). Will now centroid using that location.")
         
