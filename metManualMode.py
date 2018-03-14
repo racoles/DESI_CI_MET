@@ -256,7 +256,7 @@ class metManualMode(tk.Tk):
         ###########################################################################
         faah.pageLogging(self.consoleLog, self.logFile, 
                                       "Suggested " +  str(self.CCDSelection) + 
-                                      " manual mode focus curve directories for points A, B, and C: \n" + str(os.getcwd()) + '\\' + dirNameA + "\n" +
+                                      " manual mode focus curve directories: \n" + str(os.getcwd()) + '\\' + dirNameA + "\n" +
                                       str(os.getcwd()) + '\\' + dirNameB + "\n" +
                                       str(os.getcwd()) + '\\' + dirNameC + "\n" +
                                       "\nNOTE: the file names will be used to create the Z axis values (distance)\n" +
