@@ -218,12 +218,12 @@ class inputGUI(object):
         #    smsBisector: Sobel Marginal Sum (SMS) Bisector Method.
         xCenSMS, yCenSMS, _ = smsBisector(imageArray4D[0], maxLoc[1], maxLoc[0], int(round(widthOfSubimage/2)), int(round(widthOfSubimage/2)), axis='both', clipStars=False, wfac=1, verbose=False)
         #    alternateCentroidMethods.findCentroid: iterative GMS method centroid fitting.
-        xCenFC, yCenFC, xErrFC, yErrFC = findCentroid(imageArray4D[0], maxLoc[0], maxLoc[1], int(round(widthOfSubimage/2)), maxiter=5, tol=0.01, verbose=False)
+        xCenFC, yCenFC, xErrFC, yErrFC = findCentroid(imageArray4D[0], maxLoc[0], maxLoc[1], int(round(widthOfSubimage/2)), maxiter=100, tol=0.01, verbose=False)
         #    centroidFIF.findCentroid
         xCencF, yCencF = cF.findCentroid(fifSubArray, int(round(subArrayBoxSize/2)), int(round(subArrayBoxSize/2)), extendbox = 3)
         xCencF = xCencF + maxLoc[0]-subArrayBoxSize/2
         yCencF = yCencF + maxLoc[1]-subArrayBoxSize/2
-       
+
         #Print Results
         faah.pageLogging(consoleLog, logFile,
                         "Pinhole image found at (rows, columns): (" + str(maxLoc[1] + xOffset) + ', ' + str(maxLoc[0] + yOffset)+ ')\n' +
