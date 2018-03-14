@@ -265,7 +265,7 @@ class tipTiltZCCD(object):
             else:
                 angleRz = 0
                 faah.pageLogging(consoleLog, logFile, "Side BC Should be parallel to CS5X.\n" + 
-                                     CCDLabel + "Sensor origin is " + str(0) + "degrees about CS5X." ) 
+                                     CCDLabel + "Sensor origin is " + str(angleRz) + "degrees about CS5X.\n Sensor is properly aligned in Rz" ) 
                     
         if CCDLabel == "SCCD" or CCDLabel == "CCCD":
             _, ycenB = cF.findCentroid(fifSubArrayB, int(subArrayBoxSizeB/2), int(subArrayBoxSizeB/2), extendbox = 3) 
@@ -286,7 +286,7 @@ class tipTiltZCCD(object):
             else:
                 angleRz = 0
                 faah.pageLogging(consoleLog, logFile, "Side BC Should be parallel to CS5X.\n" + 
-                                     CCDLabel + "Sensor origin is " + str(0) + "degrees about CS5X." ) 
+                                     CCDLabel + "Sensor origin is " + str(angleRz) + "degrees about CS5X.\n Sensor is properly aligned in Rz" ) 
                 
         if CCDLabel == "ECCD":
             _, ycenB = cF.findCentroid(fifSubArrayB, int(subArrayBoxSizeB/2), int(subArrayBoxSizeB/2), extendbox = 3) 
@@ -296,10 +296,18 @@ class tipTiltZCCD(object):
                 #calculate angle between B and C. Report in CS5 relative to +X: 270 degrees - BC angle 
                 #BC Should be parallel to CS5Y. CCDLabel sensor origin is [270 degrees - BC angle] degrees Rz about CS5X.                 
                     angleRz = math.degrees(np.arcsin((ycenB-ycenC)/triangleSideLength))
+                    faah.pageLogging(consoleLog, logFile, "Side BC Should be parallel to CS5Y.\n" + 
+                                     CCDLabel + "Sensor origin is " + str(270-angleRz) + "degrees about CS5X." ) 
                 if ycenB < ycenC:               
                 #calculate angle between B and C. Report in CS5 relative to +X: 270 degrees + BC angle
                 #BC Should be parallel to CS5Y. CCDLabel sensor origin is [270 degrees + BC angle] degrees Rz about CS5X.           
-                    angleRz = math.degrees(np.arcsin((ycenC-ycenB)/triangleSideLength))        
+                    angleRz = math.degrees(np.arcsin((ycenC-ycenB)/triangleSideLength)) 
+                    faah.pageLogging(consoleLog, logFile, "Side BC Should be parallel to CS5Y.\n" + 
+                                     CCDLabel + "Sensor origin is " + str(270+angleRz) + "degrees about CS5X." )   
+            else:
+                angleRz = 90
+                faah.pageLogging(consoleLog, logFile, "Side BC Should be parallel to CS5Y.\n" + 
+                                     CCDLabel + "Sensor origin is " + str(angleRz) + "degrees about CS5X.\n Sensor is properly aligned in Rz" )     
                     
         if CCDLabel == "WCCD":        
             _, ycenB = cF.findCentroid(fifSubArrayB, int(subArrayBoxSizeB/2), int(subArrayBoxSizeB/2), extendbox = 3) 
@@ -309,10 +317,18 @@ class tipTiltZCCD(object):
                 #calculate angle between B and C. Report in CS5 relative to +X: 90 degrees - BC angle
                 #BC Should be parallel to CS5Y. CCDLabel sensor origin is [90 degrees - BC angle] degrees Rz about CS5X. 
                     angleRz = math.degrees(np.arcsin((ycenB-ycenC)/triangleSideLength))
+                    faah.pageLogging(consoleLog, logFile, "Side BC Should be parallel to CS5Y.\n" + 
+                                     CCDLabel + "Sensor origin is " + str(90-angleRz) + "degrees about CS5X." ) 
                 if ycenB < ycenC:              
                 #calculate angle between B and C. Report in CS5 relative to +X: 90 degrees + BC angle  
                 #BC Should be parallel to CS5Y. CCDLabel sensor origin is [90 degrees + BC angle] degrees Rz about CS5X.           
-                    angleRz = math.degrees(np.arcsin((ycenC-ycenB)/triangleSideLength))      
+                    angleRz = math.degrees(np.arcsin((ycenC-ycenB)/triangleSideLength)) 
+                    faah.pageLogging(consoleLog, logFile, "Side BC Should be parallel to CS5Y.\n" + 
+                                     CCDLabel + "Sensor origin is " + str(90+angleRz) + "degrees about CS5X." ) 
+            else:
+                angleRz = 90
+                faah.pageLogging(consoleLog, logFile, "Side BC Should be parallel to CS5Y.\n" + 
+                                     CCDLabel + "Sensor origin is " + str(angleRz) + "degrees about CS5X.\n Sensor is properly aligned in Rz" )        
        
        
     def distanceBetweenTrianglePointsBandC(self, imageB, imageC, CCDLabel, consoleLog, logFile):             
