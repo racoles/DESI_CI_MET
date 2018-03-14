@@ -232,8 +232,7 @@ class tipTiltZCCD(object):
         For East and West Cameras:
             B(y) = C(y)
         '''             
-        print(8*np.sin(math.radians(30)))
-        
+
         #Centroid images
         cF = centroidFIF()
         fifSubArrayB, subArrayBoxSizeB, _  = cF.findFIFInImage(imageB)
@@ -241,32 +240,32 @@ class tipTiltZCCD(object):
         
 #########################################        
         #If B and C aren't aligned (in either X or Y depending on the camera location)
-        
+
         if CCDLabel == "NCCD":
             _, ycenB = cF.findCentroid(fifSubArrayB, int(subArrayBoxSizeB/2), int(subArrayBoxSizeB/2), extendbox = 3) 
             _, ycenC = cF.findCentroid(fifSubArrayC, int(subArrayBoxSizeC/2), int(subArrayBoxSizeC/2), extendbox = 3)
             if ycenB != ycenC:
-                if ycenB < ycenC:
-                #calculate angle between B and C. Report in CS5 relative to +X: 180 degrees + BC angle
-                #BC Should be parallel to CS5X. CCDLabel sensor origin is [180 degrees + BC angle] degrees Rz about CS5X.
-                    #angleRz = np.arctan(ycenC/triangleSideLength)
                 if ycenB > ycenC:     
                 #calculate angle between B and C. Report in CS5 relative to +X: 180 degrees - BC angle
                 #BC Should be parallel to CS5X. CCDLabel sensor origin is [180 degrees - BC angle] degrees Rz about CS5X.                
-                    #angleRz = np.arctan(ycenB/triangleSideLength)
+                    angleRz = math.degrees(np.arcsin((ycenB-ycenC)/triangleSideLength))
+                if ycenB < ycenC:
+                #calculate angle between B and C. Report in CS5 relative to +X: 180 degrees + BC angle
+                #BC Should be parallel to CS5X. CCDLabel sensor origin is [180 degrees + BC angle] degrees Rz about CS5X.
+                    angleRz = math.degrees(np.arcsin((ycenC-ycenB)/triangleSideLength))
                     
         if CCDLabel == "SCCD" or CCDLabel == "CCCD":
             _, ycenB = cF.findCentroid(fifSubArrayB, int(subArrayBoxSizeB/2), int(subArrayBoxSizeB/2), extendbox = 3) 
             _, ycenC = cF.findCentroid(fifSubArrayC, int(subArrayBoxSizeC/2), int(subArrayBoxSizeC/2), extendbox = 3)
             if ycenB != ycenC:
-                if ycenB < ycenC:
-                #calculate angle between B and C. Report in CS5 relative to +X: 0 degrees + BC angle.
-                #BC Should be parallel to CS5X. CCDLabel sensor origin is [0 degrees + BC angle] degrees Rz about CS5X.  
-                    #angleRz =
                 if ycenB > ycenC:                
                 #calculate angle between B and C. Report in CS5 relative to +X: 360 degrees - BC angle.
                 #BC Should be parallel to CS5X. CCDLabel sensor origin is [360 degrees - BC angle] degrees Rz about CS5X.                 
-                    #angleRz =
+                    angleRz = math.degrees(np.arcsin((ycenB-ycenC)/triangleSideLength))
+                if ycenB < ycenC:
+                #calculate angle between B and C. Report in CS5 relative to +X: 0 degrees + BC angle.
+                #BC Should be parallel to CS5X. CCDLabel sensor origin is [0 degrees + BC angle] degrees Rz about CS5X.  
+                    angleRz = math.degrees(np.arcsin((ycenC-ycenB)/triangleSideLength))
                 
         if CCDLabel == "ECCD":
             xcenB, _ = cF.findCentroid(fifSubArrayB, int(subArrayBoxSizeB/2), int(subArrayBoxSizeB/2), extendbox = 3) 

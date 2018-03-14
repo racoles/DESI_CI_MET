@@ -106,11 +106,12 @@ class focusCurve(object):
         Accepts a 4D numpy array and plots standard deviations of the images.
         note: assumes filenames are distances (int)
         '''
+        
         ###########################################################################
         ###Turn interactive plotting off
         ###########################################################################
         py.ioff()
-        
+
         ###########################################################################
         ###Initialize std array
         ###########################################################################
