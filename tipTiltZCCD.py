@@ -263,7 +263,7 @@ class tipTiltZCCD(object):
                     faah.pageLogging(consoleLog, logFile, "Side BC Should be parallel to CS5X.\n" + 
                                      CCDLabel + "Sensor origin is " + str(180+angleRz) + "degrees about CS5X." )
             else:
-                angleRz = 0
+                angleRz = 180
                 faah.pageLogging(consoleLog, logFile, "Side BC Should be parallel to CS5X.\n" + 
                                      CCDLabel + "Sensor origin is " + str(angleRz) + "degrees about CS5X.\n Sensor is properly aligned in Rz" ) 
                     
@@ -305,7 +305,7 @@ class tipTiltZCCD(object):
                     faah.pageLogging(consoleLog, logFile, "Side BC Should be parallel to CS5Y.\n" + 
                                      CCDLabel + "Sensor origin is " + str(270+angleRz) + "degrees about CS5X." )   
             else:
-                angleRz = 90
+                angleRz = 270
                 faah.pageLogging(consoleLog, logFile, "Side BC Should be parallel to CS5Y.\n" + 
                                      CCDLabel + "Sensor origin is " + str(angleRz) + "degrees about CS5X.\n Sensor is properly aligned in Rz" )     
                     
