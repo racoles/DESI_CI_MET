@@ -275,10 +275,18 @@ class tipTiltZCCD(object):
                 #calculate angle between B and C. Report in CS5 relative to +X: 360 degrees - BC angle.
                 #BC Should be parallel to CS5X. CCDLabel sensor origin is [360 degrees - BC angle] degrees Rz about CS5X.                 
                     angleRz = math.degrees(np.arcsin((ycenB-ycenC)/triangleSideLength))
+                    faah.pageLogging(consoleLog, logFile, "Side BC Should be parallel to CS5X.\n" + 
+                                     CCDLabel + "Sensor origin is " + str(360-angleRz) + "degrees about CS5X." ) 
                 if ycenB < ycenC:
                 #calculate angle between B and C. Report in CS5 relative to +X: 0 degrees + BC angle.
                 #BC Should be parallel to CS5X. CCDLabel sensor origin is [0 degrees + BC angle] degrees Rz about CS5X.  
                     angleRz = math.degrees(np.arcsin((ycenC-ycenB)/triangleSideLength))
+                    faah.pageLogging(consoleLog, logFile, "Side BC Should be parallel to CS5X.\n" + 
+                                     CCDLabel + "Sensor origin is " + str(angleRz) + "degrees about CS5X." ) 
+            else:
+                angleRz = 0
+                faah.pageLogging(consoleLog, logFile, "Side BC Should be parallel to CS5X.\n" + 
+                                     CCDLabel + "Sensor origin is " + str(0) + "degrees about CS5X." ) 
                 
         if CCDLabel == "ECCD":
             _, ycenB = cF.findCentroid(fifSubArrayB, int(subArrayBoxSizeB/2), int(subArrayBoxSizeB/2), extendbox = 3) 
