@@ -5,7 +5,7 @@ Updated on Mar 06, 2018
 Created on Jan 18, 2018
 
 tipTiltZCCD
-This module holds a series of functions that I use find the tip/tilt/Z of a CCD on the DESI CI.
+This module holds a series of functions that are used to find the tip/tilt/Z of a CCD on the DESI CI.
 
 Modules:
 '''
@@ -15,6 +15,7 @@ from fileAndArrayHandling import fileAndArrayHandling
 from focusCurve import focusCurve
 import numpy as np
 from centroidFIF import centroidFIF
+import math
 ################################################################################################
 
 class tipTiltZCCD(object):
@@ -231,6 +232,8 @@ class tipTiltZCCD(object):
         For East and West Cameras:
             B(y) = C(y)
         '''             
+        print(8*np.sin(math.radians(30)))
+        
         #Centroid images
         cF = centroidFIF()
         fifSubArrayB, subArrayBoxSizeB, _  = cF.findFIFInImage(imageB)

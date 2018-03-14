@@ -69,10 +69,10 @@ class focusCurve(object):
                         "Other" : (0,0)}
     
     #Dict of (x,y,z) for CCD centers(mm)
-    CCDLocationsCS5 = {"NCCD" : (0,-396.480),
-                       "WCCD" : (-396.480,0),
-                       "SCCD" : (0,396.480),
-                       "ECCD" : (396.480,0),
+    CCDLocationsCS5 = {"NCCD" : (0,-396.332),
+                       "WCCD" : (-396.332,0),
+                       "SCCD" : (0,396.332),
+                       "ECCD" : (396.332,0),
                        "CCCD" : (0,0),
                        "Other" : (0,0)}
     
