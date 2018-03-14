@@ -13,7 +13,6 @@ Modules:
 # Import #######################################################################################
 from fileAndArrayHandling import fileAndArrayHandling
 from focusCurve import focusCurve
-from fractions import Fraction
 import numpy as np
 from centroidFIF import centroidFIF
 ################################################################################################
@@ -52,7 +51,7 @@ class tipTiltZCCD(object):
         
         #If the A height isn't equal to the nominal height
         if AzDeltaTip or AzDeltaTilt != 0:
-            #is A too low or too high (clockwise = down, counter-clockwise = up)
+            #is A too low or too high (clockwise = down, counter-clockwise = up relative to CS5 +Z)
             if AzDeltaTip < 0: 
                 turnA = 'counter-clockwise' 
             else: 
