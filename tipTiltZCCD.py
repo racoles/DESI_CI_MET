@@ -249,9 +249,11 @@ class tipTiltZCCD(object):
             if ycenB != ycenC:
                 if ycenB < ycenC:
                 #calculate angle between B and C. Report in CS5 relative to +X: 180 degrees + BC angle
+                #BC Should be parallel to CS5X. CCDLabel sensor origin is [180 degrees + BC angle] degrees Rz about CS5X.
                     #angleRz = np.arctan(ycenC/triangleSideLength)
                 if ycenB > ycenC:     
-                #calculate angle between B and C. Report in CS5 relative to +X: 180 degrees - BC angle                
+                #calculate angle between B and C. Report in CS5 relative to +X: 180 degrees - BC angle
+                #BC Should be parallel to CS5X. CCDLabel sensor origin is [180 degrees - BC angle] degrees Rz about CS5X.                
                     #angleRz = np.arctan(ycenB/triangleSideLength)
                     
         if CCDLabel == "SCCD" or CCDLabel == "CCCD":
@@ -259,10 +261,12 @@ class tipTiltZCCD(object):
             _, ycenC = cF.findCentroid(fifSubArrayC, int(subArrayBoxSizeC/2), int(subArrayBoxSizeC/2), extendbox = 3)
             if ycenB != ycenC:
                 if ycenB < ycenC:
-                #calculate angle between B and C. Report in CS5 relative to +X: 0 degrees + BC angle 
+                #calculate angle between B and C. Report in CS5 relative to +X: 0 degrees + BC angle.
+                #BC Should be parallel to CS5X. CCDLabel sensor origin is [0 degrees + BC angle] degrees Rz about CS5X.  
                     #angleRz =
                 if ycenB > ycenC:                
-                #calculate angle between B and C. Report in CS5 relative to +X: 360 degrees - BC angle                   
+                #calculate angle between B and C. Report in CS5 relative to +X: 360 degrees - BC angle.
+                #BC Should be parallel to CS5X. CCDLabel sensor origin is [360 degrees - BC angle] degrees Rz about CS5X.                 
                     #angleRz =
                 
         if CCDLabel == "ECCD":
@@ -271,9 +275,11 @@ class tipTiltZCCD(object):
             if xcenB != xcenC:
                 if xcenB > xcenC:
                 #calculate angle between B and C. Report in CS5 relative to +X: 270 degrees - BC angle 
+                #BC Should be parallel to CS5Y. CCDLabel sensor origin is [270 degrees - BC angle] degrees Rz about CS5X.                 
                     #angleRz =
                 if xcenB < xcenC:                
-                #calculate angle between B and C. Report in CS5 relative to +X: 270 degrees + BC angle                   
+                #calculate angle between B and C. Report in CS5 relative to +X: 270 degrees + BC angle
+                #BC Should be parallel to CS5Y. CCDLabel sensor origin is [270 degrees + BC angle] degrees Rz about CS5X.           
                     #angleRz =         
                     
         if CCDLabel == "WCCD":        
@@ -282,9 +288,11 @@ class tipTiltZCCD(object):
             if xcenB != xcenC:
                 if xcenB > xcenC:
                 #calculate angle between B and C. Report in CS5 relative to +X: 90 degrees - BC angle
+                #BC Should be parallel to CS5Y. CCDLabel sensor origin is [90 degrees - BC angle] degrees Rz about CS5X. 
                     #angleRz = 
                 if xcenB < xcenC:                
-                #calculate angle between B and C. Report in CS5 relative to +X: 90 degrees + BC angle                 
+                #calculate angle between B and C. Report in CS5 relative to +X: 90 degrees + BC angle  
+                #BC Should be parallel to CS5Y. CCDLabel sensor origin is [90 degrees + BC angle] degrees Rz about CS5X.                
                     #angleRz =            
        
     def distanceBetweenTrianglePointsBandC(self, imageB, imageC, CCDLabel, consoleLog, logFile):             
