@@ -97,7 +97,7 @@ class tipTiltZCCD(object):
         ###########################################################################
         #micrometer ticks to turn: 360 degrees / 50 ticks on TTF micrometers = 7.2 degrees per tick
         
-        ####ADD B-C distance
+####ADD B-C distance
         
         faah.pageLogging(consoleLog, logFile, 
                 "WARNING: the" + str(CCDLabel) +" camera Z height is not equal to the nominal height.\n" + "The current micrometer thread pitch is " +
@@ -274,7 +274,7 @@ class tipTiltZCCD(object):
             else:
                 angleRz = 180
                 faah.pageLogging(consoleLog, logFile, "Side BC Should be parallel to CS5X.\n" + 
-                                     "        " + CCDLabel + " Sensor origin is " + str(angleRz) + " degrees about CS5X.\n Sensor is properly aligned in Rz" ) 
+                                     "        " + CCDLabel + " Sensor origin is " + str(angleRz) + " degrees about CS5X.\n        Sensor is properly aligned in Rz" ) 
                     
         if CCDLabel == "SCCD" or CCDLabel == "CCCD":
             _, ycenB = cF.findCentroid(fifSubArrayB, int(subArrayBoxSizeB/2), int(subArrayBoxSizeB/2), extendbox = 3) 
@@ -295,7 +295,7 @@ class tipTiltZCCD(object):
             else:
                 angleRz = 0
                 faah.pageLogging(consoleLog, logFile, "Side BC Should be parallel to CS5X.\n" + 
-                                     "        " + CCDLabel + " Sensor origin is " + str(angleRz) + " degrees about CS5X.\n Sensor is properly aligned in Rz" ) 
+                                     "        " + CCDLabel + " Sensor origin is " + str(angleRz) + " degrees about CS5X.\n        Sensor is properly aligned in Rz" ) 
                 
         if CCDLabel == "ECCD":
             _, ycenB = cF.findCentroid(fifSubArrayB, int(subArrayBoxSizeB/2), int(subArrayBoxSizeB/2), extendbox = 3) 
@@ -316,7 +316,7 @@ class tipTiltZCCD(object):
             else:
                 angleRz = 270
                 faah.pageLogging(consoleLog, logFile, "Side BC Should be parallel to CS5Y.\n" + 
-                                     "        " + CCDLabel + " Sensor origin is " + str(angleRz) + " degrees about CS5X.\n Sensor is properly aligned in Rz" )     
+                                     "        " + CCDLabel + " Sensor origin is " + str(angleRz) + " degrees about CS5X.\n        Sensor is properly aligned in Rz" )     
                     
         if CCDLabel == "WCCD":        
             _, ycenB = cF.findCentroid(fifSubArrayB, int(subArrayBoxSizeB/2), int(subArrayBoxSizeB/2), extendbox = 3) 
@@ -337,7 +337,7 @@ class tipTiltZCCD(object):
             else:
                 angleRz = 90
                 faah.pageLogging(consoleLog, logFile, "Side BC Should be parallel to CS5Y.\n" + 
-                                     "        " + CCDLabel + "Sensor origin is " + str(angleRz) + " degrees about CS5X.\n Sensor is properly aligned in Rz" )    
+                                     "        " + CCDLabel + "Sensor origin is " + str(angleRz) + " degrees about CS5X.\n        Sensor is properly aligned in Rz" )    
         
         if CCDLabel == "Other":
                 faah.pageLogging(consoleLog, logFile, "Side BC Should be parallel to CS5Y.\n" + 
