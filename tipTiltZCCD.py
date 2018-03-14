@@ -25,7 +25,7 @@ class tipTiltZCCD(object):
         Constructor
         '''
     
-    def findTipTiltZ(self, Az, Bz, Cz, Az_nominal, Bz_nominal, Cz_nominal, CCDLabel, triangleSideLength, micrometerDistance, consoleLog, logFile, TTFThread = 0.5, TTFThreadOD = 6):
+    def findTipTiltZ(self, imageA, imageB, imageC, Az, Bz, Cz, Az_nominal, Bz_nominal, Cz_nominal, CCDLabel, triangleSideLength, micrometerDistance, consoleLog, logFile, TTFThread = 0.5, TTFThreadOD = 6):
         ###########################################################################
         ###Get adjustment ratios
         ###########################################################################     
@@ -43,6 +43,8 @@ class tipTiltZCCD(object):
         AzDeltaTilt, BzDeltaTilt, CzDeltaTilt = self.tiltCCD(Az, Bz, Cz, Az_nominal, Bz_nominal, Cz_nominal, CCDLabel, consoleLog, logFile)
         #Z
         CenterDeltaZ = self.ZCCD(Az, Bz, Cz, CCDLabel, consoleLog, logFile)
+        #Rz
+        angleRz = self.rz(imageB, imageC, CCDLabel, triangleSideLength, consoleLog, logFile)
 
         ###########################################################################
         ###Find Needed Micrometer Adjustments 
@@ -87,8 +89,6 @@ class tipTiltZCCD(object):
         ###Send Warning Message
         ###########################################################################
         #micrometer ticks to turn: 360 degrees / 50 ticks on TTF micrometers = 7.2 degrees per tick
-        
-        ####ADD Rz (in CS5)
         
         ####ADD B-C distance
         
@@ -329,7 +329,8 @@ class tipTiltZCCD(object):
                 angleRz = 90
                 faah.pageLogging(consoleLog, logFile, "Side BC Should be parallel to CS5Y.\n" + 
                                      CCDLabel + "Sensor origin is " + str(angleRz) + "degrees about CS5X.\n Sensor is properly aligned in Rz" )        
+        
+        return angleRz
        
-       
-    def distanceBetweenTrianglePointsBandC(self, imageB, imageC, CCDLabel, consoleLog, logFile):             
+#    def distanceBetweenTrianglePointsBandC(self, imageB, imageC, CCDLabel, consoleLog, logFile):             
         #Distance between B and C (using centroiding and pixel size) versus nominal
