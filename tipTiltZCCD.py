@@ -382,9 +382,9 @@ class tipTiltZCCD(object):
         
         #Account for planet mode
         pM = CCDOpsPlanetMode()
-        xOffsetA, yOffsetA, _ = pM.readFitsHeader(imageArray4DA, filelistA, consoleLog, logFile)
-        xOffsetB, yOffsetB, _ = pM.readFitsHeader(imageArray4DB, filelistB, consoleLog, logFile)
-        xOffsetC, yOffsetC, _ = pM.readFitsHeader(imageArray4DC, filelistC, consoleLog, logFile)
+        xOffsetA, yOffsetA, pixelSizeA = pM.readFitsHeader(imageArray4DA, filelistA, consoleLog, logFile)
+        xOffsetB, yOffsetB, pixelSizeB = pM.readFitsHeader(imageArray4DB, filelistB, consoleLog, logFile)
+        xOffsetC, yOffsetC, pixelSizeC = pM.readFitsHeader(imageArray4DC, filelistC, consoleLog, logFile)
         
         ###########################################################################
         ###Calculate Delta Distance (measured size of sides)
