@@ -345,5 +345,5 @@ class tipTiltZCCD(object):
         
         return angleRz
        
-#    def distanceBetweenTrianglePointsBandC(self, imageB, imageC, CCDLabel, consoleLog, logFile):             
+    def distanceBetweenTrianglePointsBandC(self, imageA, imageB, imageC, CCDLabel, consoleLog, logFile):             
         #Distance between B and C (using centroiding and pixel size) versus nominal
