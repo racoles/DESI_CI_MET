@@ -378,9 +378,9 @@ class tipTiltZCCD(object):
         ###########################################################################         
         cF = centroidFIF()
         
-        fifSubArrayA, subArrayBoxSizeA, maxLocA = cF.findFIFInImage(imageArray4DA[aa])
-        fifSubArrayB, subArrayBoxSizeB, maxLocB = cF.findFIFInImage(imageArray4DB[bb])
-        fifSubArrayC, subArrayBoxSizeC, maxLocC = cF.findFIFInImage(imageArray4DC[cc])
+        _ , subArrayBoxSizeA, maxLocA = cF.findFIFInImage(imageArray4DA[aa])
+        _ , subArrayBoxSizeB, maxLocB = cF.findFIFInImage(imageArray4DB[bb])
+        _ , subArrayBoxSizeC, maxLocC = cF.findFIFInImage(imageArray4DC[cc])
         
         #Account for planet mode
         pM = CCDOpsPlanetMode()
