@@ -346,15 +346,13 @@ class tipTiltZCCD(object):
         return angleRz
        
     def distanceBetweenTrianglePoints(self, imageA, imageB, imageC, CCDLabel, consoleLog, logFile):             
-        #Distance between A, B, and C (using centroiding and pixel size) versus nominal
-        
-        widthOfSubimage = 80 #pixels
-        
+        '''
+        Find the measured distance between triangle points on the sensor.
+        '''
         ###########################################################################
         ###Get images
         ########################################################################### 
         faah = fileAndArrayHandling()
-        fC = focusCurve() 
         
         #Point A
         imageArray4DA, filelistA = faah.openAllFITSImagesInDirectory()
@@ -374,7 +372,41 @@ class tipTiltZCCD(object):
                          "\nCentroiding image for point C: " +  str(filelistA[cc]).replace('/', '\\'))
         
         ###########################################################################
-        ###Get images
+        ###Centroid images
+        ###########################################################################         
+        cF = centroidFIF()
+        fifSubArrayA, subArrayBoxSizeA, maxLocA = cF.findFIFInImage(imageArray4DA[aa])
+        fifSubArrayB, subArrayBoxSizeB, maxLocB = cF.findFIFInImage(imageArray4DB[bb])
+        fifSubArrayC, subArrayBoxSizeC, maxLocC = cF.findFIFInImage(imageArray4DC[cc])
+        
+        ###########################################################################
+        ###Calculate Delta Distance (measured size of sides)
         ########################################################################### 
-        faah = fileAndArrayHandling()
-        fC = focusCurve()        
+        fC = focusCurve() 
+        #fC.tccs * a number um
+
+        '''
+Centroid (rows, columns)
+A:(29.34, 1579.43)
+B:(1317.67, 734.87)
+C:(1400.67, 2267.27)
+Nominal side length = 8*sqrt(3) = 13.856mm = 13856.406um
+
+In pixels
+A->B:
+d(ab) = sqrt[(Bx-Ax)^2+(By-Ay)^2] = sqrt[(1317.67-29.34)^2+(734.87-1579.43)^2] = sqrt[(1288.33)^2+(-844.56)^2] = sqrt[2.3730757825*^6] = 1540.479075645 pixels
+B->C:
+d(bc) = sqrt[(Cx-Bx)^2+(Cy-By)^2] = sqrt[(1400.67-1317.67)^2+(2267.27-734.87)^2] = sqrt[(83)^2+(1532.4)^2] = sqrt[2.35513876*^6] = 1534.646135107374 pixels
+C->A:
+d(ca) = sqrt[(Ax-Cx)^2+(Ay-Cy)^2] = sqrt[(29.34-1400.67)^2+(1579.43-2267.27)^2] = sqrt[(-1371.33)^2+(-687.84)^2] = sqrt[2.3536698345*^6] = 1534.1674727682112 pixels
+
+In Microns
+A->B: 1540.479075645 pixels * 9um/pixel = 13864.311680805um
+B->C: 1534.646135107374 pixels * 9um/pixel = 13811.815215966366um
+C->A: 1534.1674727682112 pixels * 9um/pixel = 13807.507254913899um
+
+Delta Distance (measured - nominal)
+A->B: 13864.311680805 - 13856.406 = 7.905680804999065um
+B->C: 13811.815215966366 - 13856.406 = -44.59078403364um
+C->A: 13807.507254913899 - 13856.406 = -48.898745086111376um
+'''

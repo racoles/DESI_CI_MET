@@ -246,9 +246,9 @@ class centroidFIF(object):
         ########################################################################### 
         #cv2.imshow('fifSubArray',fifSubArray)
         #print(image[maxLoc[0],maxLoc[1]])
-        
         return fifSubArray, self.widthOfSubimage, maxLoc
     
+#######################################
     def distanceFromPinholeImagetoOrigin(self, rows, columns, consoleLog, logFile, pixelSize, isFIF = False, fifLabel = '', isCCD = False, CCDLabel = '', triangleLabel = ''):
         '''
         Find FIF in image using intensity.

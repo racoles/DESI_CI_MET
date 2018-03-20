@@ -34,13 +34,14 @@ from operator import itemgetter
         
 class focusCurve(object):
     
-    #tip/tilt/Z triangle circumscribed circle radius (mm)
-    tccr = 8
+    #tip/tilt/Z triangle circumscribed circle radius
+    tccr = 8 #mm
     
     #tip/tilt/Z length of a side of the ABC equilateral triangle
-    tccs = tccr*np.sqrt(3)
+    tccs = tccr*np.sqrt(3) #mm
     
-    #tip/tilt/Z distance between micrometers on the TTF
+    #tip/tilt/Z distance between micrometers on the TTF 
+    # (used to find a ratio between triangle points and micrometer points)
     micrometerDistance = 220 #mm
 
     #Dict of (x,y) for FIF centers (mm)
