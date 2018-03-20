@@ -345,5 +345,36 @@ class tipTiltZCCD(object):
         
         return angleRz
        
-    def distanceBetweenTrianglePointsBandC(self, imageA, imageB, imageC, CCDLabel, consoleLog, logFile):             
-        #Distance between B and C (using centroiding and pixel size) versus nominal
+    def distanceBetweenTrianglePoints(self, imageA, imageB, imageC, CCDLabel, consoleLog, logFile):             
+        #Distance between A, B, and C (using centroiding and pixel size) versus nominal
+        
+        widthOfSubimage = 80 #pixels
+        
+        ###########################################################################
+        ###Get images
+        ########################################################################### 
+        faah = fileAndArrayHandling()
+        fC = focusCurve() 
+        
+        #Point A
+        imageArray4DA, filelistA = faah.openAllFITSImagesInDirectory()
+        aa = round(len(filelistA)/2) #select a focused image from array
+        #Point B
+        imageArray4DB, filelistB = faah.openAllFITSImagesInDirectory()
+        bb = round(len(filelistB)/2) #select a focused image from array 
+        #Point B
+        imageArray4DC, filelistC = faah.openAllFITSImagesInDirectory()
+        cc = round(len(filelistC)/2) #select a focused image from array 
+        
+        #Log image that will be used for centroiding
+        faah = fileAndArrayHandling()
+        faah.pageLogging(consoleLog, logFile, 
+                         "Centroiding image for point A: " +  str(filelistA[aa]).replace('/', '\\') +
+                         "\nCentroiding image for point B: " +  str(filelistA[bb]).replace('/', '\\') +
+                         "\nCentroiding image for point C: " +  str(filelistA[cc]).replace('/', '\\'))
+        
+        ###########################################################################
+        ###Get images
+        ########################################################################### 
+        faah = fileAndArrayHandling()
+        fC = focusCurve()        
