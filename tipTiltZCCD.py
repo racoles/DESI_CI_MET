@@ -389,11 +389,11 @@ class tipTiltZCCD(object):
         xOffsetC, yOffsetC, pixelSizeC = pM.readFitsHeader(imageArray4DC, filelistC, consoleLog, logFile)
 
         #SMS Bisector        
-        xCenA, yCenA, _ = smsBisector(imageArray4DA[aa], maxLocA[1], maxLocA[0], int(round(subArrayBoxSizeA/2)), 
+        Ax, Ay, _ = smsBisector(imageArray4DA[aa], maxLocA[1], maxLocA[0], int(round(subArrayBoxSizeA/2)), 
                                       int(round(subArrayBoxSizeA/2)), axis='both', clipStars=False, wfac=1, verbose=False)
-        xCenA, yCenA, _ = smsBisector(imageArray4DB[bb], maxLocB[1], maxLocB[0], int(round(subArrayBoxSizeB/2)), 
+        Bx, By, _ = smsBisector(imageArray4DB[bb], maxLocB[1], maxLocB[0], int(round(subArrayBoxSizeB/2)), 
                                       int(round(subArrayBoxSizeB/2)), axis='both', clipStars=False, wfac=1, verbose=False)
-        xCenA, yCenA, _ = smsBisector(imageArray4DC[cc], maxLocC[1], maxLocC[0], int(round(subArrayBoxSizeC/2)), 
+        Cx, Cy, _ = smsBisector(imageArray4DC[cc], maxLocC[1], maxLocC[0], int(round(subArrayBoxSizeC/2)), 
                                       int(round(subArrayBoxSizeC/2)), axis='both', clipStars=False, wfac=1, verbose=False)
         
         ###########################################################################
@@ -403,31 +403,10 @@ class tipTiltZCCD(object):
         fC = focusCurve() 
         nominalSideLength = fC.tccs * 1000 #um
 
-        #In Pixels
+        #Delta Distance (measured - nominal)
         #A->B
-        #dab =
+        dab = (np.sqrt(math.pow((Bx-Ax), 2) + math.pow((By-Ay), 2))*pixelSizeA)-nominalSideLength #um
         #B->C
-        #dbc =
+        dbc = (np.sqrt(math.pow((Cx-Bx), 2) + math.pow((Cy-By), 2))*pixelSizeB)-nominalSideLength #um
         #C->A
-        #dca =
-        
-        
-        '''
-In pixels
-A->B:
-d(ab) = sqrt[(Bx-Ax)^2+(By-Ay)^2] = sqrt[(1317.67-29.34)^2+(734.87-1579.43)^2] = sqrt[(1288.33)^2+(-844.56)^2] = sqrt[2.3730757825*^6] = 1540.479075645 pixels
-B->C:
-d(bc) = sqrt[(Cx-Bx)^2+(Cy-By)^2] = sqrt[(1400.67-1317.67)^2+(2267.27-734.87)^2] = sqrt[(83)^2+(1532.4)^2] = sqrt[2.35513876*^6] = 1534.646135107374 pixels
-C->A:
-d(ca) = sqrt[(Ax-Cx)^2+(Ay-Cy)^2] = sqrt[(29.34-1400.67)^2+(1579.43-2267.27)^2] = sqrt[(-1371.33)^2+(-687.84)^2] = sqrt[2.3536698345*^6] = 1534.1674727682112 pixels
-
-In Microns
-A->B: 1540.479075645 pixels * 9um/pixel = 13864.311680805um
-B->C: 1534.646135107374 pixels * 9um/pixel = 13811.815215966366um
-C->A: 1534.1674727682112 pixels * 9um/pixel = 13807.507254913899um
-
-Delta Distance (measured - nominal)
-A->B: 13864.311680805 - 13856.406 = 7.905680804999065um
-B->C: 13811.815215966366 - 13856.406 = -44.59078403364um
-C->A: 13807.507254913899 - 13856.406 = -48.898745086111376um
-'''
+        dca = (np.sqrt(math.pow((Ax-Cx), 2) + math.pow((Ay-Cy), 2))*pixelSizeC)-nominalSideLength #um
