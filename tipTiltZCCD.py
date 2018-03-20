@@ -405,8 +405,15 @@ class tipTiltZCCD(object):
 
         #Delta Distance (measured - nominal)
         #A->B
-        dab = (np.sqrt(math.pow((Bx-Ax), 2) + math.pow((By-Ay), 2))*pixelSizeA)-nominalSideLength #um
+        dab = (np.sqrt(math.pow(((Bx+xOffsetB)-(Ax+xOffsetA)), 2) + math.pow(((By+yOffsetB)-(Ay+yOffsetA)), 2))*pixelSizeA)#um
         #B->C
-        dbc = (np.sqrt(math.pow((Cx-Bx), 2) + math.pow((Cy-By), 2))*pixelSizeB)-nominalSideLength #um
+        dbc = (np.sqrt(math.pow(((Cx+xOffsetC)-(Bx+xOffsetB)), 2) + math.pow(((Cy+yOffsetC)-(By+yOffsetB)), 2))*pixelSizeB)#um
         #C->A
-        dca = (np.sqrt(math.pow((Ax-Cx), 2) + math.pow((Ay-Cy), 2))*pixelSizeC)-nominalSideLength #um
+        dca = (np.sqrt(math.pow(((Ax+xOffsetA)-(Cx+xOffsetC)), 2) + math.pow(((Ay+yOffsetA)-(Cy+yOffsetC)), 2))*pixelSizeC)#um
+        
+        #Report Delta Distances
+        faah.pageLogging(consoleLog, logFile, 
+                         "Triangle A-B-C Delta Distances (measured - nominal):"
+                         "\nA->B: " +  format(dab, '.3f') + " - " + format(nominalSideLength, '.3f') + " = " + format(dab-nominalSideLength, '.3f') + "um" +
+                         "\nB->C: " +  format(dbc, '.3f') + " - " + format(nominalSideLength, '.3f') + " = " + format(dbc-nominalSideLength, '.3f') + "um" +
+                         "\nC->A: " +  format(dca, '.3f') + " - " + format(nominalSideLength, '.3f') + " = " + format(dca-nominalSideLength, '.3f') + "um")
