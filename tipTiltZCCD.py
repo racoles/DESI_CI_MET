@@ -15,6 +15,7 @@ from fileAndArrayHandling import fileAndArrayHandling
 from focusCurve import focusCurve
 import numpy as np
 from centroidFIF import centroidFIF
+from alternateCentroidMethods import smsBisector
 from CCDOpsPlanetMode import CCDOpsPlanetMode
 import math
 ################################################################################################
@@ -376,6 +377,7 @@ class tipTiltZCCD(object):
         ###Centroid images
         ###########################################################################         
         cF = centroidFIF()
+        
         fifSubArrayA, subArrayBoxSizeA, maxLocA = cF.findFIFInImage(imageArray4DA[aa])
         fifSubArrayB, subArrayBoxSizeB, maxLocB = cF.findFIFInImage(imageArray4DB[bb])
         fifSubArrayC, subArrayBoxSizeC, maxLocC = cF.findFIFInImage(imageArray4DC[cc])
@@ -385,6 +387,14 @@ class tipTiltZCCD(object):
         xOffsetA, yOffsetA, pixelSizeA = pM.readFitsHeader(imageArray4DA, filelistA, consoleLog, logFile)
         xOffsetB, yOffsetB, pixelSizeB = pM.readFitsHeader(imageArray4DB, filelistB, consoleLog, logFile)
         xOffsetC, yOffsetC, pixelSizeC = pM.readFitsHeader(imageArray4DC, filelistC, consoleLog, logFile)
+
+        #SMS Bisector        
+        xCenA, yCenA, _ = smsBisector(imageArray4DA[aa], maxLocA[1], maxLocA[0], int(round(subArrayBoxSizeA/2)), 
+                                      int(round(subArrayBoxSizeA/2)), axis='both', clipStars=False, wfac=1, verbose=False)
+        xCenA, yCenA, _ = smsBisector(imageArray4DB[bb], maxLocB[1], maxLocB[0], int(round(subArrayBoxSizeB/2)), 
+                                      int(round(subArrayBoxSizeB/2)), axis='both', clipStars=False, wfac=1, verbose=False)
+        xCenA, yCenA, _ = smsBisector(imageArray4DC[cc], maxLocC[1], maxLocC[0], int(round(subArrayBoxSizeC/2)), 
+                                      int(round(subArrayBoxSizeC/2)), axis='both', clipStars=False, wfac=1, verbose=False)
         
         ###########################################################################
         ###Calculate Delta Distance (measured size of sides)
@@ -393,6 +403,15 @@ class tipTiltZCCD(object):
         fC = focusCurve() 
         nominalSideLength = fC.tccs * 1000 #um
 
+        #In Pixels
+        #A->B
+        #dab =
+        #B->C
+        #dbc =
+        #C->A
+        #dca =
+        
+        
         '''
 In pixels
 A->B:
