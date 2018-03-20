@@ -15,6 +15,7 @@ from fileAndArrayHandling import fileAndArrayHandling
 from focusCurve import focusCurve
 import numpy as np
 from centroidFIF import centroidFIF
+from CCDOpsPlanetMode import CCDOpsPlanetMode
 import math
 ################################################################################################
 
@@ -378,6 +379,12 @@ class tipTiltZCCD(object):
         fifSubArrayA, subArrayBoxSizeA, maxLocA = cF.findFIFInImage(imageArray4DA[aa])
         fifSubArrayB, subArrayBoxSizeB, maxLocB = cF.findFIFInImage(imageArray4DB[bb])
         fifSubArrayC, subArrayBoxSizeC, maxLocC = cF.findFIFInImage(imageArray4DC[cc])
+        
+        #Account for planet mode
+        pM = CCDOpsPlanetMode()
+        xOffsetA, yOffsetA, _ = pM.readFitsHeader(imageArray4DA, filelistA, consoleLog, logFile)
+        xOffsetB, yOffsetB, _ = pM.readFitsHeader(imageArray4DB, filelistB, consoleLog, logFile)
+        xOffsetC, yOffsetC, _ = pM.readFitsHeader(imageArray4DC, filelistC, consoleLog, logFile)
         
         ###########################################################################
         ###Calculate Delta Distance (measured size of sides)
