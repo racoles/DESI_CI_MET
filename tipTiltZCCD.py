@@ -389,16 +389,11 @@ class tipTiltZCCD(object):
         ###########################################################################
         ###Calculate Delta Distance (measured size of sides)
         ########################################################################### 
+        #Get Nominal triangle side length
         fC = focusCurve() 
-        #fC.tccs * a number um
+        nominalSideLength = fC.tccs * 1000 #um
 
         '''
-Centroid (rows, columns)
-A:(29.34, 1579.43)
-B:(1317.67, 734.87)
-C:(1400.67, 2267.27)
-Nominal side length = 8*sqrt(3) = 13.856mm = 13856.406um
-
 In pixels
 A->B:
 d(ab) = sqrt[(Bx-Ax)^2+(By-Ay)^2] = sqrt[(1317.67-29.34)^2+(734.87-1579.43)^2] = sqrt[(1288.33)^2+(-844.56)^2] = sqrt[2.3730757825*^6] = 1540.479075645 pixels
