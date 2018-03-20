@@ -47,6 +47,7 @@ from fileAndArrayHandling import fileAndArrayHandling
 
 class centroidFIF(object):
     
+    #Width of subimage for centroiding
     widthOfSubimage = 80 #pixels
     
     def __init__(self):

@@ -197,7 +197,7 @@ class inputGUI(object):
         #Get image
         faah = fileAndArrayHandling()
         imageArray4D, filelist = faah.openAllFITSImagesInDirectory()
-        aa = round(len(filelist)/2) #select a focused image from array a
+        aa = round(len(filelist)/2) #select a focused image from array
         
         #Log image that will be used for centroiding
         faah = fileAndArrayHandling()
@@ -214,11 +214,11 @@ class inputGUI(object):
         
         #Use alternate methods to centroid pinhole image
         #    gmsCentroid: Gaussian Marginal Sum (GMS) Centroid Method.
-        xCenGMS, yCenGMS, xErrGMS, yErrGMS = gmsCentroid(imageArray4D[aa], maxLoc[1], maxLoc[0], int(round(cF.widthOfSubimage/2)), int(round(cF.widthOfSubimage/2)), axis='both', verbose=False)
+        xCenGMS, yCenGMS, xErrGMS, yErrGMS = gmsCentroid(imageArray4D[aa], maxLoc[1], maxLoc[0], int(round(subArrayBoxSize/2)), int(round(subArrayBoxSize/2)), axis='both', verbose=False)
         #    smsBisector: Sobel Marginal Sum (SMS) Bisector Method.
-        xCenSMS, yCenSMS, _ = smsBisector(imageArray4D[aa], maxLoc[1], maxLoc[0], int(round(cF.widthOfSubimage/2)), int(round(cF.widthOfSubimage/2)), axis='both', clipStars=False, wfac=1, verbose=False)
+        xCenSMS, yCenSMS, _ = smsBisector(imageArray4D[aa], maxLoc[1], maxLoc[0], int(round(subArrayBoxSize/2)), int(round(subArrayBoxSize/2)), axis='both', clipStars=False, wfac=1, verbose=False)
         #    alternateCentroidMethods.findCentroid: iterative GMS method centroid fitting.
-        xCenFC, yCenFC, xErrFC, yErrFC = findCentroid(imageArray4D[aa], maxLoc[0], maxLoc[1], int(round(cF.widthOfSubimage/2)), maxiter=1000, tol=0.01, verbose=False)
+        xCenFC, yCenFC, xErrFC, yErrFC = findCentroid(imageArray4D[aa], maxLoc[0], maxLoc[1], int(round(subArrayBoxSize/2)), maxiter=1000, tol=0.01, verbose=False)
         #    centroidFIF.findCentroid
         xCencF, yCencF = cF.findCentroid(fifSubArray, int(round(subArrayBoxSize/2)), int(round(subArrayBoxSize/2)), extendbox = 3)
         xCencF = xCencF + maxLoc[0]-subArrayBoxSize/2
