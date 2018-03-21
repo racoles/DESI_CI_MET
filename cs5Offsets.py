@@ -26,12 +26,8 @@ class cs5Offsets(object):
     PIDTSO_columns = 205.93
     
     #CS5 Point on CI Dowel as shown in ST-I Image
-    CPOCID_rows = 0
-    CPOCID_columns = 0
-    
-    #Width of sub-image for GMS centroiding
-    widthOfSubimage = 80 #pixels
-    
+    CPOCID_X = 0
+    CPOCID_Y = 0
     
     def __init__(self):
         '''
@@ -86,26 +82,72 @@ class cs5Offsets(object):
                  "\t3. Take an image of the illuminated divot using the ST-I camera on the DMM.\n\n" +
                  "\t4. Input the image into the DESI CI Metrology software using the input button below. The software will\n" +
                  "\t\x20\x20\x20\x20locate the location of the illuminated divot in units of (rows, columns).\n", wraplength=700, justify="left").grid(row=8, column=0, sticky='W')
-        offset2Button = tk.Button(top, text="Load Image of Illuminated Divot", command=lambda: self._offset2_moveToIlluminatedDowelAndImage(inputGUIcalibrationScreenButton, offset2Button, consoleLog, logFile))
-        offset2Button.grid(row=9, column=0, sticky='W')
+        offset2aButton = tk.Button(top, text="Enter CS5 coordinates of Illuminated Dowel Center", command=lambda: self._offset2a_moveToIlluminatedDowelAndProbe(offset2aButton, consoleLog, logFile))
+        offset2aButton.grid(row=9, column=0, sticky='W')        
+        offset2bButton = tk.Button(top, text="Load Image of Illuminated Divot", command=lambda: self._offset2b_moveToIlluminatedDowelAndImage(inputGUIcalibrationScreenButton, offset2bButton, consoleLog, logFile))
+        offset2bButton.grid(row=9, column=2, sticky='W')
         
     def _offset1_PinholeImageDistnceToSensorOrigin(self):
         '''
         '''
         
-    
-    def _offset2_moveToIlluminatedDowelAndImage(self, inputGUIcalibrationScreenButton, offset2Button, consoleLog, logFile):
+    def _offset2a_moveToIlluminatedDowelAndProbe(self, offset2aButton, consoleLog, logFile): 
         '''
-        AKA: The Dowel Measurement
+        AKA: The Dowel Measurement Part 1
         
         When we tell the CS5 calibrated CMM to move to a given CS5 location, we will need to know
         where the specified point will show up in the associated ST-I image taken with the DMM for 
         that point. To find this offset in units of (rows, columns), we perform the following 
         measurements prior to mounting the DMM on the CMM:
+        
         1.    The CI will have two dowels placed at know locations. Each dowel will have an 
                 illuminated divot on top. Prior to mounting the DMM on the CS5 calibrated CMM, 
                 we use the CMM's touch probe to find the exact location of the divots in CS5 
                 coordinates.
+        '''      
+        ###########################################################################
+        ###Dowel Probe Center Input Screen
+        ###########################################################################
+        top = tk.Toplevel()
+        top.title("Dowel Probe Center Input Screen")
+        
+        #Manual Mode Description
+        tk.Label(top, text="Enter CS5 coordinates of the center of the illuminated \ndowel obtained from the CMM probe measurement.").grid(row=0, column=0, columnspan=2, sticky='W')
+        
+        #Rows
+        tk.Label(top, text="CS5 X (mm) = ").grid(row=1, column=0, sticky='W')
+        CPOCID_X = tk.Entry(top, width=20)
+        CPOCID_X.grid(row=1, column=1, sticky='W')
+        XButton = tk.Button(top, text='Submit', bg = "white", command=lambda:self._submitValueX(XButton, CPOCID_X, consoleLog, logFile)).grid(row=1, column=2)
+        
+        #Columns
+        tk.Label(top, text="CS5 Y (mm) = ").grid(row=2, column=0, sticky='W')
+        CPOCID_Y = tk.Entry(top, width=20)
+        CPOCID_Y.grid(row=2, column=0, sticky='W')
+        YButton = tk.Button(top, text='Submit', bg = "white", command=lambda:self._submitValueY(YButton, CPOCID_Y, consoleLog, logFile)).grid(row=2, column=2)
+        
+        ###########################################################################
+        ###Change button text and color
+        ###########################################################################
+        offset2aButton.config(text = "CS5 coordinates for Illuminated Dowel Complete", bg = 'green')  
+    
+    def _submitValueX(self, XButton, CPOCID_X, consoleLog, logFile):
+        self.CPOCID_X = CPOCID_X
+        XButton.config(text = "CS5 X Entered", bg = 'green') 
+        faah = fileAndArrayHandling()
+        faah.pageLogging(consoleLog, logFile, "Entered CS5 X = " + str(CPOCID_X) + "mm", calibration = True)
+        
+    def _submitValueY(self, YButton, CPOCID_Y, consoleLog, logFile):
+        self.CPOCID_Y = CPOCID_Y
+        YButton.config(text = "CS5 Y Entered", bg = 'green') 
+        faah = fileAndArrayHandling()
+        faah.pageLogging(consoleLog, logFile, "Entered CS5 Y = " + str(CPOCID_Y) + "mm", calibration = True)
+         
+    
+    def _offset2b_moveToIlluminatedDowelAndImage(self, inputGUIcalibrationScreenButton, offset2bButton, consoleLog, logFile):
+        '''
+        AKA: The Dowel Measurement Part 2
+        
         2.    After attaching the DMM to the CMM, we tell the CMM to move to the CS5 
                 location of the divot.
         3.    We take an image of the divot using the ST-I camera on the DMM.
@@ -143,12 +185,13 @@ class cs5Offsets(object):
         ###########################################################################
         #Use alternate methods to centroid pinhole image
         #    gmsCentroid: Gaussian Marginal Sum (GMS) Centroid Method.
-        xCenGMS, yCenGMS, xErrGMS, yErrGMS = gmsCentroid(imageArray4D[0], maxLoc[1], maxLoc[0], int(round(self.widthOfSubimage/2)), int(round(self.widthOfSubimage/2)), axis='both', verbose=False)
+        xCenGMS, yCenGMS, xErrGMS, yErrGMS = gmsCentroid(imageArray4D[0], maxLoc[1], maxLoc[0], 
+                                                         int(round(cF.widthOfSubimage/2)), int(round(cF.widthOfSubimage/2)), axis='both', verbose=False)
         
         ###########################################################################
         ###Change button text and color
         ###########################################################################
-        offset2Button.config(text = "Illuminated Dowel Calibration Complete", bg = 'green')
+        offset2bButton.config(text = "Illuminated Dowel Calibration Complete", bg = 'green')
         inputGUIcalibrationScreenButton.config(text = "CS5 Calibration Complete", bg = 'green')
         
         ###########################################################################
