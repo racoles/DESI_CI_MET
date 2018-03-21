@@ -352,7 +352,7 @@ class tipTiltZCCD(object):
         
         return angleRz
        
-    def distanceBetweenTrianglePoints(self, imageArray4DA, filelistA, imageArray4DB, filelistB, imageArray4DC, filelistC,consoleLog, logFile):             
+    def distanceBetweenTrianglePoints(self, imageArray4DA, filelistA, imageArray4DB, filelistB, imageArray4DC, filelistC, consoleLog, logFile):             
         '''
         Find the measured distance between triangle points on the sensor.
         '''
@@ -388,7 +388,7 @@ class tipTiltZCCD(object):
         xOffsetB, yOffsetB, pixelSizeB = pM.readFitsHeader(imageArray4DB, filelistB, consoleLog, logFile)
         xOffsetC, yOffsetC, pixelSizeC = pM.readFitsHeader(imageArray4DC, filelistC, consoleLog, logFile)
 
-        #SMS Bisector       
+        #GMS Bisector       
         Ax, Ay, _, _ = gmsCentroid(imageArray4DA[aa], maxLocA[1], maxLocA[0], 
                                                          int(round(subArrayBoxSizeA/2)), int(round(subArrayBoxSizeA/2)), axis='both', verbose=False)
         Bx, By, _, _ = gmsCentroid(imageArray4DB[bb], maxLocB[1], maxLocB[0], 
