@@ -248,15 +248,17 @@ class centroidFIF(object):
         #print(image[maxLoc[0],maxLoc[1]])
         return fifSubArray, self.widthOfSubimage, maxLoc
     
-#######################################
     def distanceFromPinholeImagetoOrigin(self, rows, columns, consoleLog, logFile, pixelSize, isFIF = False, fifLabel = '', isCCD = False, CCDLabel = '', triangleLabel = ''):
         '''
         Calcuate the distance to the sensor origin using centroided image.
         '''
-        
         ###########################################################################
         ###Find distance in um to CCD Origin
         ###########################################################################       
-        hypotenuse = np.sqrt(math.pow((rows*self.pixelSize),2)+math.pow((columns*self.pixelSize),2))
+        hypotenuse = np.sqrt(math.pow((rows),2)+math.pow((columns),2))
         faah.pageLogging(consoleLog, logFile, 
-                    "Distance from pinhole center to sensor origin: " + str(hypotenuse) + 'um')
+                    "Distance from pinhole center to sensor origin: " + str(hypotenuse) + "pixels or " + str(hypotenuse*pixelSize) + 'um')
+        
+        
+        
+        return CS5x, CS5y
