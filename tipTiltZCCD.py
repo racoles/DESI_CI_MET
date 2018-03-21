@@ -40,6 +40,10 @@ class tipTiltZCCD(object):
         ###########################################################################
         ###Get the tip/tilt/z deltas
         ###########################################################################   
+        #Point B
+        bb = round(len(filelistB)/2) #select a focused image from array 
+        #Point B
+        cc = round(len(filelistC)/2) #select a focused image from array 
         #Tip
         AzDeltaTip, BzDeltaTip, CzDeltaTip = self.tipCCD(Az, Bz, Cz, Az_nominal, Bz_nominal, Cz_nominal, CCDLabel, consoleLog, logFile)
         #Tilt
@@ -47,7 +51,7 @@ class tipTiltZCCD(object):
         #Z
         CenterDeltaZ = self.ZCCD(Az, Bz, Cz, CCDLabel, consoleLog, logFile)
         #Rz
-        angleRz = self.rz(imageB, imageC, CCDLabel, triangleSideLength, consoleLog, logFile)
+        angleRz = self.rz(imageArray4DB[bb], imageArray4DC[cc], CCDLabel, triangleSideLength, consoleLog, logFile)
 
         ###########################################################################
         ###Find Needed Micrometer Adjustments 
