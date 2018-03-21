@@ -347,23 +347,18 @@ class tipTiltZCCD(object):
         
         return angleRz
        
-    def distanceBetweenTrianglePoints(self, imageA, imageB, imageC, CCDLabel, consoleLog, logFile):             
+    def distanceBetweenTrianglePoints(self, imageArray4DA, filelistA, imageArray4DB, filelistB, imageArray4DC, filelistC,consoleLog, logFile):             
         '''
         Find the measured distance between triangle points on the sensor.
         '''
         ###########################################################################
         ###Get images
-        ########################################################################### 
-        faah = fileAndArrayHandling()
-        
+        ###########################################################################   
         #Point A
-        imageArray4DA, filelistA = faah.openAllFITSImagesInDirectory()
         aa = round(len(filelistA)/2) #select a focused image from array
         #Point B
-        imageArray4DB, filelistB = faah.openAllFITSImagesInDirectory()
         bb = round(len(filelistB)/2) #select a focused image from array 
         #Point B
-        imageArray4DC, filelistC = faah.openAllFITSImagesInDirectory()
         cc = round(len(filelistC)/2) #select a focused image from array 
         
         #Log image that will be used for centroiding
