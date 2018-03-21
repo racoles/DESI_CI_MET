@@ -322,13 +322,11 @@ class metManualMode(tk.Tk):
                                       str(self.CCDSelection) + " C (Best Focus):" + str(xInterC) + "um\n" + str(self.CCDSelection) + " C (Nominal Z):" + str(nominalZC) + "um")
         
         ###########################################################################
-        ###Check Tip and Tilt
+        ###Check Tip/Tilt/Focus/Rz
         ###########################################################################
-        aa = round(len(filelistA)/2) #select a focused image from array a
-        bb = round(len(filelistB)/2) #select a focused image from array b
-        cc = round(len(filelistC)/2) #select a focused image from array c
         ttz = tipTiltZCCD()
-        ttz.findTipTiltZ(imageArray4DA[aa], imageArray4DB[bb], imageArray4DC[cc], xInterA, xInterB, xInterC, nominalZA, nominalZB, nominalZC, self.CCDSelection, fC.tccs, fC.micrometerDistance, self.consoleLog, self.logFile)
+        ttz.findTipTiltZ(imageArray4DA, filelistA, imageArray4DB, filelistB, imageArray4DC, filelistC, 
+                         xInterA, xInterB, xInterC, nominalZA, nominalZB, nominalZC, self.CCDSelection, fC.tccs, fC.micrometerDistance, self.consoleLog, self.logFile)
         
         
     def _setTrueAndExit(self, windowVariable, fifLabel=" ", CCDLabel=" ", trianglePointLabel=" "):

@@ -27,7 +27,8 @@ class tipTiltZCCD(object):
         Constructor
         '''
     
-    def findTipTiltZ(self, imageA, imageB, imageC, Az, Bz, Cz, Az_nominal, Bz_nominal, Cz_nominal, CCDLabel, triangleSideLength, micrometerDistance, consoleLog, logFile, TTFThread = 0.5, TTFThreadOD = 6):
+    def findTipTiltZ(self, imageArray4DA, filelistA, imageArray4DB, filelistB, imageArray4DC, filelistC, 
+                     Az, Bz, Cz, Az_nominal, Bz_nominal, Cz_nominal, CCDLabel, triangleSideLength, micrometerDistance, consoleLog, logFile, TTFThread = 0.5, TTFThreadOD = 6):
         ###########################################################################
         ###Get adjustment ratios
         ###########################################################################     
@@ -99,7 +100,7 @@ class tipTiltZCCD(object):
         ###########################################################################
         #micrometer ticks to turn: 360 degrees / 50 ticks on TTF micrometers = 7.2 degrees per tick
         
-####ADD B-C distance
+        self.distanceBetweenTrianglePoints(imageArray4DA, filelistA, imageArray4DB, filelistB, imageArray4DC, filelistC, consoleLog, logFile)
         
         faah.pageLogging(consoleLog, logFile, 
                 "WARNING: the" + str(CCDLabel) +" camera Z height is not equal to the nominal height.\n" + "        The current micrometer thread pitch is " +
