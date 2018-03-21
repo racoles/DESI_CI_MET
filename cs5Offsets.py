@@ -137,13 +137,13 @@ class cs5Offsets(object):
         self.CPOCID_X = CPOCID_X.get()
         XButton.config(text = "CS5 X Entered", bg = 'green') 
         faah = fileAndArrayHandling()
-        faah.pageLogging(consoleLog, logFile, "Entered CS5 X = " + str(self.CPOCID_X) + "mm", calibration = True)
+        faah.pageLogging(consoleLog, logFile, "Illuminated Dowel Probed CS5 X = " + str(self.CPOCID_X) + "mm", calibration = True)
         
     def _submitValueY(self, YButton, CPOCID_Y, consoleLog, logFile):
         self.CPOCID_Y = CPOCID_Y.get()
         YButton.config(text = "CS5 Y Entered", bg = 'green') 
         faah = fileAndArrayHandling()
-        faah.pageLogging(consoleLog, logFile, "Entered CS5 Y = " + str(self.CPOCID_Y) + "mm", calibration = True)
+        faah.pageLogging(consoleLog, logFile, "Illuminated Dowel Probed CS5 Y = " + str(self.CPOCID_Y) + "mm", calibration = True)
          
     
     def _offset2b_moveToIlluminatedDowelAndImage(self, inputGUIcalibrationScreenButton, offset2bButton, consoleLog, logFile):
