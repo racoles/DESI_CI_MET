@@ -15,7 +15,7 @@ from fileAndArrayHandling import fileAndArrayHandling
 from focusCurve import focusCurve
 import numpy as np
 from centroidFIF import centroidFIF
-from alternateCentroidMethods import smsBisector
+from alternateCentroidMethods import gmsCentroid
 from CCDOpsPlanetMode import CCDOpsPlanetMode
 import math
 ################################################################################################
@@ -388,13 +388,13 @@ class tipTiltZCCD(object):
         xOffsetB, yOffsetB, pixelSizeB = pM.readFitsHeader(imageArray4DB, filelistB, consoleLog, logFile)
         xOffsetC, yOffsetC, pixelSizeC = pM.readFitsHeader(imageArray4DC, filelistC, consoleLog, logFile)
 
-        #SMS Bisector        
-        Ax, Ay, _ = smsBisector(imageArray4DA[aa], maxLocA[1], maxLocA[0], int(round(subArrayBoxSizeA/2)), 
-                                      int(round(subArrayBoxSizeA/2)), axis='both', clipStars=False, wfac=1, verbose=False)
-        Bx, By, _ = smsBisector(imageArray4DB[bb], maxLocB[1], maxLocB[0], int(round(subArrayBoxSizeB/2)), 
-                                      int(round(subArrayBoxSizeB/2)), axis='both', clipStars=False, wfac=1, verbose=False)
-        Cx, Cy, _ = smsBisector(imageArray4DC[cc], maxLocC[1], maxLocC[0], int(round(subArrayBoxSizeC/2)), 
-                                      int(round(subArrayBoxSizeC/2)), axis='both', clipStars=False, wfac=1, verbose=False)
+        #SMS Bisector       
+        Ax, Ay, _, _ = gmsCentroid(imageArray4DA[aa], maxLocA[1], maxLocA[0], 
+                                                         int(round(subArrayBoxSizeA/2)), int(round(subArrayBoxSizeA/2)), axis='both', verbose=False)
+        Bx, By, _, _ = gmsCentroid(imageArray4DB[bb], maxLocB[1], maxLocB[0], 
+                                                         int(round(subArrayBoxSizeB/2)), int(round(subArrayBoxSizeB/2)), axis='both', verbose=False)
+        Cx, Cy, _, _ = gmsCentroid(imageArray4DC[cc], maxLocC[1], maxLocC[0], 
+                                                         int(round(subArrayBoxSizeC/2)), int(round(subArrayBoxSizeC/2)), axis='both', verbose=False)
         
         ###########################################################################
         ###Calculate Delta Distance (measured size of sides)
