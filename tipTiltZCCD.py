@@ -62,9 +62,7 @@ class tipTiltZCCD(object):
         turnA = "None"
         turnB = "None"
         turnC = "None"
-        
         faah = fileAndArrayHandling()
-        fC = focusCurve()
         
         #If the A height isn't equal to the nominal height
         if AzDeltaTip or AzDeltaTilt != 0:
