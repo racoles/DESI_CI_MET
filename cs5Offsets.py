@@ -118,13 +118,15 @@ class cs5Offsets(object):
         tk.Label(top, text="CS5 X (mm) = ").grid(row=1, column=0, sticky='W')
         CPOCID_X = tk.Entry(top, width=20)
         CPOCID_X.grid(row=1, column=1, sticky='W')
-        XButton = tk.Button(top, text='Submit', bg = "white", command=lambda:self._submitValueX(XButton, CPOCID_X, consoleLog, logFile)).grid(row=1, column=2)
+        XButton = tk.Button(top, text='Submit', bg = "white", command=lambda:self._submitValueX(XButton, CPOCID_X, consoleLog, logFile))
+        XButton.grid(row=1, column=2)
         
         #Columns
         tk.Label(top, text="CS5 Y (mm) = ").grid(row=2, column=0, sticky='W')
         CPOCID_Y = tk.Entry(top, width=20)
-        CPOCID_Y.grid(row=2, column=0, sticky='W')
-        YButton = tk.Button(top, text='Submit', bg = "white", command=lambda:self._submitValueY(YButton, CPOCID_Y, consoleLog, logFile)).grid(row=2, column=2)
+        CPOCID_Y.grid(row=2, column=1, sticky='W')
+        YButton = tk.Button(top, text='Submit', bg = "white", command=lambda:self._submitValueY(YButton, CPOCID_Y, consoleLog, logFile))
+        YButton.grid(row=2, column=2)
         
         ###########################################################################
         ###Change button text and color
@@ -132,16 +134,16 @@ class cs5Offsets(object):
         offset2aButton.config(text = "CS5 coordinates for Illuminated Dowel Complete", bg = 'green')  
     
     def _submitValueX(self, XButton, CPOCID_X, consoleLog, logFile):
-        self.CPOCID_X = CPOCID_X
+        self.CPOCID_X = CPOCID_X.get()
         XButton.config(text = "CS5 X Entered", bg = 'green') 
         faah = fileAndArrayHandling()
-        faah.pageLogging(consoleLog, logFile, "Entered CS5 X = " + str(CPOCID_X) + "mm", calibration = True)
+        faah.pageLogging(consoleLog, logFile, "Entered CS5 X = " + str(self.CPOCID_X) + "mm", calibration = True)
         
     def _submitValueY(self, YButton, CPOCID_Y, consoleLog, logFile):
-        self.CPOCID_Y = CPOCID_Y
+        self.CPOCID_Y = CPOCID_Y.get()
         YButton.config(text = "CS5 Y Entered", bg = 'green') 
         faah = fileAndArrayHandling()
-        faah.pageLogging(consoleLog, logFile, "Entered CS5 Y = " + str(CPOCID_Y) + "mm", calibration = True)
+        faah.pageLogging(consoleLog, logFile, "Entered CS5 Y = " + str(self.CPOCID_Y) + "mm", calibration = True)
          
     
     def _offset2b_moveToIlluminatedDowelAndImage(self, inputGUIcalibrationScreenButton, offset2bButton, consoleLog, logFile):
