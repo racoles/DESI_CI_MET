@@ -251,7 +251,7 @@ class centroidFIF(object):
 #######################################
     def distanceFromPinholeImagetoOrigin(self, rows, columns, consoleLog, logFile, pixelSize, isFIF = False, fifLabel = '', isCCD = False, CCDLabel = '', triangleLabel = ''):
         '''
-        Find FIF in image using intensity.
+        Find FIF in image using intensity. Centroid image, and calcuate the distance to the sensor origin.
         '''
         ###########################################################################
         ###Find distance in um to CCD Origin
