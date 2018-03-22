@@ -275,8 +275,8 @@ class centroidFIF(object):
             trianglePointY = fC.trianglePonitCCDLocationsCS5[triangleLabel][1]
         elif isFIF == False and isCCD == True and CCDLabel != '':
             #pinhole is at CCD center
-            sensorCenterX = fC.fifLocationsCS5[triangleLabel][0]
-            sensorCenterY = fC.fifLocationsCS5[triangleLabel][1]
+            sensorCenterX = fC.CCDLocationsCS5[CCDLabel][0]
+            sensorCenterY = fC.CCDLocationsCS5[CCDLabel][1]
         else:
             #pinhole type not selected
         
