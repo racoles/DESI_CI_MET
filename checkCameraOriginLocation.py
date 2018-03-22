@@ -47,6 +47,8 @@ class checkCameraOriginLocation(object):
         ###Sensor Location menu
         ###########################################################################
         self._checkCameraOriginLocationSelectionWindow()
+        print(self.CCDSelection)
+        print(self.trianglePointLabel)
         
         ###########################################################################
         ###Get images
@@ -87,9 +89,6 @@ class checkCameraOriginLocation(object):
         CS5OriginX = 0
         CS5OriginY = 0 
         fC = focusCurve()
-                
-        print(self.CCDSelection)
-        print(self.trianglePointLabel)
         
         if self.trianglePointLabel != '':
             #pinhole is from 100um DMM (triangle)
@@ -198,9 +197,9 @@ class checkCameraOriginLocation(object):
         
         top.wait_window()
            
-    def _setTrueAndExit(self, windowVariable, CCDLabel, trianglePointLabel=" "):
+    def _setTrueAndExit(self, windowVariable, CCDLabel, trianglePointLabel=""):
         self.CCDSelection = CCDLabel
-        if trianglePointLabel != " ":
-            self.trianglePointSelection = trianglePointLabel
+        if trianglePointLabel != "":
+            self.trianglePointLabel = trianglePointLabel
         windowVariable.destroy()
         
