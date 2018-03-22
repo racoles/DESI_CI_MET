@@ -417,95 +417,97 @@ class metManualMode(tk.Tk):
         top.title("FIF Manual Mode")
         self.wm_withdraw()
         
+        fC = focusCurve()
+        
         #Manual Mode Description
         tk.Label(top, text="Which FIF would you like to measure?").grid(row=0, column=0, columnspan=2, sticky='W')
         
-        # RefFIF
-        refFIF = tk.Button(top, text="RefFIF: (199.28,-345.15)", command=lambda: self._setTrueAndExit(top, fifLabel="RefFIF"))
+        # RefFIF 
+        refFIF = tk.Button(top, text="RefFIF: (" + str(fC.fifLocationsCS5["RefFIF"][0]) + ", " + str(fC.fifLocationsCS5["RefFIF"][1]) + ")", command=lambda: self._setTrueAndExit(top, fifLabel="RefFIF"))
         refFIF.grid(row=1, column=0, sticky='W')
         
         # NFIF
-        NFIF = tk.Button(top, text="NFIF: (-108.31,-383.55)", command=lambda: self._setTrueAndExit(top, fifLabel="NFIF"))
+        NFIF = tk.Button(top, text="NFIF: (" + str(fC.fifLocationsCS5["NFIF"][0]) + ", " + str(fC.fifLocationsCS5["NFIF"][1]) + ")", command=lambda: self._setTrueAndExit(top, fifLabel="NFIF"))
         NFIF.grid(row=2, column=0, sticky='W')
         
         # WFIF
-        WFIF = tk.Button(top, text="WFIF: (-383.55,108.31)", command=lambda: self._setTrueAndExit(top, fifLabel="WFIF"))
+        WFIF = tk.Button(top, text="WFIF: (" + str(fC.fifLocationsCS5["WFIF"][0]) + ", " + str(fC.fifLocationsCS5["WFIF"][1]) + ")", command=lambda: self._setTrueAndExit(top, fifLabel="WFIF"))
         WFIF.grid(row=2, column=1, sticky='W')
         
         # SFIF
-        SFIF = tk.Button(top, text="SFIF: (108.31,383.55)", command=lambda: self._setTrueAndExit(top, fifLabel="SFIF"))
+        SFIF = tk.Button(top, text="SFIF: (" + str(fC.fifLocationsCS5["SFIF"][0]) + ", " + str(fC.fifLocationsCS5["SFIF"][1]) + ")", command=lambda: self._setTrueAndExit(top, fifLabel="SFIF"))
         SFIF.grid(row=2, column=2, sticky='W')
         
         # EFIF
-        EFIF = tk.Button(top, text="EFIF: (383.55,-108.31)", command=lambda: self._setTrueAndExit(top, fifLabel="EFIF"))
+        EFIF = tk.Button(top, text="EFIF: (" + str(fC.fifLocationsCS5["EFIF"][0]) + ", " + str(fC.fifLocationsCS5["EFIF"][1]) + ")", command=lambda: self._setTrueAndExit(top, fifLabel="EFIF"))
         EFIF.grid(row=2, column=3, sticky='W')
         
         # A1
-        A1 = tk.Button(top, text="A1: (281.82,-281.82)", command=lambda: self._setTrueAndExit(top, fifLabel="A1"))
+        A1 = tk.Button(top, text="A1: (" + str(fC.fifLocationsCS5["A1"][0]) + ", " + str(fC.fifLocationsCS5["A1"][1]) + ")", command=lambda: self._setTrueAndExit(top, fifLabel="A1"))
         A1.grid(row=3, column=0, sticky='W')
         
         # A2
-        A2 = tk.Button(top, text="A2: (-281.82,-281.82)", command=lambda: self._setTrueAndExit(top, fifLabel="A2"))
+        A2 = tk.Button(top, text="A2: (" + str(fC.fifLocationsCS5["A2"][0]) + ", " + str(fC.fifLocationsCS5["A2"][1]) + ")", command=lambda: self._setTrueAndExit(top, fifLabel="A2"))
         A2.grid(row=3, column=1, sticky='W')
         
         # A3
-        A3 = tk.Button(top, text="A3: (-281.82,281.82)", command=lambda: self._setTrueAndExit(top, fifLabel="A3"))
+        A3 = tk.Button(top, text="A3: (" + str(fC.fifLocationsCS5["A3"][0]) + ", " + str(fC.fifLocationsCS5["A3"][1]) + ")", command=lambda: self._setTrueAndExit(top, fifLabel="A3"))
         A3.grid(row=3, column=2, sticky='W')
         
         # A4
-        A4 = tk.Button(top, text="A4: (281.82,281.82)", command=lambda: self._setTrueAndExit(top, fifLabel="A4"))
+        A4 = tk.Button(top, text="A4: (" + str(fC.fifLocationsCS5["A4"][0]) + ", " + str(fC.fifLocationsCS5["A4"][1]) + ")", command=lambda: self._setTrueAndExit(top, fifLabel="A4"))
         A4.grid(row=3, column=3, sticky='W')
         
         # B1
-        B1 = tk.Button(top, text="B1: (293.64,136.93)", command=lambda: self._setTrueAndExit(top, fifLabel="B1"))
+        B1 = tk.Button(top, text="B1: (" + str(fC.fifLocationsCS5["B1"][0]) + ", " + str(fC.fifLocationsCS5["B1"][1]) + ")", command=lambda: self._setTrueAndExit(top, fifLabel="B1"))
         B1.grid(row=4, column=0, sticky='W')
         
         # B2
-        B2 = tk.Button(top, text="B2: (-293.64,136.93)", command=lambda: self._setTrueAndExit(top, fifLabel="B2"))
+        B2 = tk.Button(top, text="B2: (" + str(fC.fifLocationsCS5["B2"][0]) + ", " + str(fC.fifLocationsCS5["B2"][1]) + ")", command=lambda: self._setTrueAndExit(top, fifLabel="B2"))
         B2.grid(row=4, column=1, sticky='W')
         
         # B3
-        B3 = tk.Button(top, text="B3: (-293.64,-136.93)", command=lambda: self._setTrueAndExit(top, fifLabel="B3"))
+        B3 = tk.Button(top, text="B3: (" + str(fC.fifLocationsCS5["B3"][0]) + ", " + str(fC.fifLocationsCS5["B3"][1]) + ")", command=lambda: self._setTrueAndExit(top, fifLabel="B3"))
         B3.grid(row=4, column=2, sticky='W')
         
         # B4
-        B4 = tk.Button(top, text="B4: (-136.93,293.64)", command=lambda: self._setTrueAndExit(top, fifLabel="B4"))
+        B4 = tk.Button(top, text="B4: (" + str(fC.fifLocationsCS5["B4"][0]) + ", " + str(fC.fifLocationsCS5["B4"][1]) + ")", command=lambda: self._setTrueAndExit(top, fifLabel="B4"))
         B4.grid(row=4, column=3, sticky='W')
         
         # C1
-        C1 = tk.Button(top, text="C1: (96.44,232.82)", command=lambda: self._setTrueAndExit(top, fifLabel="C1"))
+        C1 = tk.Button(top, text="C1: (" + str(fC.fifLocationsCS5["C1"][0]) + ", " + str(fC.fifLocationsCS5["C1"][1]) + ")", command=lambda: self._setTrueAndExit(top, fifLabel="C1"))
         C1.grid(row=5, column=0, sticky='W')
         
         # C2
-        C2 = tk.Button(top, text="C2: (232.82,-96.44)", command=lambda: self._setTrueAndExit(top, fifLabel="C2"))
+        C2 = tk.Button(top, text="C2: (" + str(fC.fifLocationsCS5["C2"][0]) + ", " + str(fC.fifLocationsCS5["C2"][1]) + ")", command=lambda: self._setTrueAndExit(top, fifLabel="C2"))
         C2.grid(row=5, column=1, sticky='W')
         
         # C3
-        C3 = tk.Button(top, text="C3: (-96.44,-232.82)", command=lambda: self._setTrueAndExit(top, fifLabel="C3"))
+        C3 = tk.Button(top, text="C3: (" + str(fC.fifLocationsCS5["C3"][0]) + ", " + str(fC.fifLocationsCS5["C3"][1]) + ")", command=lambda: self._setTrueAndExit(top, fifLabel="C3"))
         C3.grid(row=5, column=2, sticky='W')
         
         # C4
-        C4 = tk.Button(top, text="C4: (-232.82,96.44)", command=lambda: self._setTrueAndExit(top, fifLabel="C4"))
+        C4 = tk.Button(top, text="C4: (" + str(fC.fifLocationsCS5["C4"][0]) + ", " + str(fC.fifLocationsCS5["C4"][1]) + ")", command=lambda: self._setTrueAndExit(top, fifLabel="C4"))
         C4.grid(row=5, column=3, sticky='W')
         
         # D1
-        D1 = tk.Button(top, text="D1: (0,185.00)", command=lambda: self._setTrueAndExit(top, fifLabel="D1"))
+        D1 = tk.Button(top, text="D1: (" + str(fC.fifLocationsCS5["D1"][0]) + ", " + str(fC.fifLocationsCS5["D1"][1]) + ")", command=lambda: self._setTrueAndExit(top, fifLabel="D1"))
         D1.grid(row=6, column=0, sticky='W')
         
         # D2
-        D2 = tk.Button(top, text="D2: (185.00,0)", command=lambda: self._setTrueAndExit(top, fifLabel="D2"))
+        D2 = tk.Button(top, text="D2: (" + str(fC.fifLocationsCS5["D2"][0]) + ", " + str(fC.fifLocationsCS5["D2"][1]) + ")", command=lambda: self._setTrueAndExit(top, fifLabel="D2"))
         D2.grid(row=6, column=1, sticky='W')
         
         # D3
-        D3 = tk.Button(top, text="D3: (0,-185.00)", command=lambda: self._setTrueAndExit(top, fifLabel="D3"))
+        D3 = tk.Button(top, text="D3: (" + str(fC.fifLocationsCS5["D3"][0]) + ", " + str(fC.fifLocationsCS5["D3"][1]) + ")", command=lambda: self._setTrueAndExit(top, fifLabel="D3"))
         D3.grid(row=6, column=2, sticky='W')
         
         # D4
-        D4 = tk.Button(top, text="D4: (-185.00,0)", command=lambda: self._setTrueAndExit(top, fifLabel="D4"))
+        D4 = tk.Button(top, text="D4: (" + str(fC.fifLocationsCS5["D4"][0]) + ", " + str(fC.fifLocationsCS5["D4"][1]) + ")", command=lambda: self._setTrueAndExit(top, fifLabel="D4"))
         D4.grid(row=6, column=3, sticky='W')
         
         # CFIF
-        CFIF = tk.Button(top, text="CFIF: (108.31,15.00)", command=lambda: self._setTrueAndExit(top, fifLabel="CFIF"))
+        CFIF = tk.Button(top, text="CFIF: (" + str(fC.fifLocationsCS5["CFIF"][0]) + ", " + str(fC.fifLocationsCS5["CFIF"][1]) + ")", command=lambda: self._setTrueAndExit(top, fifLabel="CFIF"))
         CFIF.grid(row=7, column=0, sticky='W')
         
         # Other
