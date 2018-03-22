@@ -267,11 +267,16 @@ class centroidFIF(object):
         fC = focusCurve()
         if isFIF == True and isCCD == False:
             #pinhole is from a FIF
-            fifLocationX = fC.fifLocationsCS5[self.fifLabel][0]
-            fifLocationY = fC.fifLocationsCS5[self.fifLabel][1]
-            
-        elif isFIF == False and isCCD == True:
+            fifLocationX = fC.fifLocationsCS5[fifLabel][0]
+            fifLocationY = fC.fifLocationsCS5[fifLabel][1]
+        elif isFIF == False and isCCD == True and triangleLabel != '':
             #pinhole is from 100um DMM (triangle)
+            trianglePointX = fC.trianglePonitCCDLocationsCS5[triangleLabel][0]
+            trianglePointY = fC.trianglePonitCCDLocationsCS5[triangleLabel][1]
+        elif isFIF == False and isCCD == True and CCDLabel != '':
+            #pinhole is at CCD center
+            sensorCenterX = fC.fifLocationsCS5[triangleLabel][0]
+            sensorCenterY = fC.fifLocationsCS5[triangleLabel][1]
         else:
             #pinhole type not selected
         
