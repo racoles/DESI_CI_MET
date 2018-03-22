@@ -58,10 +58,9 @@ class checkCameraOriginLocation(object):
         ###########################################################################
         ###Centroid Image
         ########################################################################### 
-        cF = centroidFIF()
-        
         #Get location of pinhole image in (rows, columns)
-        _ , subArrayBoxSize, maxLoc = self.findFIFInImage(imageArray4D[aa])
+        cF = centroidFIF()
+        _ , subArrayBoxSize, maxLoc = cF.findFIFInImage(imageArray4D[aa])
         
         #Account for planet mode
         pM = CCDOpsPlanetMode()
