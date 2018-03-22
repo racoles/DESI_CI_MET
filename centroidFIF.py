@@ -249,7 +249,7 @@ class centroidFIF(object):
         #print(image[maxLoc[0],maxLoc[1]])
         return fifSubArray, self.widthOfSubimage, maxLoc
     
-    def distanceFromPinholeImagetoOrigin(self, rows, columns, consoleLog, logFile, pixelSize, isCCD = False, CCDLabel = '', triangleLabel = ''):
+    def distanceFromPinholeImagetoOrigin(self, rows, columns, consoleLog, logFile, pixelSize, CCDLabel = '', triangleLabel = ''):
         '''
         Calcuate the distance to the sensor origin using centroided image.
         '''
@@ -271,7 +271,7 @@ class centroidFIF(object):
         CS5OriginY = 0 
         fC = focusCurve()
                 
-        if isCCD == True and triangleLabel != '':
+        if triangleLabel != '':
             #pinhole is from 100um DMM (triangle)
             CS5OriginX = fC.trianglePonitCCDLocationsCS5[triangleLabel][0] + (rows*(pixelSize/1000))
             CS5OriginY = fC.trianglePonitCCDLocationsCS5[triangleLabel][1] + (columns*(pixelSize/1000))
@@ -284,7 +284,7 @@ class centroidFIF(object):
                     " the origin of the sensor using the SBIG ST-i. A pinhole projected onto the SBIG STXL at this point show show up in a SBIG STXL at pixel location " +
                     "( row = " + str(pixelDistanceToCheckPoint) + ", column = " + str(pixelDistanceToCheckPoint) + ")")
             
-        elif isCCD == True and CCDLabel != '':
+        elif CCDLabel != '':
             #pinhole is at CCD center
             CS5OriginX = fC.CCDLocationsCS5[CCDLabel][0] + (rows*(pixelSize/1000))
             CS5OriginY = fC.CCDLocationsCS5[CCDLabel][1] + (columns*(pixelSize/1000))

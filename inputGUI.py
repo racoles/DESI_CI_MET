@@ -261,7 +261,15 @@ class inputGUI(object):
         ###########################################################################
         self._checkCameraOriginLocationSelectionWindow()
         
+        ###########################################################################
+        ###Centroid Image
+        ########################################################################### 
         
+        ###########################################################################
+        ###Calcuate the distance to the sensor origin using centroided image.
+        ###########################################################################        
+        cF = centroidFIF
+        CS5OriginX, CS5OriginY = cF.distanceFromPinholeImagetoOrigin(self, rows, columns, consoleLog, logFile, pixelSize, isCCD = False, CCDLabel = '', triangleLabel = '')
     
     def _checkCameraOriginLocationSelectionWindow(self):
         '''
