@@ -270,6 +270,7 @@ class centroidFIF(object):
         CS5OriginX = 0
         CS5OriginY = 0 
         fC = focusCurve()
+        
         if isFIF == True and isCCD == False:
             #pinhole is from a FIF
             CS5OriginX = fC.fifLocationsCS5[fifLabel][0] + (rows*(pixelSize/1000))
@@ -277,15 +278,16 @@ class centroidFIF(object):
             faah.pageLogging(consoleLog, logFile, 
                     "To check sensor origin location, move to CCD pixel location (" + str(pixelDistanceToOrigin) + "," + str(pixelDistanceToOrigin) + ")" + 
                     ":\n CS5 (X = " + str(CS5OriginX) + "mm, Y = " + str(CS5OriginY) + "mm)")
-            
+                
         elif isFIF == False and isCCD == True and triangleLabel != '':
             #pinhole is from 100um DMM (triangle)
-            trianglePointX = fC.trianglePonitCCDLocationsCS5[triangleLabel][0]
-            trianglePointY = fC.trianglePonitCCDLocationsCS5[triangleLabel][1]
+            CS5OriginX = fC.trianglePonitCCDLocationsCS5[triangleLabel][0] + (rows*(pixelSize/1000))
+            CS5OriginY = fC.trianglePonitCCDLocationsCS5[triangleLabel][1] + (columns*(pixelSize/1000))
+            
         elif isFIF == False and isCCD == True and CCDLabel != '':
             #pinhole is at CCD center
-            sensorCenterX = fC.CCDLocationsCS5[CCDLabel][0]
-            sensorCenterY = fC.CCDLocationsCS5[CCDLabel][1]
+            CS5OriginX = fC.CCDLocationsCS5[CCDLabel][0] + (rows*(pixelSize/1000))
+            CS5OriginY = fC.CCDLocationsCS5[CCDLabel][1] + (columns*(pixelSize/1000))
         else:
             #pinhole type not selected
             print('Pinhole type not selected. Will use CS5 (X = 0mm, Y = 0mm)')
