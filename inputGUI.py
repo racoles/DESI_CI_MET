@@ -246,3 +246,10 @@ class inputGUI(object):
                         "Iterative GMS Centroid (rows, columns): (" +  format(xCenFC, '.2f') + ' +/- ' + format(xErrFC, '.2f') + ', ' +
                          format(yCenFC, '.2f') + '+/-' + format(yErrFC, '.2f') + ')\n' +
                         "IDL DAOPHOT Centroid (rows, columns): (" + format(yCencF, '.2f') + ', ' + format(xCencF, '.2f')+ ')\n\n', doubleSpaceWithTime = False)
+        
+    def _checkCameraOriginLocation(self):
+        '''
+        Find the location of the CI camera's sensor origin in CS5 and instruct the user to view 
+        the origin with the DMM to ensure that the tip/tilt/focus pinhole triangle was placed properly
+        on the SBIt STXL sensor.
+        '''
