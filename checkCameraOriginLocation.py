@@ -19,10 +19,12 @@ from tkinter.ttk import Separator
 from fileAndArrayHandling import fileAndArrayHandling
 from CCDOpsPlanetMode import CCDOpsPlanetMode
 from centroidFIF import centroidFIF
+import math
+from focusCurve import focusCurve
+import numpy as np
 ################################################################################################
 
 class checkCameraOriginLocation(object):
-    
     
     CCDSelection = ""
     trianglePointLabel = ""

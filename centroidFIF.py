@@ -41,9 +41,8 @@ findFIFInImage
 # Import #######################################################################################
 import numpy as np
 np.set_printoptions(threshold=np.nan)
-import cv2, math
+import cv2
 from fileAndArrayHandling import fileAndArrayHandling
-from focusCurve import focusCurve
 from CCDOpsPlanetMode import CCDOpsPlanetMode
 from alternateCentroidMethods import gmsCentroid, smsBisector, findCentroid
 ################################################################################################
