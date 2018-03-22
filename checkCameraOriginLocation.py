@@ -34,6 +34,7 @@ class checkCameraOriginLocation(object):
         '''
         Constructor
         '''
+        
     def checkCameraOriginLocation(self, consoleLog, logFile):
         '''
         Find the location of the CI camera's sensor origin in CS5 and instruct the user to view 
@@ -72,7 +73,7 @@ class checkCameraOriginLocation(object):
         ###########################################################################
         ###Calcuate the distance to the sensor origin using centroided image.
         ###########################################################################        
-        CS5OriginX, CS5OriginY = cF.distanceFromPinholeImagetoOrigin(xCenGMS+xOffset, yCenGMS+yOffset, consoleLog, logFile, 
+        CS5OriginX, CS5OriginY = self.distanceFromPinholeImagetoOrigin(xCenGMS+xOffset, yCenGMS+yOffset, consoleLog, logFile, 
                                                                      pixelSize, CCDLabel = self.CCDSelection, triangleLabel = self.trianglePointLabel)
         
     def distanceFromPinholeImagetoOrigin(self, rows, columns, consoleLog, logFile, pixelSize, CCDLabel = '', triangleLabel = ''):
