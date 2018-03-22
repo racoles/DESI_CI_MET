@@ -247,7 +247,10 @@ class centroidFIF(object):
         ###View subarray and value of max-value pixel
         ########################################################################### 
         #cv2.imshow('fifSubArray',fifSubArray)
-        #print(image[maxLoc[0],maxLoc[1]])
+        #print(image[maxLoc[0], maxLoc[1]])
+        print(maxLoc[0])
+        print(maxLoc[1])
+        
         return fifSubArray, self.widthOfSubimage, maxLoc
     
     def alternateCentroid(self, consoleLog, logFile):
