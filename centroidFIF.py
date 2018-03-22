@@ -276,7 +276,7 @@ class centroidFIF(object):
             CS5OriginX = fC.fifLocationsCS5[fifLabel][0] + (rows*(pixelSize/1000))
             CS5OriginY = fC.fifLocationsCS5[fifLabel][1] + (columns*(pixelSize/1000))
             faah.pageLogging(consoleLog, logFile, 
-                    "To check sensor origin location, move to CCD pixel location (" + str(pixelDistanceToCheckPoint) + "," + str(pixelDistanceToCheckPoint) + ")" + 
+                    "To check SBIG STXL sensor origin location, move to CCD pixel location (" + str(pixelDistanceToCheckPoint) + "," + str(pixelDistanceToCheckPoint) + ")" + 
                     ":\n CS5 (X = " + str(fC.fifLocationsCS5[fifLabel][0] + ((rows-pixelDistanceToCheckPoint)*(pixelSize/1000))) +
                      "mm, Y = " + str(fC.fifLocationsCS5[fifLabel][1] + ((columns-pixelDistanceToCheckPoint)*(pixelSize/1000))) + "mm)")
                 
@@ -285,7 +285,7 @@ class centroidFIF(object):
             CS5OriginX = fC.trianglePonitCCDLocationsCS5[triangleLabel][0] + (rows*(pixelSize/1000))
             CS5OriginY = fC.trianglePonitCCDLocationsCS5[triangleLabel][1] + (columns*(pixelSize/1000))
             faah.pageLogging(consoleLog, logFile, 
-                    "To check sensor origin location, move to CCD pixel location (" + str(pixelDistanceToCheckPoint) + "," + str(pixelDistanceToCheckPoint) + ")" + 
+                    "To check SBIG STXL sensor origin location, move to CCD pixel location (" + str(pixelDistanceToCheckPoint) + "," + str(pixelDistanceToCheckPoint) + ")" + 
                     ":\n CS5 (X = " + str(fC.trianglePonitCCDLocationsCS5[triangleLabel][0] + ((rows-pixelDistanceToCheckPoint)*(pixelSize/1000))) +
                      "mm, Y = " + str(fC.trianglePonitCCDLocationsCS5[triangleLabel][1] + ((columns-pixelDistanceToCheckPoint)*(pixelSize/1000))) + "mm)")
             
@@ -293,6 +293,11 @@ class centroidFIF(object):
             #pinhole is at CCD center
             CS5OriginX = fC.CCDLocationsCS5[CCDLabel][0] + (rows*(pixelSize/1000))
             CS5OriginY = fC.CCDLocationsCS5[CCDLabel][1] + (columns*(pixelSize/1000))
+            faah.pageLogging(consoleLog, logFile, 
+                    "To check SBIG STXL sensor origin location, move to CCD pixel location (" + str(pixelDistanceToCheckPoint) + "," + str(pixelDistanceToCheckPoint) + ")" + 
+                    ":\n CS5 (X = " + str(fC.CCDLocationsCS5[CCDLabel][0] + ((rows-pixelDistanceToCheckPoint)*(pixelSize/1000))) +
+                     "mm, Y = " + str(fC.CCDLocationsCS5[CCDLabel][1] + ((columns-pixelDistanceToCheckPoint)*(pixelSize/1000))) + "mm)")
+            
         else:
             #pinhole type not selected
             print('Pinhole type not selected. Will use CS5 (X = 0mm, Y = 0mm)')
