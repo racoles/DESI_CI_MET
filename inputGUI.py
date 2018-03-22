@@ -25,8 +25,8 @@ from metManualMode import metManualMode
 from focusCurve import focusCurve
 from fileAndArrayHandling import fileAndArrayHandling
 from centroidFIF import centroidFIF
-from alternateCentroidMethods import gmsCentroid, smsBisector, findCentroid
 from cs5Offsets import cs5Offsets
+from checkCameraOriginLocation import checkCameraOriginLocation
 ################################################################################################
 
 class inputGUI(object):
@@ -100,7 +100,8 @@ class inputGUI(object):
         cF = centroidFIF()
         tk.Button(master, text="Centroid Pinhole",bg = "white",command=lambda:cF.alternateCentroid(self.consoleLog, self.logFile)).grid(row=8, column=0, columnspan=2, sticky='W')
         #Manual Mode Check Camera Origin
-        tk.Button(master, text="Check Camera Origin",bg = "white",command=lambda:checkCameraOriginLocation(self.consoleLog, self.logFile)).grid(row=8, column=1, columnspan=2, sticky='W')
+        ccol = checkCameraOriginLocation()
+        tk.Button(master, text="Check Camera Origin",bg = "white",command=lambda:ccol.checkCameraOriginLocation(self.consoleLog, self.logFile)).grid(row=8, column=1, columnspan=2, sticky='W')
         #Manual Mode FIF Focus Curve
         tk.Button(master, text="FIF Focus Curve",bg = "white", command=lambda:self._beginManualMode(master, self.consoleLog, self.logFile, "manualFIFFocusCurve")).grid(row=9, column=0, columnspan=1, sticky='W')
         #Manual Mode CCD Focus Curve
