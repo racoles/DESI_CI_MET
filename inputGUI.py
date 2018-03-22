@@ -34,9 +34,6 @@ class inputGUI(object):
     GUI for DESI CI metrology software
     '''
     
-    CCDSelection = ""
-    trianglePointLabel = ""
-
     def __init__(self, master):
         '''
         Constructor
