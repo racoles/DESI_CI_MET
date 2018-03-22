@@ -1,12 +1,8 @@
 '''
-Created on Mar 22, 2018
-
-@author: coles.81
-
-@title tipTiltZCCD
+@title checkCameraOriginLocation
 @author: Rebecca Coles
-Updated on Mar 06, 2018
-Created on Jan 18, 2018
+Updated on Mar 22, 2018
+Created on Mar 22, 2018
 
 checkCameraOriginLocation
 This module holds a series of functions that are used to find the origin of a CCD on the DESI CI in CS5.
