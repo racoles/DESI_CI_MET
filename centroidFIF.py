@@ -256,6 +256,7 @@ class centroidFIF(object):
         ###Find distance in um to CCD Origin
         ###########################################################################       
         hypotenuse = np.sqrt(math.pow((rows),2)+math.pow((columns),2))
+        faah = fileAndArrayHandling()
         faah.pageLogging(consoleLog, logFile, 
                     "Distance from pinhole center to sensor origin: " + str(hypotenuse) + "pixels or " + str(hypotenuse*pixelSize) + 'um')
         
