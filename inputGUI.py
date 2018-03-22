@@ -96,8 +96,8 @@ class inputGUI(object):
         tk.Label(master, text="Manual Mode", font="bold").grid(row=7, column=0, columnspan=2, sticky='W')
         #Manual Mode Centroid Pinhole
         tk.Button(master, text="Centroid Pinhole",bg = "white",command=lambda:self._alternateCentroid(self.consoleLog, self.logFile)).grid(row=8, column=0, columnspan=2, sticky='W')
-#Manual Mode Check Camera Origin
-        tk.Button(master, text="Check Camera Origin",bg = "white",command=lambda:self._alternateCentroid(self.consoleLog, self.logFile)).grid(row=8, column=1, columnspan=2, sticky='W')
+        #Manual Mode Check Camera Origin
+        tk.Button(master, text="Check Camera Origin",bg = "white",command=lambda:self._checkCameraOriginLocation(self.consoleLog, self.logFile)).grid(row=8, column=1, columnspan=2, sticky='W')
         #Manual Mode FIF Focus Curve
         tk.Button(master, text="FIF Focus Curve",bg = "white", command=lambda:self._beginManualMode(master, self.consoleLog, self.logFile, "manualFIFFocusCurve")).grid(row=9, column=0, columnspan=1, sticky='W')
         #Manual Mode CCD Focus Curve
@@ -247,9 +247,12 @@ class inputGUI(object):
                          format(yCenFC, '.2f') + '+/-' + format(yErrFC, '.2f') + ')\n' +
                         "IDL DAOPHOT Centroid (rows, columns): (" + format(yCencF, '.2f') + ', ' + format(xCencF, '.2f')+ ')\n\n', doubleSpaceWithTime = False)
         
-    def _checkCameraOriginLocation(self):
+    def _checkCameraOriginLocation(self, consoleLog, logFile):
         '''
         Find the location of the CI camera's sensor origin in CS5 and instruct the user to view 
         the origin with the DMM to ensure that the tip/tilt/focus pinhole triangle was placed properly
         on the SBIt STXL sensor.
         '''
+        ###########################################################################
+        ###Sensor Location menu
+        ###########################################################################   
