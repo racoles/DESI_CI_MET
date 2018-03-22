@@ -47,8 +47,6 @@ class checkCameraOriginLocation(object):
         ###Sensor Location menu
         ###########################################################################
         self._checkCameraOriginLocationSelectionWindow()
-        print(self.CCDSelection)
-        print(self.trianglePointLabel)
         
         ###########################################################################
         ###Get images
