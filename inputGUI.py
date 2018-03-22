@@ -259,6 +259,9 @@ class inputGUI(object):
         top = tk.Toplevel()
         top.title("Check Camera Origin")
         
+        #CCD Location Description
+        tk.Label(top, text="Which CCD location would you like to measure?").grid(row=0, column=0, columnspan=2, sticky='W')
+        
         
         
 '''        
