@@ -88,10 +88,9 @@ class checkCameraOriginLocation(object):
             CS5OriginY = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + self.trianglePointLabel][1] + (columns*(pixelSize/1000))
             faah.pageLogging(consoleLog, logFile, 
                     "Distance from pinhole center to sensor origin:\n " + format(hypotenuse, '.3f') + "pixels = " + format(hypotenuse*pixelSize, '.3f') + 'um = ' + format(hypotenuse*pixelSize/1000, '.3f') + "mm\n"
-                    "To check SBIG STXL sensor origin location, move to CCD pixel location (" + str(self.pixelDistanceToCheckPoint) + "," + str(self.pixelDistanceToCheckPoint) + ")" + 
-                    ":\n CS5 (X = " + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + self.trianglePointLabel][0] + ((rows-self.pixelDistanceToCheckPoint)*(pixelSize/1000)), '.3f') +
+                    "To check SBIG STXL sensor origin location, move to CS5 (X = " + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + self.trianglePointLabel][0] + ((rows-self.pixelDistanceToCheckPoint)*(pixelSize/1000)), '.3f') +
                      "mm, Y = " + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + self.trianglePointLabel][1] + ((columns-self.pixelDistanceToCheckPoint)*(pixelSize/1000)), '.3f') + "mm)" + 
-                    "\nYou should be able to see the origin of the sensor using the SBIG ST-i. A pinhole projected onto the SBIG STXL at this point show show up in a SBIG STXL at pixel location " +
+                    "\nYou should be able to see the origin of the sensor using the SBIG ST-i. A pinhole projected \nonto the SBIG STXL at this point should show up at pixel location" +
                     "(" + str(self.pixelDistanceToCheckPoint) + ", " + str(self.pixelDistanceToCheckPoint) + ")")
             
         elif self.CCDSelection != '' and self.trianglePointLabel == '':
@@ -99,11 +98,10 @@ class checkCameraOriginLocation(object):
             CS5OriginX = fC.CCDLocationsCS5[self.CCDSelection][0] + (rows*(pixelSize/1000))
             CS5OriginY = fC.CCDLocationsCS5[self.CCDSelection][1] + (columns*(pixelSize/1000))
             faah.pageLogging(consoleLog, logFile, 
-                    "Distance from pinhole center to sensor origin: " + format(hypotenuse, '.3f') + "pixels or " + format(hypotenuse*pixelSize, '.3f') + 'um\n'
-                    "To check SBIG STXL sensor origin location, move to CCD pixel location (" + str(self.pixelDistanceToCheckPoint) + "," + str(self.pixelDistanceToCheckPoint) + ")" + 
-                    ":\n CS5 (X = " + str(fC.CCDLocationsCS5[self.CCDSelection][0] + ((rows-self.pixelDistanceToCheckPoint)*(pixelSize/1000))) +
-                     "mm, Y = " + str(fC.CCDLocationsCS5[self.CCDSelection][1] + ((columns-self.pixelDistanceToCheckPoint)*(pixelSize/1000))) + "mm)" + 
-                    "\nYou should be able to see the origin of the sensor using the SBIG ST-i. A pinhole projected onto the SBIG STXL at this point shouls show up in a SBIG STXL at pixel location " +
+                    "Distance from pinhole center to sensor origin: " + format(hypotenuse, '.3f') + "pixels = " + format(hypotenuse*pixelSize, '.3f') + 'um = ' + format(hypotenuse*pixelSize/1000, '.3f') + "mm\n"
+                    "To check SBIG STXL sensor origin location, move to CS5 (X = " + format(fC.CCDLocationsCS5[self.CCDSelection][0] + ((rows-self.pixelDistanceToCheckPoint)*(pixelSize/1000)), '.3f') +
+                     "mm, Y = " + format(fC.CCDLocationsCS5[self.CCDSelection][1] + ((columns-self.pixelDistanceToCheckPoint)*(pixelSize/1000)), '.3f') + "mm)" + 
+                    "\nYou should be able to see the origin of the sensor using the SBIG ST-i. A pinhole projected \nonto the SBIG STXL at this point should show up at pixel location" +
                     "(" + str(self.pixelDistanceToCheckPoint) + ", " + str(self.pixelDistanceToCheckPoint) + ")")
             
         else:
