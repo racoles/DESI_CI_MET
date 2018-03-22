@@ -1,7 +1,7 @@
 '''
 @title inputGUI
 @author: Rebecca Coles
-Updated on Feb 21, 2017
+Updated on Mar 22, 2017
 Created on Dec 8, 2017
 
 inputGUI
@@ -71,7 +71,7 @@ class inputGUI(object):
         #CS5 Calibration
         cs5off = cs5Offsets()
         tk.Label(master, text="CS5 Calibration", font="bold").grid(row=0, column=0, columnspan=2, sticky='W')
-        calibrationScreenButton = tk.Button(master, text="Centroid Pinhole Image",bg = "white",command=lambda:cs5off.calibrationScreen(calibrationScreenButton, self.consoleLog, self.logFile))
+        calibrationScreenButton = tk.Button(master, text="Calibration Offsets",bg = "white",command=lambda:cs5off.calibrationScreen(calibrationScreenButton, self.consoleLog, self.logFile))
         calibrationScreenButton.grid(row=1, column=0, columnspan=2, sticky='W')
         
         #Grid Separator
@@ -94,8 +94,10 @@ class inputGUI(object):
         
         #Manual Mode Labels
         tk.Label(master, text="Manual Mode", font="bold").grid(row=7, column=0, columnspan=2, sticky='W')
-        #Manual Mode Description
-        tk.Button(master, text="Centroid Pinhole Image",bg = "white",command=lambda:self._alternateCentroid(self.consoleLog, self.logFile)).grid(row=8, column=0, columnspan=2, sticky='W')
+        #Manual Mode Centroid Pinhole
+        tk.Button(master, text="Centroid Pinhole",bg = "white",command=lambda:self._alternateCentroid(self.consoleLog, self.logFile)).grid(row=8, column=0, columnspan=2, sticky='W')
+#Manual Mode Check Camera Origin
+        tk.Button(master, text="Check Camera Origin",bg = "white",command=lambda:self._alternateCentroid(self.consoleLog, self.logFile)).grid(row=8, column=1, columnspan=2, sticky='W')
         #Manual Mode FIF Focus Curve
         tk.Button(master, text="FIF Focus Curve",bg = "white", command=lambda:self._beginManualMode(master, self.consoleLog, self.logFile, "manualFIFFocusCurve")).grid(row=9, column=0, columnspan=1, sticky='W')
         #Manual Mode CCD Focus Curve
