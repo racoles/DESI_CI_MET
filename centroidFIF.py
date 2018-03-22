@@ -279,6 +279,7 @@ class centroidFIF(object):
             sensorCenterY = fC.CCDLocationsCS5[CCDLabel][1]
         else:
             #pinhole type not selected
+            print('Pinhole type not selected. Will use CS5 (X = 0mm, Y = 0mm)')
         
         
         
