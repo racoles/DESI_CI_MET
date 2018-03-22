@@ -275,10 +275,6 @@ class centroidFIF(object):
             #pinhole is from a FIF
             CS5OriginX = fC.fifLocationsCS5[fifLabel][0] + (rows*(pixelSize/1000))
             CS5OriginY = fC.fifLocationsCS5[fifLabel][1] + (columns*(pixelSize/1000))
-            faah.pageLogging(consoleLog, logFile, 
-                    "To check SBIG STXL sensor origin location, move to CCD pixel location (" + str(pixelDistanceToCheckPoint) + "," + str(pixelDistanceToCheckPoint) + ")" + 
-                    ":\n CS5 (X = " + str(fC.fifLocationsCS5[fifLabel][0] + ((rows-pixelDistanceToCheckPoint)*(pixelSize/1000))) +
-                     "mm, Y = " + str(fC.fifLocationsCS5[fifLabel][1] + ((columns-pixelDistanceToCheckPoint)*(pixelSize/1000))) + "mm)")
                 
         elif isFIF == False and isCCD == True and triangleLabel != '':
             #pinhole is from 100um DMM (triangle)
@@ -288,6 +284,8 @@ class centroidFIF(object):
                     "To check SBIG STXL sensor origin location, move to CCD pixel location (" + str(pixelDistanceToCheckPoint) + "," + str(pixelDistanceToCheckPoint) + ")" + 
                     ":\n CS5 (X = " + str(fC.trianglePonitCCDLocationsCS5[triangleLabel][0] + ((rows-pixelDistanceToCheckPoint)*(pixelSize/1000))) +
                      "mm, Y = " + str(fC.trianglePonitCCDLocationsCS5[triangleLabel][1] + ((columns-pixelDistanceToCheckPoint)*(pixelSize/1000))) + "mm)")
+            faah.pageLogging(consoleLog, logFile, "At location CS5 (X = " + str(fC.fifLocationsCS5[fifLabel][0] + ((rows-pixelDistanceToCheckPoint)*(pixelSize/1000))) +
+                     "mm, Y = " + str(fC.fifLocationsCS5[fifLabel][1] + ((columns-pixelDistanceToCheckPoint)*(pixelSize/1000))) + "mm) you should be able to see ")
             
         elif isFIF == False and isCCD == True and CCDLabel != '':
             #pinhole is at CCD center
