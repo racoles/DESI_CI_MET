@@ -253,6 +253,9 @@ class centroidFIF(object):
         '''
         Calcuate the distance to the sensor origin using centroided image.
         '''
+        #Pixel distance to origin
+        pixelDistanceToOrigin = 10 #pixels
+        
         ###########################################################################
         ###Find distance in um to CCD Origin
         ###########################################################################       
@@ -263,12 +266,17 @@ class centroidFIF(object):
         
         ###########################################################################
         ###Find location of Origin in CS5
-        ###########################################################################       
+        ###########################################################################      
+        CS5OriginX = 0
+        CS5OriginY = 0 
         fC = focusCurve()
         if isFIF == True and isCCD == False:
             #pinhole is from a FIF
             fifLocationX = fC.fifLocationsCS5[fifLabel][0]
             fifLocationY = fC.fifLocationsCS5[fifLabel][1]
+            faah.pageLogging(consoleLog, logFile, 
+                    "To check sensor origin location, move to CCD pixel location (,): CS5 (X = , Y = )")
+            
         elif isFIF == False and isCCD == True and triangleLabel != '':
             #pinhole is from 100um DMM (triangle)
             trianglePointX = fC.trianglePonitCCDLocationsCS5[triangleLabel][0]
@@ -280,8 +288,6 @@ class centroidFIF(object):
         else:
             #pinhole type not selected
             print('Pinhole type not selected. Will use CS5 (X = 0mm, Y = 0mm)')
-        
-        
         
         return CS5OriginX, CS5OriginY
     
