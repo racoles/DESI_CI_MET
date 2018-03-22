@@ -195,6 +195,8 @@ class checkCameraOriginLocation(object):
         CCCD_C.grid(row=15, column=2)
         CCCD_Center = tk.Button(top, text="CCCD: Center", command=lambda: self._setTrueAndExit(top, CCDLabel="CCCD"))
         CCCD_Center.grid(row=15, column=3)
+        
+        top.wait_window()
            
     def _setTrueAndExit(self, windowVariable, CCDLabel, trianglePointLabel=" "):
         self.CCDSelection = CCDLabel

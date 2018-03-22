@@ -206,7 +206,7 @@ class metManualMode(tk.Tk):
         ###########################################################################
         #Account for planet mode
         pM = CCDOpsPlanetMode()
-        xOffset, yOffset, pixelSize = pM.readFitsHeader(imageArray4D, filelist, self.consoleLog, self.logFile)
+        xOffset, yOffset, _ = pM.readFitsHeader(imageArray4D, filelist, self.consoleLog, self.logFile)
         
         #Distance from center of FIF to origin of sensor (x=0, y=0)
         xDistToSensorOrigin = xcen + xOffset
