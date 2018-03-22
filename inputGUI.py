@@ -259,6 +259,8 @@ class inputGUI(object):
         ###########################################################################
         ###Sensor Location menu
         ###########################################################################
+        self._checkCameraOriginLocationSelectionWindow()
+        
         
     
     def _checkCameraOriginLocationSelectionWindow(self):
