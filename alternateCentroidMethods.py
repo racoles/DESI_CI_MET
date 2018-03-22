@@ -9,12 +9,11 @@ alternateCentroidMethods
 '''
 
 # Import #######################################################################################
-import os, sys, getopt, subprocess, shlex, signal
+#import os, sys, getopt, subprocess, shlex, signal
 import math
 import numpy as np
-from astropy.io import fits
-
-import scipy
+#from astropy.io import fits
+#import scipy
 from scipy import ndimage
 from scipy.optimize import curve_fit
 ################################################################################################
