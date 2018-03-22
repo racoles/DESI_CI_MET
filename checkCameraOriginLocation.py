@@ -96,7 +96,7 @@ class checkCameraOriginLocation(object):
                     ":\n CS5 (X = " + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + self.trianglePointLabel][0] + ((rows-self.pixelDistanceToCheckPoint)*(pixelSize/1000)), '.3f') +
                      "mm, Y = " + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + self.trianglePointLabel][1] + ((columns-self.pixelDistanceToCheckPoint)*(pixelSize/1000)), '.3f') + "mm)" + 
                     "\nYou should be able to see the origin of the sensor using the SBIG ST-i. A pinhole projected onto the SBIG STXL at this point show show up in a SBIG STXL at pixel location " +
-                    "(row = " + str(self.pixelDistanceToCheckPoint) + ", column = " + str(self.pixelDistanceToCheckPoint) + ")")
+                    "(" + str(self.pixelDistanceToCheckPoint) + ", " + str(self.pixelDistanceToCheckPoint) + ")")
             
         elif self.CCDSelection != '' and self.trianglePointLabel == '':
             #pinhole is at CCD center
