@@ -256,6 +256,13 @@ class inputGUI(object):
         the origin with the DMM to ensure that the tip/tilt/focus pinhole triangle was placed properly
         on the SBIt STXL sensor.
         '''
+    
+    def _checkCameraOriginLocationSelectionWindow(self):
+        '''
+        Find the location of the CI camera's sensor origin in CS5 and instruct the user to view 
+        the origin with the DMM to ensure that the tip/tilt/focus pinhole triangle was placed properly
+        on the SBIt STXL sensor.
+        '''
         ###########################################################################
         ###Sensor Location menu
         ###########################################################################   
