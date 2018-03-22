@@ -256,3 +256,88 @@ class inputGUI(object):
         ###########################################################################
         ###Sensor Location menu
         ###########################################################################   
+        top = tk.Toplevel()
+        top.title("Check Camera Origin")
+        
+        
+        
+'''        
+    def _setTrueAndExit(self, windowVariable, fifLabel=" ", CCDLabel=" ", trianglePointLabel=" "):
+        if fifLabel != " ":
+            self.fifSelection = fifLabel
+        if CCDLabel != " ":
+            self.CCDSelection = CCDLabel
+        if trianglePointLabel != " ":
+            self.trianglePointSelection = trianglePointLabel
+        windowVariable.destroy()
+        
+    def _CCDSelectionWindow(self):
+        ###########################################################################
+        ###CCD Button Option Window
+        ###########################################################################   
+        top = tk.Toplevel()
+        top.title("CCD Manual Mode")
+        self.wm_withdraw()
+        
+        #Manual Mode Description
+        tk.Label(top, text="Which CCD would you like to measure?").grid(row=0, column=0, columnspan=2, sticky='W')
+        
+        # NCCD
+        NCCD = tk.Button(top, text="NCCD: (0,-387.26)", command=lambda: self._setTrueAndExit(top, CCDLabel="NCCD"))
+        NCCD.grid(row=1, column=0)
+        
+        # WCCD
+        WCCD = tk.Button(top, text="WCCD: (-387.26,0)", command=lambda: self._setTrueAndExit(top, CCDLabel="WCCD"))
+        WCCD.grid(row=2, column=0)
+        
+        # SCCD
+        SCCD = tk.Button(top, text="SCCD: (0,387.26)", command=lambda: self._setTrueAndExit(top, CCDLabel="SCCD"))
+        SCCD.grid(row=3, column=0)
+        
+        # ECCD
+        ECCD = tk.Button(top, text="ECCD: (387.26,0)", command=lambda: self._setTrueAndExit(top, CCDLabel="ECCD"))
+        ECCD.grid(row=4, column=0)
+        
+        # CCCD
+        CCCD = tk.Button(top, text="CCCD: (0,0)", command=lambda: self._setTrueAndExit(top, CCDLabel="CCCD"))
+        CCCD.grid(row=5, column=0)
+        
+        # Other (will set x=0 y=0)
+        other = tk.Button(top, text="Other", command=lambda: self._setTrueAndExit(top, CCDLabel="Other"))
+        other.grid(row=6, column=0)  
+        
+        top.wait_window()
+        
+    def _trianglePointSelectionWindow(self):
+        ###########################################################################
+        ###Triangle Point Button Option Window
+        ###########################################################################   
+        top = tk.Toplevel()
+        top.title("CCD Manual Mode")
+        self.wm_withdraw()
+        
+        #Manual Mode Description
+        tk.Label(top, text="Which triangle point would you like to measure?").grid(row=0, column=0, columnspan=2, sticky='W')
+        
+        #A
+        A = tk.Button(top, text="A", command=lambda: self._setTrueAndExit(top, trianglePointLabel="A"))
+        A.grid(row=1, column=0, sticky='W')
+        
+        #B
+        B = tk.Button(top, text="B", command=lambda: self._setTrueAndExit(top, trianglePointLabel="B"))
+        B.grid(row=2, column=0, sticky='W')
+        
+        #C
+        C = tk.Button(top, text="C", command=lambda: self._setTrueAndExit(top, trianglePointLabel="C"))
+        C.grid(row=3, column=0, sticky='W')
+        
+        #Other (will set x=0 y=0)
+        other = tk.Button(top, text="Other (will set x=0 y=0)", command=lambda: self._setTrueAndExit(top, trianglePointLabel="Other"))
+        other.grid(row=6, column=0, sticky='W')  
+        
+        #Map
+        tk.Label(top, text=" ").grid(row=7, column=0, columnspan=2, sticky='W')
+        top.triangleMAP = tk.PhotoImage(file="FPA_triangles.png", width=600, height=600)
+        tk.Label(top, image=top.triangleMAP).grid(row=8, column=0, rowspan=3, sticky='W')
+        
+        top.wait_window()
