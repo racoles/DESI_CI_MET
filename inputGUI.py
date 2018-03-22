@@ -262,6 +262,11 @@ class inputGUI(object):
         #CCD Location Description
         tk.Label(top, text="Which CCD location would you like to measure?").grid(row=0, column=0, columnspan=2, sticky='W')
         
+        # NCCD
+        Separator(master, orient="horizontal").grid(row=1, column=0, columnspan=4, sticky='ew')
+        NCCD_A = tk.Button(top, text="NCCD", command=lambda: self._setTrueAndExit(top, CCDLabel="NCCD", trianglePointLabel="A"))
+        NCCD_A.grid(row=1, column=0)
+        
         
         
 '''        
@@ -344,3 +349,4 @@ class inputGUI(object):
         tk.Label(top, image=top.triangleMAP).grid(row=8, column=0, rowspan=3, sticky='W')
         
         top.wait_window()
+'''

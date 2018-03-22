@@ -346,27 +346,29 @@ class metManualMode(tk.Tk):
         top.title("CCD Manual Mode")
         self.wm_withdraw()
         
+        fC = focusCurve()
+        
         #Manual Mode Description
         tk.Label(top, text="Which CCD would you like to measure?").grid(row=0, column=0, columnspan=2, sticky='W')
         
         # NCCD
-        NCCD = tk.Button(top, text="NCCD: (0,-387.26)", command=lambda: self._setTrueAndExit(top, CCDLabel="NCCD"))
+        NCCD = tk.Button(top, text="NCCD: (" + str(fC.CCDLocationsCS5["NCCD"][0]) + ", " + str(fC.CCDLocationsCS5["NCCD"][1]) + ")", command=lambda: self._setTrueAndExit(top, CCDLabel="NCCD"))
         NCCD.grid(row=1, column=0)
         
         # WCCD
-        WCCD = tk.Button(top, text="WCCD: (-387.26,0)", command=lambda: self._setTrueAndExit(top, CCDLabel="WCCD"))
+        WCCD = tk.Button(top, text="WCCD: (" + str(fC.CCDLocationsCS5["WCCD"][0]) + ", " + str(fC.CCDLocationsCS5["WCCD"][1]) + ")", command=lambda: self._setTrueAndExit(top, CCDLabel="WCCD"))
         WCCD.grid(row=2, column=0)
         
         # SCCD
-        SCCD = tk.Button(top, text="SCCD: (0,387.26)", command=lambda: self._setTrueAndExit(top, CCDLabel="SCCD"))
+        SCCD = tk.Button(top, text="SCCD: (" + str(fC.CCDLocationsCS5["SCCD"][0]) + ", " + str(fC.CCDLocationsCS5["SCCD"][1]) + ")", command=lambda: self._setTrueAndExit(top, CCDLabel="SCCD"))
         SCCD.grid(row=3, column=0)
         
         # ECCD
-        ECCD = tk.Button(top, text="ECCD: (387.26,0)", command=lambda: self._setTrueAndExit(top, CCDLabel="ECCD"))
+        ECCD = tk.Button(top, text="ECCD: (" + str(fC.CCDLocationsCS5["ECCD"][0]) + ", " + str(fC.CCDLocationsCS5["ECCD"][1]) + ")", command=lambda: self._setTrueAndExit(top, CCDLabel="ECCD"))
         ECCD.grid(row=4, column=0)
         
         # CCCD
-        CCCD = tk.Button(top, text="CCCD: (0,0)", command=lambda: self._setTrueAndExit(top, CCDLabel="CCCD"))
+        CCCD = tk.Button(top, text="CCCD: (" + str(fC.CCDLocationsCS5["CCCD"][0]) + ", " + str(fC.CCDLocationsCS5["CCCD"][1]) + ")", command=lambda: self._setTrueAndExit(top, CCDLabel="CCCD"))
         CCCD.grid(row=5, column=0)
         
         # Other (will set x=0 y=0)
