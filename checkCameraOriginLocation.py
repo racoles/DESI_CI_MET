@@ -134,11 +134,11 @@ class checkCameraOriginLocation(object):
         top.title("Check Camera Origin")
         
         #CCD Location Description
-        tk.Label(top, text="Which CCD location would you like to measure?").grid(row=0, column=0, columnspan=2, sticky='W')
+        tk.Label(top, text="Which CCD location would you like to measure?").grid(row=0, column=0, columnspan=4, sticky='W')
         
         # NCCD
         Separator(top, orient="horizontal").grid(row=1, column=0, columnspan=4, sticky='ew')
-        tk.Label(top, text="NCCD").grid(row=2, column=0, columnspan=2, sticky='W')
+        tk.Label(top, text="NCCD").grid(row=2, column=0, sticky='W')
         NCCD_A = tk.Button(top, text="NCCD: A", command=lambda: self._setTrueAndExit(top, CCDLabel="NCCD", trianglePointLabel="A"))
         NCCD_A.grid(row=3, column=0)
         NCCD_B = tk.Button(top, text="NCCD: B", command=lambda: self._setTrueAndExit(top, CCDLabel="NCCD", trianglePointLabel="B"))
@@ -150,7 +150,7 @@ class checkCameraOriginLocation(object):
         
         # WCCD
         Separator(top, orient="horizontal").grid(row=4, column=0, columnspan=4, sticky='ew')
-        tk.Label(top, text="WCCD").grid(row=5, column=0, columnspan=2, sticky='W')
+        tk.Label(top, text="WCCD").grid(row=5, column=0, sticky='W')
         WCCD_A = tk.Button(top, text="WCCD: A", command=lambda: self._setTrueAndExit(top, CCDLabel="WCCD", trianglePointLabel="A"))
         WCCD_A.grid(row=6, column=0)
         WCCD_B = tk.Button(top, text="WCCD: B", command=lambda: self._setTrueAndExit(top, CCDLabel="WCCD", trianglePointLabel="B"))
@@ -162,7 +162,7 @@ class checkCameraOriginLocation(object):
         
         # SCCD
         Separator(top, orient="horizontal").grid(row=7, column=0, columnspan=4, sticky='ew')
-        tk.Label(top, text="SCCD").grid(row=8, column=0, columnspan=2, sticky='W')
+        tk.Label(top, text="SCCD").grid(row=8, column=0, sticky='W')
         SCCD_A = tk.Button(top, text="SCCD: A", command=lambda: self._setTrueAndExit(top, CCDLabel="SCCD", trianglePointLabel="A"))
         SCCD_A.grid(row=9, column=0)
         SCCD_B = tk.Button(top, text="SCCD: B", command=lambda: self._setTrueAndExit(top, CCDLabel="SCCD", trianglePointLabel="B"))
@@ -174,7 +174,7 @@ class checkCameraOriginLocation(object):
         
         # ECCD
         Separator(top, orient="horizontal").grid(row=10, column=0, columnspan=4, sticky='ew')
-        tk.Label(top, text="ECCD").grid(row=11, column=0, columnspan=2, sticky='W')
+        tk.Label(top, text="ECCD").grid(row=11, column=0, sticky='W')
         ECCD_A = tk.Button(top, text="ECCD: A", command=lambda: self._setTrueAndExit(top, CCDLabel="ECCD", trianglePointLabel="A"))
         ECCD_A.grid(row=12, column=0)
         ECCD_B = tk.Button(top, text="ECCD: B", command=lambda: self._setTrueAndExit(top, CCDLabel="ECCD", trianglePointLabel="B"))
@@ -186,7 +186,7 @@ class checkCameraOriginLocation(object):
         
         # CCCD
         Separator(top, orient="horizontal").grid(row=13, column=0, columnspan=4, sticky='ew')
-        tk.Label(top, text="CCCD").grid(row=14, column=0, columnspan=2, sticky='W')
+        tk.Label(top, text="CCCD").grid(row=14, column=0, sticky='W')
         CCCD_A = tk.Button(top, text="CCCD: A", command=lambda: self._setTrueAndExit(top, CCDLabel="CCCD", trianglePointLabel="A"))
         CCCD_A.grid(row=15, column=0)
         CCCD_B = tk.Button(top, text="CCCD: B", command=lambda: self._setTrueAndExit(top, CCDLabel="CCCD", trianglePointLabel="B"))
