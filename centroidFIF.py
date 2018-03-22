@@ -43,6 +43,7 @@ import numpy as np
 np.set_printoptions(threshold=np.nan)
 import cv2, math
 from fileAndArrayHandling import fileAndArrayHandling
+from focusCurve import focusCurve
 ################################################################################################
 
 class centroidFIF(object):
@@ -262,12 +263,17 @@ class centroidFIF(object):
         
         ###########################################################################
         ###Find location of Origin in CS5
-        ###########################################################################          
+        ###########################################################################       
+        fC = focusCurve()
         if isFIF == True and isCCD == False:
             #pinhole is from a FIF
+            fifLocationX = fC.fifLocationsCS5[self.fifLabel][0]
+            fifLocationY = fC.fifLocationsCS5[self.fifLabel][1]
+            
         elif isFIF == False and isCCD == True:
             #pinhole is from 100um DMM (triangle)
         else:
+            #pinhole type not selected
         
         
         
