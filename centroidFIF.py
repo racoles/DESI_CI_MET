@@ -253,8 +253,8 @@ class centroidFIF(object):
         '''
         Calcuate the distance to the sensor origin using centroided image.
         '''
-        #Pixel distance to origin
-        pixelDistanceToOrigin = 10 #pixels
+        #Pixel distance to origin check point
+        pixelDistanceToCheckPoint = 10 #pixel location (rows = pixelDistanceToCheckPoint, columns = pixelDistanceToCheckPoint)
         
         ###########################################################################
         ###Find distance in um to CCD Origin
@@ -276,14 +276,18 @@ class centroidFIF(object):
             CS5OriginX = fC.fifLocationsCS5[fifLabel][0] + (rows*(pixelSize/1000))
             CS5OriginY = fC.fifLocationsCS5[fifLabel][1] + (columns*(pixelSize/1000))
             faah.pageLogging(consoleLog, logFile, 
-                    "To check sensor origin location, move to CCD pixel location (" + str(pixelDistanceToOrigin) + "," + str(pixelDistanceToOrigin) + ")" + 
-                    ":\n CS5 (X = " + str(fC.fifLocationsCS5[fifLabel][0] + ((rows-10)*(pixelSize/1000))) +
-                     "mm, Y = " + str(fC.fifLocationsCS5[fifLabel][1] + ((columns-10)*(pixelSize/1000))) + "mm)")
+                    "To check sensor origin location, move to CCD pixel location (" + str(pixelDistanceToCheckPoint) + "," + str(pixelDistanceToCheckPoint) + ")" + 
+                    ":\n CS5 (X = " + str(fC.fifLocationsCS5[fifLabel][0] + ((rows-pixelDistanceToCheckPoint)*(pixelSize/1000))) +
+                     "mm, Y = " + str(fC.fifLocationsCS5[fifLabel][1] + ((columns-pixelDistanceToCheckPoint)*(pixelSize/1000))) + "mm)")
                 
         elif isFIF == False and isCCD == True and triangleLabel != '':
             #pinhole is from 100um DMM (triangle)
             CS5OriginX = fC.trianglePonitCCDLocationsCS5[triangleLabel][0] + (rows*(pixelSize/1000))
             CS5OriginY = fC.trianglePonitCCDLocationsCS5[triangleLabel][1] + (columns*(pixelSize/1000))
+            faah.pageLogging(consoleLog, logFile, 
+                    "To check sensor origin location, move to CCD pixel location (" + str(pixelDistanceToCheckPoint) + "," + str(pixelDistanceToCheckPoint) + ")" + 
+                    ":\n CS5 (X = " + str(fC.trianglePonitCCDLocationsCS5[triangleLabel][0] + ((rows-pixelDistanceToCheckPoint)*(pixelSize/1000))) +
+                     "mm, Y = " + str(fC.trianglePonitCCDLocationsCS5[triangleLabel][1] + ((columns-pixelDistanceToCheckPoint)*(pixelSize/1000))) + "mm)")
             
         elif isFIF == False and isCCD == True and CCDLabel != '':
             #pinhole is at CCD center
