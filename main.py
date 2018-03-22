@@ -17,7 +17,6 @@ Pending Testing:
         Sheffield Cordax RS70 DCC CMM – 40” x 50” x 40” with Renishaw AR1probe changer, PH10 head, PH7 probe. 
         CMM manager software with reverse engineering capabilities as well as automated scanning.
         
-        
 Notes:
 
 BackFocus
