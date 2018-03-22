@@ -292,6 +292,10 @@ class centroidFIF(object):
                     "To check SBIG STXL sensor origin location, move to CCD pixel location (" + str(pixelDistanceToCheckPoint) + "," + str(pixelDistanceToCheckPoint) + ")" + 
                     ":\n CS5 (X = " + str(fC.CCDLocationsCS5[CCDLabel][0] + ((rows-pixelDistanceToCheckPoint)*(pixelSize/1000))) +
                      "mm, Y = " + str(fC.CCDLocationsCS5[CCDLabel][1] + ((columns-pixelDistanceToCheckPoint)*(pixelSize/1000))) + "mm)")
+            faah.pageLogging(consoleLog, logFile, "At location CS5 (X = " + str(fC.CCDLocationsCS5[CCDLabel][0] + ((rows-pixelDistanceToCheckPoint)*(pixelSize/1000))) +
+                     "mm, Y = " + str(fC.CCDLocationsCS5[CCDLabel][1] + ((columns-pixelDistanceToCheckPoint)*(pixelSize/1000))) + "mm) you should be able to see " + 
+                    " the origin of the sensor using the SBIG ST-i. A pinhole projected onto the SBIG STXL at this point show show up in a SBIG STXL at pixel location " +
+                    "( row = " + str(pixelDistanceToCheckPoint) + ", column = " + str(pixelDistanceToCheckPoint) + ")")
             
         else:
             #pinhole type not selected
