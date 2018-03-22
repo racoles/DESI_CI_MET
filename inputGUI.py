@@ -256,6 +256,10 @@ class inputGUI(object):
         the origin with the DMM to ensure that the tip/tilt/focus pinhole triangle was placed properly
         on the SBIt STXL sensor.
         '''
+        ###########################################################################
+        ###Sensor Location menu
+        ###########################################################################
+        
     
     def _checkCameraOriginLocationSelectionWindow(self):
         '''
@@ -264,7 +268,7 @@ class inputGUI(object):
         on the SBIt STXL sensor.
         '''
         ###########################################################################
-        ###Sensor Location menu
+        ###Construct menu
         ###########################################################################   
         top = tk.Toplevel()
         top.title("Check Camera Origin")
