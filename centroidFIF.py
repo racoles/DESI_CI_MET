@@ -277,7 +277,8 @@ class centroidFIF(object):
             CS5OriginY = fC.fifLocationsCS5[fifLabel][1] + (columns*(pixelSize/1000))
             faah.pageLogging(consoleLog, logFile, 
                     "To check sensor origin location, move to CCD pixel location (" + str(pixelDistanceToOrigin) + "," + str(pixelDistanceToOrigin) + ")" + 
-                    ":\n CS5 (X = " + str(CS5OriginX) + "mm, Y = " + str(CS5OriginY) + "mm)")
+                    ":\n CS5 (X = " + str(fC.fifLocationsCS5[fifLabel][0] + ((rows-10)*(pixelSize/1000))) +
+                     "mm, Y = " + str(fC.fifLocationsCS5[fifLabel][1] + ((columns-10)*(pixelSize/1000))) + "mm)")
                 
         elif isFIF == False and isCCD == True and triangleLabel != '':
             #pinhole is from 100um DMM (triangle)
