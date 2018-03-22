@@ -264,7 +264,9 @@ class centroidFIF(object):
         ###Find location of Origin in CS5
         ###########################################################################          
         if isFIF == True and isCCD == False:
+            #pinhole is from a FIF
         elif isFIF == False and isCCD == True:
+            #pinhole is from 100um DMM (triangle)
         else:
         
         
