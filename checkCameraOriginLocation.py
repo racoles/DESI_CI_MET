@@ -22,6 +22,7 @@ from centroidFIF import centroidFIF
 import math
 from focusCurve import focusCurve
 import numpy as np
+from alternateCentroidMethods import gmsCentroid
 ################################################################################################
 
 class checkCameraOriginLocation(object):
@@ -54,14 +55,24 @@ class checkCameraOriginLocation(object):
         ###########################################################################
         ###Centroid Image
         ########################################################################### 
-        cF = centroidFIF
+        cF = centroidFIF()
+        
+        #Get location of pinhole image in (rows, columns)
+        _ , subArrayBoxSize, maxLoc = self.findFIFInImage(imageArray4D[aa])
+        
+        #Account for planet mode
         pM = CCDOpsPlanetMode()
-        xOffset, yOffset, pixelSize = pM.readFitsHeader(imageArray4D[aa], filelist[aa], consoleLog, logFile)
+        xOffset, yOffset, pixelSize = pM.readFitsHeader(imageArray4D, filelist, consoleLog, logFile)
+        
+        #Use alternate methods to centroid pinhole image
+        #    gmsCentroid: Gaussian Marginal Sum (GMS) Centroid Method.
+        xCenGMS, yCenGMS, _, _ = gmsCentroid(imageArray4D[aa], maxLoc[1], maxLoc[0], 
+                                                         int(round(subArrayBoxSize/2)), int(round(subArrayBoxSize/2)), axis='both', verbose=False)
         
         ###########################################################################
         ###Calcuate the distance to the sensor origin using centroided image.
         ###########################################################################        
-        CS5OriginX, CS5OriginY = cF.distanceFromPinholeImagetoOrigin(rows, columns, consoleLog, logFile, pixelSize, CCDLabel = self.CCDSelection, triangleLabel = self.trianglePointLabel)
+        CS5OriginX, CS5OriginY = cF.distanceFromPinholeImagetoOrigin(xCenGMS+xOffset, yCenGMS+yOffset, consoleLog, logFile, pixelSize, CCDLabel = self.CCDSelection, triangleLabel = self.trianglePointLabel)
         
     def distanceFromPinholeImagetoOrigin(self, rows, columns, consoleLog, logFile, pixelSize, CCDLabel = '', triangleLabel = ''):
         '''
