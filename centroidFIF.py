@@ -248,8 +248,8 @@ class centroidFIF(object):
         ########################################################################### 
         #cv2.imshow('fifSubArray',fifSubArray)
         #print(image[maxLoc[0], maxLoc[1]])
-        print(maxLoc[0])
-        print(maxLoc[1])
+        #print(maxLoc[0])
+        #print(maxLoc[1])
         
         return fifSubArray, self.widthOfSubimage, maxLoc
     
