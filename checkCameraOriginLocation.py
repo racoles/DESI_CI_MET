@@ -92,18 +92,18 @@ class checkCameraOriginLocation(object):
         
         if self.trianglePointLabel != '':
             #pinhole is from 100um DMM (triangle)
-            CS5OriginX = fC.trianglePonitCCDLocationsCS5[self.trianglePointLabel][0] + (rows*(pixelSize/1000))
-            CS5OriginY = fC.trianglePonitCCDLocationsCS5[self.trianglePointLabel][1] + (columns*(pixelSize/1000))
+            CS5OriginX = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + self.trianglePointLabel][0] + (rows*(pixelSize/1000))
+            CS5OriginY = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + self.trianglePointLabel][1] + (columns*(pixelSize/1000))
             faah.pageLogging(consoleLog, logFile, 
                     "To check SBIG STXL sensor origin location, move to CCD pixel location (" + str(self.pixelDistanceToCheckPoint) + "," + str(self.pixelDistanceToCheckPoint) + ")" + 
-                    ":\n CS5 (X = " + str(fC.trianglePonitCCDLocationsCS5[self.trianglePointLabel][0] + ((rows-self.pixelDistanceToCheckPoint)*(pixelSize/1000))) +
-                     "mm, Y = " + str(fC.trianglePonitCCDLocationsCS5[self.trianglePointLabel][1] + ((columns-self.pixelDistanceToCheckPoint)*(pixelSize/1000))) + "mm)")
-            faah.pageLogging(consoleLog, logFile, "At location CS5 (X = " + str(fC.trianglePonitCCDLocationsCS5[self.trianglePointLabel][0] + ((rows-self.pixelDistanceToCheckPoint)*(pixelSize/1000))) +
-                     "mm, Y = " + str(fC.trianglePonitCCDLocationsCS5[self.trianglePointLabel][1] + ((columns-self.pixelDistanceToCheckPoint)*(pixelSize/1000))) + "mm) you should be able to see " + 
+                    ":\n CS5 (X = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + self.trianglePointLabel][0] + ((rows-self.pixelDistanceToCheckPoint)*(pixelSize/1000))) +
+                     "mm, Y = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + self.trianglePointLabel][1] + ((columns-self.pixelDistanceToCheckPoint)*(pixelSize/1000))) + "mm)")
+            faah.pageLogging(consoleLog, logFile, "At location CS5 (X = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + self.trianglePointLabel][0] + ((rows-self.pixelDistanceToCheckPoint)*(pixelSize/1000))) +
+                     "mm, Y = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + self.trianglePointLabel][1] + ((columns-self.pixelDistanceToCheckPoint)*(pixelSize/1000))) + "mm) you should be able to see " + 
                     " the origin of the sensor using the SBIG ST-i. A pinhole projected onto the SBIG STXL at this point show show up in a SBIG STXL at pixel location " +
                     "( row = " + str(self.pixelDistanceToCheckPoint) + ", column = " + str(self.pixelDistanceToCheckPoint) + ")")
             
-        elif self.CCDSelection != '':
+        elif self.CCDSelection != '' and self.trianglePointLabel == '':
             #pinhole is at CCD center
             CS5OriginX = fC.CCDLocationsCS5[self.CCDSelection][0] + (rows*(pixelSize/1000))
             CS5OriginY = fC.CCDLocationsCS5[self.CCDSelection][1] + (columns*(pixelSize/1000))
