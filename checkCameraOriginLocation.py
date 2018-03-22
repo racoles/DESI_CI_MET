@@ -72,7 +72,8 @@ class checkCameraOriginLocation(object):
         ###########################################################################
         ###Calcuate the distance to the sensor origin using centroided image.
         ###########################################################################        
-        CS5OriginX, CS5OriginY = cF.distanceFromPinholeImagetoOrigin(xCenGMS+xOffset, yCenGMS+yOffset, consoleLog, logFile, pixelSize, CCDLabel = self.CCDSelection, triangleLabel = self.trianglePointLabel)
+        CS5OriginX, CS5OriginY = cF.distanceFromPinholeImagetoOrigin(xCenGMS+xOffset, yCenGMS+yOffset, consoleLog, logFile, 
+                                                                     pixelSize, CCDLabel = self.CCDSelection, triangleLabel = self.trianglePointLabel)
         
     def distanceFromPinholeImagetoOrigin(self, rows, columns, consoleLog, logFile, pixelSize, CCDLabel = '', triangleLabel = ''):
         '''
