@@ -260,6 +260,14 @@ class centroidFIF(object):
         faah.pageLogging(consoleLog, logFile, 
                     "Distance from pinhole center to sensor origin: " + str(hypotenuse) + "pixels or " + str(hypotenuse*pixelSize) + 'um')
         
+        ###########################################################################
+        ###Find location of Origin in CS5
+        ###########################################################################          
+        if isFIF == True and isCCD == False:
+        elif isFIF == False and isCCD == True:
+        else:
         
         
-        return CS5x, CS5y
+        
+        return CS5OriginX, CS5OriginY
+    
