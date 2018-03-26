@@ -29,6 +29,11 @@ BackFocus
     Ability to adjust the TTF to the desired value  with the micrometers  ~ 5 microns (not demonstrated yet)
 
     Therefore we should be able to meet the 50 micron Z spec for the CCDs
+    
+Sensor -> TTF Baseplate Distance:
+The sensor to TTF baseplate distance (according to the SolidWorks model):
+C: 86.88mm
+N,E,S,W: 104.512mm
 
 '''
 
