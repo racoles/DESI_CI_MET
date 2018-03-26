@@ -178,7 +178,7 @@ class focusCurve(object):
         py.title('Standard Deviation versus Distance')
         py.text(0, 0, 'Left Linear Fit: y = ' + str(mL) + ' x + ' + str(bL) + 
              '\n\nRight Linear Fit: y = ' + str(mR) + ' x + ' + str(bR) + 
-             '\n\nPolynomial Fit:\n        ' + str(f2) +
+             '\n\nPolynomial Fit:\n        y = ' + str(f2) +
              '\n\nPolynomial Fit Max Distance= ' + str(xSplitPoint)[0:3] + ' um\n', fontsize = 7, transform=ax2.transAxes)
         py.grid(True)
         ax2.annotate('Best Focus = ' + str(xInter)[0:5] + ' um', xy=(xInter, yInter), 
