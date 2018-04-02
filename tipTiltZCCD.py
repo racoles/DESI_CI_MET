@@ -75,8 +75,9 @@ class tipTiltZCCD(object):
             else: 
                 turnA = 'clockwise'
             #How many turns will it take to reach nominal height?
-            AturnDistance_um = np.absolute(AzDeltaTip*triangleAdjustmentRatio)/(TTFThread*1000) #X turns = needed height / micrometer pitch (height per one full turn). Convert mm to microns.
-            AturnDistanceDegrees = faah.decNonZeroRound(np.absolute(AturnDistance_um/((TTFThreadOD*1000)/360))) #to get number of degrees. 1 degree = fifThreadODMicrons/360 um. Convert mm to microns.
+            AturnDistance_rev = np.absolute(AzDeltaTip*triangleAdjustmentRatio)/(TTFThread*1000) #X turns = needed height / micrometer pitch (height per one full turn). Convert mm to microns.
+            #AturnDistanceDegrees = faah.decNonZeroRound(np.absolute(AturnDistance_um/((TTFThreadOD*1000)/360))) #to get number of degrees. 1 degree = fifThreadODMicrons/360 um. Convert mm to microns.
+            AturnDistanceDegrees = np.absolute(AturnDistance_rev/360)
             
         #If the B height isn't equal to the nominal height
         if BzDeltaTip or BzDeltaTilt != 0:
@@ -108,7 +109,7 @@ class tipTiltZCCD(object):
         self.distanceBetweenTrianglePoints(imageArray4DA, filelistA, imageArray4DB, filelistB, imageArray4DC, filelistC, consoleLog, logFile)
         
         faah.pageLogging(consoleLog, logFile, "The ratio between the virtual triangle on the sensor (A, B, C), and the\n large triangle (micrometer A, micrometer B, micrometer C):\n" +
-                         "Triangle Adjustment Ratio = (Distance between micrometers)/(Sensor triangle side length)*1000um\n Triangle Adjustment Ratio = " + format(micrometerDistance, '.3f') + 
+                         "Triangle Adjustment Ratio = (Distance between micrometers)/(Sensor triangle side length)*1000 um\n Triangle Adjustment Ratio = " + format(micrometerDistance, '.3f') + 
                          "mm / " + str(triangleSideLength) + "mm * 1000 = " + format(triangleAdjustmentRatio, '.3f') + "um\n")
         
         faah.pageLogging(consoleLog, logFile, 
@@ -116,11 +117,10 @@ class tipTiltZCCD(object):
                 str(TTFThread) + "mm (" + str(TTFThread*1000) + "um, 1/80 in)." + 
                 "\n        To adjust the camera to the nominal height, adjust the micrometers as:\n\n" + 
                 "        Micrometer A: " + 
-                "            A (turn micrometer distance um) = (AzDelta um * triangleAdjustmentRatio um)/(TTFThread*1000) um\n" +
-                "            A (turn micrometer distance um) = " + "(" + format(AzDeltaTip, '.2f') + "um * " + format(triangleAdjustmentRatio, '.2f') + "um) / (" + 
-                            format(TTFThread, '.2f') + " * 1000) = " + format(AturnDistance_um, '.2f') + "um\n" +
-                "            A (turn micrometer distance degrees) = A (turn micrometer distance um) / ((TTFThreadOD*1000)/360" + 
-                format(AturnDistanceDegrees, '.1f') + " degrees " + turnA + ", or " + format(AturnDistanceDegrees/7.2, '.1f') + " micrometer ticks.\n" +
+                "            A (turn micrometer revolutions) = (AzDelta um * triangleAdjustmentRatio um)/(TTFThread*1000) um\n" +
+                "                                            = " + "(" + format(AzDeltaTip, '.2f') + "um * " + format(triangleAdjustmentRatio, '.2f') + "um) / (" +  format(TTFThread, '.2f') + " * 1000) = " + format(AturnDistance_rev, '.2f') + " rev\n" +
+                "            A (turn micrometer degrees) = A (turn micrometer revolutions) / 360 = " + format(AturnDistanceDegrees, '.2f') + " degrees " + turnA + "\n"
+                "            A (turn micrometer ticks) = A (turn micrometer revolutions) / ticks_per_revolution = " + format(AturnDistance_rev, '.2f') + " / 50 = " + format(AturnDistance_rev/50, '.2f') + " ticks"
                 "        Micrometer B: " + format(BturnDistanceDegrees, '.1f') + " degrees " + turnB + ", or " + format(BturnDistanceDegrees/7.2, '.1f') + " micrometer ticks.\n" +
                 "        Micrometer C: " + format(CturnDistanceDegrees, '.1f') + " degrees " + turnC +  ", or " + format(CturnDistanceDegrees/7.2, '.1f') + " micrometer ticks.\n",
                 warning = True)
