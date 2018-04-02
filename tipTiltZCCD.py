@@ -109,7 +109,7 @@ class tipTiltZCCD(object):
         self.distanceBetweenTrianglePoints(imageArray4DA, filelistA, imageArray4DB, filelistB, imageArray4DC, filelistC, consoleLog, logFile)
         
         faah.pageLogging(consoleLog, logFile, "The ratio between the virtual triangle on the sensor (A, B, C), and the\n large triangle (micrometer A, micrometer B, micrometer C):\n" +
-                         "Triangle Adjustment Ratio=(Distance between micrometers)/(Sensor triangle side length)*1000um\n Triangle Adjustment Ratio = " + format(micrometerDistance, '.3f') + 
+                         "Triangle Adjustment Ratio=(Distance between micrometers)/(Sensor triangle side length)\n Triangle Adjustment Ratio = " + format(micrometerDistance, '.3f') + 
                          "mm / " + format(triangleSideLength, '.3f') + "mm = " + format(triangleAdjustmentRatio, '.3f') + "\n")
         
         faah.pageLogging(consoleLog, logFile, 
