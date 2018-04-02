@@ -28,7 +28,7 @@ class tipTiltZCCD(object):
         '''
     
     def findTipTiltZ(self, imageArray4DA, filelistA, imageArray4DB, filelistB, imageArray4DC, filelistC, 
-                     Az, Bz, Cz, Az_nominal, Bz_nominal, Cz_nominal, CCDLabel, triangleSideLength, micrometerDistance, consoleLog, logFile, TTFThread = 0.3175, TTFThreadOD = 6.35):
+                     Az, Bz, Cz, Az_nominal, Bz_nominal, Cz_nominal, CCDLabel, triangleSideLength, micrometerDistance, consoleLog, logFile, TTFThread = 0.3175):
         #TTFThread = 0.3175mm = 1/80 inch
         #TTFThreadOD = 6.35mm for a 1/4-80 screw
         
