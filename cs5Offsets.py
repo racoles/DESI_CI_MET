@@ -21,7 +21,7 @@ from alternateCentroidMethods import gmsCentroid
 
 class cs5Offsets(object):
     
-    #Pinhole Image Distnce To Sensor Origin Defaults
+    #Pinhole Image Distnce To Sensor Origin (0,0) Defaults
     PIDTSO_rows = 293.48
     PIDTSO_columns = 205.93
     

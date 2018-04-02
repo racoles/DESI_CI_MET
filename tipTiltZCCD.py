@@ -367,9 +367,9 @@ class tipTiltZCCD(object):
         #Log image that will be used for centroiding
         faah = fileAndArrayHandling()
         faah.pageLogging(consoleLog, logFile, 
-                         "Centroiding image for point A: " +  str(filelistA[aa]).replace('/', '\\') +
+                         "\nCentroiding image for point A: " +  str(filelistA[aa]).replace('/', '\\') +
                          "\nCentroiding image for point B: " +  str(filelistA[bb]).replace('/', '\\') +
-                         "\nCentroiding image for point C: " +  str(filelistA[cc]).replace('/', '\\'))
+                         "\nCentroiding image for point C: " +  str(filelistA[cc]).replace('/', '\\') + "\n")
         
         ###########################################################################
         ###Centroid images
@@ -411,7 +411,7 @@ class tipTiltZCCD(object):
         
         #Report Delta Distances
         faah.pageLogging(consoleLog, logFile, 
-                         "Triangle A-B-C Delta Distances (measured - nominal):"
+                         "\nTriangle A-B-C Delta Distances (measured - nominal):"
                          "\nA->B: " +  format(dab, '.3f') + " - " + format(nominalSideLength, '.3f') + " = " + format(dab-nominalSideLength, '.3f') + "um" +
                          "\nB->C: " +  format(dbc, '.3f') + " - " + format(nominalSideLength, '.3f') + " = " + format(dbc-nominalSideLength, '.3f') + "um" +
-                         "\nC->A: " +  format(dca, '.3f') + " - " + format(nominalSideLength, '.3f') + " = " + format(dca-nominalSideLength, '.3f') + "um")
+                         "\nC->A: " +  format(dca, '.3f') + " - " + format(nominalSideLength, '.3f') + " = " + format(dca-nominalSideLength, '.3f') + "um" + "\n")
