@@ -308,18 +308,18 @@ class metManualMode(tk.Tk):
         xInterA = fC.stdFocusCurve(self.CCDSelection, imageArray4DA, filelistA, pointLabel = "A")
         nominalZA = fC.asphericFocalCurve(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'A'][0], fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'A'][1])
         faah.pageLogging(self.consoleLog, self.logFile, 
-                                      str(self.CCDSelection) + " A (Best Focus):" + str(xInterA) + "um\n" + str(self.CCDSelection) + " A (Nominal Z):" + str(nominalZA) + "um")
+                                      str(self.CCDSelection) + " A (Best Focus):" + format(xInterA, '.3f') + "um\n" + str(self.CCDSelection) + " A (Nominal Z):" + format(nominalZA, '.3f') + "um")
 
         #B
         xInterB = fC.stdFocusCurve(self.CCDSelection, imageArray4DB, filelistB, pointLabel = "B")
         nominalZB = fC.asphericFocalCurve(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'B'][0], fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'B'][1])
         faah.pageLogging(self.consoleLog, self.logFile, 
-                                      str(self.CCDSelection) + " B (Best Focus):" + str(xInterB) + "um\n" + str(self.CCDSelection) + " B (Nominal Z):" + str(nominalZB) + "um") 
+                                      str(self.CCDSelection) + " B (Best Focus):" + format(xInterB, '.3f') + "um\n" + str(self.CCDSelection) + " B (Nominal Z):" + format(nominalZB, '.3f') + "um") 
         #C
         xInterC = fC.stdFocusCurve(self.CCDSelection, imageArray4DC, filelistC, pointLabel = "C")
         nominalZC = fC.asphericFocalCurve(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'C'][0], fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'C'][1])
         faah.pageLogging(self.consoleLog, self.logFile, 
-                                      str(self.CCDSelection) + " C (Best Focus):" + str(xInterC) + "um\n" + str(self.CCDSelection) + " C (Nominal Z):" + str(nominalZC) + "um")
+                                      str(self.CCDSelection) + " C (Best Focus):" + format(xInterC, '.3f') + "um\n" + str(self.CCDSelection) + " C (Nominal Z):" + format(nominalZC, '.3f') + "um")
         
         ###########################################################################
         ###Check Tip/Tilt/Focus/Rz
