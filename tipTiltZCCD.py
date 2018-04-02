@@ -110,19 +110,18 @@ class tipTiltZCCD(object):
         
         faah.pageLogging(consoleLog, logFile, "The ratio between the virtual triangle on the sensor (A, B, C), and the\n large triangle (micrometer A, micrometer B, micrometer C):\n" +
                          "Triangle Adjustment Ratio = (Distance between micrometers)/(Sensor triangle side length)*1000 um\n Triangle Adjustment Ratio = " + format(micrometerDistance, '.3f') + 
-                         "mm / " + format(triangleSideLength, '.3f') + "mm * 1000 = " + format(triangleAdjustmentRatio, '.3f') + "um\n")
+                         "mm / " + format(triangleSideLength, '.3f') + "mm = " + format(triangleAdjustmentRatio/1000, '.3f') + "mm = " + format(triangleAdjustmentRatio, '.3f') + "um\n")
         
         faah.pageLogging(consoleLog, logFile, 
-                "WARNING: the" + str(CCDLabel) +" camera Z heights are not equal to the nominal height.\n" + "        The current micrometer thread pitch is " +
-                str(TTFThread) + "mm (" + str(TTFThread*1000) + "um, 1/80 in)." + 
-                "\n        To adjust the camera to the nominal height, adjust the micrometers as:\n\n" + 
-                "        Micrometer A: " + 
-                "            A (turn micrometer revolutions) = (AzDelta um * triangleAdjustmentRatio um)/(TTFThread*1000) um\n" +
-                "                                            = " + "(" + format(AzDeltaTip, '.2f') + "um * " + format(triangleAdjustmentRatio, '.2f') + "um) / (" +  format(TTFThread, '.2f') + " * 1000) = " + format(AturnDistance_rev, '.2f') + " rev\n" +
-                "            A (turn micrometer degrees) = A (turn micrometer revolutions) / 360 = " + format(AturnDistanceDegrees, '.2f') + " degrees " + turnA + "\n"
-                "            A (turn micrometer ticks) = A (turn micrometer revolutions) / ticks_per_revolution = " + format(AturnDistance_rev, '.2f') + " / 50 = " + format(AturnDistance_rev/50, '.2f') + " ticks"
-                "        Micrometer B: " + format(BturnDistanceDegrees, '.1f') + " degrees " + turnB + ", or " + format(BturnDistanceDegrees/7.2, '.1f') + " micrometer ticks.\n" +
-                "        Micrometer C: " + format(CturnDistanceDegrees, '.1f') + " degrees " + turnC +  ", or " + format(CturnDistanceDegrees/7.2, '.1f') + " micrometer ticks.\n",
+                "WARNING: the" + str(CCDLabel) +" camera Z heights are not equal to the nominal height.\n" + "The current micrometer thread pitch is " + str(TTFThread) + "mm (" + str(TTFThread*1000) + "um, 1/80 in).\n" + 
+                "\nTo adjust the camera to the nominal height, adjust the micrometers as:\n\n" + 
+                "Micrometer A:\n " + 
+                "A(micrometer revolutions) = (AzDelta um * triangleAdjustmentRatio um)/(TTFThread*1000) um\n" +
+                "    = " + "(" + format(AzDeltaTip, '.2f') + "um * " + format(triangleAdjustmentRatio, '.2f') + "um) / (" +  format(TTFThread, '.4f') + " * 1000) = " + format(AturnDistance_rev, '.2f') + " rev\n" +
+                "A(degrees) = A(revolutions)/360 = " + format(AturnDistanceDegrees, '.2f') + " degrees " + turnA + "\n"
+                "A(ticks) = A(revolutions)/ticks_per_revolution = " + format(AturnDistance_rev, '.2f') + " / 50 = " + format(AturnDistance_rev/50, '.2f') + " ticks"
+                "\n\nMicrometer B: " + format(BturnDistanceDegrees, '.1f') + " degrees " + turnB + ", or " + format(BturnDistanceDegrees/7.2, '.1f') + " micrometer ticks.\n" +
+                "Micrometer C: " + format(CturnDistanceDegrees, '.1f') + " degrees " + turnC +  ", or " + format(CturnDistanceDegrees/7.2, '.1f') + " micrometer ticks.\n",
                 warning = True)
         
     def tipCCD(self, Az, Bz, Cz, Az_nominal, Bz_nominal, Cz_nominal, CCDLabel, consoleLog, logFile):
@@ -147,28 +146,28 @@ class tipTiltZCCD(object):
 
         faah.pageLogging(consoleLog, logFile, 
                                         "    Condition #1: A(Z)_measured = A(Z)_nominal\n" + 
-                                        "        A(Z)_measured = " + str(Az) + "um\n" + 
-                                        "        A(Z)_nominal = " + str(Az_nominal) + "um\n" )
+                                        "        A(Z)_measured = " + format(Az, '.3f') + "um\n" + 
+                                        "        A(Z)_nominal = " + format(Az_nominal, '.3f') + "um\n" )
         faah.pageLogging(consoleLog, logFile, 
                                         "    Condition #2: B(Z)_measured = C(Z)_measured = B(Z)_nominal = C(Z)_nominal\n" + 
-                                        "        B(Z)_measured = " + str(Bz) + "um\n" + 
-                                        "        B(Z)_nominal = " + str(Bz_nominal) + "um\n" +
-                                        "        C(Z)_measured = " + str(Cz) + "um\n" +     
-                                        "        C(Z)_nominal = " + str(Cz_nominal) + "um\n")  
+                                        "        B(Z)_measured = " + format(Bz, '.3f') + "um\n" + 
+                                        "        B(Z)_nominal = " + format(Bz_nominal, '.3f') + "um\n" +
+                                        "        C(Z)_measured = " + format(Cz, '.3f') + "um\n" +     
+                                        "        C(Z)_nominal = " + format(Cz_nominal, '.3f') + "um\n")  
         #N,W,S,E
         if CCDLabel == "NCCD" or CCDLabel == "WCCD" or CCDLabel == "SCCD" or CCDLabel == "ECCD": 
             faah.pageLogging(consoleLog, logFile, 
                                         "    Condition #3: A(Z)_measured > B(Z)_measured && C(Z)_measured\n" + 
-                                        "        A(Z)_measured = " + str(Az) + "um\n" + 
-                                        "        B(Z)_measured = " + str(Bz) + "um\n" + 
-                                        "        C(Z)_measured = " + str(Cz) + "um\n")
+                                        "        A(Z)_measured = " + format(Az, '.3f') + "um\n" + 
+                                        "        B(Z)_measured = " + format(Bz, '.3f') + "um\n" + 
+                                        "        C(Z)_measured = " + format(Cz, '.3f') + "um\n")
         #C
         if CCDLabel == "CCCD":
             faah.pageLogging(consoleLog, logFile, 
                                         "    Condition #3: [A(Z) = B(Z) = C(Z)]_measured  = [A(Z) = B(Z) = C(Z)]_nominal\n" + 
-                                        "        A(Z)_measured = " + str(Az) + "um\n" + 
-                                        "        B(Z)_measured = " + str(Bz) + "um\n" + 
-                                        "        C(Z)_measured = " + str(Cz) + "um\n")
+                                        "        A(Z)_measured = " + format(Az, '.3f') + "um\n" + 
+                                        "        B(Z)_measured = " + format(Bz, '.3f') + "um\n" + 
+                                        "        C(Z)_measured = " + format(Cz, '.3f') + "um\n")
         #Other
         if CCDLabel == "Other":
             faah.pageLogging(consoleLog, logFile, 
@@ -194,21 +193,21 @@ class tipTiltZCCD(object):
         if CCDLabel == "NCCD" or CCDLabel == "WCCD" or CCDLabel == "SCCD" or CCDLabel == "ECCD": 
                 faah.pageLogging(consoleLog, logFile, 
                                         "    Condition #1: A(Z)_measured = A(Z)_nominal\n" + 
-                                        "        A(Z)_measured = " + str(Az) + "um\n" + 
-                                        "        A(Z)_nominal = " + str(Az_nominal) + "um\n" )
+                                        "        A(Z)_measured = " + format(Az, '.3f') + "um\n" + 
+                                        "        A(Z)_nominal = " + format(Az_nominal, '.3f') + "um\n" )
                 faah.pageLogging(consoleLog, logFile, 
                                         "    Condition #2: B(Z)_measured = C(Z)_measured = B(Z)_nominal = C(Z)_nominal\n" + 
-                                        "        B(Z)_measured = " + str(Bz) + "um\n" + 
-                                        "        B(Z)_nominal = " + str(Bz_nominal) + "um\n" +
-                                        "        C(Z)_measured = " + str(Cz) + "um\n" +     
-                                        "        C(Z)_nominal = " + str(Cz_nominal) + "um\n") 
+                                        "        B(Z)_measured = " + format(Bz, '.3f') + "um\n" + 
+                                        "        B(Z)_nominal = " + format(Bz_nominal, '.3f') + "um\n" +
+                                        "        C(Z)_measured = " + format(Cz, '.3f') + "um\n" +     
+                                        "        C(Z)_nominal = " + format(Cz_nominal, '.3f') + "um\n") 
         #C
         if CCDLabel == "CCCD":
             faah.pageLogging(consoleLog, logFile, 
                                         "    Condition #3: [A(Z) = B(Z) = C(Z)]_measured  = [A(Z) = B(Z) = C(Z)]_nominal\n" + 
-                                        "        A(Z)_measured = " + str(Az) + "um\n" + 
-                                        "        B(Z)_measured = " + str(Bz) + "um\n" + 
-                                        "        C(Z)_measured = " + str(Cz) + "um\n")
+                                        "        A(Z)_measured = " + format(Az, '.3f') + "um\n" + 
+                                        "        B(Z)_measured = " + format(Bz, '.3f') + "um\n" + 
+                                        "        C(Z)_measured = " + format(Cz, '.3f') + "um\n")
         #Other
         if CCDLabel == "Other":
             faah.pageLogging(consoleLog, logFile, 
@@ -241,8 +240,8 @@ class tipTiltZCCD(object):
         #N,W,S,E,C,Other
         faah.pageLogging(consoleLog, logFile, 
                                         "Condition: Center(Z)_measured = Center(Z)_nominal\n" + 
-                                        "        Center(Z)_measured = " + str(zCenter_measured) + "um\n" + 
-                                        "        Center(Z)_nominal = " + str(zCenter_nominal) + "um\n" )
+                                        "        Center(Z)_measured = " + format(zCenter_measured, '.3f') + "um\n" + 
+                                        "        Center(Z)_nominal = " + format(zCenter_nominal, '.3f') + "um\n" )
 
         #Return deltas
         return zCenter_nominal-zCenter_measured
@@ -281,17 +280,17 @@ class tipTiltZCCD(object):
                 #BC Should be parallel to CS5X. CCDLabel sensor origin is [180 degrees - BC angle] degrees Rz about CS5X.                
                     angleRz = math.degrees(np.arcsin((ycenB-ycenC)/triangleSideLength))
                     faah.pageLogging(consoleLog, logFile, "Side BC Should be parallel to CS5X.\n" + 
-                                     "        " + CCDLabel + " Sensor origin is " + str(180-angleRz) + " degrees about CS5X." ) 
+                                     "        " + CCDLabel + " Sensor origin is " + format(180-angleRz, '.3f') + " degrees about CS5X." ) 
                 if ycenB < ycenC:
                 #calculate angle between B and C. Report in CS5 relative to +X: 180 degrees + BC angle
                 #BC Should be parallel to CS5X. CCDLabel sensor origin is [180 degrees + BC angle] degrees Rz about CS5X.
                     angleRz = math.degrees(np.arcsin((ycenC-ycenB)/triangleSideLength))
                     faah.pageLogging(consoleLog, logFile, "Side BC Should be parallel to CS5X.\n" + 
-                                     "        " + CCDLabel + " Sensor origin is " + str(180+angleRz) + " degrees about CS5X." )
+                                     "        " + CCDLabel + " Sensor origin is " + format(180+angleRz, '.3f') + " degrees about CS5X." )
             else:
                 angleRz = 180
                 faah.pageLogging(consoleLog, logFile, "Side BC Should be parallel to CS5X.\n" + 
-                                     "        " + CCDLabel + " Sensor origin is " + str(angleRz) + " degrees about CS5X.\n        Sensor is properly aligned in Rz" ) 
+                                     "        " + CCDLabel + " Sensor origin is " + format(angleRz, '.3f') + " degrees about CS5X.\n        Sensor is properly aligned in Rz" ) 
                     
         if CCDLabel == "SCCD" or CCDLabel == "CCCD":
             _, ycenB = cF.findCentroid(fifSubArrayB, int(subArrayBoxSizeB/2), int(subArrayBoxSizeB/2), extendbox = 3) 
@@ -302,17 +301,17 @@ class tipTiltZCCD(object):
                 #BC Should be parallel to CS5X. CCDLabel sensor origin is [360 degrees - BC angle] degrees Rz about CS5X.                 
                     angleRz = math.degrees(np.arcsin((ycenB-ycenC)/triangleSideLength))
                     faah.pageLogging(consoleLog, logFile, "Side BC Should be parallel to CS5X.\n" + 
-                                     "        " + CCDLabel + " Sensor origin is " + str(360-angleRz) + " degrees about CS5X." ) 
+                                     "        " + CCDLabel + " Sensor origin is " + format(360-angleRz, '.3f') + " degrees about CS5X." ) 
                 if ycenB < ycenC:
                 #calculate angle between B and C. Report in CS5 relative to +X: 0 degrees + BC angle.
                 #BC Should be parallel to CS5X. CCDLabel sensor origin is [0 degrees + BC angle] degrees Rz about CS5X.  
                     angleRz = math.degrees(np.arcsin((ycenC-ycenB)/triangleSideLength))
                     faah.pageLogging(consoleLog, logFile, "Side BC Should be parallel to CS5X.\n" + 
-                                     "        " + CCDLabel + " Sensor origin is " + str(angleRz) + " degrees about CS5X." ) 
+                                     "        " + CCDLabel + " Sensor origin is " + format(angleRz, '.3f') + " degrees about CS5X." ) 
             else:
                 angleRz = 0
                 faah.pageLogging(consoleLog, logFile, "Side BC Should be parallel to CS5X.\n" + 
-                                     "        " + CCDLabel + " Sensor origin is " + str(angleRz) + " degrees about CS5X.\n        Sensor is properly aligned in Rz" ) 
+                                     "        " + CCDLabel + " Sensor origin is " + format(angleRz, '.3f') + " degrees about CS5X.\n        Sensor is properly aligned in Rz" ) 
                 
         if CCDLabel == "ECCD":
             _, ycenB = cF.findCentroid(fifSubArrayB, int(subArrayBoxSizeB/2), int(subArrayBoxSizeB/2), extendbox = 3) 
@@ -323,17 +322,17 @@ class tipTiltZCCD(object):
                 #BC Should be parallel to CS5Y. CCDLabel sensor origin is [270 degrees - BC angle] degrees Rz about CS5X.                 
                     angleRz = math.degrees(np.arcsin((ycenB-ycenC)/triangleSideLength))
                     faah.pageLogging(consoleLog, logFile, "Side BC Should be parallel to CS5Y.\n" + 
-                                     "        " + CCDLabel + " Sensor origin is " + str(270-angleRz) + " degrees about CS5X." ) 
+                                     "        " + CCDLabel + " Sensor origin is " + format(270-angleRz, '.3f') + " degrees about CS5X." ) 
                 if ycenB < ycenC:               
                 #calculate angle between B and C. Report in CS5 relative to +X: 270 degrees + BC angle
                 #BC Should be parallel to CS5Y. CCDLabel sensor origin is [270 degrees + BC angle] degrees Rz about CS5X.           
                     angleRz = math.degrees(np.arcsin((ycenC-ycenB)/triangleSideLength)) 
                     faah.pageLogging(consoleLog, logFile, "Side BC Should be parallel to CS5Y.\n" + 
-                                     "        " + CCDLabel + " Sensor origin is " + str(270+angleRz) + " degrees about CS5X." )   
+                                     "        " + CCDLabel + " Sensor origin is " + format(270+angleRz, '.3f') + " degrees about CS5X." )   
             else:
                 angleRz = 270
                 faah.pageLogging(consoleLog, logFile, "Side BC Should be parallel to CS5Y.\n" + 
-                                     "        " + CCDLabel + " Sensor origin is " + str(angleRz) + " degrees about CS5X.\n        Sensor is properly aligned in Rz" )     
+                                     "        " + CCDLabel + " Sensor origin is " + format(angleRz, '.3f') + " degrees about CS5X.\n        Sensor is properly aligned in Rz" )     
                     
         if CCDLabel == "WCCD":        
             _, ycenB = cF.findCentroid(fifSubArrayB, int(subArrayBoxSizeB/2), int(subArrayBoxSizeB/2), extendbox = 3) 
@@ -344,17 +343,17 @@ class tipTiltZCCD(object):
                 #BC Should be parallel to CS5Y. CCDLabel sensor origin is [90 degrees - BC angle] degrees Rz about CS5X. 
                     angleRz = math.degrees(np.arcsin((ycenB-ycenC)/triangleSideLength))
                     faah.pageLogging(consoleLog, logFile, "Side BC Should be parallel to CS5Y.\n" + 
-                                     "        " + CCDLabel + "Sensor origin is " + str(90-angleRz) + " degrees about CS5X." ) 
+                                     "        " + CCDLabel + "Sensor origin is " + format(90-angleRz, '.3f') + " degrees about CS5X." ) 
                 if ycenB < ycenC:              
                 #calculate angle between B and C. Report in CS5 relative to +X: 90 degrees + BC angle  
                 #BC Should be parallel to CS5Y. CCDLabel sensor origin is [90 degrees + BC angle] degrees Rz about CS5X.           
                     angleRz = math.degrees(np.arcsin((ycenC-ycenB)/triangleSideLength)) 
                     faah.pageLogging(consoleLog, logFile, "Side BC Should be parallel to CS5Y.\n" + 
-                                     "        " + CCDLabel + "Sensor origin is " + str(90+angleRz) + " degrees about CS5X." ) 
+                                     "        " + CCDLabel + "Sensor origin is " + format(90+angleRz, '.3f') + " degrees about CS5X." ) 
             else:
                 angleRz = 90
                 faah.pageLogging(consoleLog, logFile, "Side BC Should be parallel to CS5Y.\n" + 
-                                     "        " + CCDLabel + "Sensor origin is " + str(angleRz) + " degrees about CS5X.\n        Sensor is properly aligned in Rz" )    
+                                     "        " + CCDLabel + "Sensor origin is " + format(angleRz, '.3f') + " degrees about CS5X.\n        Sensor is properly aligned in Rz" )    
         
         if CCDLabel == "Other":
                 faah.pageLogging(consoleLog, logFile, "Side BC Should be parallel to CS5Y.\n" + 
