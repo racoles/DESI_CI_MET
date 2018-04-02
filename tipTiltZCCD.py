@@ -28,7 +28,9 @@ class tipTiltZCCD(object):
         '''
     
     def findTipTiltZ(self, imageArray4DA, filelistA, imageArray4DB, filelistB, imageArray4DC, filelistC, 
-                     Az, Bz, Cz, Az_nominal, Bz_nominal, Cz_nominal, CCDLabel, triangleSideLength, micrometerDistance, consoleLog, logFile, TTFThread = 0.5, TTFThreadOD = 6):
+                     Az, Bz, Cz, Az_nominal, Bz_nominal, Cz_nominal, CCDLabel, triangleSideLength, micrometerDistance, consoleLog, logFile, TTFThread = 0.3175, TTFThreadOD = 6):
+        #TTFThread = 0.3175mm = 1/80 inch
+        
         ###########################################################################
         ###Get adjustment ratios
         ###########################################################################     
@@ -104,8 +106,12 @@ class tipTiltZCCD(object):
         
         self.distanceBetweenTrianglePoints(imageArray4DA, filelistA, imageArray4DB, filelistB, imageArray4DC, filelistC, consoleLog, logFile)
         
+        faah.pageLogging(consoleLog, logFile, "The ratio between the virtual triangle on the sensor (A, B, C), and the large triangle (micrometer A, micrometer B, micrometer C):\n" +
+                         "Triangle Adjustment Ratio = (Distance between micrometers)/(Sensor triangle side length)\n Triangle Adjustment Ratio = " + str(micrometerDistance) + "mm / " +
+                         str(triangleSideLength) + "mm = " + str(triangleAdjustmentRatio ) + "mm\n")
+        
         faah.pageLogging(consoleLog, logFile, 
-                "WARNING: the" + str(CCDLabel) +" camera Z height is not equal to the nominal height.\n" + "        The current micrometer thread pitch is " +
+                "WARNING: the" + str(CCDLabel) +" camera Z heights are not equal to the nominal height.\n" + "        The current micrometer thread pitch is " +
                 str(TTFThread) + "mm (" + str(TTFThread*1000) + "um), with a OD of " + str(TTFThreadOD) + "mm (" +  str(TTFThreadOD*1000) + "um)." + 
                 "\n        To adjust the camera to the nominal height, adjust the micrometers as:\n" + 
                 "        Micrometer A: " + format(AturnDistanceDegrees, '.1f') + " degrees " + turnA + ", or " + format(AturnDistanceDegrees/7.2, '.1f') + " micrometer ticks.\n" +
