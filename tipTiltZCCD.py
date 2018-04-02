@@ -110,7 +110,7 @@ class tipTiltZCCD(object):
         
         faah.pageLogging(consoleLog, logFile, "The ratio between the virtual triangle on the sensor (A, B, C), and the\n large triangle (micrometer A, micrometer B, micrometer C):\n" +
                          "Triangle Adjustment Ratio = (Distance between micrometers)/(Sensor triangle side length)*1000 um\n Triangle Adjustment Ratio = " + format(micrometerDistance, '.3f') + 
-                         "mm / " + str(triangleSideLength) + "mm * 1000 = " + format(triangleAdjustmentRatio, '.3f') + "um\n")
+                         "mm / " + format(triangleSideLength, '.3f') + "mm * 1000 = " + format(triangleAdjustmentRatio, '.3f') + "um\n")
         
         faah.pageLogging(consoleLog, logFile, 
                 "WARNING: the" + str(CCDLabel) +" camera Z heights are not equal to the nominal height.\n" + "        The current micrometer thread pitch is " +
