@@ -28,8 +28,9 @@ class tipTiltZCCD(object):
         '''
     
     def findTipTiltZ(self, imageArray4DA, filelistA, imageArray4DB, filelistB, imageArray4DC, filelistC, 
-                     Az, Bz, Cz, Az_nominal, Bz_nominal, Cz_nominal, CCDLabel, triangleSideLength, micrometerDistance, consoleLog, logFile, TTFThread = 0.3175, TTFThreadOD = 6):
+                     Az, Bz, Cz, Az_nominal, Bz_nominal, Cz_nominal, CCDLabel, triangleSideLength, micrometerDistance, consoleLog, logFile, TTFThread = 0.3175, TTFThreadOD = 6.35):
         #TTFThread = 0.3175mm = 1/80 inch
+        #TTFThreadOD = 6.35mm for a 1/4-80 screw
         
         ###########################################################################
         ###Get adjustment ratios
@@ -37,7 +38,7 @@ class tipTiltZCCD(object):
         #Since the triangle of micrometers is much larger than the small ABC
         #imaginary triangle that we create on the sensor surface, we need to
         #calculate how an adjustment to the micrometers affect the ABC heights. 
-        triangleAdjustmentRatio = micrometerDistance/triangleSideLength
+        triangleAdjustmentRatio = (micrometerDistance/triangleSideLength)*1000 #mm/mm *1000 = um
         
         ###########################################################################
         ###Get the tip/tilt/z deltas
@@ -58,9 +59,9 @@ class tipTiltZCCD(object):
         ###########################################################################
         ###Find Needed Micrometer Adjustments 
         ###########################################################################
-        AturnDistanceDegrees = 99999999
-        BturnDistanceDegrees = 99999999
-        CturnDistanceDegrees = 99999999
+        AturnDistanceDegrees = 999999999999
+        BturnDistanceDegrees = 999999999999
+        CturnDistanceDegrees = 999999999999
         turnA = "None"
         turnB = "None"
         turnC = "None"
@@ -106,15 +107,20 @@ class tipTiltZCCD(object):
         
         self.distanceBetweenTrianglePoints(imageArray4DA, filelistA, imageArray4DB, filelistB, imageArray4DC, filelistC, consoleLog, logFile)
         
-        faah.pageLogging(consoleLog, logFile, "The ratio between the virtual triangle on the sensor (A, B, C), and the large triangle (micrometer A, micrometer B, micrometer C):\n" +
-                         "Triangle Adjustment Ratio = (Distance between micrometers)/(Sensor triangle side length)\n Triangle Adjustment Ratio = " + str(micrometerDistance) + "mm / " +
-                         str(triangleSideLength) + "mm = " + str(triangleAdjustmentRatio ) + "mm\n")
+        faah.pageLogging(consoleLog, logFile, "The ratio between the virtual triangle on the sensor (A, B, C), and the\n large triangle (micrometer A, micrometer B, micrometer C):\n" +
+                         "Triangle Adjustment Ratio = (Distance between micrometers)/(Sensor triangle side length)*1000um\n Triangle Adjustment Ratio = " + format(micrometerDistance, '.3f') + 
+                         "mm / " + str(triangleSideLength) + "mm * 1000 = " + format(triangleAdjustmentRatio, '.3f') + "um\n")
         
         faah.pageLogging(consoleLog, logFile, 
                 "WARNING: the" + str(CCDLabel) +" camera Z heights are not equal to the nominal height.\n" + "        The current micrometer thread pitch is " +
-                str(TTFThread) + "mm (" + str(TTFThread*1000) + "um), with a OD of " + str(TTFThreadOD) + "mm (" +  str(TTFThreadOD*1000) + "um)." + 
-                "\n        To adjust the camera to the nominal height, adjust the micrometers as:\n" + 
-                "        Micrometer A: " + format(AturnDistanceDegrees, '.1f') + " degrees " + turnA + ", or " + format(AturnDistanceDegrees/7.2, '.1f') + " micrometer ticks.\n" +
+                str(TTFThread) + "mm (" + str(TTFThread*1000) + "um, 1/80 in)." + 
+                "\n        To adjust the camera to the nominal height, adjust the micrometers as:\n\n" + 
+                "        Micrometer A: " + 
+                "            A (turn micrometer distance um) = (AzDelta um * triangleAdjustmentRatio um)/(TTFThread*1000) um\n" +
+                "            A (turn micrometer distance um) = " + "(" + format(AzDeltaTip, '.2f') + "um * " + format(triangleAdjustmentRatio, '.2f') + "um) / (" + 
+                            format(TTFThread, '.2f') + " * 1000) = " + format(AturnDistance_um, '.2f') + "um\n" +
+                "            A (turn micrometer distance degrees) = A (turn micrometer distance um) / ((TTFThreadOD*1000)/360" + 
+                format(AturnDistanceDegrees, '.1f') + " degrees " + turnA + ", or " + format(AturnDistanceDegrees/7.2, '.1f') + " micrometer ticks.\n" +
                 "        Micrometer B: " + format(BturnDistanceDegrees, '.1f') + " degrees " + turnB + ", or " + format(BturnDistanceDegrees/7.2, '.1f') + " micrometer ticks.\n" +
                 "        Micrometer C: " + format(CturnDistanceDegrees, '.1f') + " degrees " + turnC +  ", or " + format(CturnDistanceDegrees/7.2, '.1f') + " micrometer ticks.\n",
                 warning = True)
