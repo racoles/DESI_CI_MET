@@ -147,16 +147,16 @@ class metManualMode(tk.Tk):
         fC = focusCurve()       
         xInter = fC.stdFocusCurve(self.CCDSelection, imageArray4D, filelist)
         faah.pageLogging(self.consoleLog, self.logFile, 
-                                      "CCD Manual Mode Measured Best focus for " + str(self.CCDSelection + ' ' + self.trianglePointSelection) + " is: " + str(xInter) + "um")
+                                      "CCD Manual Mode Measured Best focus for " + str(self.CCDSelection + ' ' + self.trianglePointSelection) + " is: " + format(xInter, '.3f') + "um")
         
         ###########################################################################
         ###Nominal best focus
         ###########################################################################
         nominalZ = fC.asphericFocalCurve(fC.CCDLocationsCS5[self.CCDSelection][0], fC.CCDLocationsCS5[self.CCDSelection][1])
         faah.pageLogging(self.consoleLog, self.logFile, 
-                                      "Nominal Z for " + str(self.CCDSelection + ' ' + self.trianglePointSelection) + " is: " + str(nominalZ) + "um in CS5 coordinates.")
+                                      "Nominal Z for " + str(self.CCDSelection + ' ' + self.trianglePointSelection) + " is: " + format(nominalZ, '.3f') + "um in CS5 coordinates.")
         faah.pageLogging(self.consoleLog, self.logFile, 
-                                      "CCD Manual Mode Absolute value of (Nominal Z - Measured Best Focus) = " +  str(np.absolute(nominalZ-xInter)) + 'um')
+                                      "CCD Manual Mode Absolute value of (Nominal Z - Measured Best Focus) = " +  format(np.absolute(nominalZ-xInter), '.3f') + 'um')
         
     def manualCentroidFIF(self, fiflabel):
         ###########################################################################
