@@ -42,7 +42,7 @@ class metManualMode(tk.Tk):
         '''
         Creates a focus curve for FIFs using FITs images.
         
-        Default FIF threading: fifThread = 0.5mm Z increase/decrease per turn.
+        Default FIF threading: fifThread = 0.5mm CS5Z increase/decrease per turn.
         '''
         ###########################################################################
         ###FIF Orientation Diagram
@@ -433,15 +433,21 @@ class metManualMode(tk.Tk):
         tk.Label(top, text="Which FIF would you like to measure?").grid(row=0, column=0, columnspan=2, sticky='W')
         
         # RefFIF 
-        refFIF = tk.Button(top, text="RefFIF: (" + str(fC.fifLocationsCS5["RefFIF"][0]) + ", " + str(fC.fifLocationsCS5["RefFIF"][1]) + ")", command=lambda: self._setTrueAndExit(top, fifLabel="RefFIF"))
+        refFIF = tk.Button(top, text="RefFIF: (" + str(fC.fifLocationsCS5["RefFIF"][0]) + ", " + str(fC.fifLocationsCS5["RefFIF"][1]) +  ", "+ 
+                           format(fC.asphericFocalCurve(fC.fifLocationsCS5["RefFIF"][0], fC.fifLocationsCS5["RefFIF"][1])/1000, '.3f') + ")", 
+                           command=lambda: self._setTrueAndExit(top, fifLabel="RefFIF"))
         refFIF.grid(row=1, column=0, sticky='W')
         
         # NFIF
-        NFIF = tk.Button(top, text="NFIF: (" + str(fC.fifLocationsCS5["NFIF"][0]) + ", " + str(fC.fifLocationsCS5["NFIF"][1]) + ")", command=lambda: self._setTrueAndExit(top, fifLabel="NFIF"))
+        NFIF = tk.Button(top, text="NFIF: (" + str(fC.fifLocationsCS5["NFIF"][0]) + ", " + str(fC.fifLocationsCS5["NFIF"][1]) +  ", "+ 
+                         format(fC.asphericFocalCurve(fC.fifLocationsCS5["NFIF"][0], fC.fifLocationsCS5["NFIF"][1])/1000, '.3f') + ")", 
+                         command=lambda: self._setTrueAndExit(top, fifLabel="NFIF"))
         NFIF.grid(row=2, column=0, sticky='W')
         
         # WFIF
-        WFIF = tk.Button(top, text="WFIF: (" + str(fC.fifLocationsCS5["WFIF"][0]) + ", " + str(fC.fifLocationsCS5["WFIF"][1]) + ")", command=lambda: self._setTrueAndExit(top, fifLabel="WFIF"))
+        WFIF = tk.Button(top, text="WFIF: (" + str(fC.fifLocationsCS5["WFIF"][0]) + ", " + str(fC.fifLocationsCS5["WFIF"][1]) +  ", "+ 
+                         format(fC.asphericFocalCurve(fC.fifLocationsCS5["WFIF"][0], fC.fifLocationsCS5["WFIF"][1])/1000, '.3f')+ ")", 
+                         command=lambda: self._setTrueAndExit(top, fifLabel="WFIF"))
         WFIF.grid(row=2, column=1, sticky='W')
         
         # SFIF
