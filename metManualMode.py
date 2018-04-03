@@ -87,7 +87,7 @@ class metManualMode(tk.Tk):
         ###########################################################################
         nominalZ = fC.asphericFocalCurve(fC.fifLocationsCS5[self.fifSelection][0], fC.fifLocationsCS5[self.fifSelection][1])
         faah.pageLogging(self.consoleLog, self.logFile, 
-                                    "FIF Manual Mode Measured Best focus for " + str(self.fifSelection) + " is: " + format(xInter, '.3f') + "um.\n"
+                                    "FIF Manual Mode Measured Best focus for " + str(self.fifSelection) + " is: " + format(xInter, '.3f') + "um away from approximated (by eye) best focus position.\n"
                                     "Nominal Z for " + str(self.fifSelection) + " is: " + format(nominalZ, '.3f') + "um (in CS5 coordinates).")
         
         ###########################################################################
@@ -101,17 +101,15 @@ class metManualMode(tk.Tk):
             else: 
                 turn = 'clockwise'
             #How many turns will it take to reach nominal height?
-############
             turnDistance_rev = np.absolute(xInter)/(fifThread*1000) #X turns = needed height / fif pitch (height per one full turn). Convert mm to microns.
             turnDistanceDegrees = np.absolute(turnDistance_rev*360) #to get number of degrees. 1 degree = fifThreadODMicrons/360 um. Convert mm to microns.
 
             #Issue warning
             faah.pageLogging(self.consoleLog, self.logFile, 
-                                      "WARNING: the FIF Z height is " + format(xInter, '.3f')+ "um away from nominal.\n The current FIF thread pitch is " +
+                                      "WARNING: the FIF Z height is " + format(xInter, '.3f') + "um away from best focus based on the generated focus curve.\n The current FIF thread pitch is " +
                                       str(fifThread) + "mm (" + str(fifThread*1000) + "um), with a OD of " + str(fifThreadOD) + "mm (" +  str(fifThreadOD*1000) + "um)." + 
-                                      "\n To adjust this FIF to the nominal height, you will need to turn the FIF:\n " + 
-                                      + format(turnDistance_rev, '.3f') + " rev " + turn + " \n" + 
-                                      "or, " + format(turnDistanceDegrees, '.3f') + " degrees " + turn, warning = True)
+                                      "\n To adjust this FIF by " + format(xInter, '.3f') + "um, you will need to turn the FIF:\n " + 
+                                      format(turnDistance_rev, '.3f') + " rev " + turn + " " + "or, " + format(turnDistanceDegrees, '.3f') + " degrees " + turn, warning = True)
         
         
         
