@@ -68,16 +68,10 @@ class CCDOpsPlanetMode(object):
         if calibration == True:
             faah.pageLogging(consoleLog, logFile, 
                              "CCDOps Planet Mode Offsets; (x,y) position of upper-left pixel relative to whole frame: (" 
-                             + str(xOffset) + "," + str(yOffset) + ")", calibration = True)
-            
-            faah.pageLogging(consoleLog, logFile, 
-                    "Camera Pixel Size: " + str(pixelSize), calibration = True)
+                             + str(xOffset) + "," + str(yOffset) + "). Camera Pixel Size: " + str(pixelSize), calibration = True)
         else:
             faah.pageLogging(consoleLog, logFile, 
                              "CCDOps Planet Mode Offsets; (x,y) position of upper-left pixel relative to whole frame: (" 
-                             + str(xOffset) + "," + str(yOffset) + ")")
-            
-            faah.pageLogging(consoleLog, logFile, 
-                    "Camera Pixel Size: " + str(pixelSize))            
+                             + str(xOffset) + "," + str(yOffset) + "). Camera Pixel Size: " + str(pixelSize))          
             
         return xOffset, yOffset, pixelSize
