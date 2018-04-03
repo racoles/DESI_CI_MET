@@ -20,7 +20,6 @@ import numpy as np
 from tipTiltZCCD import tipTiltZCCD
 from CCDOpsPlanetMode import CCDOpsPlanetMode
 from centroidFIF import centroidFIF
-from fractions import Fraction
 ################################################################################################
 
 class metManualMode(tk.Tk):
