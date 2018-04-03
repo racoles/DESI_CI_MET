@@ -451,7 +451,9 @@ class metManualMode(tk.Tk):
         WFIF.grid(row=2, column=1, sticky='W')
         
         # SFIF
-        SFIF = tk.Button(top, text="SFIF: (" + str(fC.fifLocationsCS5["SFIF"][0]) + ", " + str(fC.fifLocationsCS5["SFIF"][1]) + ")", command=lambda: self._setTrueAndExit(top, fifLabel="SFIF"))
+        SFIF = tk.Button(top, text="SFIF: (" + str(fC.fifLocationsCS5["SFIF"][0]) + ", " + str(fC.fifLocationsCS5["SFIF"][1])  +  ", "+ 
+                         format(fC.asphericFocalCurve(fC.fifLocationsCS5["SFIF"][0], fC.fifLocationsCS5["SFIF"][1])/1000, '.3f')+ ")",
+                          command=lambda: self._setTrueAndExit(top, fifLabel="SFIF"))
         SFIF.grid(row=2, column=2, sticky='W')
         
         # EFIF
