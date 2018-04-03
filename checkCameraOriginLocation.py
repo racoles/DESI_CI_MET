@@ -26,7 +26,7 @@ class checkCameraOriginLocation(object):
     CCDSelection = ""
     trianglePointLabel = ""
     #Pixel distance to origin check point
-    pixelDistanceToCheckPoint = 10 #pixel location (rows = pixelDistanceToCheckPoint, columns = pixelDistanceToCheckPoint)
+    pixelDistanceToCheckPoint = 20 #pixel location (rows = pixelDistanceToCheckPoint, columns = pixelDistanceToCheckPoint)
     
     def __init__(self):
         '''
