@@ -1,7 +1,7 @@
 '''
 @title metManualMode
 @author: Rebecca Coles
-Updated on Mar 06, 2018
+Updated on Apr 03, 2018
 Created on Jan 18, 2018
 
 metManualMode
@@ -21,7 +21,6 @@ from tipTiltZCCD import tipTiltZCCD
 from CCDOpsPlanetMode import CCDOpsPlanetMode
 from centroidFIF import centroidFIF
 from fractions import Fraction
-from decimal import *
 ################################################################################################
 
 class metManualMode(tk.Tk):
