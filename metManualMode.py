@@ -101,14 +101,17 @@ class metManualMode(tk.Tk):
             else: 
                 turn = 'clockwise'
             #How many turns will it take to reach nominal height?
-            turnDistance_um = np.absolute(xInter)/(fifThread*1000) #X turns = needed height / fif pitch (height per one full turn). Convert mm to microns.
-            turnDistanceDegrees = faah.decNonZeroRound(np.absolute(turnDistance_um/((fifThreadOD*1000)/360))) #to get number of degrees. 1 degree = fifThreadODMicrons/360 um. Convert mm to microns.
+############
+            turnDistance_rev = np.absolute(xInter)/(fifThread*1000) #X turns = needed height / fif pitch (height per one full turn). Convert mm to microns.
+            turnDistanceDegrees = np.absolute(turnDistance_rev*360) #to get number of degrees. 1 degree = fifThreadODMicrons/360 um. Convert mm to microns.
 
             #Issue warning
             faah.pageLogging(self.consoleLog, self.logFile, 
                                       "WARNING: the FIF Z height is " + format(xInter, '.3f')+ "um away from nominal.\n The current FIF thread pitch is " +
                                       str(fifThread) + "mm (" + str(fifThread*1000) + "um), with a OD of " + str(fifThreadOD) + "mm (" +  str(fifThreadOD*1000) + "um)." + 
-                                      "\n To adjust this FIF to the nominal height, you will need to turn the FIF\n " + format(turnDistanceDegrees, '.3f') + " degrees " + turn, warning = True)
+                                      "\n To adjust this FIF to the nominal height, you will need to turn the FIF:\n " + 
+                                      + format(turnDistance_rev, '.3f') + " rev " + turn + " \n" + 
+                                      "or, " + format(turnDistanceDegrees, '.3f') + " degrees " + turn, warning = True)
         
         
         
