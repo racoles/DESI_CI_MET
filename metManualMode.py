@@ -266,10 +266,15 @@ class metManualMode(tk.Tk):
         ###########################################################################
         ###Windows to Prompt Focus Curve Image Loading
         ###########################################################################  
+        #Get nominal Z
+        nominalZA = fC.asphericFocalCurve(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'A'][0], fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'A'][1])
+        nominalZB = fC.asphericFocalCurve(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'B'][0], fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'B'][1])
+        nominalZC = fC.asphericFocalCurve(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'C'][0], fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'C'][1])
+        
         #Point A      
         topA = tk.Toplevel()
         topA.title("CCD tip/tilt/Z Triangle Point A")
-        aboutMessageA = 'Fill directory with focus curve images for point A' + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'A'])
+        aboutMessageA = 'Fill directory with focus curve images for point A' + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'A'], '.3f') + "\nZ = " + format(nominalZA, '.3f')
         msgA = tk.Message(topA, text=aboutMessageA)
         msgA.pack()
         buttonA = tk.Button(topA, text="Ready", command=topA.destroy)
@@ -280,7 +285,7 @@ class metManualMode(tk.Tk):
         #Point B      
         topB = tk.Toplevel()
         topB.title("CCD tip/tilt/Z Triangle Point B")
-        aboutMessageB = 'Fill directory with focus curve images for point B' + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'B'])
+        aboutMessageB = 'Fill directory with focus curve images for point B' + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'B'], '.3f') + "\nZ = " + format(nominalZB, '.3f')
         msgB = tk.Message(topB, text=aboutMessageB)
         msgB.pack()
         buttonB = tk.Button(topB, text="Ready", command=topB.destroy)
@@ -291,7 +296,7 @@ class metManualMode(tk.Tk):
         #Point C      
         topC = tk.Toplevel()
         topC.title("CCD tip/tilt/Z Triangle Point C")
-        aboutMessageC = 'Fill directory with focus curve images for point C' + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'C'])
+        aboutMessageC = 'Fill directory with focus curve images for point C' + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'C'], '.3f') + "\nZ = " + format(nominalZC, '.3f')
         msgC = tk.Message(topC, text=aboutMessageC)
         msgC.pack()
         buttonC = tk.Button(topC, text="Ready", command=topC.destroy)
@@ -306,18 +311,15 @@ class metManualMode(tk.Tk):
                                       "Z VALUES FOR " + str(self.CCDSelection) + " POINTS A, B, and C:")
         #A    
         xInterA = fC.stdFocusCurve(self.CCDSelection, imageArray4DA, filelistA, pointLabel = "A")
-        nominalZA = fC.asphericFocalCurve(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'A'][0], fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'A'][1])
         faah.pageLogging(self.consoleLog, self.logFile, 
                                       str(self.CCDSelection) + " A (Best Focus):" + format(xInterA, '.3f') + "um\n" + str(self.CCDSelection) + " A (Nominal Z):" + format(nominalZA, '.3f') + "um")
 
         #B
         xInterB = fC.stdFocusCurve(self.CCDSelection, imageArray4DB, filelistB, pointLabel = "B")
-        nominalZB = fC.asphericFocalCurve(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'B'][0], fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'B'][1])
         faah.pageLogging(self.consoleLog, self.logFile, 
                                       str(self.CCDSelection) + " B (Best Focus):" + format(xInterB, '.3f') + "um\n" + str(self.CCDSelection) + " B (Nominal Z):" + format(nominalZB, '.3f') + "um") 
         #C
         xInterC = fC.stdFocusCurve(self.CCDSelection, imageArray4DC, filelistC, pointLabel = "C")
-        nominalZC = fC.asphericFocalCurve(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'C'][0], fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'C'][1])
         faah.pageLogging(self.consoleLog, self.logFile, 
                                       str(self.CCDSelection) + " C (Best Focus):" + format(xInterC, '.3f') + "um\n" + str(self.CCDSelection) + " C (Nominal Z):" + format(nominalZC, '.3f') + "um")
         
