@@ -275,7 +275,7 @@ class metManualMode(tk.Tk):
         #Point A      
         topA = tk.Toplevel()
         topA.title("CCD tip/tilt/Z Triangle Point A")
-        aboutMessageA = str('Fill directory with focus curve images for point A (' + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'A'][0], '.3f') + 
+        aboutMessageA = str('Fill directory with images for point A (' + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'A'][0], '.3f') + 
                             " ," + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'A'][1], '.3f') + " ," + format(nominalZA, '.3f') + ")")
         faah.pageLogging(self.consoleLog, self.logFile, aboutMessageA)
         msgA = tk.Message(topA, text=aboutMessageA)
@@ -288,7 +288,7 @@ class metManualMode(tk.Tk):
         #Point B      
         topB = tk.Toplevel()
         topB.title("CCD tip/tilt/Z Triangle Point B")
-        aboutMessageB = str('Fill directory with focus curve images for point B (' + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'B'][0], '.3f') + 
+        aboutMessageB = str('Fill directory with images for point B (' + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'B'][0], '.3f') + 
                             " ," + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'B'][1], '.3f') + " ," + format(nominalZB, '.3f') + ")")
         faah.pageLogging(self.consoleLog, self.logFile, aboutMessageB)
         msgB = tk.Message(topB, text=aboutMessageB)
@@ -301,7 +301,7 @@ class metManualMode(tk.Tk):
         #Point C      
         topC = tk.Toplevel()
         topC.title("CCD tip/tilt/Z Triangle Point C")
-        aboutMessageC = str('Fill directory with focus curve images for point C (' + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'C'][0], '.3f') + 
+        aboutMessageC = str('Fill directory with images for point C (' + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'C'][0], '.3f') + 
                             " ," + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'C'][1], '.3f') + " ," + format(nominalZC, '.3f') + ")")
         faah.pageLogging(self.consoleLog, self.logFile, aboutMessageC)
         msgC = tk.Message(topC, text=aboutMessageC)
