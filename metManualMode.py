@@ -21,6 +21,7 @@ from tipTiltZCCD import tipTiltZCCD
 from CCDOpsPlanetMode import CCDOpsPlanetMode
 from centroidFIF import centroidFIF
 from fractions import Fraction
+from decimal import *
 ################################################################################################
 
 class metManualMode(tk.Tk):
@@ -274,7 +275,8 @@ class metManualMode(tk.Tk):
         #Point A      
         topA = tk.Toplevel()
         topA.title("CCD tip/tilt/Z Triangle Point A")
-        aboutMessageA = 'Fill directory with focus curve images for point A' + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'A'], '.3f') + "\nZ = " + format(nominalZA, '.3f')
+        aboutMessageA = str('Fill directory with focus curve images for point A (' + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'A'][0], '.3f') + 
+                            " ," + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'A'][1], '.3f') + " ," + format(nominalZA, '.3f') + ")")
         faah.pageLogging(self.consoleLog, self.logFile, aboutMessageA)
         msgA = tk.Message(topA, text=aboutMessageA)
         msgA.pack()
@@ -286,7 +288,8 @@ class metManualMode(tk.Tk):
         #Point B      
         topB = tk.Toplevel()
         topB.title("CCD tip/tilt/Z Triangle Point B")
-        aboutMessageB = 'Fill directory with focus curve images for point B' + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'B'], '.3f') + "\nZ = " + format(nominalZB, '.3f')
+        aboutMessageB = str('Fill directory with focus curve images for point B (' + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'B'][0], '.3f') + 
+                            " ," + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'B'][1], '.3f') + " ," + format(nominalZB, '.3f') + ")")
         faah.pageLogging(self.consoleLog, self.logFile, aboutMessageB)
         msgB = tk.Message(topB, text=aboutMessageB)
         msgB.pack()
@@ -298,7 +301,8 @@ class metManualMode(tk.Tk):
         #Point C      
         topC = tk.Toplevel()
         topC.title("CCD tip/tilt/Z Triangle Point C")
-        aboutMessageC = 'Fill directory with focus curve images for point C' + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'C'], '.3f') + "\nZ = " + format(nominalZC, '.3f')
+        aboutMessageC = str('Fill directory with focus curve images for point C (' + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'C'][0], '.3f') + 
+                            " ," + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'C'][1], '.3f') + " ," + format(nominalZC, '.3f') + ")")
         faah.pageLogging(self.consoleLog, self.logFile, aboutMessageC)
         msgC = tk.Message(topC, text=aboutMessageC)
         msgC.pack()
