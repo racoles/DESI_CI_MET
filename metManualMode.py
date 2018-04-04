@@ -109,7 +109,7 @@ class metManualMode(tk.Tk):
                                       "WARNING: the FIF Z height is " + format(xInter, '.3f') + "um away from best focus based on the generated focus curve.\n The current FIF thread pitch is " +
                                       str(fifThread) + "mm (" + str(fifThread*1000) + "um), with a OD of " + str(fifThreadOD) + "mm (" +  str(fifThreadOD*1000) + "um)." + 
                                       "\n To adjust this FIF by " + format(xInter, '.3f') + "um, you will need to turn the FIF:\n " + 
-                                      format(turnDistance_rev, '.3f') + " rev " + turn + " " + "or, " + format(turnDistanceDegrees, '.3f') + " degrees " + turn, warning = True)
+                                      format(turnDistance_rev, '.3f') + " rev " + turn + " " + ", or " + format(turnDistanceDegrees, '.3f') + " degrees " + turn, warning = True)
         
         
         
@@ -331,7 +331,7 @@ class metManualMode(tk.Tk):
         ###########################################################################
         ttz = tipTiltZCCD()
         ttz.findTipTiltZ(imageArray4DA, filelistA, imageArray4DB, filelistB, imageArray4DC, filelistC, 
-                         xInterA, xInterB, xInterC, nominalZA, nominalZB, nominalZC, self.CCDSelection, fC.tccs, fC.micrometerDistance, self.consoleLog, self.logFile)
+                         xInterA, xInterB, xInterC, nominalZA, nominalZB, nominalZC, self.CCDSelection, self.consoleLog, self.logFile)
         
         
     def _setTrueAndExit(self, windowVariable, fifLabel=" ", CCDLabel=" ", trianglePointLabel=" "):

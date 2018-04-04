@@ -28,7 +28,7 @@ class tipTiltZCCD(object):
         '''
     
     def findTipTiltZ(self, imageArray4DA, filelistA, imageArray4DB, filelistB, imageArray4DC, filelistC, 
-                     Az, Bz, Cz, Az_nominal, Bz_nominal, Cz_nominal, CCDLabel, triangleSideLength, micrometerDistance, consoleLog, logFile, TTFThread = 0.3175):
+                     Az, Bz, Cz, Az_nominal, Bz_nominal, Cz_nominal, CCDLabel, consoleLog, logFile, TTFThread = 0.3175):
         #TTFThread = 0.3175mm = 1/80 inch
         #TTFThreadOD = 6.35mm for a 1/4-80 screw
         
@@ -37,8 +37,12 @@ class tipTiltZCCD(object):
         ###########################################################################     
         #Since the triangle of micrometers is much larger than the small ABC
         #imaginary triangle that we create on the sensor surface, we need to
-        #calculate how an adjustment to the micrometers affect the ABC heights. 
-        triangleAdjustmentRatio = (micrometerDistance/triangleSideLength) #mm/mm
+        #calculate how an adjustment to the micrometers affect the ABC heights.
+        fC = focusCurve()
+        triangleRadius = fC.tccr
+        distanceMicrometerBallToCenter = 127.158 #mm
+        #Single revolution of a micrometer moves the smaller triangle by smallTriangleAdjustmentPerRevolution
+        smallTriangleAdjustmentPerRevolution = (triangleRadius*TTFThread)/distanceMicrometerBallToCenter
         
         ###########################################################################
         ###Get the tip/tilt/z deltas
@@ -54,7 +58,7 @@ class tipTiltZCCD(object):
         #Z
         CenterDeltaZ = self.ZCCD(Az, Bz, Cz, CCDLabel, consoleLog, logFile)
         #Rz
-        angleRz = self.rz(imageArray4DB[bb], imageArray4DC[cc], CCDLabel, triangleSideLength, consoleLog, logFile)
+        angleRz = self.rz(imageArray4DB[bb], imageArray4DC[cc], CCDLabel, consoleLog, logFile)
 
         ###########################################################################
         ###Find Needed Micrometer Adjustments 
@@ -254,7 +258,7 @@ class tipTiltZCCD(object):
         #Return deltas
         return zCenter_nominal-zCenter_measured
     
-    def rz(self, imageB, imageC, CCDLabel, triangleSideLength, consoleLog, logFile):
+    def rz(self, imageB, imageC, CCDLabel, consoleLog, logFile):
         '''
         Camera Rz (angle) 
         
@@ -263,7 +267,9 @@ class tipTiltZCCD(object):
         For East and West Cameras:
             B(y) = C(y)
         '''             
-
+        fC = focusCurve()
+        triangleSideLength = fC.tccs
+        
         #Centroid images
         cF = centroidFIF()
         fifSubArrayB, subArrayBoxSizeB, _  = cF.findFIFInImage(imageB)
