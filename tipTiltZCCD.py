@@ -1,7 +1,7 @@
 '''
 @title tipTiltZCCD
 @author: Rebecca Coles
-Updated on Apr 03, 2018
+Updated on Apr 04, 2018
 Created on Jan 18, 2018
 
 tipTiltZCCD
@@ -41,15 +41,17 @@ class tipTiltZCCD(object):
         fC = focusCurve()
         triangleRadius = fC.tccr
         distanceMicrometerBallToCenter = 127.158 #mm
-        #Single revolution of a micrometer moves the smaller triangle by smallTriangleAdjustmentPerRevolution
-        smallTriangleAdjustmentPerRevolution = (triangleRadius*TTFThread)/distanceMicrometerBallToCenter
+        #Single revolution of a micrometer moves the smaller triangle by smallTriangleAdjustmentPerRevolution um in Z
+        smallTriangleZUMAdjustmentPerRevolution = ((triangleRadius*TTFThread)/distanceMicrometerBallToCenter)*1000 #um
+        #Z height of small triangle point per tick on micrometer
+        smallTriangleZUMPerTick = smallTriangleZUMAdjustmentPerRevolution/50 #50 ticks on micrometer
         
         ###########################################################################
         ###Get the tip/tilt/z deltas
         ###########################################################################   
         #Point B
         bb = round(len(filelistB)/2) #select a focused image from array 
-        #Point B
+        #Point C
         cc = round(len(filelistC)/2) #select a focused image from array 
         #Tip
         AzDeltaTip, BzDeltaTip, CzDeltaTip = self.tipCCD(Az, Bz, Cz, Az_nominal, Bz_nominal, Cz_nominal, CCDLabel, consoleLog, logFile)
