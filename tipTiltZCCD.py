@@ -36,11 +36,11 @@ class tipTiltZCCD(object):
         ###Get the tip/tilt/z deltas
         ###########################################################################   
         #Tip
-        self.tipCCD(Az, Bz, Cz, Az_nominal, Bz_nominal, Cz_nominal)
+        self.tipCCD(Az, Bz, Cz, Az_nominal, Bz_nominal, Cz_nominal,  CCDLabel, consoleLog, logFile)
         #Tilt
-        self.tiltCCD(Az, Bz, Cz, Az_nominal, Bz_nominal, Cz_nominal)
+        self.tiltCCD(Az, Bz, Cz, Az_nominal, Bz_nominal, Cz_nominal,  CCDLabel, consoleLog, logFile)
         #Z
-        self.ZCCD(Az, Bz, Cz, Az_nominal, Bz_nominal, Cz_nominal)
+        self.ZCCD(Az, Bz, Cz, Az_nominal, Bz_nominal, Cz_nominal,  CCDLabel, consoleLog, logFile)
         
         ###########################################################################
         ###Get adjustment ratio
@@ -48,7 +48,8 @@ class tipTiltZCCD(object):
         #Since the triangle of micrometers is much larger than the small ABC
         #imaginary triangle that we create on the sensor surface, we need to
         #calculate how an adjustment to the micrometers affect the ABC heights.
-        triangleAdjustmentRatio = self.micrometerDistance/self.tccs
+        fC = focusCurve()
+        triangleAdjustmentRatio = fC.micrometerDistance/fC.tccs
         
         #Rz
         bb = round(len(filelistB)/2) #select a focused image from array b
@@ -116,10 +117,10 @@ class tipTiltZCCD(object):
         self.distanceBetweenTrianglePoints(imageArray4DA, filelistA, imageArray4DB, filelistB, imageArray4DC, filelistC, consoleLog, logFile)
         
         faah.pageLogging(consoleLog, logFile,"The ratio between the virtual triangle on the sensor (A, B, C), and the\n large triangle (micrometer A, micrometer B, micrometer C):\n" +
-                         " Triangle Adjustment Ratio=(Distance between micrometers)/(Sensor triangle side length)\n Triangle Adjustment Ratio = " + format(self.micrometerDistance, '.3f') + 
-                         "mm / " + format(self.tccs, '.3f') + "mm = " + format(triangleAdjustmentRatio, '.3f') + "\n")
+                         " Triangle Adjustment Ratio=(Distance between micrometers)/(Sensor triangle side length)\n Triangle Adjustment Ratio = " + format(fC.micrometerDistance, '.3f') + 
+                         "mm / " + format(fC.tccs, '.3f') + "mm = " + format(triangleAdjustmentRatio, '.3f') + "\n")
         
-        faah.pageLogging(consoleLog, logFile, "WARNING: the " + str(self.CCDLabel) +" camera Z heights are not equal to the nominal height.\n" + "The current micrometer thread pitch is " + str(TTFThread) + "mm (= " + str(TTFThread*1000) + "um = 1/80 in)." + 
+        faah.pageLogging(consoleLog, logFile, "WARNING: the " + str(CCDLabel) +" camera Z heights are not equal to the nominal height.\n" + "The current micrometer thread pitch is " + str(TTFThread) + "mm (= " + str(TTFThread*1000) + "um = 1/80 in)." + 
                 "\nTo adjust the camera to the nominal height, adjust the micrometers as:\n\n" + 
                 "Micrometer A:\n " + 
                 " A(micrometer um) = " + format(Az_move, '.3f') + "um" +
@@ -151,40 +152,103 @@ class tipTiltZCCD(object):
         ###Boundary Condition Check 
         ###########################################################################
         faah = fileAndArrayHandling()
-        faah.pageLogging(consoleLog, logFile, 
-                                      "Checking " + str(CCDLabel) + " TIP:")
+        faah.pageLogging(consoleLog, logFile,"Checking " + str(CCDLabel) + " TIP:")
 
-        faah.pageLogging(consoleLog, logFile, 
-                                        "    Condition #1: A(Z)_measured = A(Z)_nominal\n" + 
+        if round(Az,3) != round(Az_nominal,3):
+            faah.pageLogging(consoleLog, logFile,"    Condition #1: A(Z)_measured = A(Z)_nominal\n" + 
                                         "        A(Z)_measured = " + format(Az, '.3f') + "um\n" + 
-                                        "        A(Z)_nominal = " + format(Az_nominal, '.3f') + "um\n" )
-        faah.pageLogging(consoleLog, logFile, 
-                                        "    Condition #2: B(Z)_measured = C(Z)_measured = B(Z)_nominal = C(Z)_nominal\n" + 
+                                        "        A(Z)_nominal = " + format(Az_nominal, '.3f') + "um\n" +
+                                        "        A(Z)_measured != A(Z)_nominal\n")
+        else:
+            faah.pageLogging(consoleLog, logFile,"    Condition #1: A(Z)_measured = A(Z)_nominal\n" + 
+                                        "        A(Z)_measured = " + format(Az, '.3f') + "um\n" + 
+                                        "        A(Z)_nominal = " + format(Az_nominal, '.3f') + "um\n" +
+                                        "A(Z)_measured = A(Z)_nominal\n")
+        if round(Bz,3) != round(Bz_nominal,3) or round(Cz,3) != round(Cz_nominal,3):
+            if round(Bz,3) != round(Bz_nominal,3) and round(Cz,3) == round(Cz_nominal,3):
+                faah.pageLogging(consoleLog, logFile,"    Condition #2: B(Z)_measured = C(Z)_measured = B(Z)_nominal = C(Z)_nominal\n" + 
                                         "        B(Z)_measured = " + format(Bz, '.3f') + "um\n" + 
                                         "        B(Z)_nominal = " + format(Bz_nominal, '.3f') + "um\n" +
+                                        "        B(Z)_measured != B(Z)_nominal\n" +
                                         "        C(Z)_measured = " + format(Cz, '.3f') + "um\n" +     
-                                        "        C(Z)_nominal = " + format(Cz_nominal, '.3f') + "um\n")  
+                                        "        C(Z)_nominal = " + format(Cz_nominal, '.3f') + "um\n" +
+                                        "        C(Z)_measured = C(Z)_nominal\n") 
+            elif round(Bz,3) == round(Bz_nominal,3) and round(Cz,3) != round(Cz_nominal,3):
+                faah.pageLogging(consoleLog, logFile,"    Condition #2: B(Z)_measured = C(Z)_measured = B(Z)_nominal = C(Z)_nominal\n" + 
+                                        "        B(Z)_measured = " + format(Bz, '.3f') + "um\n" + 
+                                        "        B(Z)_nominal = " + format(Bz_nominal, '.3f') + "um\n" +
+                                        "        B(Z)_measured = B(Z)_nominal\n" +
+                                        "        C(Z)_measured = " + format(Cz, '.3f') + "um\n" +     
+                                        "        C(Z)_nominal = " + format(Cz_nominal, '.3f') + "um\n" +
+                                        "        C(Z)_measured != C(Z)_nominal\n") 
+            else:
+                faah.pageLogging(consoleLog, logFile,"    Condition #2: B(Z)_measured = C(Z)_measured = B(Z)_nominal = C(Z)_nominal\n" + 
+                                        "        B(Z)_measured = " + format(Bz, '.3f') + "um\n" + 
+                                        "        B(Z)_nominal = " + format(Bz_nominal, '.3f') + "um\n" +
+                                        "        B(Z)_measured != B(Z)_nominal\n" +
+                                        "        C(Z)_measured = " + format(Cz, '.3f') + "um\n" +     
+                                        "        C(Z)_nominal = " + format(Cz_nominal, '.3f') + "um\n" +
+                                        "        C(Z)_measured != C(Z)_nominal\n")  
         #N,W,S,E
         if CCDLabel == "NCCD" or CCDLabel == "WCCD" or CCDLabel == "SCCD" or CCDLabel == "ECCD": 
-            faah.pageLogging(consoleLog, logFile, 
-                                        "    Condition #3: A(Z)_measured > B(Z)_measured && C(Z)_measured\n" + 
+            if round(Az,3) >= round(Bz,3) and round(Az,3) <= round(Cz,3):
+                faah.pageLogging(consoleLog, logFile,"    Condition #3: A(Z)_measured > B(Z)_measured && C(Z)_measured\n" + 
                                         "        A(Z)_measured = " + format(Az, '.3f') + "um\n" + 
                                         "        B(Z)_measured = " + format(Bz, '.3f') + "um\n" + 
-                                        "        C(Z)_measured = " + format(Cz, '.3f') + "um\n")
+                                        "        C(Z)_measured = " + format(Cz, '.3f') + "um\n\n" +
+                                        "        A(Z)_measured >= B(Z)_measured\n" +
+                                        "        A(Z)_measured <= C(Z)_measured\n")
+            elif round(Az,3) >= round(Cz,3) and round(Az,3) <= round(Bz,3):
+                faah.pageLogging(consoleLog, logFile,"    Condition #3: A(Z)_measured > B(Z)_measured && C(Z)_measured\n" + 
+                                        "        A(Z)_measured = " + format(Az, '.3f') + "um\n" + 
+                                        "        B(Z)_measured = " + format(Bz, '.3f') + "um\n" + 
+                                        "        C(Z)_measured = " + format(Cz, '.3f') + "um\n\n" +
+                                        "        A(Z)_measured <= B(Z)_measured\n" +
+                                        "        A(Z)_measured >= C(Z)_measured\n")
+            else:
+                faah.pageLogging(consoleLog, logFile,"    Condition #3: A(Z)_measured > B(Z)_measured && C(Z)_measured\n" + 
+                                        "        A(Z)_measured = " + format(Az, '.3f') + "um\n" + 
+                                        "        B(Z)_measured = " + format(Bz, '.3f') + "um\n" + 
+                                        "        C(Z)_measured = " + format(Cz, '.3f') + "um\n\n" +
+                                        "        A(Z)_measured >= B(Z)_measured\n" +
+                                        "        A(Z)_measured >= C(Z)_measured\n")
         #C
         if CCDLabel == "CCCD":
-            faah.pageLogging(consoleLog, logFile, 
-                                        "    Condition #3: [A(Z) = B(Z) = C(Z)]_measured  = [A(Z) = B(Z) = C(Z)]_nominal\n" + 
+            if round(Az,3) != round(Bz,3) and round(Az,3) == round(Cz,3) and round(Bz,3) == round(Cz,3):
+                faah.pageLogging(consoleLog, logFile,"    Condition #3: [A(Z) = B(Z) = C(Z)]_measured  = [A(Z) = B(Z) = C(Z)]_nominal\n" + 
                                         "        A(Z)_measured = " + format(Az, '.3f') + "um\n" + 
                                         "        B(Z)_measured = " + format(Bz, '.3f') + "um\n" + 
-                                        "        C(Z)_measured = " + format(Cz, '.3f') + "um\n")
+                                        "        C(Z)_measured = " + format(Cz, '.3f') + "um\n\n" +
+                                        "        A(Z)_measured != B(Z)_measured\n" +
+                                        "        A(Z)_measured = C(Z)_measured\n" +
+                                        "        B(Z)_measured = C(Z)_measured\n")                
+            if round(Az,3) != round(Cz,3) and round(Az,3) == round(Bz,3) and round(Bz,3) == round(Cz,3):
+                faah.pageLogging(consoleLog, logFile,"    Condition #3: [A(Z) = B(Z) = C(Z)]_measured  = [A(Z) = B(Z) = C(Z)]_nominal\n" + 
+                                        "        A(Z)_measured = " + format(Az, '.3f') + "um\n" + 
+                                        "        B(Z)_measured = " + format(Bz, '.3f') + "um\n" + 
+                                        "        C(Z)_measured = " + format(Cz, '.3f') + "um\n\n" +
+                                        "        A(Z)_measured = B(Z)_measured\n" +
+                                        "        A(Z)_measured != C(Z)_measured\n" +
+                                        "        B(Z)_measured = C(Z)_measured\n")     
+            if round(Bz,3) != round(Cz,3) and round(Az,3) == round(Bz,3) and round(Az,3) == round(Cz,3):
+                faah.pageLogging(consoleLog, logFile,"    Condition #3: [A(Z) = B(Z) = C(Z)]_measured  = [A(Z) = B(Z) = C(Z)]_nominal\n" + 
+                                        "        A(Z)_measured = " + format(Az, '.3f') + "um\n" + 
+                                        "        B(Z)_measured = " + format(Bz, '.3f') + "um\n" + 
+                                        "        C(Z)_measured = " + format(Cz, '.3f') + "um\n\n" +
+                                        "        A(Z)_measured = B(Z)_measured\n" +
+                                        "        A(Z)_measured = C(Z)_measured\n" +
+                                        "        B(Z)_measured != C(Z)_measured\n")     
+            else:
+                faah.pageLogging(consoleLog, logFile,"    Condition #3: [A(Z) = B(Z) = C(Z)]_measured  = [A(Z) = B(Z) = C(Z)]_nominal\n" + 
+                                        "        A(Z)_measured = " + format(Az, '.3f') + "um\n" + 
+                                        "        B(Z)_measured = " + format(Bz, '.3f') + "um\n" + 
+                                        "        C(Z)_measured = " + format(Cz, '.3f') + "um\n\n" +
+                                        "        A(Z)_measured != B(Z)_measured\n" +
+                                        "        A(Z)_measured != C(Z)_measured\n" +
+                                        "        B(Z)_measured != C(Z)_measured\n") 
         #Other
         if CCDLabel == "Other":
-            faah.pageLogging(consoleLog, logFile, 
-                                        "CCD selection: Other. Not able to calculate Tip.")
-
-        #Return deltas
-        return Az_nominal-Az, Bz_nominal-Bz, Cz_nominal-Cz
+            faah.pageLogging(consoleLog, logFile,"CCD selection: Other. Not able to calculate Tip.")
         
     def tiltCCD(self, Az, Bz, Cz, Az_nominal, Bz_nominal, Cz_nominal, CCDLabel, consoleLog, logFile):
         '''
@@ -197,36 +261,93 @@ class tipTiltZCCD(object):
         ###Boundry Condition Check 
         ###########################################################################
         faah = fileAndArrayHandling()
-        faah.pageLogging(consoleLog, logFile, 
-                                      "Checking " + str(CCDLabel) + " TILT:")
+        faah.pageLogging(consoleLog, logFile,"Checking " + str(CCDLabel) + " TILT:")
         #N,W,S,E
-        if CCDLabel == "NCCD" or CCDLabel == "WCCD" or CCDLabel == "SCCD" or CCDLabel == "ECCD": 
-                faah.pageLogging(consoleLog, logFile, 
-                                        "    Condition #1: A(Z)_measured = A(Z)_nominal\n" + 
+        if CCDLabel == "NCCD" or CCDLabel == "WCCD" or CCDLabel == "SCCD" or CCDLabel == "ECCD":
+            if round(Az,3) != round(Az_nominal,3):
+                faah.pageLogging(consoleLog, logFile,"    Condition #1: A(Z)_measured = A(Z)_nominal\n" + 
                                         "        A(Z)_measured = " + format(Az, '.3f') + "um\n" + 
-                                        "        A(Z)_nominal = " + format(Az_nominal, '.3f') + "um\n" )
-                faah.pageLogging(consoleLog, logFile, 
-                                        "    Condition #2: B(Z)_measured = C(Z)_measured = B(Z)_nominal = C(Z)_nominal\n" + 
+                                        "        A(Z)_nominal = " + format(Az_nominal, '.3f') + "um\n\n" +
+                                        "        A(Z)_measured != A(Z)_nominal\n" )
+            else:
+                faah.pageLogging(consoleLog, logFile,"    Condition #1: A(Z)_measured = A(Z)_nominal\n" + 
+                                        "        A(Z)_measured = " + format(Az, '.3f') + "um\n" + 
+                                        "        A(Z)_nominal = " + format(Az_nominal, '.3f') + "um\n\n" +
+                                        "        A(Z)_measured = A(Z)_nominal\n" )
+                
+            if round(Bz,3) != round(Cz,3):
+                faah.pageLogging(consoleLog, logFile,"    Condition #2: B(Z)_measured = C(Z)_measured = B(Z)_nominal = C(Z)_nominal\n" + 
                                         "        B(Z)_measured = " + format(Bz, '.3f') + "um\n" + 
                                         "        B(Z)_nominal = " + format(Bz_nominal, '.3f') + "um\n" +
                                         "        C(Z)_measured = " + format(Cz, '.3f') + "um\n" +     
-                                        "        C(Z)_nominal = " + format(Cz_nominal, '.3f') + "um\n") 
+                                        "        C(Z)_nominal = " + format(Cz_nominal, '.3f') + "um\n\n" +
+                                        "        B(Z)_measured != C(Z)_measured\n") 
+            elif round(Bz,3) == round(Cz,3) and round(Cz,3) != round(Cz_nominal,3) or round(Bz,3) != round(Bz_nominal,3):
+                if round(Cz,3) != round(Cz_nominal,3):
+                    faah.pageLogging(consoleLog, logFile,"    Condition #2: B(Z)_measured = C(Z)_measured = B(Z)_nominal = C(Z)_nominal\n" + 
+                                        "        B(Z)_measured = " + format(Bz, '.3f') + "um\n" + 
+                                        "        B(Z)_nominal = " + format(Bz_nominal, '.3f') + "um\n" +
+                                        "        C(Z)_measured = " + format(Cz, '.3f') + "um\n" +     
+                                        "        C(Z)_nominal = " + format(Cz_nominal, '.3f') + "um\n\n" +
+                                        "        C(Z)_measured != C(Z)_nominal\n") 
+                if round(Bz,3) != round(Bz_nominal,3):
+                    faah.pageLogging(consoleLog, logFile,"    Condition #2: B(Z)_measured = C(Z)_measured = B(Z)_nominal = C(Z)_nominal\n" + 
+                                        "        B(Z)_measured = " + format(Bz, '.3f') + "um\n" + 
+                                        "        B(Z)_nominal = " + format(Bz_nominal, '.3f') + "um\n" +
+                                        "        C(Z)_measured = " + format(Cz, '.3f') + "um\n" +     
+                                        "        C(Z)_nominal = " + format(Cz_nominal, '.3f') + "um\n\n" +
+                                        "        B(Z)_measured != B(Z)_nominal\n") 
+            elif round(Bz,3) == round(Cz,3) and round(Cz,3) == round(Cz_nominal,3) and round(Bz,3) == round(Bz_nominal,3): 
+                faah.pageLogging(consoleLog, logFile,"    Condition #2: B(Z)_measured = C(Z)_measured = B(Z)_nominal = C(Z)_nominal\n" + 
+                                        "        B(Z)_measured = " + format(Bz, '.3f') + "um\n" + 
+                                        "        B(Z)_nominal = " + format(Bz_nominal, '.3f') + "um\n" +
+                                        "        C(Z)_measured = " + format(Cz, '.3f') + "um\n" +     
+                                        "        C(Z)_nominal = " + format(Cz_nominal, '.3f') + "um\n\n" +
+                                        "        B(Z)_measured = C(Z)_measured = B(Z)_nominal = C(Z)_nominal\n")            
         #C
         if CCDLabel == "CCCD":
-            faah.pageLogging(consoleLog, logFile, 
-                                        "    Condition #3: [A(Z) = B(Z) = C(Z)]_measured  = [A(Z) = B(Z) = C(Z)]_nominal\n" + 
+            if round(Az,3) != round(Bz,3) and round(Bz,3) == round(Cz,3):
+                faah.pageLogging(consoleLog, logFile,"    Condition #1: [A(Z) = B(Z) = C(Z)]_measured  = [A(Z) = B(Z) = C(Z)]_nominal\n" + 
                                         "        A(Z)_measured = " + format(Az, '.3f') + "um\n" + 
                                         "        B(Z)_measured = " + format(Bz, '.3f') + "um\n" + 
-                                        "        C(Z)_measured = " + format(Cz, '.3f') + "um\n")
+                                        "        C(Z)_measured = " + format(Cz, '.3f') + "um\n\n" +
+                                        "        A(Z)_measured != B(Z)_measured\n" +
+                                        "        B(Z)_measured = C(Z)_measured\n\n")
+            elif round(Az,3) == round(Bz,3) and round(Bz,3) != round(Cz,3):
+                faah.pageLogging(consoleLog, logFile,"    Condition #1: [A(Z) = B(Z) = C(Z)]_measured  = [A(Z) = B(Z) = C(Z)]_nominal\n" + 
+                                        "        A(Z)_measured = " + format(Az, '.3f') + "um\n" + 
+                                        "        B(Z)_measured = " + format(Bz, '.3f') + "um\n" + 
+                                        "        C(Z)_measured = " + format(Cz, '.3f') + "um\n\n" +
+                                        "        A(Z)_measured = B(Z)_measured\n" +
+                                        "        B(Z)_measured != C(Z)_measured\n\n")
+            elif round(Az,3) != round(Bz,3) and round(Bz,3) != round(Cz,3):
+                faah.pageLogging(consoleLog, logFile,"    Condition #1: [A(Z) = B(Z) = C(Z)]_measured  = [A(Z) = B(Z) = C(Z)]_nominal\n" + 
+                                        "        A(Z)_measured = " + format(Az, '.3f') + "um\n" + 
+                                        "        B(Z)_measured = " + format(Bz, '.3f') + "um\n" + 
+                                        "        C(Z)_measured = " + format(Cz, '.3f') + "um\n\n" +
+                                        "        A(Z)_measured != B(Z)_measured\n" +
+                                        "        B(Z)_measured != C(Z)_measured\n\n")
+            elif round(Az,3) == round(Bz,3) and round(Bz,3) == round(Cz,3) and round(Az,3) != round(Az_nominal,3):
+                faah.pageLogging(consoleLog, logFile,"    Condition #1: [A(Z) = B(Z) = C(Z)]_measured  = [A(Z) = B(Z) = C(Z)]_nominal\n" + 
+                                        "        A(Z)_measured = " + format(Az, '.3f') + "um\n" + 
+                                        "        B(Z)_measured = " + format(Bz, '.3f') + "um\n" + 
+                                        "        C(Z)_measured = " + format(Cz, '.3f') + "um\n\n" +
+                                        "        A(Z)_measured = B(Z)_measured\n" +
+                                        "        B(Z)_measured = C(Z)_measured\n" +
+                                        "        [A(Z) = B(Z) = C(Z)]_measured  != [A(Z) = B(Z) = C(Z)]_nominal\n\n")
+            elif round(Az,3) == round(Bz,3) and round(Bz,3) == round(Cz,3) and round(Az,3) == round(Az_nominal,3):
+                faah.pageLogging(consoleLog, logFile,"    Condition #1: [A(Z) = B(Z) = C(Z)]_measured  = [A(Z) = B(Z) = C(Z)]_nominal\n" + 
+                                        "        A(Z)_measured = " + format(Az, '.3f') + "um\n" + 
+                                        "        B(Z)_measured = " + format(Bz, '.3f') + "um\n" + 
+                                        "        C(Z)_measured = " + format(Cz, '.3f') + "um\n\n" +
+                                        "        A(Z)_measured = B(Z)_measured\n" +
+                                        "        B(Z)_measured = C(Z)_measured\n" +
+                                        "        [A(Z) = B(Z) = C(Z)]_measured  = [A(Z) = B(Z) = C(Z)]_nominal\n\n")
         #Other
         if CCDLabel == "Other":
-            faah.pageLogging(consoleLog, logFile, 
-                                        "CCD selection: Other. Not able to calculate Tilt.")
+                faah.pageLogging(consoleLog, logFile,"CCD selection: Other. Not able to calculate Tilt.")
 
-        #Return deltas
-        return Az_nominal-Az, Bz_nominal-Bz, Cz_nominal-Cz
-
-    def ZCCD(self, Az, Bz, Cz, CCDLabel, consoleLog, logFile):
+    def ZCCD(self, Az, Bz, Cz, Az_nominal, Bz_nominal, Cz_nominal, CCDLabel, consoleLog, logFile):
         '''
         Return CCD Z
         
@@ -236,8 +357,8 @@ class tipTiltZCCD(object):
         '''            
         ###########################################################################
         ###Get nominal  and measured Z for CCD center
-        ###########################################################################               
-        fC = focusCurve()
+        ###########################################################################     
+        fC = focusCurve()          
         zCenter_measured = (Az + Bz + Cz)/3
         zCenter_nominal = fC.asphericFocalCurve(fC.CCDLocationsCS5[CCDLabel][0], fC.CCDLocationsCS5[CCDLabel][1])
         
@@ -245,16 +366,18 @@ class tipTiltZCCD(object):
         ###Boundry Condition Check 
         ###########################################################################
         faah = fileAndArrayHandling()
-        faah.pageLogging(consoleLog, logFile, 
-                                      "Checking " + str(CCDLabel) + " CCD Center Z:")
+        faah.pageLogging(consoleLog, logFile,"Checking " + str(CCDLabel) + " CCD Center Z:")
         #N,W,S,E,C,Other
-        faah.pageLogging(consoleLog, logFile, 
-                                        "Condition: Center(Z)_measured = Center(Z)_nominal\n" + 
-                                        "        Center(Z)_measured = " + format(zCenter_measured, '.3f') + "um\n" + 
-                                        "        Center(Z)_nominal = " + format(zCenter_nominal, '.3f') + "um\n" )
-
-        #Return deltas
-        return zCenter_nominal-zCenter_measured
+        if round(zCenter_measured,3) != round(zCenter_nominal,3):
+            faah.pageLogging(consoleLog, logFile,"Condition: Center(Z)_measured = Center(Z)_nominal\n" + 
+                                        "        Center(Z)_measured = [Az + Bz + Cz]_measured/3 = " + format(zCenter_measured, '.3f') + "um\n" + 
+                                        "        Center(Z)_nominal = " + format(zCenter_nominal, '.3f') + "um\n" +
+                                        "        Center(Z)_measured != Center(Z)_nominal\n\n")
+        if round(zCenter_measured,3) == round(zCenter_nominal,3):
+            faah.pageLogging(consoleLog, logFile,"Condition: Center(Z)_measured = Center(Z)_nominal\n" + 
+                                        "        Center(Z)_measured = [Az + Bz + Cz]_measured/3 = " + format(zCenter_measured, '.3f') + "um\n" + 
+                                        "        Center(Z)_nominal = " + format(zCenter_nominal, '.3f') + "um\n" +
+                                        "        Center(Z)_measured == Center(Z)_nominal\n\n")
     
     def rz(self, imageB, imageC, CCDLabel, consoleLog, logFile):
         '''
