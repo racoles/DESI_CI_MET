@@ -1,7 +1,7 @@
 '''
 @title focusCurve
 @author: Rebecca Coles
-Updated on Feb 6, 2017
+Updated on Apr 16, 2017
 Created on Dec 12, 2017
 
 focusCurve
@@ -38,7 +38,8 @@ class focusCurve(object):
     tccr = 8 #mm
     
     #tip/tilt/Z length of a side of the ABC equilateral triangle
-    tccs = tccr*np.sqrt(3) #mm
+    #tccs = tccr*np.sqrt(3) #mm
+    tccs = 18.475 #mm
     
     #tip/tilt/Z distance between micrometers on the TTF 
     # (used to find a ratio between triangle points and micrometer points)
@@ -77,22 +78,44 @@ class focusCurve(object):
                        "CCCD" : (0,0),
                        "Other" : (0,0)}
     
+    #Centered Wee Triangle
     #Dict of (x,y) for CCD triangles around center point (mm)
-    trianglePonitCCDLocationsCS5 = { 'NCCDA': (0,CCDLocationsCS5["NCCD"][1]+tccr),
-                                     'NCCDB': ((-tccs)/2, CCDLocationsCS5["NCCD"][1]-(tccr*np.sin(math.radians(30)))),
-                                     'NCCDC': ((tccs)/2, CCDLocationsCS5["NCCD"][1]-(tccr*np.sin(math.radians(30)))),
+    #trianglePonitCCDLocationsCS5 = { 'NCCDA': (0,CCDLocationsCS5["NCCD"][1]+tccr),
+    #                                 'NCCDB': ((-tccs)/2, CCDLocationsCS5["NCCD"][1]-(tccr*np.sin(math.radians(30)))),
+    #                                 'NCCDC': ((tccs)/2, CCDLocationsCS5["NCCD"][1]-(tccr*np.sin(math.radians(30)))),
+    #                                 'WCCDA': (CCDLocationsCS5["WCCD"][0]+tccr,0),
+    #                                 'WCCDB': (CCDLocationsCS5["WCCD"][0]-(tccr*np.sin(math.radians(30))), (tccs)/2),
+    #                                 'WCCDC': (CCDLocationsCS5["WCCD"][0]-(tccr*np.sin(math.radians(30))), (-tccs)/2),
+    #                                 'SCCDA': (0, CCDLocationsCS5["SCCD"][1]-tccr),
+    #                                 'SCCDB': ((tccr*np.sqrt(3))/2, CCDLocationsCS5["SCCD"][1]+(tccr*np.sin(math.radians(30)))),
+    #                                 'SCCDC': ((-tccr*np.sqrt(3))/2, CCDLocationsCS5["SCCD"][1]+(tccr*np.sin(math.radians(30)))),
+    #                                 'ECCDA': (CCDLocationsCS5["ECCD"][0]-tccr, 0),
+    #                                 'ECCDB': (CCDLocationsCS5["ECCD"][0]+(tccr*np.sin(math.radians(30))), (-tccs)/2),
+    #                                 'ECCDC': (CCDLocationsCS5["ECCD"][0]+(tccr*np.sin(math.radians(30))), (tccs)/2),
+    #                                 'CCCDA': (0,-tccr),
+    #                                 'CCCDB': ((tccs)/2, (tccr*np.sin(math.radians(30)))),
+    #                                 'CCCDC': ((-tccs)/2, (tccr*np.sin(math.radians(30)))),
+    #                                 'OtherA': (0,0),
+    #                                 'OtherB': (0,0),
+    #                                 'OtherC': (0,0)}
+    
+    #OffCenter Wee Triangle
+    #Dict of (x,y) for CCD triangles around offcenter point (mm)
+    trianglePonitCCDLocationsCS5 = { 'NCCDA': (0,CCDLocationsCS5["NCCD"][1]+tccr),        
+                                     'NCCDB': (-tccs/2, CCDLocationsCS5["NCCD"][1]-tccr),
+                                     'NCCDC': (tccs/2, CCDLocationsCS5["NCCD"][1]-tccr),    
                                      'WCCDA': (CCDLocationsCS5["WCCD"][0]+tccr,0),
-                                     'WCCDB': (CCDLocationsCS5["WCCD"][0]-(tccr*np.sin(math.radians(30))), (tccs)/2),
-                                     'WCCDC': (CCDLocationsCS5["WCCD"][0]-(tccr*np.sin(math.radians(30))), (-tccs)/2),
+                                     'WCCDB': (CCDLocationsCS5["WCCD"][0]-tccr, tccs/2),
+                                     'WCCDC': (CCDLocationsCS5["WCCD"][0]-tccr, -tccs/2),
                                      'SCCDA': (0, CCDLocationsCS5["SCCD"][1]-tccr),
-                                     'SCCDB': ((tccr*np.sqrt(3))/2, CCDLocationsCS5["SCCD"][1]+(tccr*np.sin(math.radians(30)))),
-                                     'SCCDC': ((-tccr*np.sqrt(3))/2, CCDLocationsCS5["SCCD"][1]+(tccr*np.sin(math.radians(30)))),
+                                     'SCCDB': (tccs/2, CCDLocationsCS5["SCCD"][1]+tccr),  
+                                     'SCCDC': (-tccs/2, CCDLocationsCS5["SCCD"][1]+tccr),
                                      'ECCDA': (CCDLocationsCS5["ECCD"][0]-tccr, 0),
-                                     'ECCDB': (CCDLocationsCS5["ECCD"][0]+(tccr*np.sin(math.radians(30))), (-tccs)/2),
-                                     'ECCDC': (CCDLocationsCS5["ECCD"][0]+(tccr*np.sin(math.radians(30))), (tccs)/2),
+                                     'ECCDB': (CCDLocationsCS5["ECCD"][0]+tccr, -tccs/2),
+                                     'ECCDC': (CCDLocationsCS5["ECCD"][0]+tccr, tccs/2),
                                      'CCCDA': (0,-tccr),
-                                     'CCCDB': ((tccs)/2, (tccr*np.sin(math.radians(30)))),
-                                     'CCCDC': ((-tccs)/2, (tccr*np.sin(math.radians(30)))),
+                                     'CCCDB': (tccs/2, tccr),
+                                     'CCCDC': (-tccs/2, tccr),
                                      'OtherA': (0,0),
                                      'OtherB': (0,0),
                                      'OtherC': (0,0)}
