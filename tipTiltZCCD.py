@@ -40,7 +40,7 @@ class tipTiltZCCD(object):
         #Tilt
         self.tiltCCD(Az, Bz, Cz, Az_nominal, Bz_nominal, Cz_nominal,  CCDLabel, consoleLog, logFile)
         #Z
-        self.ZCCD(Az, Bz, Cz, Az_nominal, Bz_nominal, Cz_nominal,  CCDLabel, consoleLog, logFile)
+        self.ZCCD(Az, Bz, Cz, CCDLabel, consoleLog, logFile)
         
         ###########################################################################
         ###Get adjustment ratio
@@ -347,7 +347,7 @@ class tipTiltZCCD(object):
         if CCDLabel == "Other":
                 faah.pageLogging(consoleLog, logFile,"CCD selection: Other. Not able to calculate Tilt.")
 
-    def ZCCD(self, Az, Bz, Cz, Az_nominal, Bz_nominal, Cz_nominal, CCDLabel, consoleLog, logFile):
+    def ZCCD(self, Az, Bz, Cz, CCDLabel, consoleLog, logFile):
         '''
         Return CCD Z
         
