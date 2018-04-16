@@ -33,79 +33,80 @@ class tipTiltZCCD(object):
         #TTFThreadOD = 6.35mm for a 1/4-80 screw
         
         ###########################################################################
-        ###Get adjustment ratios
+        ###Get the tip/tilt/z deltas
+        ###########################################################################   
+        #Tip
+        self.tipCCD(Az, Bz, Cz, Az_nominal, Bz_nominal, Cz_nominal)
+        #Tilt
+        self.tiltCCD(Az, Bz, Cz, Az_nominal, Bz_nominal, Cz_nominal)
+        #Z
+        self.ZCCD(Az, Bz, Cz, Az_nominal, Bz_nominal, Cz_nominal)
+        
+        ###########################################################################
+        ###Get adjustment ratio
         ###########################################################################     
         #Since the triangle of micrometers is much larger than the small ABC
         #imaginary triangle that we create on the sensor surface, we need to
         #calculate how an adjustment to the micrometers affect the ABC heights.
-        fC = focusCurve()
-        triangleRadius = fC.tccr
-        distanceMicrometerBallToCenter = 127.158 #mm
-        #Single revolution of a micrometer moves the smaller triangle by smallTriangleAdjustmentPerRevolution um in Z
-        smallTriangleZUMAdjustmentPerRevolution = ((triangleRadius*TTFThread)/distanceMicrometerBallToCenter)*1000 #um
-        #Z height of small triangle point per tick on micrometer
-        smallTriangleZUMPerTick = smallTriangleZUMAdjustmentPerRevolution/50 #50 ticks on micrometer
+        triangleAdjustmentRatio = self.micrometerDistance/self.tccs
         
-        ###########################################################################
-        ###Get the tip/tilt/z deltas
-        ###########################################################################   
-        #Point B
-        bb = round(len(filelistB)/2) #select a focused image from array 
-        #Point C
-        cc = round(len(filelistC)/2) #select a focused image from array 
-        #Tip
-        AzDeltaTip, BzDeltaTip, CzDeltaTip = self.tipCCD(Az, Bz, Cz, Az_nominal, Bz_nominal, Cz_nominal, CCDLabel, consoleLog, logFile)
-        #Tilt
-        AzDeltaTilt, BzDeltaTilt, CzDeltaTilt = self.tiltCCD(Az, Bz, Cz, Az_nominal, Bz_nominal, Cz_nominal, CCDLabel, consoleLog, logFile)
-        #Z
-        CenterDeltaZ = self.ZCCD(Az, Bz, Cz, CCDLabel, consoleLog, logFile)
         #Rz
+        bb = round(len(filelistB)/2) #select a focused image from array b
+        cc = round(len(filelistC)/2) #select a focused image from array c
         angleRz = self.rz(imageArray4DB[bb], imageArray4DC[cc], CCDLabel, consoleLog, logFile)
 
         ###########################################################################
         ###Find Needed Micrometer Adjustments 
         ###########################################################################
-        AturnDistanceDegrees = 999999999999
-        BturnDistanceDegrees = 999999999999
-        CturnDistanceDegrees = 999999999999
         turnA = "None"
         turnB = "None"
         turnC = "None"
-        faah = fileAndArrayHandling()
+        
+        ###########################################################################
+        ###Calculate acutator moves
+        ###########################################################################
+        focusedMeasured = -((Az-Az_nominal) + (Bz-Bz_nominal) + (Cz-Cz_nominal))/3
+        focusPara = -(triangleAdjustmentRatio*(Az_nominal - Az) + triangleAdjustmentRatio*(Bz_nominal - Bz) + triangleAdjustmentRatio*(Cz_nominal - Cz))/3
+
+        Az_move = focusedMeasured + focusPara + (triangleAdjustmentRatio*(Az_nominal - Az))
+        Bz_move = focusedMeasured + focusPara + (triangleAdjustmentRatio*(Bz_nominal - Bz))
+        Cz_move = focusedMeasured + focusPara + (triangleAdjustmentRatio*(Cz_nominal - Cz))
         
         #If the A height isn't equal to the nominal height
-        if AzDeltaTip or AzDeltaTilt != 0:
+        if Az != Az_nominal:
             #is A too low or too high (clockwise = down, counter-clockwise = up relative to CS5 +Z)
-            if AzDeltaTip < 0: 
+            if Az < 0: 
                 turnA = 'counter-clockwise' 
             else: 
                 turnA = 'clockwise'
             #How many turns will it take to reach nominal height?
-            AturnDistance_rev = np.absolute(AzDeltaTip*triangleAdjustmentRatio)/(TTFThread*1000) #X turns = needed height / micrometer pitch (height per one full turn). Convert mm to microns.
-            #AturnDistanceDegrees = faah.decNonZeroRound(np.absolute(AturnDistance_um/((TTFThreadOD*1000)/360))) #to get number of degrees. 1 degree = fifThreadODMicrons/360 um. Convert mm to microns.
-            AturnDistanceDegrees = np.absolute(AturnDistance_rev*360)
+            AturnDistanceDegrees = np.absolute((Az_move/(TTFThread*1000))*360) #in um
+            #In ticks
+            AturnDistanceTicks = np.absolute(AturnDistanceDegrees/(360/50))
             
         #If the B height isn't equal to the nominal height
-        if BzDeltaTip or BzDeltaTilt != 0:
-            #is B too low or too high (clockwise = down, counter-clockwise = up)
-            if BzDeltaTip < 0: 
+        if Bz != Bz_nominal:
+            #is A too low or too high (clockwise = down, counter-clockwise = up relative to CS5 +Z)
+            if Bz < 0: 
                 turnB = 'counter-clockwise' 
             else: 
                 turnB = 'clockwise'
             #How many turns will it take to reach nominal height?
-            BturnDistance_rev = np.absolute(BzDeltaTip*triangleAdjustmentRatio)/(TTFThread*1000) #X turns = needed height / fif pitch (height per one full turn). Convert mm to microns.
-            BturnDistanceDegrees = np.absolute(BturnDistance_rev*360) #to get number of degrees. 1 degree = fifThreadODMicrons/360 um. Convert mm to microns.
+            BturnDistanceDegrees = np.absolute((Bz_move/(TTFThread*1000))*360) #in um
+            #In ticks
+            BturnDistanceTicks = np.absolute(BturnDistanceDegrees/(360/50))
         
         #If the C height isn't equal to the nominal height
-        if CzDeltaTip or CzDeltaTilt or CenterDeltaZ != 0:
-            #is A too low or too high (clockwise = down, counter-clockwise = up)
-            if CzDeltaTip < 0: 
+        if Cz != Cz_nominal:
+            #is A too low or too high (clockwise = down, counter-clockwise = up relative to CS5 +Z)
+            if Cz < 0: 
                 turnC = 'counter-clockwise' 
             else: 
                 turnC = 'clockwise'
             #How many turns will it take to reach nominal height?
-            CturnDistance_rev = np.absolute(CzDeltaTip*triangleAdjustmentRatio)/(TTFThread*1000) #X turns = needed height / fif pitch (height per one full turn). Convert mm to microns.
-            CturnDistanceDegrees =  np.absolute(CturnDistance_rev*360) #to get number of degrees. 1 degree = fifThreadODMicrons/360 um. Convert mm to microns.
+            CturnDistanceDegrees = np.absolute((Cz_move/(TTFThread*1000))*360) #in um
+            #In ticks
+            CturnDistanceTicks = np.absolute(CturnDistanceDegrees/(360/50))
             
         ###########################################################################
         ###Send Warning Message
