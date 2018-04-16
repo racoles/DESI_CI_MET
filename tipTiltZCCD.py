@@ -107,37 +107,32 @@ class tipTiltZCCD(object):
             CturnDistanceDegrees = np.absolute((Cz_move/(TTFThread*1000))*360) #in um
             #In ticks
             CturnDistanceTicks = np.absolute(CturnDistanceDegrees/(360/50))
-            
+        
         ###########################################################################
         ###Send Warning Message
         ###########################################################################
         #micrometer ticks to turn: 360 degrees / 50 ticks on TTF micrometers = 7.2 degrees per tick
-        
+        faah = fileAndArrayHandling()
         self.distanceBetweenTrianglePoints(imageArray4DA, filelistA, imageArray4DB, filelistB, imageArray4DC, filelistC, consoleLog, logFile)
         
-        faah.pageLogging(consoleLog, logFile, "The ratio between the virtual triangle on the sensor (A, B, C), and the\n large triangle (micrometer A, micrometer B, micrometer C):\n" +
-                         "Triangle Adjustment Ratio=(Distance between micrometers)/(Sensor triangle side length)\n Triangle Adjustment Ratio = " + format(micrometerDistance, '.3f') + 
-                         "mm / " + format(triangleSideLength, '.3f') + "mm = " + format(triangleAdjustmentRatio, '.3f') + "\n")
+        faah.pageLogging(consoleLog, logFile,"The ratio between the virtual triangle on the sensor (A, B, C), and the\n large triangle (micrometer A, micrometer B, micrometer C):\n" +
+                         " Triangle Adjustment Ratio=(Distance between micrometers)/(Sensor triangle side length)\n Triangle Adjustment Ratio = " + format(self.micrometerDistance, '.3f') + 
+                         "mm / " + format(self.tccs, '.3f') + "mm = " + format(triangleAdjustmentRatio, '.3f') + "\n")
         
-        faah.pageLogging(consoleLog, logFile, 
-                "WARNING: the " + str(CCDLabel) +" camera Z heights are not equal to the nominal height.\n\n" + "The current micrometer thread pitch is " + str(TTFThread) + "mm (= " + str(TTFThread*1000) + "um = 1/80 in).\n" + 
+        faah.pageLogging(consoleLog, logFile, "WARNING: the " + str(self.CCDLabel) +" camera Z heights are not equal to the nominal height.\n" + "The current micrometer thread pitch is " + str(TTFThread) + "mm (= " + str(TTFThread*1000) + "um = 1/80 in)." + 
                 "\nTo adjust the camera to the nominal height, adjust the micrometers as:\n\n" + 
                 "Micrometer A:\n " + 
-                " A(micrometer revolutions) = (AzDelta um * triangleAdjustmentRatio)/(TTFThread mm *1000)\n" +
-                "    = " + "(" + format(AzDeltaTip, '.2f') + "um * " + format(triangleAdjustmentRatio, '.2f') + "um) / (" +  format(TTFThread, '.4f') + " * 1000) = " + format(AturnDistance_rev, '.2f') + " rev\n" +
-                " A(degrees) = A(revolutions)*360 = " + format(AturnDistanceDegrees, '.2f') + " degrees " + turnA + "\n"
-                " A(ticks) = A(revolutions)*ticks_per_revolution = " + format(AturnDistance_rev, '.2f') + "*50 = " + format(AturnDistance_rev*50, '.2f') + " ticks"
+                " A(micrometer um) = " + format(Az_move, '.3f') + "um" +
+                " \nA(degrees) = " + format(AturnDistanceDegrees, '.2f') + " degrees " + turnA + "\n" +
+                " A(ticks) = " + format(AturnDistanceTicks, '.2f') + " ticks " + turnA + 
                 "\n\nMicrometer B:\n " + 
-                " B(micrometer revolutions) = (BzDelta um * triangleAdjustmentRatio)/(TTFThread mm *1000)\n" +
-                "    = " + "(" + format(BzDeltaTip, '.2f') + "um * " + format(triangleAdjustmentRatio, '.2f') + "um) / (" +  format(TTFThread, '.4f') + " * 1000) = " + format(BturnDistance_rev, '.2f') + " rev\n" +
-                " B(degrees) = B(revolutions)*360 = " + format(BturnDistanceDegrees, '.2f') + " degrees " + turnB + "\n"
-                " B(ticks) = B(revolutions)*ticks_per_revolution = " + format(BturnDistance_rev, '.2f') + "*50 = " + format(BturnDistance_rev*50, '.2f') + " ticks"                
+                " B(micrometer um) = " + format(Bz_move, '.3f') + "um" +
+                " \nB(degrees) = " + format(BturnDistanceDegrees, '.2f') + " degrees " + turnB + "\n" +
+                " B(ticks) = " + format(BturnDistanceTicks, '.2f') + " ticks " + turnB +              
                 "\n\nMicrometer C: \n" + 
-                " C(micrometer revolutions) = (CzDelta um * triangleAdjustmentRatio)/(TTFThread mm *1000)\n" +
-                "    = " + "(" + format(CzDeltaTip, '.2f') + "um * " + format(triangleAdjustmentRatio, '.2f') + "um) / (" +  format(TTFThread, '.4f') + " * 1000) = " + format(CturnDistance_rev, '.2f') + " rev\n" +
-                " C(degrees) = C(revolutions)*360 = " + format(CturnDistanceDegrees, '.2f') + " degrees " + turnC + "\n"
-                " C(ticks) = C(revolutions)*ticks_per_revolution = " + format(CturnDistance_rev, '.2f') + "*50 = " + format(CturnDistance_rev*50, '.2f') + " ticks",
-                warning = True)
+                " C(micrometer um) = " + format(Cz_move, '.3f') + "um" +
+                "\nC(degrees) = " + format(CturnDistanceDegrees, '.2f') + " degrees " + turnC + "\n" +
+                " C(ticks) = " + format(CturnDistanceTicks, '.2f') + " ticks " + turnC, warning = True)
         
     def tipCCD(self, Az, Bz, Cz, Az_nominal, Bz_nominal, Cz_nominal, CCDLabel, consoleLog, logFile):
         '''
