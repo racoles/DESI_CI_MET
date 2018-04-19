@@ -28,8 +28,6 @@ class checkCameraOriginLocation(object):
     trianglePointLabel = ""
     #Pixel distance to origin check point
     pixelDistanceToCheckPoint = 10 #pixel location (rows = pixelDistanceToCheckPoint, columns = pixelDistanceToCheckPoint)
-    #DMM Magnification
-    dmmMag = 4.5
     
     def __init__(self):
         '''

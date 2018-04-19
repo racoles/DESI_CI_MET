@@ -29,6 +29,9 @@ class cs5Offsets(object):
     CPOCID_X = 0
     CPOCID_Y = 0
     
+    #DMM Magnification
+    dmmMag = 4.5
+    
     def __init__(self):
         '''
         Constructor
