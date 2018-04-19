@@ -149,7 +149,7 @@ class cs5Offsets(object):
         faah.pageLogging(consoleLog, logFile, "Illuminated Dowel Probed CS5 Y = " + str(self.CPOCID_Y) + "mm", calibration = True)
          
     
-    def _offset2b_moveToIlluminatedDowelAndImage(self, inputGUIcalibrationScreenButton, offset2bButton, consoleLog, logFile):
+    def _offset2b_moveToIlluminatedDowelAndImage(self, offset2bButton, consoleLog, logFile):
         '''
         AKA: The Dowel Measurement Part 2
         
@@ -197,7 +197,6 @@ class cs5Offsets(object):
         ###Change button text and color
         ###########################################################################
         offset2bButton.config(text = "Illuminated Dowel Calibration Complete", bg = 'green')
-        inputGUIcalibrationScreenButton.config(text = "CS5 Calibration Complete", bg = 'green')
         
         ###########################################################################
         ###Return Offset2
