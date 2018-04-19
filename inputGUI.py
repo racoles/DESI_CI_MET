@@ -25,7 +25,7 @@ from metManualMode import metManualMode
 from focusCurve import focusCurve
 from fileAndArrayHandling import fileAndArrayHandling
 from centroidFIF import centroidFIF
-from cs5Offsets import cs5Offsets
+#from cs5Offsets import cs5Offsets
 from checkCameraOriginLocation import checkCameraOriginLocation
 ################################################################################################
 
@@ -68,10 +68,11 @@ class inputGUI(object):
         ###Buttons
         ########################################################################### 
         #CS5 Calibration
-        cs5off = cs5Offsets()
-        tk.Label(master, text="CS5 Calibration", font="bold").grid(row=0, column=0, columnspan=2, sticky='W')
-        calibrationScreenButton = tk.Button(master, text="Calibration Offsets",bg = "white",command=lambda:cs5off.calibrationScreen(calibrationScreenButton, self.consoleLog, self.logFile))
-        calibrationScreenButton.grid(row=1, column=0, columnspan=2, sticky='W')
+        #cs5off = cs5Offsets()
+        #tk.Label(master, text="CS5 Calibration", font="bold").grid(row=0, column=0, columnspan=2, sticky='W')
+        #calibrationScreenButton = tk.Button(master, text="Calibration Offsets",bg = "white",command=lambda:cs5off.calibrationScreen(calibrationScreenButton, self.consoleLog, self.logFile))
+        #calibrationScreenButton.grid(row=1, column=0, columnspan=2, sticky='W')
+        tk.Label(master, text="DESI CI Meterology", font="bold").grid(row=0, column=0, columnspan=2, sticky='W')
         
         #Grid Separator
         Separator(master, orient="horizontal").grid(row=2, column=0, columnspan=4, sticky='ew')
