@@ -41,6 +41,12 @@ class checkCameraOriginLocation(object):
         on the SBIG STXL sensor.
         '''
         ###########################################################################
+        ###Offset Calibration
+        ###########################################################################
+        cs5off = cs5Offsets()
+        cs5off.calibrationScreen(consoleLog, logFile)
+        
+        ###########################################################################
         ###Sensor Location menu
         ###########################################################################
         self._checkCameraOriginLocationSelectionWindow()
@@ -48,26 +54,31 @@ class checkCameraOriginLocation(object):
         ###########################################################################
         ###Get images
         ###########################################################################
+        #add ABC notice
         faah = fileAndArrayHandling()
-        imageArray4D, filelist = faah.openAllFITSImagesInDirectory()
-        aa = round(len(filelist)/2) #select a focused image from array a
+        imageArray4DA, filelistA = faah.openAllFITSImagesInDirectory()
+        imageArray4DB, filelistB = faah.openAllFITSImagesInDirectory()
+        imageArray4DC, filelistC = faah.openAllFITSImagesInDirectory()        
+        aa = round(len(filelistA)/2) #select a focused image from array a
+        bb = round(len(filelistB)/2) #select a focused image from array a
+        cc = round(len(filelistC)/2) #select a focused image from array a
         
         ###########################################################################
         ###Offset Calibration
         ###########################################################################
         cs5off = cs5Offsets()
-        cs5off.calibrationScreen(self.consoleLog, self.logFile)
+        cs5off.calibrationScreen(consoleLog, logFile)
                 
         ###########################################################################
-        ###Centroid Image
+        ###Centroid Images
         ########################################################################### 
         #Get location of pinhole image in (rows, columns)
         cF = centroidFIF()
-        _ , subArrayBoxSize, maxLoc = cF.findFIFInImage(imageArray4D[aa])
+        _ , subArrayBoxSize, maxLoc = cF.findFIFInImage(imageArray4DA[aa])
         
         #Account for planet mode
         pM = CCDOpsPlanetMode()
-        xOffset, yOffset, pixelSize = pM.readFitsHeader(imageArray4D, filelist, consoleLog, logFile)
+        xOffsetA, yOffsetA, pixelSize = pM.readFitsHeader(imageArray4DA, filelistA, consoleLog, logFile)
         
         #Use alternate methods to centroid pinhole image
         #    gmsCentroid: Gaussian Marginal Sum (GMS) Centroid Method.
