@@ -490,7 +490,10 @@ class tipTiltZCCD(object):
         
         if CCDLabel == "Other":
                 faah.pageLogging(consoleLog, logFile, "Checking " + str(CCDLabel) + " Rz about CS5X:" + "Side BC Should be parallel to CS5Y.\n" + 
-                                     "        " + CCDLabel + "Sensor Other selected. Can't find Rz." )    
+                                     "        " + CCDLabel + "Sensor Other selected. Can't find Rz." )  
+                
+                
+        faah.pageLogging(consoleLog, logFile, "Rz Local (degrees): " + format(angleRz, '.3f'))   
         
         return angleRz
        
