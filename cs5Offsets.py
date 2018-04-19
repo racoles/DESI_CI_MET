@@ -90,9 +90,7 @@ class cs5Offsets(object):
         offset2bButton = tk.Button(top, text="Load Image of Illuminated Divot", command=lambda: self._offset2b_moveToIlluminatedDowelAndImage(offset2bButton, consoleLog, logFile))
         offset2bButton.grid(row=9, column=1, sticky='W', columnspan=2)
         
-    def _offset1_PinholeImageDistnceToSensorOrigin(self):
-        '''
-        '''
+    #def _offset1_PinholeImageDistnceToSensorOrigin(self):
         
     def _offset2a_moveToIlluminatedDowelAndProbe(self, offset2aButton, consoleLog, logFile): 
         '''

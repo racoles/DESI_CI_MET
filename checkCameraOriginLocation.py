@@ -38,7 +38,7 @@ class checkCameraOriginLocation(object):
         '''
         Find the location of the CI camera's sensor origin in CS5 and instruct the user to view 
         the origin with the DMM to ensure that the tip/tilt/focus pinhole triangle was placed properly
-        on the SBIt STXL sensor.
+        on the SBIG STXL sensor.
         '''
         ###########################################################################
         ###Sensor Location menu
@@ -139,7 +139,7 @@ class checkCameraOriginLocation(object):
         NCCD_B.grid(row=3, column=1)
         NCCD_C = tk.Button(top, text="NCCD: C", command=lambda: self._setTrueAndExit(top, CCDLabel="NCCD", trianglePointLabel="C"))
         NCCD_C.grid(row=3, column=2)
-        NCCD_Center = tk.Button(top, text="NCCD: Center", command=lambda: self._setTrueAndExit(top, CCDLabel="NCCD"))
+        NCCD_Center = tk.Button(top, text="NCCD: pixel (" + str(self.pixelDistanceToCheckPoint) + ","  + str(self.pixelDistanceToCheckPoint) + ")", command=lambda: self._setTrueAndExit(top, CCDLabel="NCCD"))
         NCCD_Center.grid(row=3, column=3)
         
         # WCCD
@@ -151,7 +151,7 @@ class checkCameraOriginLocation(object):
         WCCD_B.grid(row=6, column=1)
         WCCD_C = tk.Button(top, text="WCCD: C", command=lambda: self._setTrueAndExit(top, CCDLabel="WCCD", trianglePointLabel="C"))
         WCCD_C.grid(row=6, column=2)
-        WCCD_Center = tk.Button(top, text="WCCD: Center", command=lambda: self._setTrueAndExit(top, CCDLabel="WCCD"))
+        WCCD_Center = tk.Button(top, text="WCCD: pixel (" + str(self.pixelDistanceToCheckPoint) + ","  + str(self.pixelDistanceToCheckPoint) + ")", command=lambda: self._setTrueAndExit(top, CCDLabel="WCCD"))
         WCCD_Center.grid(row=6, column=3)
         
         # SCCD
@@ -163,7 +163,7 @@ class checkCameraOriginLocation(object):
         SCCD_B.grid(row=9, column=1)
         SCCD_C = tk.Button(top, text="SCCD: C", command=lambda: self._setTrueAndExit(top, CCDLabel="SCCD", trianglePointLabel="C"))
         SCCD_C.grid(row=9, column=2)
-        SCCD_Center = tk.Button(top, text="SCCD: Center", command=lambda: self._setTrueAndExit(top, CCDLabel="SCCD"))
+        SCCD_Center = tk.Button(top, text="SCCD: pixel (" + str(self.pixelDistanceToCheckPoint) + ","  + str(self.pixelDistanceToCheckPoint) + ")", command=lambda: self._setTrueAndExit(top, CCDLabel="SCCD"))
         SCCD_Center.grid(row=9, column=3)
         
         # ECCD
@@ -175,7 +175,7 @@ class checkCameraOriginLocation(object):
         ECCD_B.grid(row=12, column=1)
         ECCD_C = tk.Button(top, text="ECCD: C", command=lambda: self._setTrueAndExit(top, CCDLabel="ECCD", trianglePointLabel="C"))
         ECCD_C.grid(row=12, column=2)
-        ECCD_Center = tk.Button(top, text="ECCD: Center", command=lambda: self._setTrueAndExit(top, CCDLabel="ECCD"))
+        ECCD_Center = tk.Button(top, text="ECCD: pixel (" + str(self.pixelDistanceToCheckPoint) + ","  + str(self.pixelDistanceToCheckPoint) + ")", command=lambda: self._setTrueAndExit(top, CCDLabel="ECCD"))
         ECCD_Center.grid(row=12, column=3)
         
         # CCCD
@@ -187,7 +187,7 @@ class checkCameraOriginLocation(object):
         CCCD_B.grid(row=15, column=1)
         CCCD_C = tk.Button(top, text="CCCD: C", command=lambda: self._setTrueAndExit(top, CCDLabel="CCCD", trianglePointLabel="C"))
         CCCD_C.grid(row=15, column=2)
-        CCCD_Center = tk.Button(top, text="CCCD: Center", command=lambda: self._setTrueAndExit(top, CCDLabel="CCCD"))
+        CCCD_Center = tk.Button(top, text="CCCD: pixel (" + str(self.pixelDistanceToCheckPoint) + ","  + str(self.pixelDistanceToCheckPoint) + ")", command=lambda: self._setTrueAndExit(top, CCDLabel="CCCD"))
         CCCD_Center.grid(row=15, column=3)
         
         top.wait_window()
