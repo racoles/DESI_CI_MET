@@ -45,6 +45,9 @@ class checkCameraOriginLocation(object):
         ###########################################################################
         cs5off = cs5Offsets()
         PIDTSO_rows, PIDTSO_columns, CPOCID_X, CPOCID_Y, CPOCID_rows, CPOCID_columns, dmmMag = cs5off.calibrationScreen(consoleLog, logFile)
+         #calculate offset
+         #print offset
+        
         
         ###########################################################################
         ###Sensor Location menu
