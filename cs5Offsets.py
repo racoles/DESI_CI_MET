@@ -87,7 +87,7 @@ class cs5Offsets(object):
                  "\t\x20\x20\x20\x20locate the location of the illuminated divot in units of (rows, columns).\n", wraplength=700, justify="left").grid(row=8, column=0, sticky='W', columnspan=2)
         offset2aButton = tk.Button(top, text="Enter CS5 coordinates of Illuminated Dowel Center", command=lambda: self._offset2a_moveToIlluminatedDowelAndProbe(offset2aButton, consoleLog, logFile))
         offset2aButton.grid(row=9, column=0, sticky='W', columnspan=2)        
-        offset2bButton = tk.Button(top, text="Load Image of Illuminated Divot", command=lambda: self._offset2b_moveToIlluminatedDowelAndImage(inputGUIcalibrationScreenButton, offset2bButton, consoleLog, logFile))
+        offset2bButton = tk.Button(top, text="Load Image of Illuminated Divot", command=lambda: self._offset2b_moveToIlluminatedDowelAndImage(offset2bButton, consoleLog, logFile))
         offset2bButton.grid(row=9, column=1, sticky='W', columnspan=2)
         
     def _offset1_PinholeImageDistnceToSensorOrigin(self):
