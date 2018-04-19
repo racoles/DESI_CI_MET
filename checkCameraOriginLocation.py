@@ -53,6 +53,10 @@ class checkCameraOriginLocation(object):
         faah = fileAndArrayHandling()
         imageArray4D, filelist = faah.openAllFITSImagesInDirectory()
         aa = round(len(filelist)/2) #select a focused image from array a
+        
+        ###########################################################################
+        ###Offset Calibration
+        ###########################################################################
                 
         ###########################################################################
         ###Centroid Image
