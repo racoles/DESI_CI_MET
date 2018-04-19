@@ -25,9 +25,13 @@ class cs5Offsets(object):
     PIDTSO_rows = 293.48
     PIDTSO_columns = 205.93
     
-    #CS5 Point on CI Dowel as shown in ST-I Image
+    #CS5 Point on CI Dowel from probe
     CPOCID_X = 0
     CPOCID_Y = 0
+    
+    #CS5 Point from centroided image
+    CPOCID_rows = 0
+    CPOCID_columns = 0
     
     #DMM Magnification
     dmmMag = 4.5
@@ -90,7 +94,7 @@ class cs5Offsets(object):
         offset2bButton = tk.Button(top, text="Load Image of Illuminated Divot", command=lambda: self._offset2b_moveToIlluminatedDowelAndImage(offset2bButton, consoleLog, logFile))
         offset2bButton.grid(row=9, column=1, sticky='W', columnspan=2)
         
-        return self.PIDTSO_rows, self.PIDTSO_columns, self.CPOCID_X, self.CPOCID_Y, self.dmmMag
+        return self.PIDTSO_rows, self.PIDTSO_columns, self.CPOCID_X, self.CPOCID_Y, self.CPOCID_rows, self.CPOCID_columns, self.dmmMag
         
     #def _offset1_PinholeImageDistnceToSensorOrigin(self):
         
