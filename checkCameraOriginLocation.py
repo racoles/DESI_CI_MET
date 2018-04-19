@@ -57,6 +57,8 @@ class checkCameraOriginLocation(object):
         ###########################################################################
         ###Offset Calibration
         ###########################################################################
+        cs5off = cs5Offsets()
+        cs5off.calibrationScreen(self.consoleLog, self.logFile)
                 
         ###########################################################################
         ###Centroid Image

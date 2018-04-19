@@ -34,7 +34,7 @@ class cs5Offsets(object):
         Constructor
         '''
     
-    def calibrationScreen(self, inputGUIcalibrationScreenButton , consoleLog, logFile):
+    def calibrationScreen(self, consoleLog, logFile):
         '''
         To find the CS5 location of an illuminated object that is imaged using the
         SBIG ST-I and STXL-6303 cameras that is attached to the DMM, while the DMM 
