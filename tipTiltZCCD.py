@@ -496,7 +496,7 @@ class tipTiltZCCD(object):
         faah.pageLogging(consoleLog, logFile, "Rz Local (degrees): " + format(angleRz, '.3f'))   
         
         return angleRz
-       
+    
     def distanceBetweenTrianglePoints(self, imageArray4DA, filelistA, imageArray4DB, filelistB, imageArray4DC, filelistC, consoleLog, logFile):             
         '''
         Find the measured distance between triangle points on the sensor.
