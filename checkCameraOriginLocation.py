@@ -1,7 +1,7 @@
 '''
 @title checkCameraOriginLocation
 @author: Rebecca Coles
-Updated on Mar 22, 2018
+Updated on Apr 19, 2018
 Created on Mar 22, 2018
 
 checkCameraOriginLocation
@@ -26,7 +26,9 @@ class checkCameraOriginLocation(object):
     CCDSelection = ""
     trianglePointLabel = ""
     #Pixel distance to origin check point
-    pixelDistanceToCheckPoint = 20 #pixel location (rows = pixelDistanceToCheckPoint, columns = pixelDistanceToCheckPoint)
+    pixelDistanceToCheckPoint = 10 #pixel location (rows = pixelDistanceToCheckPoint, columns = pixelDistanceToCheckPoint)
+    #DMM Magnification
+    dmmMag = 4.5
     
     def __init__(self):
         '''
