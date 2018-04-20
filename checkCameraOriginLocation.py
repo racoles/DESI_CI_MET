@@ -15,9 +15,7 @@ from tkinter.ttk import Separator
 from fileAndArrayHandling import fileAndArrayHandling
 from CCDOpsPlanetMode import CCDOpsPlanetMode
 from centroidFIF import centroidFIF
-import math
 from focusCurve import focusCurve
-import numpy as np
 from alternateCentroidMethods import gmsCentroid
 from cs5Offsets import cs5Offsets
 ################################################################################################
