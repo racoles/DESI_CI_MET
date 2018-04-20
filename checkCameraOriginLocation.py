@@ -118,7 +118,6 @@ class checkCameraOriginLocation(object):
         ###########################################################################     
 
         faah.pageLogging(consoleLog, logFile, "Move to pixel (" + str(self.pixelDistanceToCheckPoint) + ", " + str(self.pixelDistanceToCheckPoint) + ")\n" +
-                         "You indicated (using the probe) that the center of the FIF is at CS5 (" + str(CPOCID_X) + ", " + str(CPOCID_Y) + ")\n" +
                          "Using: (centroid(row or column) - desiredPixel(row or column)) * pixelSize\n" +
                          "Distance to move (CS5 um):\n" +
                          "    DeltaXCS5A = " + format(DeltaXCS5A, '.3f') + "\n" +
@@ -156,7 +155,7 @@ class checkCameraOriginLocation(object):
                                                          int(round(subArrayBoxSizePIX/2)), int(round(subArrayBoxSizePIX/2)), axis='both', verbose=False)
         
         faah.pageLogging(consoleLog, logFile, "Centroid for pixel (" + str(self.pixelDistanceToCheckPoint) + ", " + str(self.pixelDistanceToCheckPoint) + ") found at:" +
-                         "row = " + format(xCenGMSPIX, '.3f') + ", columns = " + format(yCenGMSPIX, '.3f'))
+                         "row = " + format(xCenGMSPIX + xOffsetPIX, '.3f') + ", columns = " + format(yCenGMSPIX + yOffsetPIX, '.3f'))
         
     def _checkCameraOriginLocationSelectionWindow(self):
         '''
