@@ -45,6 +45,9 @@ class checkCameraOriginLocation(object):
         ###########################################################################
         ###Offset Calibration
         ###########################################################################
+        
+        #Note: in future, row versus columns equal to x and y will be different for NESW cameras
+        
         #Get calibration values 
         faah = fileAndArrayHandling()
         cs5off = cs5Offsets()
@@ -78,11 +81,15 @@ class checkCameraOriginLocation(object):
         ########################################################################### 
         #Get location of pinhole image in (rows, columns)
         cF = centroidFIF()
-        _ , subArrayBoxSize, maxLoc = cF.findFIFInImage(imageArray4DA[aa])
+        _ , subArrayBoxSizeA, maxLocA = cF.findFIFInImage(imageArray4DA[aa])
+        _ , subArrayBoxSizeB, maxLocB = cF.findFIFInImage(imageArray4DA[bb])
+        _ , subArrayBoxSizeC, maxLocC = cF.findFIFInImage(imageArray4DA[cc])
         
         #Account for planet mode
         pM = CCDOpsPlanetMode()
         xOffsetA, yOffsetA, pixelSize = pM.readFitsHeader(imageArray4DA, filelistA, consoleLog, logFile)
+        xOffsetB, yOffsetB, pixelSize = pM.readFitsHeader(imageArray4DB, filelistB, consoleLog, logFile)
+        xOffsetC, yOffsetC, pixelSize = pM.readFitsHeader(imageArray4DC, filelistC, consoleLog, logFile)
         
         #Use alternate methods to centroid pinhole image
         #    gmsCentroid: Gaussian Marginal Sum (GMS) Centroid Method.
