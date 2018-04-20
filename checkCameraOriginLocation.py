@@ -53,7 +53,6 @@ class checkCameraOriginLocation(object):
         cs5off = cs5Offsets()
         PIDTSO_rows, PIDTSO_columns, CPOCID_X, CPOCID_Y, CPOCID_rows, CPOCID_columns, dmmMag = cs5off.calibrationScreen(consoleLog, logFile)
         #Calculate offset
-            #subtract "optical CS5 origin" from 100um pinhole
         calOffX = ((PIDTSO_rows - CPOCID_rows)*self.stipixel)/dmmMag
         calOffY = ((PIDTSO_columns - CPOCID_columns)*self.stipixel)/dmmMag
         #Print offset
