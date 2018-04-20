@@ -173,6 +173,36 @@ class checkCameraOriginLocation(object):
                          "row = " + format(xCenGMSPIX + xOffsetPIX, '.3f') + ", columns = " + format(yCenGMSPIX + yOffsetPIX, '.3f'))
         
         #NO CALIBRATION OFFSET APPLIED: calculate location of CCD (0,0) in CS5 using triangle a, b, c, and pixel  
+        faah.pageLogging(consoleLog, logFile, "CS5 CCD ORIGIN\n" +
+                         "Using: CS5 Nominal Triangle Point (X or Y) - [centroided (rows or columns) * pixelSize]\n" +
+                         "NO CALIBATION OFFSET APPLIED" +
+                         
+                         
+                         
+                         
+                         
+                         
+                         "    DeltaXCS5A = " + format(DeltaXCS5A, '.3f') + "\n" +
+                         "    DeltaYCS5A = " + format(DeltaYCS5A, '.3f') + "\n\n" +
+                         "    DeltaXCS5B = " + format(DeltaXCS5B, '.3f') + "\n" +
+                         "    DeltaYCS5B = " + format(DeltaYCS5B, '.3f') + "\n\n" +
+                         "    DeltaXCS5C = " + format(DeltaXCS5C, '.3f') + "\n" +
+                         "    DeltaYCS5C = " + format(DeltaYCS5C, '.3f') + "\n\n" +
+                         "Using: CS5 Pixel (X or Y) = Nominal CS5 (X or Y) + DeltaCS5 (X or Y)" +
+                         "These correspond to CS5 Position:\n" +
+                         "    CS5X(A) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][0]) + " + " + format(DeltaXCS5A, '.3f') + " = " + 
+                         format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][0] + DeltaXCS5A, '.3f') + "\n" +
+                         "    CS5Y(A) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][1]) + " + " + format(DeltaYCS5A, '.3f') + " = " + 
+                         format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][1] + DeltaYCS5A, '.3f') + "\n" +
+                         "    CS5X(B) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][0]) + " + " + format(DeltaXCS5B, '.3f') + " = " + 
+                         format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][0] + DeltaXCS5B, '.3f') + "\n" +
+                         "    CS5Y(B) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][1]) + " + " + format(DeltaYCS5B, '.3f') + " = " + 
+                         format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][1] + DeltaYCS5B, '.3f') + "\n" +
+                         "    CS5X(C) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][0]) + " + " + format(DeltaXCS5C, '.3f') + " = " + 
+                         format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][0] + DeltaXCS5C, '.3f') + "\n" +
+                         "    CS5Y(C) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][1]) + " + " + format(DeltaYCS5C, '.3f') + " = " + 
+                         format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][1] + DeltaYCS5C, '.3f') + "\n")
+        
         #CALIBRATION OFFSET APPLIED: calculate location of CCD (0,0) in CS5 using triangle a, b, c, and pixel  
         
     def _checkCameraOriginLocationSelectionWindow(self):
