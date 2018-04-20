@@ -172,24 +172,24 @@ class checkCameraOriginLocation(object):
         faah.pageLogging(consoleLog, logFile, "Centroid for pixel (" + str(self.pixelDistanceToCheckPoint) + ", " + str(self.pixelDistanceToCheckPoint) + ") found at:" +
                          "row = " + format(xCenGMSPIX + xOffsetPIX, '.3f') + ", columns = " + format(yCenGMSPIX + yOffsetPIX, '.3f'))
         
-        #NO CALIBRATION OFFSET APPLIED: calculate location of CCD (0,0) in CS5 using triangle a, b, c, and pixel  
+        #calculate location of CCD (0,0) in CS5 using triangle a, b, c, and pixel  
         faah.pageLogging(consoleLog, logFile, "CS5 CCD ORIGIN\n" +
                          "Using: CS5 Nominal Triangle Point (X or Y) - [centroided (rows or columns) * pixelSize]\n" +
                          "NO CALIBRATION OFFSET APPLIED\n" +
-                         "    CS5 CCD Origin X(A) = " + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][0]) - ((xCenGMSA + xOffsetA) * pixelSize), '.3f') + "\n" +
-                         "    CS5 CCD Origin Y(A) = " + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][1]) - ((yCenGMSA + yOffsetA) * pixelSize), '.3f') + "\n\n" +
-                         "    CS5 CCD Origin X(B) = " + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][0]) - ((xCenGMSB + xOffsetB) * pixelSize), '.3f') + "\n" +
-                         "    CS5 CCD Origin Y(B) = " + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][1]) - ((yCenGMSB + yOffsetB) * pixelSize), '.3f') + "\n\n" +
-                         "    CS5 CCD Origin X(C) = " + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][0]) - ((xCenGMSC + xOffsetC) * pixelSize), '.3f') + "\n" +
-                         "    CS5 CCD Origin Y(C) = " + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][1]) - ((yCenGMSC + yOffsetC) * pixelSize), '.3f') + "\n\n" +
+                         "    CS5 CCD Origin X(A) = " + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][0] - ((xCenGMSA + xOffsetA) * pixelSize), '.3f') + "\n" +
+                         "    CS5 CCD Origin Y(A) = " + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][1] - ((yCenGMSA + yOffsetA) * pixelSize), '.3f') + "\n\n" +
+                         "    CS5 CCD Origin X(B) = " + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][0] - ((xCenGMSB + xOffsetB) * pixelSize), '.3f') + "\n" +
+                         "    CS5 CCD Origin Y(B) = " + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][1] - ((yCenGMSB + yOffsetB) * pixelSize), '.3f') + "\n\n" +
+                         "    CS5 CCD Origin X(C) = " + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][0] - ((xCenGMSC + xOffsetC) * pixelSize), '.3f') + "\n" +
+                         "    CS5 CCD Origin Y(C) = " + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][1] - ((yCenGMSC + yOffsetC) * pixelSize), '.3f') + "\n\n" +
                          "CALIBRATION OFFSET APPLIED\n" +
                          "Calibration Offset (um): (" + str(calOffX) + ", " + str(calOffY) + "\n"
-                         "    CS5 CCD Origin X(A) = " + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][0]) - ((xCenGMSA + xOffsetA) * pixelSize) + calOffX, '.3f') + "\n" +
-                         "    CS5 CCD Origin Y(A) = " + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][1]) - ((yCenGMSA + yOffsetA) * pixelSize) + calOffY, '.3f') + "\n\n" +
-                         "    CS5 CCD Origin X(B) = " + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][0]) - ((xCenGMSB + xOffsetB) * pixelSize) + calOffX, '.3f') + "\n" +
-                         "    CS5 CCD Origin Y(B) = " + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][1]) - ((yCenGMSB + yOffsetB) * pixelSize) + calOffY, '.3f') + "\n\n" +
-                         "    CS5 CCD Origin X(C) = " + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][0]) - ((xCenGMSC + xOffsetC) * pixelSize) + calOffX, '.3f') + "\n" +
-                         "    CS5 CCD Origin Y(C) = " + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][1]) - ((yCenGMSC + yOffsetC) * pixelSize) + calOffY, '.3f') + "\n\n" +)
+                         "    CS5 CCD Origin X(A) = " + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][0] - ((xCenGMSA + xOffsetA) * pixelSize) + calOffX, '.3f') + "\n" +
+                         "    CS5 CCD Origin Y(A) = " + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][1] - ((yCenGMSA + yOffsetA) * pixelSize) + calOffY, '.3f') + "\n\n" +
+                         "    CS5 CCD Origin X(B) = " + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][0] - ((xCenGMSB + xOffsetB) * pixelSize) + calOffX, '.3f') + "\n" +
+                         "    CS5 CCD Origin Y(B) = " + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][1] - ((yCenGMSB + yOffsetB) * pixelSize) + calOffY, '.3f') + "\n\n" +
+                         "    CS5 CCD Origin X(C) = " + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][0] - ((xCenGMSC + xOffsetC) * pixelSize) + calOffX, '.3f') + "\n" +
+                         "    CS5 CCD Origin Y(C) = " + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][1] - ((yCenGMSC + yOffsetC) * pixelSize) + calOffY, '.3f'))
         
         
     def _checkCameraOriginLocationSelectionWindow(self):
