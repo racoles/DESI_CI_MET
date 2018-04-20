@@ -155,38 +155,8 @@ class checkCameraOriginLocation(object):
         xCenGMSPIX, yCenGMSPIX, _, _ = gmsCentroid(imageArray4DPIX[pixpix], maxLocPIX[1], maxLocPIX[0], 
                                                          int(round(subArrayBoxSizePIX/2)), int(round(subArrayBoxSizePIX/2)), axis='both', verbose=False)
         
-        '''
-        ##Find location of Origin in CS5    
-        CS5OriginX = 0
-        CS5OriginY = 0 
-        fC = focusCurve()
-        
-        if self.trianglePointLabel != '':
-            #pinhole is from 100um DMM (triangle)
-            CS5OriginX = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + self.trianglePointLabel][0] + (rows*(pixelSize/1000))
-            CS5OriginY = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + self.trianglePointLabel][1] + (columns*(pixelSize/1000))
-            faah.pageLogging(consoleLog, logFile, 
-                    "Distance from projected pinhole to sensor origin:\n " + format(hypotenuse, '.3f') + "pixels = " + format(hypotenuse*pixelSize, '.3f') + 'um = ' + format(hypotenuse*pixelSize/1000, '.3f') + "mm\n"
-                    "To check SBIG STXL sensor origin location: move to CS5 (X = " + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + self.trianglePointLabel][0] + ((rows-self.pixelDistanceToCheckPoint)*(pixelSize/1000)), '.3f') +
-                     "mm, Y = " + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + self.trianglePointLabel][1] + ((columns-self.pixelDistanceToCheckPoint)*(pixelSize/1000)), '.3f') + "mm)" + 
-                    ".\nYou should be able to see the origin of the sensor using the SBIG ST-i. The DMM pinhole \nprojected at this point should show up in an SBIG STXL image at pixel location:\n" +
-                    "(row = " + str(self.pixelDistanceToCheckPoint) + ", column = " + str(self.pixelDistanceToCheckPoint) + ")")
-            
-        elif self.CCDSelection != '' and self.trianglePointLabel == '':
-            #pinhole is at CCD center
-            CS5OriginX = fC.CCDLocationsCS5[self.CCDSelection][0] + (rows*(pixelSize/1000))
-            CS5OriginY = fC.CCDLocationsCS5[self.CCDSelection][1] + (columns*(pixelSize/1000))
-            faah.pageLogging(consoleLog, logFile, 
-                    "Distance from projected pinhole to sensor origin: " + format(hypotenuse, '.3f') + "pixels = " + format(hypotenuse*pixelSize, '.3f') + 'um = ' + format(hypotenuse*pixelSize/1000, '.3f') + "mm\n"
-                    "To check SBIG STXL sensor origin location: move to CS5 (X = " + format(fC.CCDLocationsCS5[self.CCDSelection][0] + ((rows-self.pixelDistanceToCheckPoint)*(pixelSize/1000)), '.3f') +
-                     "mm, Y = " + format(fC.CCDLocationsCS5[self.CCDSelection][1] + ((columns-self.pixelDistanceToCheckPoint)*(pixelSize/1000)), '.3f') + "mm)" + 
-                    ".\nYou should be able to see the origin of the sensor using the SBIG ST-i. The DMM pinhole \nprojected at this point should show up in an SBIG STXL image at pixel location:\n" +
-                    "(row = " + str(self.pixelDistanceToCheckPoint) + ", column = " + str(self.pixelDistanceToCheckPoint) + ")")
-            
-        else:
-            #pinhole type not selected
-            faah.pageLogging(consoleLog, logFile,'Pinhole type not selected. Will use CS5 (X = 0mm, Y = 0mm)')     
-        '''
+        faah.pageLogging(consoleLog, logFile, "Centroid for pixel (" + str(self.pixelDistanceToCheckPoint) + ", " + str(self.pixelDistanceToCheckPoint) + ") found at:" +
+                         "row = " + format(xCenGMSPIX, '.3f') + ", columns = " + format(yCenGMSPIX, '.3f'))
         
     def _checkCameraOriginLocationSelectionWindow(self):
         '''
