@@ -128,6 +128,33 @@ class checkCameraOriginLocation(object):
                          "    DeltaXCS5C = " + format(DeltaXCS5C, '.3f') + "\n" +
                          "    DeltaYCS5C = " + format(DeltaYCS5C, '.3f') + "\n")
         
+        ###########################################################################
+        ###Image (pixelDistanceToCheckPoint, pixelDistanceToCheckPoint) with SBIGXL
+        ###########################################################################                 
+        top = tk.Toplevel()
+        top.title("Image pixel (" + str(self.pixelDistanceToCheckPoint) + ", " + str(self.pixelDistanceToCheckPoint) + ")?")
+        aboutMessage = str("Are you ready to image pixel (" + str(self.pixelDistanceToCheckPoint) + ", " + str(self.pixelDistanceToCheckPoint) + ")?")
+        faah.pageLogging(self.consoleLog, self.logFile, aboutMessage)
+        msg = tk.Message(top, text=aboutMessage)
+        msg.pack()
+        button = tk.Button(top, text="Ready", command=top.destroy)
+        button.pack()
+        top.wait_window()
+        imageArray4DPIX, filelistPIX = faah.openAllFITSImagesInDirectory()
+        
+        #Centroid
+        #Get location of pinhole image in (rows, columns)
+        pixpix = round(len(filelistPIX)/2)
+        _ , subArrayBoxSizePIX, maxLocPIX = cF.findFIFInImage(imageArray4DPIX[pixpix])
+        
+        #Account for planet mode
+        xOffsetPIX, yOffsetPIX, _ = pM.readFitsHeader(imageArray4DA, filelistA, consoleLog, logFile)
+        
+        #Use alternate methods to centroid pinhole image
+        #    gmsCentroid: Gaussian Marginal Sum (GMS) Centroid Method.
+        xCenGMSPIX, yCenGMSPIX, _, _ = gmsCentroid(imageArray4DPIX[pixpix], maxLocPIX[1], maxLocPIX[0], 
+                                                         int(round(subArrayBoxSizePIX/2)), int(round(subArrayBoxSizePIX/2)), axis='both', verbose=False)
+        
         '''
         ##Find location of Origin in CS5    
         CS5OriginX = 0
