@@ -116,7 +116,7 @@ class checkCameraOriginLocation(object):
         ###########################################################################
         ###Go to (pixelDistanceToCheckPoint, pixelDistanceToCheckPoint)
         ###########################################################################     
-
+        fC = focusCurve()
         faah.pageLogging(consoleLog, logFile, "Move to pixel (" + str(self.pixelDistanceToCheckPoint) + ", " + str(self.pixelDistanceToCheckPoint) + ")\n" +
                          "Using: (centroid(row or column) - desiredPixel(row or column)) * pixelSize\n" +
                          "Distance to move (CS5 um):\n" +
@@ -125,7 +125,21 @@ class checkCameraOriginLocation(object):
                          "    DeltaXCS5B = " + format(DeltaXCS5B, '.3f') + "\n" +
                          "    DeltaYCS5B = " + format(DeltaYCS5B, '.3f') + "\n\n" +
                          "    DeltaXCS5C = " + format(DeltaXCS5C, '.3f') + "\n" +
-                         "    DeltaYCS5C = " + format(DeltaYCS5C, '.3f') + "\n")
+                         "    DeltaYCS5C = " + format(DeltaYCS5C, '.3f') + "\n\n" +
+                         "Using: CS5 Pixel (X or Y) = Nominal CS5 (X or Y) + DeltaCS5 (X or Y)" +
+                         "These correspond to CS5 Position:\n" +
+                         "    CS5X(A) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][0]) + " + " + format(DeltaXCS5A, '.3f') + " = " + 
+                         format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][0] + DeltaXCS5A, '.3f') + "\n" +
+                        "    CS5Y(A) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][1]) + " + " + format(DeltaYCS5A, '.3f') + " = " + 
+                         format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][1] + DeltaYCS5A, '.3f') + "\n" +
+                        "    CS5X(B) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][0]) + " + " + format(DeltaXCS5B, '.3f') + " = " + 
+                         format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][0] + DeltaXCS5B, '.3f') + "\n" +
+                        "    CS5Y(B) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][1]) + " + " + format(DeltaYCS5B, '.3f') + " = " + 
+                         format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][1] + DeltaYCS5B, '.3f') + "\n" +
+                        "    CS5X(C) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][0]) + " + " + format(DeltaXCS5C, '.3f') + " = " + 
+                         format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][0] + DeltaXCS5C, '.3f') + "\n" +
+                        "    CS5Y(C) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][1]) + " + " + format(DeltaYCS5C, '.3f') + " = " + 
+                         format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][1] + DeltaYCS5C, '.3f') + "\n" +)
         
         ###########################################################################
         ###Image (pixelDistanceToCheckPoint, pixelDistanceToCheckPoint) with SBIGXL
@@ -153,9 +167,10 @@ class checkCameraOriginLocation(object):
         #    gmsCentroid: Gaussian Marginal Sum (GMS) Centroid Method.
         xCenGMSPIX, yCenGMSPIX, _, _ = gmsCentroid(imageArray4DPIX[pixpix], maxLocPIX[1], maxLocPIX[0], 
                                                          int(round(subArrayBoxSizePIX/2)), int(round(subArrayBoxSizePIX/2)), axis='both', verbose=False)
-        
+
         faah.pageLogging(consoleLog, logFile, "Centroid for pixel (" + str(self.pixelDistanceToCheckPoint) + ", " + str(self.pixelDistanceToCheckPoint) + ") found at:" +
-                         "row = " + format(xCenGMSPIX + xOffsetPIX, '.3f') + ", columns = " + format(yCenGMSPIX + yOffsetPIX, '.3f'))
+                         "row = " + format(xCenGMSPIX + xOffsetPIX, '.3f') + ", columns = " + format(yCenGMSPIX + yOffsetPIX, '.3f') + "\n\n" +
+                         "")
         
     def _checkCameraOriginLocationSelectionWindow(self):
         '''
