@@ -117,7 +117,16 @@ class checkCameraOriginLocation(object):
         ###Go to (pixelDistanceToCheckPoint, pixelDistanceToCheckPoint)
         ###########################################################################     
 
-        faah.pageLogging(consoleLog, logFile, "Move to pixel (" + str(self.pixelDistanceToCheckPoint) + ", " + str(self.pixelDistanceToCheckPoint) + ")")
+        faah.pageLogging(consoleLog, logFile, "Move to pixel (" + str(self.pixelDistanceToCheckPoint) + ", " + str(self.pixelDistanceToCheckPoint) + ")\n" +
+                         "You indicated (using the probe) that the center of the FIF is at CS5 (" + str(CPOCID_X) + ", " + str(CPOCID_Y) + ")\n" +
+                         "Using: (centroid(row or column) - desiredPixel(row or column)) * pixelSize\n" +
+                         "Distance to move (CS5 um):\n" +
+                         "    DeltaXCS5A = " + format(DeltaXCS5A, '.3f') + "\n" +
+                         "    DeltaYCS5A = " + format(DeltaYCS5A, '.3f') + "\n\n" +
+                         "    DeltaXCS5B = " + format(DeltaXCS5B, '.3f') + "\n" +
+                         "    DeltaYCS5B = " + format(DeltaYCS5B, '.3f') + "\n\n" +
+                         "    DeltaXCS5C = " + format(DeltaXCS5C, '.3f') + "\n" +
+                         "    DeltaYCS5C = " + format(DeltaYCS5C, '.3f') + "\n")
         
         '''
         ##Find location of Origin in CS5    
