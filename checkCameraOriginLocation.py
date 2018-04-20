@@ -86,8 +86,8 @@ class checkCameraOriginLocation(object):
         
         #Account for planet mode
         pM = CCDOpsPlanetMode()
-        xOffsetA, yOffsetA, pixelSize = pM.readFitsHeader(imageArray4DA, filelistA, consoleLog, logFile)
-        xOffsetB, yOffsetB, pixelSize = pM.readFitsHeader(imageArray4DB, filelistB, consoleLog, logFile)
+        xOffsetA, yOffsetA, _ = pM.readFitsHeader(imageArray4DA, filelistA, consoleLog, logFile)
+        xOffsetB, yOffsetB, _ = pM.readFitsHeader(imageArray4DB, filelistB, consoleLog, logFile)
         xOffsetC, yOffsetC, pixelSize = pM.readFitsHeader(imageArray4DC, filelistC, consoleLog, logFile)
         
         #Use alternate methods to centroid pinhole image
@@ -106,14 +106,14 @@ class checkCameraOriginLocation(object):
         #rows = xCenGMS + xOffset  
         #columns = yCenGMS + yOffset
         
-        DeltaXCS5A = ((xCenGMSA + xOffsetA) - self.pixelDistanceToCheckPoint)
-        DeltaYCS5A = ((yCenGMSA + yOffsetA) - self.pixelDistanceToCheckPoint)
+        DeltaXCS5A = ((xCenGMSA + xOffsetA) - self.pixelDistanceToCheckPoint) * pixelSize
+        DeltaYCS5A = ((yCenGMSA + yOffsetA) - self.pixelDistanceToCheckPoint) * pixelSize
         
-        DeltaXCS5B = ((xCenGMSB + xOffsetB) - self.pixelDistanceToCheckPoint)
-        DeltaYCS5B = ((yCenGMSB + yOffsetB) - self.pixelDistanceToCheckPoint)
+        DeltaXCS5B = ((xCenGMSB + xOffsetB) - self.pixelDistanceToCheckPoint) * pixelSize
+        DeltaYCS5B = ((yCenGMSB + yOffsetB) - self.pixelDistanceToCheckPoint) * pixelSize
         
-        DeltaXCS5C = ((xCenGMSC + xOffsetC) - self.pixelDistanceToCheckPoint)
-        DeltaYCS5C = ((yCenGMSC + yOffsetC) - self.pixelDistanceToCheckPoint)
+        DeltaXCS5C = ((xCenGMSC + xOffsetC) - self.pixelDistanceToCheckPoint) * pixelSize
+        DeltaYCS5C = ((yCenGMSC + yOffsetC) - self.pixelDistanceToCheckPoint) * pixelSize
         
         ##Find location of Origin in CS5    
         CS5OriginX = 0
