@@ -405,13 +405,13 @@ class tipTiltZCCD(object):
              
         #If B and C aren't aligned (in either X or Y depending on the camera location)
         if CCDLabel == "NCCD":
-            _, ycenB = cF.findCentroid(fifSubArrayB, int(subArrayBoxSizeB/2), int(subArrayBoxSizeB/2), extendbox = 3) 
-            _, ycenC = cF.findCentroid(fifSubArrayC, int(subArrayBoxSizeC/2), int(subArrayBoxSizeC/2), extendbox = 3)
+            xcenB, ycenB = cF.findCentroid(fifSubArrayB, int(subArrayBoxSizeB/2), int(subArrayBoxSizeB/2), extendbox = 3) 
+            xcenC, ycenC = cF.findCentroid(fifSubArrayC, int(subArrayBoxSizeC/2), int(subArrayBoxSizeC/2), extendbox = 3)
             if ycenB != ycenC:
                 if ycenB > ycenC:     
                 #calculate angle between B and C. Report in CS5 relative to +X: 180 degrees - BC angle
                 #BC Should be parallel to CS5X. CCDLabel sensor origin is [180 degrees - BC angle] degrees Rz about CS5X.                
-                    angleRz = math.degrees(np.arcsin((ycenB-ycenC)/triangleSideLength))
+                    angleRz = math.degrees(np.arctan((xcenC-xcenB)/(ycenC-ycenB)))
                     faah.pageLogging(consoleLog, logFile, "Checking " + str(CCDLabel) + " Rz about CS5X:" + "Side BC Should be parallel to CS5X.\n" + 
                                      "        " + CCDLabel + " Sensor origin is " + format(180-angleRz, '.3f') + " degrees about CS5X." ) 
                 if ycenB < ycenC:

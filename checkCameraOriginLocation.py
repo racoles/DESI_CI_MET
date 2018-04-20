@@ -93,18 +93,22 @@ class checkCameraOriginLocation(object):
         
         #Use alternate methods to centroid pinhole image
         #    gmsCentroid: Gaussian Marginal Sum (GMS) Centroid Method.
-        xCenGMS, yCenGMS, _, _ = gmsCentroid(imageArray4D[aa], maxLoc[1], maxLoc[0], 
-                                                         int(round(subArrayBoxSize/2)), int(round(subArrayBoxSize/2)), axis='both', verbose=False)
+        xCenGMSA, yCenGMSA, _, _ = gmsCentroid(imageArray4DA[aa], maxLocA[1], maxLocA[0], 
+                                                         int(round(subArrayBoxSizeA/2)), int(round(subArrayBoxSizeA/2)), axis='both', verbose=False)
+        xCenGMSB, yCenGMSB, _, _ = gmsCentroid(imageArray4DB[bb], maxLocB[1], maxLocB[0], 
+                                                         int(round(subArrayBoxSizeB/2)), int(round(subArrayBoxSizeB/2)), axis='both', verbose=False)
+        xCenGMSC, yCenGMSC, _, _ = gmsCentroid(imageArray4DC[cc], maxLocC[1], maxLocC[0], 
+                                                         int(round(subArrayBoxSizeC/2)), int(round(subArrayBoxSizeC/2)), axis='both', verbose=False)
         
         ###########################################################################
         ###Calculate the distance to the sensor origin using centroided image.
         ###########################################################################  
         #Find distance in um to CCD Origin  
-        rows = xCenGMS + xOffset  
-        columns = yCenGMS + yOffset
+        #rows = xCenGMS + xOffset  
+        #columns = yCenGMS + yOffset
         
-        hypotenuse = np.sqrt(math.pow((rows),2)+math.pow((columns),2))
-        faah = fileAndArrayHandling()
+        #hypotenuse = np.sqrt(math.pow((rows),2)+math.pow((columns),2))
+        #faah = fileAndArrayHandling()
         
         ##Find location of Origin in CS5    
         CS5OriginX = 0
