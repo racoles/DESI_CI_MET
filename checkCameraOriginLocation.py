@@ -29,6 +29,7 @@ class checkCameraOriginLocation(object):
     #Pixel distance to origin check point
     pixelDistanceToCheckPoint = 10 #pixel location (rows = pixelDistanceToCheckPoint, columns = pixelDistanceToCheckPoint)
     
+    
     def __init__(self):
         '''
         Constructor
@@ -43,10 +44,14 @@ class checkCameraOriginLocation(object):
         ###########################################################################
         ###Offset Calibration
         ###########################################################################
+        #Get calibration values 
         cs5off = cs5Offsets()
         PIDTSO_rows, PIDTSO_columns, CPOCID_X, CPOCID_Y, CPOCID_rows, CPOCID_columns, dmmMag = cs5off.calibrationScreen(consoleLog, logFile)
-         #calculate offset
-         #print offset
+         #Calculate offset
+            #subtract "optical CS5 origin" from 100um pinhole
+        calOffX = PIDTSO_rows - CPOCID_rows
+        calOffY = PIDTSO_columns - CPOCID_columns
+         #Print offset
         
         
         ###########################################################################
@@ -65,12 +70,6 @@ class checkCameraOriginLocation(object):
         aa = round(len(filelistA)/2) #select a focused image from array a
         bb = round(len(filelistB)/2) #select a focused image from array a
         cc = round(len(filelistC)/2) #select a focused image from array a
-        
-        ###########################################################################
-        ###Offset Calibration
-        ###########################################################################
-        cs5off = cs5Offsets()
-        cs5off.calibrationScreen(consoleLog, logFile)
                 
         ###########################################################################
         ###Centroid Images
