@@ -139,7 +139,7 @@ class checkCameraOriginLocation(object):
                         "    CS5X(C) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][0]) + " + " + format(DeltaXCS5C, '.3f') + " = " + 
                          format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][0] + DeltaXCS5C, '.3f') + "\n" +
                         "    CS5Y(C) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][1]) + " + " + format(DeltaYCS5C, '.3f') + " = " + 
-                         format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][1] + DeltaYCS5C, '.3f') + "\n" +)
+                         format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][1] + DeltaYCS5C, '.3f') + "\n")
         
         ###########################################################################
         ###Image (pixelDistanceToCheckPoint, pixelDistanceToCheckPoint) with SBIGXL
