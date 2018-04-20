@@ -93,6 +93,7 @@ class cs5Offsets(object):
         offset2aButton.grid(row=9, column=0, sticky='W', columnspan=2)        
         offset2bButton = tk.Button(top, text="Load Image of Illuminated Divot", command=lambda: self._offset2b_moveToIlluminatedDowelAndImage(offset2bButton, consoleLog, logFile))
         offset2bButton.grid(row=9, column=1, sticky='W', columnspan=2)
+        top.wait_window()
         
         return self.PIDTSO_rows, self.PIDTSO_columns, self.CPOCID_X, self.CPOCID_Y, self.CPOCID_rows, self.CPOCID_columns, self.dmmMag
         

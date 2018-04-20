@@ -56,8 +56,8 @@ class checkCameraOriginLocation(object):
         calOffX = ((PIDTSO_rows - CPOCID_rows)*self.stipixel)/dmmMag
         calOffY = ((PIDTSO_columns - CPOCID_columns)*self.stipixel)/dmmMag
         #Print offset
-        faah.pageLogging(consoleLog, logFile, "Calibration Offset: (rows = "+ str(PIDTSO_rows - CPOCID_rows) + ", columns = " + str((PIDTSO_columns - CPOCID_columns)) + ")\n" +
-                         "Calibration Offset (um): (" + str(calOffX) + ", " + str(calOffY))
+        faah.pageLogging(consoleLog, logFile, "Calibration Offset (pixels): (rows = "+ str(PIDTSO_rows - CPOCID_rows) + ", columns = " + str((PIDTSO_columns - CPOCID_columns)) + ")\n" +
+                         "Calibration Offset (um): (" + format(calOffX, '.3f') + ", " + format(calOffY, '.3f'))
         
         ###########################################################################
         ###Sensor Location menu
