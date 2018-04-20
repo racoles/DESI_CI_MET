@@ -147,7 +147,7 @@ class checkCameraOriginLocation(object):
         top = tk.Toplevel()
         top.title("Image pixel (" + str(self.pixelDistanceToCheckPoint) + ", " + str(self.pixelDistanceToCheckPoint) + ")?")
         aboutMessage = str("Are you ready to image pixel (" + str(self.pixelDistanceToCheckPoint) + ", " + str(self.pixelDistanceToCheckPoint) + ")?")
-        faah.pageLogging(self.consoleLog, self.logFile, aboutMessage)
+        faah.pageLogging(consoleLog, logFile, aboutMessage)
         msg = tk.Message(top, text=aboutMessage)
         msg.pack()
         button = tk.Button(top, text="Ready", command=top.destroy)
