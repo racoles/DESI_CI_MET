@@ -183,7 +183,7 @@ class checkCameraOriginLocation(object):
                          "    CS5 CCD Origin X(C) = " + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][0] - ((xCenGMSC + xOffsetC) * pixelSize), '.3f') + "\n" +
                          "    CS5 CCD Origin Y(C) = " + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][1] - ((yCenGMSC + yOffsetC) * pixelSize), '.3f') + "\n\n" +
                          "CALIBRATION OFFSET APPLIED\n" +
-                         "Calibration Offset (um): (" + str(calOffX) + ", " + str(calOffY) + "\n"
+                         "Calibration Offset (um): (" + str(calOffX) + ", " + str(calOffY) + ")\n"
                          "    CS5 CCD Origin X(A) = " + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][0] - ((xCenGMSA + xOffsetA) * pixelSize) + calOffX, '.3f') + "\n" +
                          "    CS5 CCD Origin Y(A) = " + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][1] - ((yCenGMSA + yOffsetA) * pixelSize) + calOffY, '.3f') + "\n\n" +
                          "    CS5 CCD Origin X(B) = " + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][0] - ((xCenGMSB + xOffsetB) * pixelSize) + calOffX, '.3f') + "\n" +
