@@ -28,7 +28,8 @@ class checkCameraOriginLocation(object):
     trianglePointLabel = ""
     #Pixel distance to origin check point
     pixelDistanceToCheckPoint = 10 #pixel location (rows = pixelDistanceToCheckPoint, columns = pixelDistanceToCheckPoint)
-    
+    #STi Pixel Size
+    stipixel = 7.4
     
     def __init__(self):
         '''
@@ -45,14 +46,16 @@ class checkCameraOriginLocation(object):
         ###Offset Calibration
         ###########################################################################
         #Get calibration values 
+        faah = fileAndArrayHandling()
         cs5off = cs5Offsets()
         PIDTSO_rows, PIDTSO_columns, CPOCID_X, CPOCID_Y, CPOCID_rows, CPOCID_columns, dmmMag = cs5off.calibrationScreen(consoleLog, logFile)
-         #Calculate offset
+        #Calculate offset
             #subtract "optical CS5 origin" from 100um pinhole
-        calOffX = PIDTSO_rows - CPOCID_rows
-        calOffY = PIDTSO_columns - CPOCID_columns
-         #Print offset
-        
+        calOffX = ((PIDTSO_rows - CPOCID_rows)*self.stipixel)/dmmMag
+        calOffY = ((PIDTSO_columns - CPOCID_columns)*self.stipixel)/dmmMag
+        #Print offset
+        faah.pageLogging(consoleLog, logFile, "Calibration Offset: (rows = "+ str(PIDTSO_rows - CPOCID_rows) + ", columns = " + str((PIDTSO_columns - CPOCID_columns)) + ")\n" +
+                         "Calibration Offset (um): (" + str(calOffX) + ", " + str(calOffY))
         
         ###########################################################################
         ###Sensor Location menu
@@ -63,7 +66,6 @@ class checkCameraOriginLocation(object):
         ###Get images
         ###########################################################################
         #add ABC notice
-        faah = fileAndArrayHandling()
         imageArray4DA, filelistA = faah.openAllFITSImagesInDirectory()
         imageArray4DB, filelistB = faah.openAllFITSImagesInDirectory()
         imageArray4DC, filelistC = faah.openAllFITSImagesInDirectory()        
@@ -126,7 +128,7 @@ class checkCameraOriginLocation(object):
             
         else:
             #pinhole type not selected
-            print('Pinhole type not selected. Will use CS5 (X = 0mm, Y = 0mm)')     
+            faah.pageLogging(consoleLog, logFile,'Pinhole type not selected. Will use CS5 (X = 0mm, Y = 0mm)')     
     
     def _checkCameraOriginLocationSelectionWindow(self):
         '''
