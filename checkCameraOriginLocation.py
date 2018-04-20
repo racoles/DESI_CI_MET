@@ -113,6 +113,13 @@ class checkCameraOriginLocation(object):
         DeltaXCS5C = ((xCenGMSC + xOffsetC) - self.pixelDistanceToCheckPoint) * pixelSize
         DeltaYCS5C = ((yCenGMSC + yOffsetC) - self.pixelDistanceToCheckPoint) * pixelSize
         
+        ###########################################################################
+        ###Go to (pixelDistanceToCheckPoint, pixelDistanceToCheckPoint)
+        ###########################################################################     
+
+        faah.pageLogging(consoleLog, logFile, "Move to pixel (" + str(self.pixelDistanceToCheckPoint) + ", " + str(self.pixelDistanceToCheckPoint) + ")")
+        
+        '''
         ##Find location of Origin in CS5    
         CS5OriginX = 0
         CS5OriginY = 0 
@@ -143,7 +150,8 @@ class checkCameraOriginLocation(object):
         else:
             #pinhole type not selected
             faah.pageLogging(consoleLog, logFile,'Pinhole type not selected. Will use CS5 (X = 0mm, Y = 0mm)')     
-    
+        '''
+        
     def _checkCameraOriginLocationSelectionWindow(self):
         '''
         Find the location of the CI camera's sensor origin in CS5 and instruct the user to view 
