@@ -106,8 +106,14 @@ class checkCameraOriginLocation(object):
         #rows = xCenGMS + xOffset  
         #columns = yCenGMS + yOffset
         
-        #hypotenuse = np.sqrt(math.pow((rows),2)+math.pow((columns),2))
-        #faah = fileAndArrayHandling()
+        DeltaXCS5A = ((xCenGMSA + xOffsetA) - self.pixelDistanceToCheckPoint)
+        DeltaYCS5A = ((yCenGMSA + yOffsetA) - self.pixelDistanceToCheckPoint)
+        
+        DeltaXCS5B = ((xCenGMSB + xOffsetB) - self.pixelDistanceToCheckPoint)
+        DeltaYCS5B = ((yCenGMSB + yOffsetB) - self.pixelDistanceToCheckPoint)
+        
+        DeltaXCS5C = ((xCenGMSC + xOffsetC) - self.pixelDistanceToCheckPoint)
+        DeltaYCS5C = ((yCenGMSC + yOffsetC) - self.pixelDistanceToCheckPoint)
         
         ##Find location of Origin in CS5    
         CS5OriginX = 0
