@@ -170,8 +170,7 @@ class checkCameraOriginLocation(object):
         
         #report pixel centroid location
         faah.pageLogging(consoleLog, logFile, "Centroid for pixel (" + str(self.pixelDistanceToCheckPoint) + ", " + str(self.pixelDistanceToCheckPoint) + ") found at:" +
-                         "row = " + format(xCenGMSPIX + xOffsetPIX, '.3f') + ", columns = " + format(yCenGMSPIX + yOffsetPIX, '.3f') + "\n\n" +
-                         "")
+                         "row = " + format(xCenGMSPIX + xOffsetPIX, '.3f') + ", columns = " + format(yCenGMSPIX + yOffsetPIX, '.3f'))
         
     def _checkCameraOriginLocationSelectionWindow(self):
         '''
