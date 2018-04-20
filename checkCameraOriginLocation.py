@@ -172,6 +172,8 @@ class checkCameraOriginLocation(object):
         faah.pageLogging(consoleLog, logFile, "Centroid for pixel (" + str(self.pixelDistanceToCheckPoint) + ", " + str(self.pixelDistanceToCheckPoint) + ") found at:" +
                          "row = " + format(xCenGMSPIX + xOffsetPIX, '.3f') + ", columns = " + format(yCenGMSPIX + yOffsetPIX, '.3f'))
         
+        #NO CALIBrATION OFFSET APPLIED: calculate location of CCD (0,0) in CS5 using triangle a, b, c, and pixel  
+        
     def _checkCameraOriginLocationSelectionWindow(self):
         '''
         Find the location of the CI camera's sensor origin in CS5 and instruct the user to view 
