@@ -103,8 +103,6 @@ class checkCameraOriginLocation(object):
         ###Calculate the distance to the sensor origin using centroided image.
         ###########################################################################  
         #Find distance in um to CCD Origin  
-        #rows = xCenGMS + xOffset  
-        #columns = yCenGMS + yOffset
         
         DeltaXCS5A = ((xCenGMSA + xOffsetA) - self.pixelDistanceToCheckPoint) * pixelSize
         DeltaYCS5A = ((yCenGMSA + yOffsetA) - self.pixelDistanceToCheckPoint) * pixelSize
