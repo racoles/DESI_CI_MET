@@ -172,7 +172,8 @@ class checkCameraOriginLocation(object):
         faah.pageLogging(consoleLog, logFile, "Centroid for pixel (" + str(self.pixelDistanceToCheckPoint) + ", " + str(self.pixelDistanceToCheckPoint) + ") found at:" +
                          "row = " + format(xCenGMSPIX + xOffsetPIX, '.3f') + ", columns = " + format(yCenGMSPIX + yOffsetPIX, '.3f'))
         
-        #NO CALIBrATION OFFSET APPLIED: calculate location of CCD (0,0) in CS5 using triangle a, b, c, and pixel  
+        #NO CALIBRATION OFFSET APPLIED: calculate location of CCD (0,0) in CS5 using triangle a, b, c, and pixel  
+        #CALIBRATION OFFSET APPLIED: calculate location of CCD (0,0) in CS5 using triangle a, b, c, and pixel  
         
     def _checkCameraOriginLocationSelectionWindow(self):
         '''
