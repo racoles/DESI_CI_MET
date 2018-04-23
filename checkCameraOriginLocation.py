@@ -100,8 +100,7 @@ class checkCameraOriginLocation(object):
                                                          int(round(subArrayBoxSizeB/2)), int(round(subArrayBoxSizeB/2)), axis='both', verbose=False)
         xCenGMSC, yCenGMSC, _, _ = gmsCentroid(imageArray4DC[cc], maxLocC[1], maxLocC[0], 
                                                          int(round(subArrayBoxSizeC/2)), int(round(subArrayBoxSizeC/2)), axis='both', verbose=False)
-        print(xCenGMSB)
-        print(yCenGMSB)
+
         ###########################################################################
         ###Calculate the distance to the sensor origin using centroided image.
         ###########################################################################  
@@ -120,7 +119,7 @@ class checkCameraOriginLocation(object):
         ###Go to (pixelDistanceToCheckPoint, pixelDistanceToCheckPoint)
         ###########################################################################     
         faah.pageLogging(consoleLog, logFile, "\nMove to pixel (" + str(self.pixelDistanceToCheckPoint) + ", " + str(self.pixelDistanceToCheckPoint) + ")\n\n" +
-                         "Using: ((centroid(row or column) + planetModeOffset) - desiredPixel(row or column)) * pixelSize\n" +
+                         "Using: ((centroid(pixel) + planetModeOffset) - desiredPixel(pixel)) * pixelSize\n" +
                          "Distance to move (CS5 mm):\n" +
                          "    DeltaXCS5A = (" + format(xCenGMSA , '.3f') + " + " + str(xOffsetA) + ") - " + str(self.pixelDistanceToCheckPoint) + " * " + str(pixelSize) + " = " + format(DeltaXCS5A/1000, '.3f') + "\n" +
                          "    DeltaYCS5A = (" + format(yCenGMSA , '.3f') + " + " + str(yOffsetA) + ") - " + str(self.pixelDistanceToCheckPoint) + " * " + str(pixelSize) + " = " + format(DeltaYCS5A/1000, '.3f') + "\n\n" +
@@ -176,7 +175,7 @@ class checkCameraOriginLocation(object):
         
         #calculate location of CCD (0,0) in CS5 using triangle a, b, c, and pixel  
         faah.pageLogging(consoleLog, logFile, "CS5 CCD ORIGIN\n\n" +
-                         "Using: CS5 Nominal Triangle Point (X or Y) - [centroided (rows or columns) * pixelSize]\n" +
+                         "Using: CS5 Nominal Triangle Point (um) - [centroided (pixel) * pixelSize]\n" +
                          "NO CALIBRATION OFFSET APPLIED\n" +
                          "    CS5 CCD Origin X(A) = " + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][0] - ((xCenGMSA + xOffsetA) * pixelSize), '.3f') + "\n" +
                          "    CS5 CCD Origin Y(A) = " + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][1] - ((yCenGMSA + yOffsetA) * pixelSize), '.3f') + "\n\n" +
