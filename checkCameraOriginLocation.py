@@ -1,7 +1,7 @@
 '''
 @title checkCameraOriginLocation
 @author: Rebecca Coles
-Updated on Apr 19, 2018
+Updated on Apr 23, 2018
 Created on Mar 22, 2018
 
 checkCameraOriginLocation
@@ -45,16 +45,20 @@ class checkCameraOriginLocation(object):
         ###########################################################################
         
 #Note: in future, row versus columns equal to x and y will be different for NESW cameras
+
+        #Print fif loactions
+        faah = fileAndArrayHandling()
+        fC = focusCurve()
+        faah.printDictToFile(fC.fifLocationsCS5, "Nominal FIF Locations in CS5 (X mm, Y mm, Z mm)" , self.consoleLog, self.logFile, printNominalDicts = True)
         
         #Get calibration values 
-        faah = fileAndArrayHandling()
         cs5off = cs5Offsets()
         PIDTSO_rows, PIDTSO_columns, CPOCID_X, CPOCID_Y, CPOCID_rows, CPOCID_columns, dmmMag = cs5off.calibrationScreen(consoleLog, logFile)
         #Calculate offset
         calOffX = ((PIDTSO_rows - CPOCID_rows)*self.stipixel)/dmmMag
         calOffY = ((PIDTSO_columns - CPOCID_columns)*self.stipixel)/dmmMag
         #Print offset
-        faah.pageLogging(consoleLog, logFile, "Calibration Offset (pixels): (rows = "+ format(PIDTSO_rows - CPOCID_rows, '.3f') + ", columns = " + format((PIDTSO_columns - CPOCID_columns, '.3f')) + ")\n" +
+        faah.pageLogging(consoleLog, logFile, "Calibration Offset (pixels): (rows = " + format(PIDTSO_rows - CPOCID_rows, '.3f') + ", columns = " + format(PIDTSO_columns - CPOCID_columns, '.3f') + ")\n" +
                          "Calibration Offset (um): (" + format(calOffX, '.3f') + ", " + format(calOffY, '.3f') + ")")
         
         ###########################################################################
@@ -114,7 +118,6 @@ class checkCameraOriginLocation(object):
         ###########################################################################
         ###Go to (pixelDistanceToCheckPoint, pixelDistanceToCheckPoint)
         ###########################################################################     
-        fC = focusCurve()
         faah.pageLogging(consoleLog, logFile, "Move to pixel (" + str(self.pixelDistanceToCheckPoint) + ", " + str(self.pixelDistanceToCheckPoint) + ")\n\n" +
                          "Using: (centroid(row or column) - desiredPixel(row or column)) * pixelSize\n" +
                          "Distance to move (CS5 um):\n" +
