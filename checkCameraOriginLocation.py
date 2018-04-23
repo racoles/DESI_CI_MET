@@ -49,7 +49,7 @@ class checkCameraOriginLocation(object):
         #Print fif loactions
         faah = fileAndArrayHandling()
         fC = focusCurve()
-        faah.printDictToFile(fC.fifLocationsCS5, "Nominal FIF Locations in CS5 (X mm, Y mm, Z mm)" , self.consoleLog, self.logFile, printNominalDicts = True)
+        faah.printDictToFile(fC.fifLocationsCS5, "Nominal FIF Locations in CS5 (X mm, Y mm, Z mm)" , consoleLog, logFile, printNominalDicts = True)
         
         #Get calibration values 
         cs5off = cs5Offsets()
@@ -74,8 +74,8 @@ class checkCameraOriginLocation(object):
         imageArray4DB, filelistB = faah.openAllFITSImagesInDirectory()
         imageArray4DC, filelistC = faah.openAllFITSImagesInDirectory()        
         aa = round(len(filelistA)/2) #select a focused image from array a
-        bb = round(len(filelistB)/2) #select a focused image from array a
-        cc = round(len(filelistC)/2) #select a focused image from array a
+        bb = round(len(filelistB)/2) #select b focused image from array b
+        cc = round(len(filelistC)/2) #select c focused image from array c
                 
         ###########################################################################
         ###Centroid Images
@@ -100,7 +100,8 @@ class checkCameraOriginLocation(object):
                                                          int(round(subArrayBoxSizeB/2)), int(round(subArrayBoxSizeB/2)), axis='both', verbose=False)
         xCenGMSC, yCenGMSC, _, _ = gmsCentroid(imageArray4DC[cc], maxLocC[1], maxLocC[0], 
                                                          int(round(subArrayBoxSizeC/2)), int(round(subArrayBoxSizeC/2)), axis='both', verbose=False)
-        
+        print(xCenGMSB)
+        print(yCenGMSB)
         ###########################################################################
         ###Calculate the distance to the sensor origin using centroided image.
         ###########################################################################  
@@ -118,29 +119,29 @@ class checkCameraOriginLocation(object):
         ###########################################################################
         ###Go to (pixelDistanceToCheckPoint, pixelDistanceToCheckPoint)
         ###########################################################################     
-        faah.pageLogging(consoleLog, logFile, "Move to pixel (" + str(self.pixelDistanceToCheckPoint) + ", " + str(self.pixelDistanceToCheckPoint) + ")\n\n" +
+        faah.pageLogging(consoleLog, logFile, "\nMove to pixel (" + str(self.pixelDistanceToCheckPoint) + ", " + str(self.pixelDistanceToCheckPoint) + ")\n\n" +
                          "Using: (centroid(row or column) - desiredPixel(row or column)) * pixelSize\n" +
-                         "Distance to move (CS5 um):\n" +
-                         "    DeltaXCS5A = " + format(DeltaXCS5A, '.3f') + "\n" +
-                         "    DeltaYCS5A = " + format(DeltaYCS5A, '.3f') + "\n\n" +
-                         "    DeltaXCS5B = " + format(DeltaXCS5B, '.3f') + "\n" +
-                         "    DeltaYCS5B = " + format(DeltaYCS5B, '.3f') + "\n\n" +
-                         "    DeltaXCS5C = " + format(DeltaXCS5C, '.3f') + "\n" +
-                         "    DeltaYCS5C = " + format(DeltaYCS5C, '.3f') + "\n\n" +
+                         "Distance to move (CS5 mm):\n" +
+                         "    DeltaXCS5A = " + format(DeltaXCS5A/1000, '.3f') + "\n" +
+                         "    DeltaYCS5A = " + format(DeltaYCS5A/1000, '.3f') + "\n\n" +
+                         "    DeltaXCS5B = " + format(DeltaXCS5B/1000, '.3f') + "\n" +
+                         "    DeltaYCS5B = " + format(DeltaYCS5B/1000, '.3f') + "\n\n" +
+                         "    DeltaXCS5C = " + format(DeltaXCS5C/1000, '.3f') + "\n" +
+                         "    DeltaYCS5C = " + format(DeltaYCS5C/1000, '.3f') + "\n\n" +
                          "Using: CS5 Pixel (X or Y) = Nominal CS5 (X or Y) + DeltaCS5 (X or Y)\n" +
                          "These correspond to CS5 Position:\n" +
-                         "    CS5X(A) (um) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][0]*1000) + " + " + format(DeltaXCS5A, '.3f') + " = " + 
-                         format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][0]*1000 + DeltaXCS5A, '.3f') + "\n" +
-                         "    CS5Y(A) (um) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][1]*1000) + " + " + format(DeltaYCS5A, '.3f') + " = " + 
-                         format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][1]*1000 + DeltaYCS5A, '.3f') + "\n\n" +
-                         "    CS5X(B) (um) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][0]*1000) + " + " + format(DeltaXCS5B, '.3f') + " = " + 
-                         format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][0]*1000 + DeltaXCS5B, '.3f') + "\n" +
-                         "    CS5Y(B) (um) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][1]*1000) + " + " + format(DeltaYCS5B, '.3f') + " = " + 
-                         format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][1]*1000 + DeltaYCS5B, '.3f') + "\n\n" +
-                         "    CS5X(C) (um) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][0]*1000) + " + " + format(DeltaXCS5C, '.3f') + " = " + 
-                         format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][0]*1000 + DeltaXCS5C, '.3f') + "\n" +
-                         "    CS5Y(C) (um) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][1]*1000) + " + " + format(DeltaYCS5C, '.3f') + " = " + 
-                         format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][1]*1000 + DeltaYCS5C, '.3f'))
+                         "    CS5X(A) (um) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][0]) + " + " + format(DeltaXCS5A/1000, '.3f') + " = " + 
+                         format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][0] + DeltaXCS5A/1000, '.3f') + "\n" +
+                         "    CS5Y(A) (um) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][1]) + " + " + format(DeltaYCS5A/1000, '.3f') + " = " + 
+                         format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][1] + DeltaYCS5A/1000, '.3f') + "\n\n" +
+                         "    CS5X(B) (um) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][0]) + " + " + format(DeltaXCS5B/1000, '.3f') + " = " + 
+                         format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][0] + DeltaXCS5B/1000, '.3f') + "\n" +
+                         "    CS5Y(B) (um) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][1]) + " + " + format(DeltaYCS5B/1000, '.3f') + " = " + 
+                         format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][1] + DeltaYCS5B/1000, '.3f') + "\n\n" +
+                         "    CS5X(C) (um) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][0]) + " + " + format(DeltaXCS5C/1000, '.3f') + " = " + 
+                         format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][0] + DeltaXCS5C/1000, '.3f') + "\n" +
+                         "    CS5Y(C) (um) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][1]) + " + " + format(DeltaYCS5C/1000, '.3f') + " = " + 
+                         format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][1] + DeltaYCS5C/1000, '.3f'))
         
         ###########################################################################
         ###Image (pixelDistanceToCheckPoint, pixelDistanceToCheckPoint) with SBIGXL
