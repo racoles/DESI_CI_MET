@@ -391,8 +391,8 @@ class tipTiltZCCD(object):
         
         #Centroid images
         cF = centroidFIF()
-        fifSubArrayB, subArrayBoxSizeB, maxLocB  = cF.findFIFInImage(imageB)
-        fifSubArrayC, subArrayBoxSizeC, maxLocC  = cF.findFIFInImage(imageC)
+        _, subArrayBoxSizeB, maxLocB  = cF.findFIFInImage(imageB)
+        _, subArrayBoxSizeC, maxLocC  = cF.findFIFInImage(imageC)
         
         ###########################################################################
         ###Report Rz 
@@ -413,14 +413,6 @@ class tipTiltZCCD(object):
         #xcenB, ycenB = cF.findCentroid(fifSubArrayB, int(subArrayBoxSizeB/2), int(subArrayBoxSizeB/2), extendbox = 3) 
         #xcenC, ycenC = cF.findCentroid(fifSubArrayC, int(subArrayBoxSizeC/2), int(subArrayBoxSizeC/2), extendbox = 3)
         angleRz = math.degrees(np.arctan(((ycenC + yOffsetC)- (ycenB + yOffsetB))/((xcenC + xOffsetC) - (xcenB + xOffsetB))))
-        
-        
-        
-        
-        
-        print("angleRz = math.degrees(np.arctan(((ycenC + yOffsetC) - (ycenB + yOffsetB))/((xcenC + xOffsetC) - (xcenB + xOffsetB))))")
-        print("math.degrees(np.arctan(((" + format(ycenC, '.3f') + " + " + format(yOffsetC, '.3f') + ") - (" + format(ycenB, '.3f') + " + " + format(yOffsetB, '.3f') + 
-              "))/((" + format(xcenC, '.3f') + " + " + format(xOffsetC, '.3f') + ") - (" + format(xcenB, '.3f') + " + " + format(xOffsetB, '.3f') + ") = " + format(angleRz, '.3f') )
         
         '''     
         #If B and C aren't aligned (in either X or Y depending on the camera location)

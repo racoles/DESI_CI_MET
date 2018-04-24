@@ -20,6 +20,7 @@ import numpy as np
 from tipTiltZCCD import tipTiltZCCD
 from CCDOpsPlanetMode import CCDOpsPlanetMode
 from centroidFIF import centroidFIF
+from alternateCentroidMethods import gmsCentroid
 ################################################################################################
 
 class metManualMode(tk.Tk):
@@ -182,21 +183,17 @@ class metManualMode(tk.Tk):
         ###########################################################################
         faah.pageLogging(self.consoleLog, self.logFile, 
                                       "Centroiding " + str(fiflabel) + " using FITs file:\n" + str(filelist[aa]).replace('/', '\\'))
-        fifSubArray, subArrayBoxSize, maxLoc  = centroidFIF.findFIFInImage(self, imageArray4D[aa])
+        
+        cF = centroidFIF()
+        _, subArrayBoxSize, maxLoc  = cF.findFIFInImage(imageArray4D[aa])
         faah.pageLogging(self.consoleLog, self.logFile, 
                                       str(fiflabel) + " FIF found at pixel location: (" + str(maxLoc[0]) + "," + str(maxLoc[1]) + "). Will now centroid using that location.")
         
         ###########################################################################
         ###Centroid
         ###########################################################################
-        cF = centroidFIF()
-        xcen, ycen = cF.findCentroid(fifSubArray, int(subArrayBoxSize/2), int(subArrayBoxSize/2), extendbox = 3)
-        
-        ###########################################################################
-        ###Add offsets to account for subarray
-        ###########################################################################
-        xcen = xcen + maxLoc[0]-subArrayBoxSize/2
-        ycen = ycen + maxLoc[1]-subArrayBoxSize/2
+        xcen, ycen, _, _ = gmsCentroid(imageArray4D[aa], maxLoc[1], maxLoc[0], 
+                                                         int(round(subArrayBoxSize/2)), int(round(subArrayBoxSize/2)), axis='both', verbose=False)
         
         ###########################################################################
         ###Add X and Y data to fifCentroidedLocationDict
