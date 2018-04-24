@@ -410,8 +410,6 @@ class tipTiltZCCD(object):
         xcenC, ycenC, _, _ = gmsCentroid(imageC, maxLocC[1], maxLocC[0], 
                                                          int(round(subArrayBoxSizeC/2)), int(round(subArrayBoxSizeC/2)), axis='both', verbose=False)
         
-        #xcenB, ycenB = cF.findCentroid(fifSubArrayB, int(subArrayBoxSizeB/2), int(subArrayBoxSizeB/2), extendbox = 3) 
-        #xcenC, ycenC = cF.findCentroid(fifSubArrayC, int(subArrayBoxSizeC/2), int(subArrayBoxSizeC/2), extendbox = 3)
         angleRz = math.degrees(np.arctan(((ycenC + yOffsetC)- (ycenB + yOffsetB))/((xcenC + xOffsetC) - (xcenB + xOffsetB))))
         
         '''     
