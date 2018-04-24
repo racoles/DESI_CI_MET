@@ -54,7 +54,7 @@ class tipTiltZCCD(object):
         #Rz
         bb = round(len(filelistB)/2) #select a focused image from array b
         cc = round(len(filelistC)/2) #select a focused image from array c
-        angleRz = self.rz(imageArray4DB[bb], imageArray4DC[cc], CCDLabel, consoleLog, logFile)
+        angleRz = self.rz(imageArray4DB[bb], filelistB, imageArray4DC[cc], filelistC, CCDLabel, consoleLog, logFile)
 
         ###########################################################################
         ###Find Needed Micrometer Adjustments 
@@ -379,7 +379,7 @@ class tipTiltZCCD(object):
                                         "        Center(Z)_nominal = " + format(zCenter_nominal, '.3f') + "um\n" +
                                         "        Center(Z)_measured == Center(Z)_nominal\n\n")
     
-    def rz(self, imageB, imageC, CCDLabel, consoleLog, logFile):
+    def rz(self, imageB, filelistB, imageC, filelistC, CCDLabel, consoleLog, logFile):
         '''
         Camera Rz (angle) 
         
@@ -391,8 +391,8 @@ class tipTiltZCCD(object):
         
         #Centroid images
         cF = centroidFIF()
-        fifSubArrayB, subArrayBoxSizeB, _  = cF.findFIFInImage(imageB)
-        fifSubArrayC, subArrayBoxSizeC, _  = cF.findFIFInImage(imageC)
+        fifSubArrayB, subArrayBoxSizeB, maxLocB  = cF.findFIFInImage(imageB)
+        fifSubArrayC, subArrayBoxSizeC, maxLocC  = cF.findFIFInImage(imageC)
         
         ###########################################################################
         ###Report Rz 
@@ -401,9 +401,26 @@ class tipTiltZCCD(object):
         
         faah = fileAndArrayHandling()
         
-        xcenB, ycenB = cF.findCentroid(fifSubArrayB, int(subArrayBoxSizeB/2), int(subArrayBoxSizeB/2), extendbox = 3) 
-        xcenC, ycenC = cF.findCentroid(fifSubArrayC, int(subArrayBoxSizeC/2), int(subArrayBoxSizeC/2), extendbox = 3)
-        angleRz = math.degrees(np.arctan((ycenC-ycenB)/(xcenC-xcenB)))
+        pM = CCDOpsPlanetMode()
+        xOffsetB, yOffsetB, _ = pM.readFitsHeader(imageB, filelistB, consoleLog, logFile)
+        xOffsetC, yOffsetC, _ = pM.readFitsHeader(imageC, filelistC, consoleLog, logFile)
+        
+        xcenB, ycenB, _, _ = gmsCentroid(imageB, maxLocB[1], maxLocB[0], 
+                                                         int(round(subArrayBoxSizeB/2)), int(round(subArrayBoxSizeB/2)), axis='both', verbose=False)
+        xcenC, ycenC, _, _ = gmsCentroid(imageC, maxLocC[1], maxLocC[0], 
+                                                         int(round(subArrayBoxSizeC/2)), int(round(subArrayBoxSizeC/2)), axis='both', verbose=False)
+        
+        #xcenB, ycenB = cF.findCentroid(fifSubArrayB, int(subArrayBoxSizeB/2), int(subArrayBoxSizeB/2), extendbox = 3) 
+        #xcenC, ycenC = cF.findCentroid(fifSubArrayC, int(subArrayBoxSizeC/2), int(subArrayBoxSizeC/2), extendbox = 3)
+        angleRz = math.degrees(np.arctan(((ycenC + yOffsetC)- (ycenB + yOffsetB))/((xcenC + xOffsetC) - (xcenB + xOffsetB))))
+        
+        
+        
+        
+        
+        print("angleRz = math.degrees(np.arctan(((ycenC + yOffsetC) - (ycenB + yOffsetB))/((xcenC + xOffsetC) - (xcenB + xOffsetB))))")
+        print("math.degrees(np.arctan(((" + format(ycenC, '.3f') + " + " + format(yOffsetC, '.3f') + ") - (" + format(ycenB, '.3f') + " + " + format(yOffsetB, '.3f') + 
+              "))/((" + format(xcenC, '.3f') + " + " + format(xOffsetC, '.3f') + ") - (" + format(xcenB, '.3f') + " + " + format(xOffsetB, '.3f') + ") = " + format(angleRz, '.3f') )
         
         '''     
         #If B and C aren't aligned (in either X or Y depending on the camera location)
