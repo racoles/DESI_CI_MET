@@ -127,7 +127,7 @@ class checkCameraOriginLocation(object):
                          "    DeltaYCS5B = (" + format(yCenGMSB , '.3f') + " + " + str(yOffsetB) + ") - " + str(self.pixelDistanceToCheckPoint) + " * " + str(pixelSize) + " = " + format(DeltaYCS5B/1000, '.3f') + "\n\n" +
                          "    DeltaXCS5C = (" + format(xCenGMSC , '.3f') + " + " + str(xOffsetC) + ") - " + str(self.pixelDistanceToCheckPoint) + " * " + str(pixelSize) + " = " + format(DeltaXCS5C/1000, '.3f') + "\n" +
                          "    DeltaYCS5C = (" + format(yCenGMSC , '.3f') + " + " + str(yOffsetC) + ") - " + str(self.pixelDistanceToCheckPoint) + " * " + str(pixelSize) + " = " + format(DeltaYCS5C/1000, '.3f') + "\n\n" +
-                         "Using: CS5 Pixel (X or Y) = Nominal CS5 (X or Y) + DeltaCS5 (X or Y)\n" +
+                         "Using: Target Pixel = Nominal CS5 + DeltaCS5\n" +
                          "These correspond to CS5 Position:\n" +
                          "    CS5X(A) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][0]) + " + " + format(DeltaXCS5A/1000, '.3f') + " = " + 
                          format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][0] + DeltaXCS5A/1000, '.3f') + "\n" +
