@@ -54,7 +54,7 @@ class tipTiltZCCD(object):
         #Rz
         bb = round(len(filelistB)/2) #select a focused image from array b
         cc = round(len(filelistC)/2) #select a focused image from array c
-        angleRz = self.rz(imageArray4DB[bb], filelistB, imageArray4DC[cc], filelistC, CCDLabel, consoleLog, logFile)
+        _ = self.rz(imageArray4DB[bb], filelistB, imageArray4DC[cc], filelistC, CCDLabel, consoleLog, logFile)
 
         ###########################################################################
         ###Find Needed Micrometer Adjustments 

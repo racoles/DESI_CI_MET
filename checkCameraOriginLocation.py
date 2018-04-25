@@ -116,6 +116,11 @@ class checkCameraOriginLocation(object):
         DeltaYCS5C = ((yCenGMSC + yOffsetC) - self.pixelDistanceToCheckPoint) * pixelSize
         
         ###########################################################################
+        ###Rotation Coordinate Transform from SBIG Coordinates to CS5 Coordinates
+        ########################################################################### 
+        
+        
+        ###########################################################################
         ###Go to (pixelDistanceToCheckPoint, pixelDistanceToCheckPoint)
         ###########################################################################     
         faah.pageLogging(consoleLog, logFile, "\nMove to pixel (" + str(self.pixelDistanceToCheckPoint) + ", " + str(self.pixelDistanceToCheckPoint) + ")\n\n" +
