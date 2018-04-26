@@ -179,7 +179,7 @@ class checkCameraOriginLocation(object):
             DeltaX_CS5_C = (DeltaX_SBIGXL_C * np.cos(math.radians(angleRz))) - (DeltaY_SBIGXL_C * np.sin(math.radians(angleRz)))
             DeltaY_CS5_C = (DeltaX_SBIGXL_C * np.sin(math.radians(angleRz))) + (DeltaY_SBIGXL_C * np.cos(math.radians(angleRz)))       
             
-            print("\nMove to pixel (" + str(self.pixelDistanceToCheckPoint) + ", " + str(self.pixelDistanceToCheckPoint) + ")\n\n" +
+            faah.pageLogging(consoleLog, logFile, "\nMove to pixel (" + str(self.pixelDistanceToCheckPoint) + ", " + str(self.pixelDistanceToCheckPoint) + ")\n\n" +
                          "Using: ((centroid(pixel)) - desiredPixel(pixel)) * pixelSize\n" +
                          "Distance in SBIGXL frame (mm):\n" +
                          "    DeltaX_SBIGXL_A = (" + format(self.xA , '.3f') + ") - " + str(self.pixelDistanceToCheckPoint) + " * " + str(self.pixelSize) + " = " + format(DeltaX_SBIGXL_A/1000, '.3f') + "\n" +
@@ -225,7 +225,7 @@ class checkCameraOriginLocation(object):
             DeltaX_CS5_C = (DeltaX_SBIGXL_C * np.cos(math.radians(angleRz))) + (DeltaY_SBIGXL_C * np.sin(math.radians(angleRz)))
             DeltaY_CS5_C = (-DeltaX_SBIGXL_C * np.sin(math.radians(angleRz))) + (DeltaY_SBIGXL_C * np.cos(math.radians(angleRz))) 
             
-            print("\nMove to pixel (" + str(self.pixelDistanceToCheckPoint) + ", " + str(self.pixelDistanceToCheckPoint) + ")\n\n" +
+            faah.pageLogging(consoleLog, logFile, "\nMove to pixel (" + str(self.pixelDistanceToCheckPoint) + ", " + str(self.pixelDistanceToCheckPoint) + ")\n\n" +
                          "Using: ((centroid(pixel)) - desiredPixel(pixel)) * pixelSize\n" +
                          "Distance in SBIGXL frame (mm):\n" +
                          "    DeltaX_SBIGXL_A = (" + format(self.xA , '.3f') + ") - " + str(self.pixelDistanceToCheckPoint) + " * " + str(self.pixelSize) + " = " + format(DeltaX_SBIGXL_A/1000, '.3f') + "\n" +
@@ -262,7 +262,7 @@ class checkCameraOriginLocation(object):
                          format(self.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][1] + DeltaY_CS5_C/1000, '.3f')) 
                
         else:
-            print("Rz = 0: no rotational transform needed.")
+            faah.pageLogging(consoleLog, logFile, "Rz = 0: no rotational transform needed.")
             
             DeltaX_CS5_A = DeltaX_SBIGXL_A
             DeltaY_CS5_A = DeltaY_SBIGXL_A
@@ -273,7 +273,7 @@ class checkCameraOriginLocation(object):
             DeltaX_CS5_C = DeltaX_SBIGXL_C
             DeltaY_CS5_C = DeltaY_SBIGXL_C 
             
-            print("\nMove to pixel (" + str(self.pixelDistanceToCheckPoint) + ", " + str(self.pixelDistanceToCheckPoint) + ")\n\n" +
+            faah.pageLogging(consoleLog, logFile, "\nMove to pixel (" + str(self.pixelDistanceToCheckPoint) + ", " + str(self.pixelDistanceToCheckPoint) + ")\n\n" +
                          "Using: ((centroid(pixel)) - desiredPixel(pixel)) * pixelSize\n" +
                          "Distance in SBIGXL frame (mm):\n" +
                          "    DeltaX_SBIGXL_A = (" + format(self.xA , '.3f') + ") - " + str(self.pixelDistanceToCheckPoint) + " * " + str(self.pixelSize) + " = " + format(DeltaX_SBIGXL_A/1000, '.3f') + "\n" +
