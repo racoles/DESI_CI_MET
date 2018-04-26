@@ -77,7 +77,7 @@ class checkCameraOriginLocation(object):
         topA.title("CCD Origin Test: Triangle Point A")
         aboutMessageA = str('Fill directory with images for point A (' + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'A'][0], '.3f') + 
                             " ," + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'A'][1], '.3f') + ")")
-        faah.pageLogging(self.consoleLog, self.logFile, aboutMessageA)
+        faah.pageLogging(consoleLog, logFile, aboutMessageA)
         msgA = tk.Message(topA, text=aboutMessageA)
         msgA.pack()
         buttonA = tk.Button(topA, text="Ready", command=topA.destroy)
@@ -90,7 +90,7 @@ class checkCameraOriginLocation(object):
         topB.title("CCD Origin Test: Triangle Point B")
         aboutMessageB = str('Fill directory with images for point B (' + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'B'][0], '.3f') + 
                             " ," + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'B'][1], '.3f') + ")")
-        faah.pageLogging(self.consoleLog, self.logFile, aboutMessageB)
+        faah.pageLogging(consoleLog, logFile, aboutMessageB)
         msgB = tk.Message(topB, text=aboutMessageB)
         msgB.pack()
         buttonB = tk.Button(topB, text="Ready", command=topB.destroy)
@@ -103,7 +103,7 @@ class checkCameraOriginLocation(object):
         topC.title("CCD Origin Test: Triangle Point C")
         aboutMessageC = str('Fill directory with images for point C (' + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'C'][0], '.3f') + 
                             " ," + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'C'][1], '.3f') + ")")
-        faah.pageLogging(self.consoleLog, self.logFile, aboutMessageC)
+        faah.pageLogging(consoleLog, logFile, aboutMessageC)
         msgC = tk.Message(topC, text=aboutMessageC)
         msgC.pack()
         buttonC = tk.Button(topC, text="Ready", command=topC.destroy)
