@@ -146,7 +146,7 @@ class checkCameraOriginLocation(object):
         ###########################################################################
         ttzCCD = tipTiltZCCD()
         angleRz = ttzCCD.rz(imageArray4DB[bb], filelistB, imageArray4DC[cc], filelistC, self.CCDSelection, consoleLog, logFile)
-        faah.pageLogging(consoleLog, logFile, "Rz Local (degrees): " + format(angleRz, '.3f'))   
+        faah.pageLogging(consoleLog, logFile, "\nRz Local (degrees): " + format(angleRz, '.3f'))   
 
         ###########################################################################
         ###Calculate the distance to the sensor origin using centroided image.
