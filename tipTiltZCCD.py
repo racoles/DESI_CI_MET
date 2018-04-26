@@ -52,9 +52,11 @@ class tipTiltZCCD(object):
         triangleAdjustmentRatio = fC.micrometerDistance/fC.tccs
         
         #Rz
+        faah = fileAndArrayHandling()
         bb = round(len(filelistB)/2) #select a focused image from array b
         cc = round(len(filelistC)/2) #select a focused image from array c
-        _ = self.rz(imageArray4DB[bb], filelistB, imageArray4DC[cc], filelistC, CCDLabel, consoleLog, logFile)
+        angleRz = self.rz(imageArray4DB[bb], filelistB, imageArray4DC[cc], filelistC, CCDLabel, consoleLog, logFile)
+        faah.pageLogging(consoleLog, logFile, "Rz Local (degrees): " + format(angleRz, '.3f'))   
 
         ###########################################################################
         ###Find Needed Micrometer Adjustments 
@@ -113,7 +115,6 @@ class tipTiltZCCD(object):
         ###Send Warning Message
         ###########################################################################
         #micrometer ticks to turn: 360 degrees / 50 ticks on TTF micrometers = 7.2 degrees per tick
-        faah = fileAndArrayHandling()
         self.distanceBetweenTrianglePoints(imageArray4DA, filelistA, imageArray4DB, filelistB, imageArray4DC, filelistC, consoleLog, logFile)
         
         faah.pageLogging(consoleLog, logFile,"The ratio between the virtual triangle on the sensor (A, B, C), and the\n large triangle (micrometer A, micrometer B, micrometer C):\n" +
@@ -502,8 +503,7 @@ class tipTiltZCCD(object):
                 faah.pageLogging(consoleLog, logFile, "Checking " + str(CCDLabel) + " Rz about CS5X:" + "Side BC Should be parallel to CS5Y.\n" + 
                                      "        " + CCDLabel + "Sensor Other selected. Can't find Rz." )  
                 
-        '''        
-        faah.pageLogging(consoleLog, logFile, "Rz Local (degrees): " + format(angleRz, '.3f'))   
+        '''
         
         return angleRz
     
