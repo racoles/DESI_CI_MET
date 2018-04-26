@@ -143,14 +143,14 @@ class checkCameraOriginLocation(object):
         ###########################################################################  
         #Find distance in um to CCD Origin  
         
-        DeltaX_SBIGXL_A = ((self.xA) - self.pixelDistanceToCheckPoint) * self.pixelSize
-        DeltaY_SBIGXL_A = ((self.yA) - self.pixelDistanceToCheckPoint) * self.pixelSize
+        DeltaX_SBIGXL_A = ((xCenGMSA + xOffsetA) - self.pixelDistanceToCheckPoint) * pixelSize
+        DeltaY_SBIGXL_A = ((yCenGMSA + yOffsetA) - self.pixelDistanceToCheckPoint) * pixelSize
         
-        DeltaX_SBIGXL_B = ((self.xB) - self.pixelDistanceToCheckPoint) * self.pixelSize
-        DeltaY_SBIGXL_B = ((self.yB) - self.pixelDistanceToCheckPoint) * self.pixelSize
+        DeltaX_SBIGXL_B = ((xCenGMSB + xOffsetB) - self.pixelDistanceToCheckPoint) * pixelSize
+        DeltaY_SBIGXL_B = ((yCenGMSB + yOffsetB) - self.pixelDistanceToCheckPoint) * pixelSize
         
-        DeltaX_SBIGXL_C = ((self.xC) - self.pixelDistanceToCheckPoint) * self.pixelSize
-        DeltaY_SBIGXL_C = ((self.yC) - self.pixelDistanceToCheckPoint) * self.pixelSize
+        DeltaX_SBIGXL_C = ((xCenGMSC + xOffsetC) - self.pixelDistanceToCheckPoint) * pixelSize
+        DeltaY_SBIGXL_C = ((yCenGMSC + yOffsetC) - self.pixelDistanceToCheckPoint) * pixelSize
         
         ###########################################################################
         ###Rotation Coordinate Transform from SBIG Coordinates to CS5 Coordinates
