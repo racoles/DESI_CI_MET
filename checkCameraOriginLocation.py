@@ -18,6 +18,8 @@ from centroidFIF import centroidFIF
 from focusCurve import focusCurve
 from alternateCentroidMethods import gmsCentroid
 from cs5Offsets import cs5Offsets
+import numpy as np
+import math
 ################################################################################################
 
 class checkCameraOriginLocation(object):
