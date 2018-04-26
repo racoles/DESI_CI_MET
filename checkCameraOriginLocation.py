@@ -169,7 +169,7 @@ class checkCameraOriginLocation(object):
         #c(y)>b(y) = +Rz = Counter-Clockwise
         #b(y)>c(y) = -Rz = Clockwise
 
-        if angleRz > 0: #c(y)>b(y) = +Rz = Counter-Clockwise
+        if angleRz < 0: #c(y)>b(y) = +Rz = Counter-Clockwise
             DeltaX_CS5_A = (DeltaX_SBIGXL_A * np.cos(math.radians(angleRz))) - (DeltaY_SBIGXL_A * np.sin(math.radians(angleRz)))
             DeltaY_CS5_A = (DeltaX_SBIGXL_A * np.sin(math.radians(angleRz))) + (DeltaY_SBIGXL_A * np.cos(math.radians(angleRz)))
             
@@ -215,7 +215,7 @@ class checkCameraOriginLocation(object):
                          "    CS5Y(C) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][1]) + " + " + format(DeltaY_CS5_C/1000, '.3f') + " = " + 
                          format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][1] + DeltaY_CS5_C/1000, '.3f')) 
             
-        elif angleRz < 0: #b(y)>c(y) = -Rz = Clockwise
+        elif angleRz > 0: #b(y)>c(y) = -Rz = Clockwise
             DeltaX_CS5_A = (DeltaX_SBIGXL_A * np.cos(math.radians(angleRz))) + (DeltaY_SBIGXL_A * np.sin(math.radians(angleRz)))
             DeltaY_CS5_A = (-DeltaX_SBIGXL_A * np.sin(math.radians(angleRz))) + (DeltaY_SBIGXL_A * np.cos(math.radians(angleRz)))
             
