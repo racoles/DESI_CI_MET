@@ -276,12 +276,12 @@ class checkCameraOriginLocation(object):
             faah.pageLogging(consoleLog, logFile, "\nMove to pixel (" + str(self.pixelDistanceToCheckPoint) + ", " + str(self.pixelDistanceToCheckPoint) + ")\n\n" +
                          "Using: ((centroid(pixel)) + planetModeOffset) - targetPixel(pixel)) * pixelSize\n" +
                          "Distance in SBIGXL frame (mm):\n" +
-                         "    DeltaX_SBIGXL_A = (" + format(self.xA , '.3f') + ") - " + str(self.pixelDistanceToCheckPoint) + " * " + str(self.pixelSize) + " = " + format(DeltaX_SBIGXL_A/1000, '.3f') + "\n" +
-                         "    DeltaY_SBIGXL_A = (" + format(self.yA , '.3f') + ") - " + str(self.pixelDistanceToCheckPoint) + " * " + str(self.pixelSize) + " = " + format(DeltaY_SBIGXL_A/1000, '.3f') + "\n\n" +
-                         "    DeltaX_SBIGXL_B = (" + format(self.xB , '.3f') + ") - " + str(self.pixelDistanceToCheckPoint) + " * " + str(self.pixelSize) + " = " + format(DeltaX_SBIGXL_B/1000, '.3f') + "\n" +
-                         "    DeltaY_SBIGXL_B = (" + format(self.yB , '.3f') + ") - " + str(self.pixelDistanceToCheckPoint) + " * " + str(self.pixelSize) + " = " + format(DeltaY_SBIGXL_B/1000, '.3f') + "\n\n" +
-                         "    DeltaX_SBIGXL_C = (" + format(self.xC , '.3f') + ") - " + str(self.pixelDistanceToCheckPoint) + " * " + str(self.pixelSize) + " = " + format(DeltaX_SBIGXL_C/1000, '.3f') + "\n" +
-                         "    DeltaY_SBIGXL_C = (" + format(self.yC , '.3f') + ") - " + str(self.pixelDistanceToCheckPoint) + " * " + str(self.pixelSize) + " = " + format(DeltaY_SBIGXL_C/1000, '.3f') + "\n\n" +
+                         "    DeltaX_SBIGXL_A = (" + format(xCenGMSA , '.3f') +  " + " + format(xOffsetA, '.3f') + ") - " + str(self.pixelDistanceToCheckPoint) + " * " + str(pixelSize) + " = " + format(DeltaX_SBIGXL_A/1000, '.3f') + "\n" +
+                         "    DeltaY_SBIGXL_A = (" + format(yCenGMSA , '.3f') +  " + " + format(yOffsetA, '.3f') + ") - " + str(self.pixelDistanceToCheckPoint) + " * " + str(pixelSize) + " = " + format(DeltaY_SBIGXL_A/1000, '.3f') + "\n\n" +
+                         "    DeltaX_SBIGXL_B = (" + format(xCenGMSB , '.3f') +  " + " + format(xOffsetB, '.3f') + ") - " + str(self.pixelDistanceToCheckPoint) + " * " + str(pixelSize) + " = " + format(DeltaX_SBIGXL_B/1000, '.3f') + "\n" +
+                         "    DeltaY_SBIGXL_B = (" + format(yCenGMSB , '.3f') +  " + " + format(yOffsetB, '.3f') + ") - " + str(self.pixelDistanceToCheckPoint) + " * " + str(pixelSize) + " = " + format(DeltaY_SBIGXL_B/1000, '.3f') + "\n\n" +
+                         "    DeltaX_SBIGXL_C = (" + format(xCenGMSC , '.3f') +  " + " + format(xOffsetC, '.3f') + ") - " + str(self.pixelDistanceToCheckPoint) + " * " + str(pixelSize) + " = " + format(DeltaX_SBIGXL_C/1000, '.3f') + "\n" +
+                         "    DeltaY_SBIGXL_C = (" + format(yCenGMSC , '.3f') +  " + " + format(yOffsetC, '.3f') + ") - " + str(self.pixelDistanceToCheckPoint) + " * " + str(pixelSize) + " = " + format(DeltaY_SBIGXL_C/1000, '.3f') + "\n\n" +
                          
                          "Using: No Rotational Coordinate Transform\n" + "DeltaX_CS5 = DeltaX_SBIGXL\nDeltaY_CS5 = DeltaX_SBIGXL\n" +
                          "Distance in CS5 frame (mm):\n" +
