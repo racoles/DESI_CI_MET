@@ -143,7 +143,7 @@ class checkCameraOriginLocation(object):
         ###########################################################################
         ###Get Rz
         ###########################################################################
-        angleRz = self.rz(imageArray4DB[bb], filelistB, imageArray4DC[cc], filelistC, self.CCDSelection, consoleLog, logFile)
+        angleRz = angleRz(imageArray4DB[bb], filelistB, imageArray4DC[cc], filelistC, self.CCDSelection, consoleLog, logFile)
         faah.pageLogging(consoleLog, logFile, "Rz Local (degrees): " + format(angleRz, '.3f'))   
 
         ###########################################################################
@@ -167,15 +167,15 @@ class checkCameraOriginLocation(object):
         #c(y)>b(y) = +Rz = Counter-Clockwise
         #b(y)>c(y) = -Rz = Clockwise
 
-        if self.Rz > 0: #c(y)>b(y) = +Rz = Counter-Clockwise
-            DeltaX_CS5_A = (DeltaX_SBIGXL_A * np.cos(math.radians(self.Rz))) - (DeltaY_SBIGXL_A * np.sin(math.radians(self.Rz)))
-            DeltaY_CS5_A = (DeltaX_SBIGXL_A * np.sin(math.radians(self.Rz))) + (DeltaY_SBIGXL_A * np.cos(math.radians(self.Rz)))
+        if angleRz > 0: #c(y)>b(y) = +Rz = Counter-Clockwise
+            DeltaX_CS5_A = (DeltaX_SBIGXL_A * np.cos(math.radians(angleRz))) - (DeltaY_SBIGXL_A * np.sin(math.radians(angleRz)))
+            DeltaY_CS5_A = (DeltaX_SBIGXL_A * np.sin(math.radians(angleRz))) + (DeltaY_SBIGXL_A * np.cos(math.radians(angleRz)))
             
-            DeltaX_CS5_B = (DeltaX_SBIGXL_B * np.cos(math.radians(self.Rz))) - (DeltaY_SBIGXL_B * np.sin(math.radians(self.Rz)))
-            DeltaY_CS5_B = (DeltaX_SBIGXL_B * np.sin(math.radians(self.Rz))) + (DeltaY_SBIGXL_B * np.cos(math.radians(self.Rz)))   
+            DeltaX_CS5_B = (DeltaX_SBIGXL_B * np.cos(math.radians(angleRz))) - (DeltaY_SBIGXL_B * np.sin(math.radians(angleRz)))
+            DeltaY_CS5_B = (DeltaX_SBIGXL_B * np.sin(math.radians(angleRz))) + (DeltaY_SBIGXL_B * np.cos(math.radians(angleRz)))   
             
-            DeltaX_CS5_C = (DeltaX_SBIGXL_C * np.cos(math.radians(self.Rz))) - (DeltaY_SBIGXL_C * np.sin(math.radians(self.Rz)))
-            DeltaY_CS5_C = (DeltaX_SBIGXL_C * np.sin(math.radians(self.Rz))) + (DeltaY_SBIGXL_C * np.cos(math.radians(self.Rz)))       
+            DeltaX_CS5_C = (DeltaX_SBIGXL_C * np.cos(math.radians(angleRz))) - (DeltaY_SBIGXL_C * np.sin(math.radians(angleRz)))
+            DeltaY_CS5_C = (DeltaX_SBIGXL_C * np.sin(math.radians(angleRz))) + (DeltaY_SBIGXL_C * np.cos(math.radians(angleRz)))       
             
             print("\nMove to pixel (" + str(self.pixelDistanceToCheckPoint) + ", " + str(self.pixelDistanceToCheckPoint) + ")\n\n" +
                          "Using: ((centroid(pixel)) - desiredPixel(pixel)) * pixelSize\n" +
@@ -189,12 +189,12 @@ class checkCameraOriginLocation(object):
                          
                          "Using: Counter-Clockwise Rotational Coordinate Transform\n" + "       DeltaX_CS5 = (DeltaX_SBIGXL * cos(Rz)) - (DeltaY_SBIGXL * sin(Rz))\n       DeltaY_CS5 = (DeltaX_SBIGXL * sin(Rz)) + (DeltaY_SBIGXL * cos(Rz))\n" +
                          "Distance in CS5 frame (mm):\n" +
-                         "    DeltaX_CS5_A = (" + format(DeltaX_SBIGXL_A/1000, '.3f') + " * " + format(np.cos(math.radians(self.Rz)), '.3f') + ") - (" + format(DeltaY_SBIGXL_A/1000, '.3f') + " * " + format(np.sin(math.radians(self.Rz)), '.3f') + ") = "+ format(DeltaX_CS5_A/1000, '.3f') +"\n" +
-                         "    DeltaY_CS5_A = (" + format(DeltaX_SBIGXL_A/1000, '.3f') + " * " + format(np.sin(math.radians(self.Rz)), '.3f') + ") + (" + format(DeltaY_SBIGXL_A/1000, '.3f') + " * " + format(np.cos(math.radians(self.Rz)), '.3f') + ") = "+ format(DeltaY_CS5_A/1000, '.3f') +"\n\n" +
-                         "    DeltaX_CS5_B = (" + format(DeltaX_SBIGXL_B/1000, '.3f') + " * " + format(np.cos(math.radians(self.Rz)), '.3f') + ") - (" + format(DeltaY_SBIGXL_B/1000, '.3f') + " * " + format(np.sin(math.radians(self.Rz)), '.3f') + ") = "+ format(DeltaX_CS5_B/1000, '.3f') +"\n" +
-                         "    DeltaY_CS5_B = (" + format(DeltaX_SBIGXL_B/1000, '.3f') + " * " + format(np.sin(math.radians(self.Rz)), '.3f') + ") + (" + format(DeltaY_SBIGXL_B/1000, '.3f') + " * " + format(np.cos(math.radians(self.Rz)), '.3f') + ") = "+ format(DeltaY_CS5_B/1000, '.3f') +"\n\n" +
-                         "    DeltaX_CS5_C = (" + format(DeltaX_SBIGXL_C/1000, '.3f') + " * " + format(np.cos(math.radians(self.Rz)), '.3f') + ") - (" + format(DeltaY_SBIGXL_C/1000, '.3f') + " * " + format(np.sin(math.radians(self.Rz)), '.3f') + ") = "+ format(DeltaX_CS5_C/1000, '.3f') +"\n" +
-                         "    DeltaY_CS5_C = (" + format(DeltaX_SBIGXL_C/1000, '.3f') + " * " + format(np.sin(math.radians(self.Rz)), '.3f') + ") + (" + format(DeltaY_SBIGXL_C/1000, '.3f') + " * " + format(np.cos(math.radians(self.Rz)), '.3f') + ") = "+ format(DeltaY_CS5_C/1000, '.3f') +"\n\n" +
+                         "    DeltaX_CS5_A = (" + format(DeltaX_SBIGXL_A/1000, '.3f') + " * " + format(np.cos(math.radians(angleRz)), '.3f') + ") - (" + format(DeltaY_SBIGXL_A/1000, '.3f') + " * " + format(np.sin(math.radians(angleRz)), '.3f') + ") = "+ format(DeltaX_CS5_A/1000, '.3f') +"\n" +
+                         "    DeltaY_CS5_A = (" + format(DeltaX_SBIGXL_A/1000, '.3f') + " * " + format(np.sin(math.radians(angleRz)), '.3f') + ") + (" + format(DeltaY_SBIGXL_A/1000, '.3f') + " * " + format(np.cos(math.radians(angleRz)), '.3f') + ") = "+ format(DeltaY_CS5_A/1000, '.3f') +"\n\n" +
+                         "    DeltaX_CS5_B = (" + format(DeltaX_SBIGXL_B/1000, '.3f') + " * " + format(np.cos(math.radians(angleRz)), '.3f') + ") - (" + format(DeltaY_SBIGXL_B/1000, '.3f') + " * " + format(np.sin(math.radians(angleRz)), '.3f') + ") = "+ format(DeltaX_CS5_B/1000, '.3f') +"\n" +
+                         "    DeltaY_CS5_B = (" + format(DeltaX_SBIGXL_B/1000, '.3f') + " * " + format(np.sin(math.radians(angleRz)), '.3f') + ") + (" + format(DeltaY_SBIGXL_B/1000, '.3f') + " * " + format(np.cos(math.radians(angleRz)), '.3f') + ") = "+ format(DeltaY_CS5_B/1000, '.3f') +"\n\n" +
+                         "    DeltaX_CS5_C = (" + format(DeltaX_SBIGXL_C/1000, '.3f') + " * " + format(np.cos(math.radians(angleRz)), '.3f') + ") - (" + format(DeltaY_SBIGXL_C/1000, '.3f') + " * " + format(np.sin(math.radians(angleRz)), '.3f') + ") = "+ format(DeltaX_CS5_C/1000, '.3f') +"\n" +
+                         "    DeltaY_CS5_C = (" + format(DeltaX_SBIGXL_C/1000, '.3f') + " * " + format(np.sin(math.radians(angleRz)), '.3f') + ") + (" + format(DeltaY_SBIGXL_C/1000, '.3f') + " * " + format(np.cos(math.radians(angleRz)), '.3f') + ") = "+ format(DeltaY_CS5_C/1000, '.3f') +"\n\n" +
                          
                          "Using: Target Pixel CS5 Location (mm) = Nominal CS5 + DeltaCS5\n" +
                          "Calculated using triangle point A:\n" +
@@ -213,15 +213,15 @@ class checkCameraOriginLocation(object):
                          "    CS5Y(C) (mm) = " + str(self.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][1]) + " + " + format(DeltaY_CS5_C/1000, '.3f') + " = " + 
                          format(self.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][1] + DeltaY_CS5_C/1000, '.3f')) 
             
-        elif self.Rz < 0: #b(y)>c(y) = -Rz = Clockwise
-            DeltaX_CS5_A = (DeltaX_SBIGXL_A * np.cos(math.radians(self.Rz))) + (DeltaY_SBIGXL_A * np.sin(math.radians(self.Rz)))
-            DeltaY_CS5_A = (-DeltaX_SBIGXL_A * np.sin(math.radians(self.Rz))) + (DeltaY_SBIGXL_A * np.cos(math.radians(self.Rz)))
+        elif angleRz < 0: #b(y)>c(y) = -Rz = Clockwise
+            DeltaX_CS5_A = (DeltaX_SBIGXL_A * np.cos(math.radians(angleRz))) + (DeltaY_SBIGXL_A * np.sin(math.radians(angleRz)))
+            DeltaY_CS5_A = (-DeltaX_SBIGXL_A * np.sin(math.radians(angleRz))) + (DeltaY_SBIGXL_A * np.cos(math.radians(angleRz)))
             
-            DeltaX_CS5_B = (DeltaX_SBIGXL_B * np.cos(math.radians(self.Rz))) + (DeltaY_SBIGXL_B * np.sin(math.radians(self.Rz)))
-            DeltaY_CS5_B = (-DeltaX_SBIGXL_B * np.sin(math.radians(self.Rz))) + (DeltaY_SBIGXL_B * np.cos(math.radians(self.Rz)))   
+            DeltaX_CS5_B = (DeltaX_SBIGXL_B * np.cos(math.radians(angleRz))) + (DeltaY_SBIGXL_B * np.sin(math.radians(angleRz)))
+            DeltaY_CS5_B = (-DeltaX_SBIGXL_B * np.sin(math.radians(angleRz))) + (DeltaY_SBIGXL_B * np.cos(math.radians(angleRz)))   
             
-            DeltaX_CS5_C = (DeltaX_SBIGXL_C * np.cos(math.radians(self.Rz))) + (DeltaY_SBIGXL_C * np.sin(math.radians(self.Rz)))
-            DeltaY_CS5_C = (-DeltaX_SBIGXL_C * np.sin(math.radians(self.Rz))) + (DeltaY_SBIGXL_C * np.cos(math.radians(self.Rz))) 
+            DeltaX_CS5_C = (DeltaX_SBIGXL_C * np.cos(math.radians(angleRz))) + (DeltaY_SBIGXL_C * np.sin(math.radians(angleRz)))
+            DeltaY_CS5_C = (-DeltaX_SBIGXL_C * np.sin(math.radians(angleRz))) + (DeltaY_SBIGXL_C * np.cos(math.radians(angleRz))) 
             
             print("\nMove to pixel (" + str(self.pixelDistanceToCheckPoint) + ", " + str(self.pixelDistanceToCheckPoint) + ")\n\n" +
                          "Using: ((centroid(pixel)) - desiredPixel(pixel)) * pixelSize\n" +
@@ -235,12 +235,12 @@ class checkCameraOriginLocation(object):
                          
                          "Using: Clockwise Rotational Coordinate Transform\n" + "       DeltaX_CS5 = (DeltaX_SBIGXL * cos(Rz)) + (DeltaY_SBIGXL * sin(Rz))\n       DeltaY_CS5 = (-DeltaX_SBIGXL * sin(Rz)) + (DeltaY_SBIGXL * cos(Rz))\n" +
                          "Distance in CS5 frame (mm):\n" +
-                         "    DeltaX_CS5_A = (" + format(DeltaX_SBIGXL_A/1000, '.3f') + " * " + format(np.cos(math.radians(self.Rz)), '.3f') + ") + (" + format(DeltaY_SBIGXL_A/1000, '.3f') + " * " + format(np.sin(math.radians(self.Rz)), '.3f') + ") = " + format(DeltaX_CS5_A/1000, '.3f') + "\n" +
-                         "    DeltaY_CS5_A = (" + format(-DeltaX_SBIGXL_A/1000, '.3f') + " * " + format(np.sin(math.radians(self.Rz)), '.3f') + ") + (" + format(DeltaY_SBIGXL_A/1000, '.3f') + " * " + format(np.cos(math.radians(self.Rz)), '.3f') + ") = " + format(DeltaY_CS5_A/1000, '.3f') + "\n\n" +
-                         "    DeltaX_CS5_B = (" + format(DeltaX_SBIGXL_B/1000, '.3f') + " * " + format(np.cos(math.radians(self.Rz)), '.3f') + ") + (" + format(DeltaY_SBIGXL_B/1000, '.3f') + " * " + format(np.sin(math.radians(self.Rz)), '.3f') + ") = " + format(DeltaX_CS5_B/1000, '.3f') +"\n" +
-                         "    DeltaY_CS5_B = (" + format(-DeltaX_SBIGXL_B/1000, '.3f') + " * " + format(np.sin(math.radians(self.Rz)), '.3f') + ") + (" + format(DeltaY_SBIGXL_B/1000, '.3f') + " * " + format(np.cos(math.radians(self.Rz)), '.3f') + ") = " + format(DeltaY_CS5_B/1000, '.3f') +"\n\n" +
-                         "    DeltaX_CS5_C = (" + format(DeltaX_SBIGXL_C/1000, '.3f') + " * " + format(np.cos(math.radians(self.Rz)), '.3f') + ") + (" + format(DeltaY_SBIGXL_C/1000, '.3f') + " * " + format(np.sin(math.radians(self.Rz)), '.3f') + ") = " +  format(DeltaX_CS5_C/1000, '.3f') +"\n" +
-                         "    DeltaY_CS5_C = (" + format(-DeltaX_SBIGXL_C/1000, '.3f') + " * " + format(np.sin(math.radians(self.Rz)), '.3f') + ") + (" + format(DeltaY_SBIGXL_C/1000, '.3f') + " * " + format(np.cos(math.radians(self.Rz)), '.3f') + ") = " + format(DeltaY_CS5_C/1000, '.3f') +"\n\n" +
+                         "    DeltaX_CS5_A = (" + format(DeltaX_SBIGXL_A/1000, '.3f') + " * " + format(np.cos(math.radians(angleRz)), '.3f') + ") + (" + format(DeltaY_SBIGXL_A/1000, '.3f') + " * " + format(np.sin(math.radians(angleRz)), '.3f') + ") = " + format(DeltaX_CS5_A/1000, '.3f') + "\n" +
+                         "    DeltaY_CS5_A = (" + format(-DeltaX_SBIGXL_A/1000, '.3f') + " * " + format(np.sin(math.radians(angleRz)), '.3f') + ") + (" + format(DeltaY_SBIGXL_A/1000, '.3f') + " * " + format(np.cos(math.radians(angleRz)), '.3f') + ") = " + format(DeltaY_CS5_A/1000, '.3f') + "\n\n" +
+                         "    DeltaX_CS5_B = (" + format(DeltaX_SBIGXL_B/1000, '.3f') + " * " + format(np.cos(math.radians(angleRz)), '.3f') + ") + (" + format(DeltaY_SBIGXL_B/1000, '.3f') + " * " + format(np.sin(math.radians(angleRz)), '.3f') + ") = " + format(DeltaX_CS5_B/1000, '.3f') +"\n" +
+                         "    DeltaY_CS5_B = (" + format(-DeltaX_SBIGXL_B/1000, '.3f') + " * " + format(np.sin(math.radians(angleRz)), '.3f') + ") + (" + format(DeltaY_SBIGXL_B/1000, '.3f') + " * " + format(np.cos(math.radians(angleRz)), '.3f') + ") = " + format(DeltaY_CS5_B/1000, '.3f') +"\n\n" +
+                         "    DeltaX_CS5_C = (" + format(DeltaX_SBIGXL_C/1000, '.3f') + " * " + format(np.cos(math.radians(angleRz)), '.3f') + ") + (" + format(DeltaY_SBIGXL_C/1000, '.3f') + " * " + format(np.sin(math.radians(angleRz)), '.3f') + ") = " +  format(DeltaX_CS5_C/1000, '.3f') +"\n" +
+                         "    DeltaY_CS5_C = (" + format(-DeltaX_SBIGXL_C/1000, '.3f') + " * " + format(np.sin(math.radians(angleRz)), '.3f') + ") + (" + format(DeltaY_SBIGXL_C/1000, '.3f') + " * " + format(np.cos(math.radians(angleRz)), '.3f') + ") = " + format(DeltaY_CS5_C/1000, '.3f') +"\n\n" +
                          
                          "Using: Target Pixel CS5 Location (mm) = Nominal CS5 + DeltaCS5\n" +
                          "Calculated using triangle point A:\n" +
