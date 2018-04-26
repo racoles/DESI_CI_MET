@@ -411,7 +411,7 @@ class tipTiltZCCD(object):
         xcenC, ycenC, _, _ = gmsCentroid(imageC, maxLocC[1], maxLocC[0], 
                                                          int(round(subArrayBoxSizeC/2)), int(round(subArrayBoxSizeC/2)), axis='both', verbose=False)
         
-        angleRz = math.degrees(np.arctan(((ycenC + yOffsetC)- (ycenB + yOffsetB))/((xcenC + xOffsetC) - (xcenB + xOffsetB))))
+        angleRz = -1*math.degrees(np.arctan(((ycenC + yOffsetC)- (ycenB + yOffsetB))/((xcenC + xOffsetC) - (xcenB + xOffsetB))))
         
         '''     
         #If B and C aren't aligned (in either X or Y depending on the camera location)
