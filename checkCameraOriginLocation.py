@@ -69,10 +69,45 @@ class checkCameraOriginLocation(object):
         ###########################################################################
         ###Get images
         ###########################################################################
-        #add ABC notice
+        #Point A      
+        topA = tk.Toplevel()
+        topA.title("CCD Origin Test: Triangle Point A")
+        aboutMessageA = str('Fill directory with images for point A (' + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'A'][0], '.3f') + 
+                            " ," + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'A'][1], '.3f') + ")")
+        faah.pageLogging(self.consoleLog, self.logFile, aboutMessageA)
+        msgA = tk.Message(topA, text=aboutMessageA)
+        msgA.pack()
+        buttonA = tk.Button(topA, text="Ready", command=topA.destroy)
+        buttonA.pack()
+        topA.wait_window()
         imageArray4DA, filelistA = faah.openAllFITSImagesInDirectory()
+        
+        #Point B      
+        topB = tk.Toplevel()
+        topB.title("CCD Origin Test: Triangle Point B")
+        aboutMessageB = str('Fill directory with images for point B (' + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'B'][0], '.3f') + 
+                            " ," + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'B'][1], '.3f') + ")")
+        faah.pageLogging(self.consoleLog, self.logFile, aboutMessageB)
+        msgB = tk.Message(topB, text=aboutMessageB)
+        msgB.pack()
+        buttonB = tk.Button(topB, text="Ready", command=topB.destroy)
+        buttonB.pack()
+        topB.wait_window()
         imageArray4DB, filelistB = faah.openAllFITSImagesInDirectory()
+        
+        #Point C      
+        topC = tk.Toplevel()
+        topC.title("CCD Origin Test: Triangle Point C")
+        aboutMessageC = str('Fill directory with images for point C (' + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'C'][0], '.3f') + 
+                            " ," + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'C'][1], '.3f') + ")")
+        faah.pageLogging(self.consoleLog, self.logFile, aboutMessageC)
+        msgC = tk.Message(topC, text=aboutMessageC)
+        msgC.pack()
+        buttonC = tk.Button(topC, text="Ready", command=topC.destroy)
+        buttonC.pack()
+        topC.wait_window()
         imageArray4DC, filelistC = faah.openAllFITSImagesInDirectory()        
+               
         aa = round(len(filelistA)/2) #select a focused image from array a
         bb = round(len(filelistB)/2) #select b focused image from array b
         cc = round(len(filelistC)/2) #select c focused image from array c
