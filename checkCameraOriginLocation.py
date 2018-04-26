@@ -18,6 +18,7 @@ from centroidFIF import centroidFIF
 from focusCurve import focusCurve
 from alternateCentroidMethods import gmsCentroid
 from cs5Offsets import cs5Offsets
+from tipTiltZCCD import tipTiltZCCD
 import numpy as np
 import math
 ################################################################################################
@@ -143,7 +144,8 @@ class checkCameraOriginLocation(object):
         ###########################################################################
         ###Get Rz
         ###########################################################################
-        angleRz = angleRz(imageArray4DB[bb], filelistB, imageArray4DC[cc], filelistC, self.CCDSelection, consoleLog, logFile)
+        ttzCCD = tipTiltZCCD()
+        angleRz = ttzCCD.rz(imageArray4DB[bb], filelistB, imageArray4DC[cc], filelistC, self.CCDSelection, consoleLog, logFile)
         faah.pageLogging(consoleLog, logFile, "Rz Local (degrees): " + format(angleRz, '.3f'))   
 
         ###########################################################################
@@ -187,7 +189,7 @@ class checkCameraOriginLocation(object):
                          "    DeltaX_SBIGXL_C = (" + format(self.xC , '.3f') + ") - " + str(self.pixelDistanceToCheckPoint) + " * " + str(self.pixelSize) + " = " + format(DeltaX_SBIGXL_C/1000, '.3f') + "\n" +
                          "    DeltaY_SBIGXL_C = (" + format(self.yC , '.3f') + ") - " + str(self.pixelDistanceToCheckPoint) + " * " + str(self.pixelSize) + " = " + format(DeltaY_SBIGXL_C/1000, '.3f') + "\n\n" +
                          
-                         "Using: Counter-Clockwise Rotational Coordinate Transform\n" + "       DeltaX_CS5 = (DeltaX_SBIGXL * cos(Rz)) - (DeltaY_SBIGXL * sin(Rz))\n       DeltaY_CS5 = (DeltaX_SBIGXL * sin(Rz)) + (DeltaY_SBIGXL * cos(Rz))\n" +
+                         "Using: Counter-Clockwise Rotational Coordinate Transform\n" + "       DeltaX_CS5 = (DeltaX_SBIGXL * cos(Rz)) - (DeltaY_SBIGXL * sin(Rz))\n       DeltaY_CS5 = (DeltaX_SBIGXL * sin(Rz)) + (DeltaY_SBIGXL * cos(Rz))\n\n" +
                          "Distance in CS5 frame (mm):\n" +
                          "    DeltaX_CS5_A = (" + format(DeltaX_SBIGXL_A/1000, '.3f') + " * " + format(np.cos(math.radians(angleRz)), '.3f') + ") - (" + format(DeltaY_SBIGXL_A/1000, '.3f') + " * " + format(np.sin(math.radians(angleRz)), '.3f') + ") = "+ format(DeltaX_CS5_A/1000, '.3f') +"\n" +
                          "    DeltaY_CS5_A = (" + format(DeltaX_SBIGXL_A/1000, '.3f') + " * " + format(np.sin(math.radians(angleRz)), '.3f') + ") + (" + format(DeltaY_SBIGXL_A/1000, '.3f') + " * " + format(np.cos(math.radians(angleRz)), '.3f') + ") = "+ format(DeltaY_CS5_A/1000, '.3f') +"\n\n" +
@@ -233,7 +235,7 @@ class checkCameraOriginLocation(object):
                          "    DeltaX_SBIGXL_C = (" + format(self.xC , '.3f') + ") - " + str(self.pixelDistanceToCheckPoint) + " * " + str(self.pixelSize) + " = " + format(DeltaX_SBIGXL_C/1000, '.3f') + "\n" +
                          "    DeltaY_SBIGXL_C = (" + format(self.yC , '.3f') + ") - " + str(self.pixelDistanceToCheckPoint) + " * " + str(self.pixelSize) + " = " + format(DeltaY_SBIGXL_C/1000, '.3f') + "\n\n" +
                          
-                         "Using: Clockwise Rotational Coordinate Transform\n" + "       DeltaX_CS5 = (DeltaX_SBIGXL * cos(Rz)) + (DeltaY_SBIGXL * sin(Rz))\n       DeltaY_CS5 = (-DeltaX_SBIGXL * sin(Rz)) + (DeltaY_SBIGXL * cos(Rz))\n" +
+                         "Using: Clockwise Rotational Coordinate Transform\n" + "       DeltaX_CS5 = (DeltaX_SBIGXL * cos(Rz)) + (DeltaY_SBIGXL * sin(Rz))\n       DeltaY_CS5 = (-DeltaX_SBIGXL * sin(Rz)) + (DeltaY_SBIGXL * cos(Rz))\n\n" +
                          "Distance in CS5 frame (mm):\n" +
                          "    DeltaX_CS5_A = (" + format(DeltaX_SBIGXL_A/1000, '.3f') + " * " + format(np.cos(math.radians(angleRz)), '.3f') + ") + (" + format(DeltaY_SBIGXL_A/1000, '.3f') + " * " + format(np.sin(math.radians(angleRz)), '.3f') + ") = " + format(DeltaX_CS5_A/1000, '.3f') + "\n" +
                          "    DeltaY_CS5_A = (" + format(-DeltaX_SBIGXL_A/1000, '.3f') + " * " + format(np.sin(math.radians(angleRz)), '.3f') + ") + (" + format(DeltaY_SBIGXL_A/1000, '.3f') + " * " + format(np.cos(math.radians(angleRz)), '.3f') + ") = " + format(DeltaY_CS5_A/1000, '.3f') + "\n\n" +
@@ -311,7 +313,7 @@ class checkCameraOriginLocation(object):
         ###Image (pixelDistanceToCheckPoint, pixelDistanceToCheckPoint) with SBIGXL
         ###########################################################################                 
         top = tk.Toplevel()
-        top.title("Image pixel (" + str(self.pixelDistanceToCheckPoint) + ", " + str(self.pixelDistanceToCheckPoint) + ")?")
+        top.title("\nImage pixel (" + str(self.pixelDistanceToCheckPoint) + ", " + str(self.pixelDistanceToCheckPoint) + ")?")
         aboutMessage = str("Are you ready to image pixel (" + str(self.pixelDistanceToCheckPoint) + ", " + str(self.pixelDistanceToCheckPoint) + ")?")
         faah.pageLogging(consoleLog, logFile, aboutMessage)
         msg = tk.Message(top, text=aboutMessage)
