@@ -137,6 +137,14 @@ class checkCameraOriginLocation(object):
                                                          int(round(subArrayBoxSizeB/2)), int(round(subArrayBoxSizeB/2)), axis='both', verbose=False)
         xCenGMSC, yCenGMSC, _, _ = gmsCentroid(imageArray4DC[cc], maxLocC[1], maxLocC[0], 
                                                          int(round(subArrayBoxSizeC/2)), int(round(subArrayBoxSizeC/2)), axis='both', verbose=False)
+        
+        
+        
+        ###########################################################################
+        ###Get Rz
+        ###########################################################################
+        angleRz = self.rz(imageArray4DB[bb], filelistB, imageArray4DC[cc], filelistC, self.CCDSelection, consoleLog, logFile)
+        faah.pageLogging(consoleLog, logFile, "Rz Local (degrees): " + format(angleRz, '.3f'))   
 
         ###########################################################################
         ###Calculate the distance to the sensor origin using centroided image.
