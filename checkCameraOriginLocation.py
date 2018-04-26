@@ -102,7 +102,7 @@ class checkCameraOriginLocation(object):
         topC = tk.Toplevel()
         topC.title("CCD Origin Test: Triangle Point C")
         aboutMessageC = str('Fill directory with images for point C (' + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'C'][0], '.3f') + 
-                            " ," + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'C'][1], '.3f') + ")")
+                            " ," + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'C'][1], '.3f') + ")\n")
         faah.pageLogging(consoleLog, logFile, aboutMessageC)
         msgC = tk.Message(topC, text=aboutMessageC)
         msgC.pack()

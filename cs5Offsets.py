@@ -216,4 +216,4 @@ class cs5Offsets(object):
         ###########################################################################
         self.CPOCID_rows = xCenGMS
         self.CPOCID_columns = yCenGMS
-        faah.pageLogging(consoleLog, logFile, "Calibration Routine Complete", calibration = True)
+        faah.pageLogging(consoleLog, logFile, "Calibration Routine Complete\n", calibration = True)
