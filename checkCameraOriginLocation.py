@@ -141,46 +141,161 @@ class checkCameraOriginLocation(object):
         ###########################################################################  
         #Find distance in um to CCD Origin  
         
-        DeltaXCS5A = ((xCenGMSA + xOffsetA) - self.pixelDistanceToCheckPoint) * pixelSize
-        DeltaYCS5A = ((yCenGMSA + yOffsetA) - self.pixelDistanceToCheckPoint) * pixelSize
+        DeltaX_SBIGXL_A = ((self.xA) - self.pixelDistanceToCheckPoint) * self.pixelSize
+        DeltaY_SBIGXL_A = ((self.yA) - self.pixelDistanceToCheckPoint) * self.pixelSize
         
-        DeltaXCS5B = ((xCenGMSB + xOffsetB) - self.pixelDistanceToCheckPoint) * pixelSize
-        DeltaYCS5B = ((yCenGMSB + yOffsetB) - self.pixelDistanceToCheckPoint) * pixelSize
+        DeltaX_SBIGXL_B = ((self.xB) - self.pixelDistanceToCheckPoint) * self.pixelSize
+        DeltaY_SBIGXL_B = ((self.yB) - self.pixelDistanceToCheckPoint) * self.pixelSize
         
-        DeltaXCS5C = ((xCenGMSC + xOffsetC) - self.pixelDistanceToCheckPoint) * pixelSize
-        DeltaYCS5C = ((yCenGMSC + yOffsetC) - self.pixelDistanceToCheckPoint) * pixelSize
+        DeltaX_SBIGXL_C = ((self.xC) - self.pixelDistanceToCheckPoint) * self.pixelSize
+        DeltaY_SBIGXL_C = ((self.yC) - self.pixelDistanceToCheckPoint) * self.pixelSize
         
         ###########################################################################
         ###Rotation Coordinate Transform from SBIG Coordinates to CS5 Coordinates
-        ########################################################################### 
-        
-        
-        ###########################################################################
         ###Go to (pixelDistanceToCheckPoint, pixelDistanceToCheckPoint)
-        ###########################################################################     
-        faah.pageLogging(consoleLog, logFile, "\nMove to pixel (" + str(self.pixelDistanceToCheckPoint) + ", " + str(self.pixelDistanceToCheckPoint) + ")\n\n" +
-                         "Using: ((centroid(pixel) + planetModeOffset) - desiredPixel(pixel)) * pixelSize\n" +
-                         "Distance to move (CS5 mm):\n" +
-                         "    DeltaXCS5A = (" + format(xCenGMSA , '.3f') + " + " + str(xOffsetA) + ") - " + str(self.pixelDistanceToCheckPoint) + " * " + str(pixelSize) + " = " + format(DeltaXCS5A/1000, '.3f') + "\n" +
-                         "    DeltaYCS5A = (" + format(yCenGMSA , '.3f') + " + " + str(yOffsetA) + ") - " + str(self.pixelDistanceToCheckPoint) + " * " + str(pixelSize) + " = " + format(DeltaYCS5A/1000, '.3f') + "\n\n" +
-                         "    DeltaXCS5B = (" + format(xCenGMSB , '.3f') + " + " + str(xOffsetB) + ") - " + str(self.pixelDistanceToCheckPoint) + " * " + str(pixelSize) + " = " + format(DeltaXCS5B/1000, '.3f') + "\n" +
-                         "    DeltaYCS5B = (" + format(yCenGMSB , '.3f') + " + " + str(yOffsetB) + ") - " + str(self.pixelDistanceToCheckPoint) + " * " + str(pixelSize) + " = " + format(DeltaYCS5B/1000, '.3f') + "\n\n" +
-                         "    DeltaXCS5C = (" + format(xCenGMSC , '.3f') + " + " + str(xOffsetC) + ") - " + str(self.pixelDistanceToCheckPoint) + " * " + str(pixelSize) + " = " + format(DeltaXCS5C/1000, '.3f') + "\n" +
-                         "    DeltaYCS5C = (" + format(yCenGMSC , '.3f') + " + " + str(yOffsetC) + ") - " + str(self.pixelDistanceToCheckPoint) + " * " + str(pixelSize) + " = " + format(DeltaYCS5C/1000, '.3f') + "\n\n" +
-                         "Using: Target Pixel = Nominal CS5 + DeltaCS5\n" +
-                         "These correspond to CS5 Position:\n" +
-                         "    CS5X(A) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][0]) + " + " + format(DeltaXCS5A/1000, '.3f') + " = " + 
-                         format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][0] + DeltaXCS5A/1000, '.3f') + "\n" +
-                         "    CS5Y(A) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][1]) + " + " + format(DeltaYCS5A/1000, '.3f') + " = " + 
-                         format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][1] + DeltaYCS5A/1000, '.3f') + "\n\n" +
-                         "    CS5X(B) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][0]) + " + " + format(DeltaXCS5B/1000, '.3f') + " = " + 
-                         format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][0] + DeltaXCS5B/1000, '.3f') + "\n" +
-                         "    CS5Y(B) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][1]) + " + " + format(DeltaYCS5B/1000, '.3f') + " = " + 
-                         format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][1] + DeltaYCS5B/1000, '.3f') + "\n\n" +
-                         "    CS5X(C) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][0]) + " + " + format(DeltaXCS5C/1000, '.3f') + " = " + 
-                         format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][0] + DeltaXCS5C/1000, '.3f') + "\n" +
-                         "    CS5Y(C) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][1]) + " + " + format(DeltaYCS5C/1000, '.3f') + " = " + 
-                         format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][1] + DeltaYCS5C/1000, '.3f'))
+        ########################################################################### 
+        #c(y)>b(y) = +Rz = Counter-Clockwise
+        #b(y)>c(y) = -Rz = Clockwise
+
+        if self.Rz > 0: #c(y)>b(y) = +Rz = Counter-Clockwise
+            DeltaX_CS5_A = (DeltaX_SBIGXL_A * np.cos(math.radians(self.Rz))) - (DeltaY_SBIGXL_A * np.sin(math.radians(self.Rz)))
+            DeltaY_CS5_A = (DeltaX_SBIGXL_A * np.sin(math.radians(self.Rz))) + (DeltaY_SBIGXL_A * np.cos(math.radians(self.Rz)))
+            
+            DeltaX_CS5_B = (DeltaX_SBIGXL_B * np.cos(math.radians(self.Rz))) - (DeltaY_SBIGXL_B * np.sin(math.radians(self.Rz)))
+            DeltaY_CS5_B = (DeltaX_SBIGXL_B * np.sin(math.radians(self.Rz))) + (DeltaY_SBIGXL_B * np.cos(math.radians(self.Rz)))   
+            
+            DeltaX_CS5_C = (DeltaX_SBIGXL_C * np.cos(math.radians(self.Rz))) - (DeltaY_SBIGXL_C * np.sin(math.radians(self.Rz)))
+            DeltaY_CS5_C = (DeltaX_SBIGXL_C * np.sin(math.radians(self.Rz))) + (DeltaY_SBIGXL_C * np.cos(math.radians(self.Rz)))       
+            
+            print("\nMove to pixel (" + str(self.pixelDistanceToCheckPoint) + ", " + str(self.pixelDistanceToCheckPoint) + ")\n\n" +
+                         "Using: ((centroid(pixel)) - desiredPixel(pixel)) * pixelSize\n" +
+                         "Distance in SBIGXL frame (mm):\n" +
+                         "    DeltaX_SBIGXL_A = (" + format(self.xA , '.3f') + ") - " + str(self.pixelDistanceToCheckPoint) + " * " + str(self.pixelSize) + " = " + format(DeltaX_SBIGXL_A/1000, '.3f') + "\n" +
+                         "    DeltaY_SBIGXL_A = (" + format(self.yA , '.3f') + ") - " + str(self.pixelDistanceToCheckPoint) + " * " + str(self.pixelSize) + " = " + format(DeltaY_SBIGXL_A/1000, '.3f') + "\n\n" +
+                         "    DeltaX_SBIGXL_B = (" + format(self.xB , '.3f') + ") - " + str(self.pixelDistanceToCheckPoint) + " * " + str(self.pixelSize) + " = " + format(DeltaX_SBIGXL_B/1000, '.3f') + "\n" +
+                         "    DeltaY_SBIGXL_B = (" + format(self.yB , '.3f') + ") - " + str(self.pixelDistanceToCheckPoint) + " * " + str(self.pixelSize) + " = " + format(DeltaY_SBIGXL_B/1000, '.3f') + "\n\n" +
+                         "    DeltaX_SBIGXL_C = (" + format(self.xC , '.3f') + ") - " + str(self.pixelDistanceToCheckPoint) + " * " + str(self.pixelSize) + " = " + format(DeltaX_SBIGXL_C/1000, '.3f') + "\n" +
+                         "    DeltaY_SBIGXL_C = (" + format(self.yC , '.3f') + ") - " + str(self.pixelDistanceToCheckPoint) + " * " + str(self.pixelSize) + " = " + format(DeltaY_SBIGXL_C/1000, '.3f') + "\n\n" +
+                         
+                         "Using: Counter-Clockwise Rotational Coordinate Transform\n" + "       DeltaX_CS5 = (DeltaX_SBIGXL * cos(Rz)) - (DeltaY_SBIGXL * sin(Rz))\n       DeltaY_CS5 = (DeltaX_SBIGXL * sin(Rz)) + (DeltaY_SBIGXL * cos(Rz))\n" +
+                         "Distance in CS5 frame (mm):\n" +
+                         "    DeltaX_CS5_A = (" + format(DeltaX_SBIGXL_A/1000, '.3f') + " * " + format(np.cos(math.radians(self.Rz)), '.3f') + ") - (" + format(DeltaY_SBIGXL_A/1000, '.3f') + " * " + format(np.sin(math.radians(self.Rz)), '.3f') + ") = "+ format(DeltaX_CS5_A/1000, '.3f') +"\n" +
+                         "    DeltaY_CS5_A = (" + format(DeltaX_SBIGXL_A/1000, '.3f') + " * " + format(np.sin(math.radians(self.Rz)), '.3f') + ") + (" + format(DeltaY_SBIGXL_A/1000, '.3f') + " * " + format(np.cos(math.radians(self.Rz)), '.3f') + ") = "+ format(DeltaY_CS5_A/1000, '.3f') +"\n\n" +
+                         "    DeltaX_CS5_B = (" + format(DeltaX_SBIGXL_B/1000, '.3f') + " * " + format(np.cos(math.radians(self.Rz)), '.3f') + ") - (" + format(DeltaY_SBIGXL_B/1000, '.3f') + " * " + format(np.sin(math.radians(self.Rz)), '.3f') + ") = "+ format(DeltaX_CS5_B/1000, '.3f') +"\n" +
+                         "    DeltaY_CS5_B = (" + format(DeltaX_SBIGXL_B/1000, '.3f') + " * " + format(np.sin(math.radians(self.Rz)), '.3f') + ") + (" + format(DeltaY_SBIGXL_B/1000, '.3f') + " * " + format(np.cos(math.radians(self.Rz)), '.3f') + ") = "+ format(DeltaY_CS5_B/1000, '.3f') +"\n\n" +
+                         "    DeltaX_CS5_C = (" + format(DeltaX_SBIGXL_C/1000, '.3f') + " * " + format(np.cos(math.radians(self.Rz)), '.3f') + ") - (" + format(DeltaY_SBIGXL_C/1000, '.3f') + " * " + format(np.sin(math.radians(self.Rz)), '.3f') + ") = "+ format(DeltaX_CS5_C/1000, '.3f') +"\n" +
+                         "    DeltaY_CS5_C = (" + format(DeltaX_SBIGXL_C/1000, '.3f') + " * " + format(np.sin(math.radians(self.Rz)), '.3f') + ") + (" + format(DeltaY_SBIGXL_C/1000, '.3f') + " * " + format(np.cos(math.radians(self.Rz)), '.3f') + ") = "+ format(DeltaY_CS5_C/1000, '.3f') +"\n\n" +
+                         
+                         "Using: Target Pixel CS5 Location (mm) = Nominal CS5 + DeltaCS5\n" +
+                         "Calculated using triangle point A:\n" +
+                         "    CS5X(A) (mm) = " + str(self.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][0]) + " + " + format(DeltaX_CS5_A/1000, '.3f') + " = " + 
+                         format(self.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][0] + DeltaX_CS5_A/1000, '.3f') + "\n" +
+                         "    CS5Y(A) (mm) = " + str(self.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][1]) + " + " + format(DeltaY_CS5_A/1000, '.3f') + " = " + 
+                         format(self.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][1] + DeltaY_CS5_A/1000, '.3f') + "\n\n" +
+                         "Calculated using triangle point B:\n" +
+                         "    CS5X(B) (mm) = " + str(self.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][0]) + " + " + format(DeltaX_CS5_B/1000, '.3f') + " = " + 
+                         format(self.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][0] + DeltaX_CS5_B/1000, '.3f') + "\n" +
+                         "    CS5Y(B) (mm) = " + str(self.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][1]) + " + " + format(DeltaY_CS5_B/1000, '.3f') + " = " + 
+                         format(self.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][1] + DeltaY_CS5_B/1000, '.3f') + "\n\n" +
+                         "Calculated using triangle point C:\n" +
+                         "    CS5X(C) (mm) = " + str(self.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][0]) + " + " + format(DeltaX_CS5_C/1000, '.3f') + " = " + 
+                         format(self.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][0] + DeltaX_CS5_C/1000, '.3f') + "\n" +
+                         "    CS5Y(C) (mm) = " + str(self.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][1]) + " + " + format(DeltaY_CS5_C/1000, '.3f') + " = " + 
+                         format(self.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][1] + DeltaY_CS5_C/1000, '.3f')) 
+            
+        elif self.Rz < 0: #b(y)>c(y) = -Rz = Clockwise
+            DeltaX_CS5_A = (DeltaX_SBIGXL_A * np.cos(math.radians(self.Rz))) + (DeltaY_SBIGXL_A * np.sin(math.radians(self.Rz)))
+            DeltaY_CS5_A = (-DeltaX_SBIGXL_A * np.sin(math.radians(self.Rz))) + (DeltaY_SBIGXL_A * np.cos(math.radians(self.Rz)))
+            
+            DeltaX_CS5_B = (DeltaX_SBIGXL_B * np.cos(math.radians(self.Rz))) + (DeltaY_SBIGXL_B * np.sin(math.radians(self.Rz)))
+            DeltaY_CS5_B = (-DeltaX_SBIGXL_B * np.sin(math.radians(self.Rz))) + (DeltaY_SBIGXL_B * np.cos(math.radians(self.Rz)))   
+            
+            DeltaX_CS5_C = (DeltaX_SBIGXL_C * np.cos(math.radians(self.Rz))) + (DeltaY_SBIGXL_C * np.sin(math.radians(self.Rz)))
+            DeltaY_CS5_C = (-DeltaX_SBIGXL_C * np.sin(math.radians(self.Rz))) + (DeltaY_SBIGXL_C * np.cos(math.radians(self.Rz))) 
+            
+            print("\nMove to pixel (" + str(self.pixelDistanceToCheckPoint) + ", " + str(self.pixelDistanceToCheckPoint) + ")\n\n" +
+                         "Using: ((centroid(pixel)) - desiredPixel(pixel)) * pixelSize\n" +
+                         "Distance in SBIGXL frame (mm):\n" +
+                         "    DeltaX_SBIGXL_A = (" + format(self.xA , '.3f') + ") - " + str(self.pixelDistanceToCheckPoint) + " * " + str(self.pixelSize) + " = " + format(DeltaX_SBIGXL_A/1000, '.3f') + "\n" +
+                         "    DeltaY_SBIGXL_A = (" + format(self.yA , '.3f') + ") - " + str(self.pixelDistanceToCheckPoint) + " * " + str(self.pixelSize) + " = " + format(DeltaY_SBIGXL_A/1000, '.3f') + "\n\n" +
+                         "    DeltaX_SBIGXL_B = (" + format(self.xB , '.3f') + ") - " + str(self.pixelDistanceToCheckPoint) + " * " + str(self.pixelSize) + " = " + format(DeltaX_SBIGXL_B/1000, '.3f') + "\n" +
+                         "    DeltaY_SBIGXL_B = (" + format(self.yB , '.3f') + ") - " + str(self.pixelDistanceToCheckPoint) + " * " + str(self.pixelSize) + " = " + format(DeltaY_SBIGXL_B/1000, '.3f') + "\n\n" +
+                         "    DeltaX_SBIGXL_C = (" + format(self.xC , '.3f') + ") - " + str(self.pixelDistanceToCheckPoint) + " * " + str(self.pixelSize) + " = " + format(DeltaX_SBIGXL_C/1000, '.3f') + "\n" +
+                         "    DeltaY_SBIGXL_C = (" + format(self.yC , '.3f') + ") - " + str(self.pixelDistanceToCheckPoint) + " * " + str(self.pixelSize) + " = " + format(DeltaY_SBIGXL_C/1000, '.3f') + "\n\n" +
+                         
+                         "Using: Clockwise Rotational Coordinate Transform\n" + "       DeltaX_CS5 = (DeltaX_SBIGXL * cos(Rz)) + (DeltaY_SBIGXL * sin(Rz))\n       DeltaY_CS5 = (-DeltaX_SBIGXL * sin(Rz)) + (DeltaY_SBIGXL * cos(Rz))\n" +
+                         "Distance in CS5 frame (mm):\n" +
+                         "    DeltaX_CS5_A = (" + format(DeltaX_SBIGXL_A/1000, '.3f') + " * " + format(np.cos(math.radians(self.Rz)), '.3f') + ") + (" + format(DeltaY_SBIGXL_A/1000, '.3f') + " * " + format(np.sin(math.radians(self.Rz)), '.3f') + ") = " + format(DeltaX_CS5_A/1000, '.3f') + "\n" +
+                         "    DeltaY_CS5_A = (" + format(-DeltaX_SBIGXL_A/1000, '.3f') + " * " + format(np.sin(math.radians(self.Rz)), '.3f') + ") + (" + format(DeltaY_SBIGXL_A/1000, '.3f') + " * " + format(np.cos(math.radians(self.Rz)), '.3f') + ") = " + format(DeltaY_CS5_A/1000, '.3f') + "\n\n" +
+                         "    DeltaX_CS5_B = (" + format(DeltaX_SBIGXL_B/1000, '.3f') + " * " + format(np.cos(math.radians(self.Rz)), '.3f') + ") + (" + format(DeltaY_SBIGXL_B/1000, '.3f') + " * " + format(np.sin(math.radians(self.Rz)), '.3f') + ") = " + format(DeltaX_CS5_B/1000, '.3f') +"\n" +
+                         "    DeltaY_CS5_B = (" + format(-DeltaX_SBIGXL_B/1000, '.3f') + " * " + format(np.sin(math.radians(self.Rz)), '.3f') + ") + (" + format(DeltaY_SBIGXL_B/1000, '.3f') + " * " + format(np.cos(math.radians(self.Rz)), '.3f') + ") = " + format(DeltaY_CS5_B/1000, '.3f') +"\n\n" +
+                         "    DeltaX_CS5_C = (" + format(DeltaX_SBIGXL_C/1000, '.3f') + " * " + format(np.cos(math.radians(self.Rz)), '.3f') + ") + (" + format(DeltaY_SBIGXL_C/1000, '.3f') + " * " + format(np.sin(math.radians(self.Rz)), '.3f') + ") = " +  format(DeltaX_CS5_C/1000, '.3f') +"\n" +
+                         "    DeltaY_CS5_C = (" + format(-DeltaX_SBIGXL_C/1000, '.3f') + " * " + format(np.sin(math.radians(self.Rz)), '.3f') + ") + (" + format(DeltaY_SBIGXL_C/1000, '.3f') + " * " + format(np.cos(math.radians(self.Rz)), '.3f') + ") = " + format(DeltaY_CS5_C/1000, '.3f') +"\n\n" +
+                         
+                         "Using: Target Pixel CS5 Location (mm) = Nominal CS5 + DeltaCS5\n" +
+                         "Calculated using triangle point A:\n" +
+                         "    CS5X(A) (mm) = " + str(self.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][0]) + " + " + format(DeltaX_CS5_A/1000, '.3f') + " = " + 
+                         format(self.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][0] + DeltaX_CS5_A/1000, '.3f') + "\n" +
+                         "    CS5Y(A) (mm) = " + str(self.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][1]) + " + " + format(DeltaY_CS5_A/1000, '.3f') + " = " + 
+                         format(self.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][1] + DeltaY_CS5_A/1000, '.3f') + "\n\n" +
+                         "Calculated using triangle point B:\n" +
+                         "    CS5X(B) (mm) = " + str(self.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][0]) + " + " + format(DeltaX_CS5_B/1000, '.3f') + " = " + 
+                         format(self.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][0] + DeltaX_CS5_B/1000, '.3f') + "\n" +
+                         "    CS5Y(B) (mm) = " + str(self.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][1]) + " + " + format(DeltaY_CS5_B/1000, '.3f') + " = " + 
+                         format(self.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][1] + DeltaY_CS5_B/1000, '.3f') + "\n\n" +
+                         "Calculated using triangle point C:\n" +
+                         "    CS5X(C) (mm) = " + str(self.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][0]) + " + " + format(DeltaX_CS5_C/1000, '.3f') + " = " + 
+                         format(self.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][0] + DeltaX_CS5_C/1000, '.3f') + "\n" +
+                         "    CS5Y(C) (mm) = " + str(self.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][1]) + " + " + format(DeltaY_CS5_C/1000, '.3f') + " = " + 
+                         format(self.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][1] + DeltaY_CS5_C/1000, '.3f')) 
+               
+        else:
+            print("Rz = 0: no rotational transform needed.")
+            
+            DeltaX_CS5_A = DeltaX_SBIGXL_A
+            DeltaY_CS5_A = DeltaY_SBIGXL_A
+            
+            DeltaX_CS5_B = DeltaX_SBIGXL_B
+            DeltaY_CS5_B = DeltaY_SBIGXL_B   
+            
+            DeltaX_CS5_C = DeltaX_SBIGXL_C
+            DeltaY_CS5_C = DeltaY_SBIGXL_C 
+            
+            print("\nMove to pixel (" + str(self.pixelDistanceToCheckPoint) + ", " + str(self.pixelDistanceToCheckPoint) + ")\n\n" +
+                         "Using: ((centroid(pixel)) - desiredPixel(pixel)) * pixelSize\n" +
+                         "Distance in SBIGXL frame (mm):\n" +
+                         "    DeltaX_SBIGXL_A = (" + format(self.xA , '.3f') + ") - " + str(self.pixelDistanceToCheckPoint) + " * " + str(self.pixelSize) + " = " + format(DeltaX_SBIGXL_A/1000, '.3f') + "\n" +
+                         "    DeltaY_SBIGXL_A = (" + format(self.yA , '.3f') + ") - " + str(self.pixelDistanceToCheckPoint) + " * " + str(self.pixelSize) + " = " + format(DeltaY_SBIGXL_A/1000, '.3f') + "\n\n" +
+                         "    DeltaX_SBIGXL_B = (" + format(self.xB , '.3f') + ") - " + str(self.pixelDistanceToCheckPoint) + " * " + str(self.pixelSize) + " = " + format(DeltaX_SBIGXL_B/1000, '.3f') + "\n" +
+                         "    DeltaY_SBIGXL_B = (" + format(self.yB , '.3f') + ") - " + str(self.pixelDistanceToCheckPoint) + " * " + str(self.pixelSize) + " = " + format(DeltaY_SBIGXL_B/1000, '.3f') + "\n\n" +
+                         "    DeltaX_SBIGXL_C = (" + format(self.xC , '.3f') + ") - " + str(self.pixelDistanceToCheckPoint) + " * " + str(self.pixelSize) + " = " + format(DeltaX_SBIGXL_C/1000, '.3f') + "\n" +
+                         "    DeltaY_SBIGXL_C = (" + format(self.yC , '.3f') + ") - " + str(self.pixelDistanceToCheckPoint) + " * " + str(self.pixelSize) + " = " + format(DeltaY_SBIGXL_C/1000, '.3f') + "\n\n" +
+                         
+                         "Using: No Rotational Coordinate Transform\n" + "DeltaX_CS5 = DeltaX_SBIGXL\nDeltaY_CS5 = DeltaX_SBIGXL\n" +
+                         "Distance in CS5 frame (mm):\n" +
+                         "    DeltaX_CS5_A = DeltaX_SBIGXL_A = " + format(DeltaX_CS5_A/1000 , '.3f') + "\n" +
+                         "    DeltaY_CS5_A = DeltaY_SBIGXL_A = " + format(DeltaY_CS5_A/1000 , '.3f') + "\n\n" +
+                         "    DeltaX_CS5_B = DeltaX_SBIGXL_B = " + format(DeltaX_CS5_B/1000 , '.3f') + "\n" +
+                         "    DeltaY_CS5_B = DeltaY_SBIGXL_B = " + format(DeltaY_CS5_B/1000 , '.3f') + "\n\n" +
+                         "    DeltaX_CS5_C = DeltaX_SBIGXL_C = " + format(DeltaX_CS5_C/1000 , '.3f') + "\n" +
+                         "    DeltaY_CS5_C = DeltaY_SBIGXL_C = " + format(DeltaY_CS5_C/1000 , '.3f') + "\n\n" +
+                         
+                         "Using: Target Pixel CS5 Location (mm) = Nominal CS5 + DeltaCS5\n" +
+                         "Calculated using triangle point A:\n" +
+                         "    CS5X(A) (mm) = " + str(self.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][0]) + " + " + format(DeltaX_CS5_A/1000, '.3f') + " = " + 
+                         format(self.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][0] + DeltaX_CS5_A/1000, '.3f') + "\n" +
+                         "    CS5Y(A) (mm) = " + str(self.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][1]) + " + " + format(DeltaY_CS5_A/1000, '.3f') + " = " + 
+                         format(self.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][1] + DeltaY_CS5_A/1000, '.3f') + "\n\n" +
+                         "Calculated using triangle point B:\n" +
+                         "    CS5X(B) (mm) = " + str(self.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][0]) + " + " + format(DeltaX_CS5_B/1000, '.3f') + " = " + 
+                         format(self.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][0] + DeltaX_CS5_B/1000, '.3f') + "\n" +
+                         "    CS5Y(B) (mm) = " + str(self.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][1]) + " + " + format(DeltaY_CS5_B/1000, '.3f') + " = " + 
+                         format(self.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][1] + DeltaY_CS5_B/1000, '.3f') + "\n\n" +
+                         "Calculated using triangle point C:\n" +
+                         "    CS5X(C) (mm) = " + str(self.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][0]) + " + " + format(DeltaX_CS5_C/1000, '.3f') + " = " + 
+                         format(self.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][0] + DeltaX_CS5_C/1000, '.3f') + "\n" +
+                         "    CS5Y(C) (mm) = " + str(self.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][1]) + " + " + format(DeltaY_CS5_C/1000, '.3f') + " = " + 
+                         format(self.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][1] + DeltaY_CS5_C/1000, '.3f')) 
         
         ###########################################################################
         ###Image (pixelDistanceToCheckPoint, pixelDistanceToCheckPoint) with SBIGXL
