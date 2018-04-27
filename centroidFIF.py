@@ -50,7 +50,7 @@ from alternateCentroidMethods import gmsCentroid, smsBisector, findCentroid
 class centroidFIF(object):
     
     #Width of subimage for centroiding
-    widthOfSubimage = 20 #pixels
+    widthOfSubimage = 200 #pixels
     
     def __init__(self):
         '''
