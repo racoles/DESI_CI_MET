@@ -343,8 +343,8 @@ class checkCameraOriginLocation(object):
         
         #calculate location of CCD (0,0) in CS5 using triangle a, b, c, and pixel  
         faah.pageLogging(consoleLog, logFile, "CS5 CCD ORIGIN\n\n" +
-                         "Using: CS5 Nominal Triangle Point (um) - [(centroided (pixel) + planetModeOffset (pixel)) * pixelSize]\n" +
                          "NO CALIBRATION OFFSET APPLIED\n" +
+                        "Using: CS5 Nominal Triangle Point (um) - [(centroided (pixel) + planetModeOffset (pixel)) * pixelSize]\n" +
                          "    CS5 CCD Origin X(A) = " + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][0] - ((xCenGMSA + xOffsetA) * pixelSize), '.3f') + "\n" +
                          "    CS5 CCD Origin Y(A) = " + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][1] - ((yCenGMSA + yOffsetA) * pixelSize), '.3f') + "\n\n" +
                          "    CS5 CCD Origin X(B) = " + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][0] - ((xCenGMSB + xOffsetB) * pixelSize), '.3f') + "\n" +
@@ -352,6 +352,7 @@ class checkCameraOriginLocation(object):
                          "    CS5 CCD Origin X(C) = " + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][0] - ((xCenGMSC + xOffsetC) * pixelSize), '.3f') + "\n" +
                          "    CS5 CCD Origin Y(C) = " + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][1] - ((yCenGMSC + yOffsetC) * pixelSize), '.3f') + "\n\n" +
                          "CALIBRATION OFFSET APPLIED\n" +
+                         "Using: CS5 Nominal Triangle Point (um) - [(centroided (pixel) + planetModeOffset (pixel)) * pixelSize] + calOffset\n" +
                          "Calibration Offset (um): (" + str(calOffX) + ", " + str(calOffY) + ")\n"
                          "    CS5 CCD Origin X(A) = " + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][0] - ((xCenGMSA + xOffsetA) * pixelSize) + calOffX, '.3f') + "\n" +
                          "    CS5 CCD Origin Y(A) = " + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][1] - ((yCenGMSA + yOffsetA) * pixelSize) + calOffY, '.3f') + "\n\n" +
