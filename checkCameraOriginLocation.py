@@ -69,7 +69,9 @@ class checkCameraOriginLocation(object):
         calOffX = ((PIDTSO_x - CPOCID_cent_x)*self.stipixel)/dmmMag
         calOffY = ((PIDTSO_y - CPOCID_cent_y)*self.stipixel)/dmmMag
         #Print offset
-        faah.pageLogging(consoleLog, logFile, "Using: \n[((100um pinhole mapping STi (pixels)) - (optical CS5 origin (FIF centroid) (pixels))) * (STi Pixel size (um))] / (DMM magnification)\n" +
+        faah.pageLogging(consoleLog, logFile, "Using: \n[((100um pinhole mapping STi (pixels)) - (optical CS5 origin (FIF centroid) (pixels)))\n * (STi Pixel size (um))] / (DMM magnification)\n" +
+                         "Calibration Offset X (um) = [(" + str(PIDTSO_x) + " - " + str(CPOCID_cent_x) + ") * " + str(self.stipixel) + "] / " + str(dmmMag) + " = " + format(calOffX, '.3f') + "\n" +
+                         "Calibration Offset Y (um) = [(" + str(PIDTSO_y) + " - " + str(CPOCID_cent_y) + ") * " + str(self.stipixel) + "] / " + str(dmmMag) + " = " + format(calOffY, '.3f') + "\n" +
                          "Calibration Offset (um): (" + format(calOffX, '.3f') + ", " + format(calOffY, '.3f') + ")", calibration = True)
         
         ###########################################################################
@@ -329,24 +331,24 @@ class checkCameraOriginLocation(object):
         button = tk.Button(top, text="Ready", command=top.destroy)
         button.pack()
         top.wait_window()
-        imageArray4DPIX, filelistPIX = faah.openAllFITSImagesInDirectory()
+        #imageArray4DPIX, filelistPIX = faah.openAllFITSImagesInDirectory()
         
         #Centroid
         #Get location of pinhole image in (rows, columns)
-        pixpix = round(len(filelistPIX)/2)
-        _ , subArrayBoxSizePIX, maxLocPIX = cF.findFIFInImage(imageArray4DPIX[pixpix])
+        #pixpix = round(len(filelistPIX)/2)
+        #_ , subArrayBoxSizePIX, maxLocPIX = cF.findFIFInImage(imageArray4DPIX[pixpix])
         
         #Account for planet mode
-        xOffsetPIX, yOffsetPIX, _ = pM.readFitsHeader(imageArray4DA, filelistA, consoleLog, logFile)
+        #xOffsetPIX, yOffsetPIX, _ = pM.readFitsHeader(imageArray4DA, filelistA, consoleLog, logFile)
         
         #Use alternate methods to centroid pinhole image
         #    gmsCentroid: Gaussian Marginal Sum (GMS) Centroid Method.
-        xCenGMSPIX, yCenGMSPIX, _, _ = gmsCentroid(imageArray4DPIX[pixpix], maxLocPIX[1], maxLocPIX[0], 
-                                                         int(round(subArrayBoxSizePIX/2)), int(round(subArrayBoxSizePIX/2)), axis='both', verbose=False)
+        #xCenGMSPIX, yCenGMSPIX, _, _ = gmsCentroid(imageArray4DPIX[pixpix], maxLocPIX[1], maxLocPIX[0], 
+        #                                                 int(round(subArrayBoxSizePIX/2)), int(round(subArrayBoxSizePIX/2)), axis='both', verbose=False)
         
         #report pixel centroid location
-        faah.pageLogging(consoleLog, logFile, "Centroid for pixel (" + str(self.pixelDistanceToCheckPointX) + ", " + str(self.pixelDistanceToCheckPointY) + ") found at:" +
-                         "row = " + format(xCenGMSPIX + xOffsetPIX, '.3f') + ", columns = " + format(yCenGMSPIX + yOffsetPIX, '.3f'))
+        #faah.pageLogging(consoleLog, logFile, "Centroid for pixel (" + str(self.pixelDistanceToCheckPointX) + ", " + str(self.pixelDistanceToCheckPointY) + ") found at:" +
+        #                 "row = " + format(xCenGMSPIX + xOffsetPIX, '.3f') + ", columns = " + format(yCenGMSPIX + yOffsetPIX, '.3f'))
         
         #calculate location of CCD (0,0) in CS5 using triangle a, b, c, and pixel  
         faah.pageLogging(consoleLog, logFile, "CS5 CCD ORIGIN\n\n" +
