@@ -343,7 +343,7 @@ class checkCameraOriginLocation(object):
         
         #calculate location of CCD (0,0) in CS5 using triangle a, b, c, and pixel  
         faah.pageLogging(consoleLog, logFile, "CS5 CCD ORIGIN\n\n" +
-                         "Using: CS5 Nominal Triangle Point (um) - [centroided (pixel) * pixelSize]\n" +
+                         "Using: CS5 Nominal Triangle Point (um) - [(centroided (pixel) + planetModeOffset (pixel)) * pixelSize]\n" +
                          "NO CALIBRATION OFFSET APPLIED\n" +
                          "    CS5 CCD Origin X(A) = " + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][0] - ((xCenGMSA + xOffsetA) * pixelSize), '.3f') + "\n" +
                          "    CS5 CCD Origin Y(A) = " + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][1] - ((yCenGMSA + yOffsetA) * pixelSize), '.3f') + "\n\n" +
