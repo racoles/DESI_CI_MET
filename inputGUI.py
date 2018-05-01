@@ -25,7 +25,6 @@ from metManualMode import metManualMode
 from focusCurve import focusCurve
 from fileAndArrayHandling import fileAndArrayHandling
 from centroidFIF import centroidFIF
-#from cs5Offsets import cs5Offsets
 from checkCameraOriginLocation import checkCameraOriginLocation
 ################################################################################################
 
