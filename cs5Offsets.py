@@ -214,6 +214,6 @@ class cs5Offsets(object):
         ###########################################################################
         ###Set Offset2
         ###########################################################################
-        self.CPOCID_cent_x = xCenGMS
-        self.CPOCID_cent_y = yCenGMS
+        self.CPOCID_cent_x = xCenGMS + xOffset
+        self.CPOCID_cent_y = yCenGMS + yOffset
         faah.pageLogging(consoleLog, logFile, "Calibration Routine Complete\n", calibration = True)
