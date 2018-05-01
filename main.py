@@ -1,5 +1,5 @@
 '''
-@title DESI_CI_MET 1.2
+@title DESI_CI_MET 1.3
 @author: Rebecca Coles
 Updated on Feb 21, 2017
 Created on Dec 11, 2017
@@ -15,7 +15,7 @@ Testing:
     DESI_CI_MET_1.2: Haas Software test (03/27/2018-03/30/2018)
     DESI_CI_MET_1.2: Haas Software test (04/23/2018) 
     DESI_CI_MET_1.2: Haas Software test (04/27/2018)   
-    DESI_CI_MET_1.2: Haas Software test (04/30/2018)   
+    DESI_CI_MET_1.3: Haas Software test (04/30/2018)   
       
 Pending Testing:
     Ometech
