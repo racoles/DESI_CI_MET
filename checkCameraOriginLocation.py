@@ -58,6 +58,13 @@ class checkCameraOriginLocation(object):
         #Get calibration values 
         cs5off = cs5Offsets()
         PIDTSO_rows, PIDTSO_columns, CPOCID_X, CPOCID_Y, CPOCID_rows, CPOCID_columns, dmmMag = cs5off.calibrationScreen(consoleLog, logFile)
+        print(PIDTSO_rows)
+        print(PIDTSO_columns)
+        print(CPOCID_X)
+        print(CPOCID_Y)
+        print(CPOCID_rows)
+        print(CPOCID_columns)
+        print(dmmMag)
         #Calculate offset
         calOffX = ((PIDTSO_rows - CPOCID_rows)*self.stipixel)/dmmMag
         calOffY = ((PIDTSO_columns - CPOCID_columns)*self.stipixel)/dmmMag
