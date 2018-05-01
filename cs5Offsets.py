@@ -26,12 +26,12 @@ class cs5Offsets(object):
     PIDTSO_y = 205.93
     
     #CS5 Point on CI Dowel from probe
-    CPOCID_cent_x = 0
-    CPOCID_cent_y = 0
+    CPOCID_X = 0
+    CPOCID_Y = 0
     
     #CS5 Point from centroided image
-    CPOCID_rows = 0
-    CPOCID_columns = 0
+    CPOCID_cent_x = 0
+    CPOCID_cent_y = 0
     
     #DMM Magnification
     dmmMag = 4.5
