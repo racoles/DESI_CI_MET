@@ -370,8 +370,6 @@ class checkCameraOriginLocation(object):
                         format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][1] - ((yCenGMSB + yOffsetB) * pixelSize) + calOffY, '.3f') + "\n\n" +
                         "    CS5 CCD Origin X(C) = " + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][0], '.3f') + " - [(" + format(xCenGMSC, '.3f') + " + " + str(xOffsetC) + ") * " + str(pixelSize) + "] + " + format(calOffX, '.3f') + " = " +
                         format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][0] - ((xCenGMSC + xOffsetC) * pixelSize) + calOffX, '.3f') + "\n" +
-                        
-                        
                         "    CS5 CCD Origin Y(C) = " + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][1], '.3f') + " - [(" + format(yCenGMSC, '.3f') + " + " + str(yOffsetC) + ") * " + str(pixelSize) + "] + " + format(calOffY, '.3f') + " = " +
                         format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][1] - ((yCenGMSC + yOffsetC) * pixelSize) + calOffY, '.3f'))
         
