@@ -21,13 +21,13 @@ from alternateCentroidMethods import gmsCentroid
 
 class cs5Offsets(object):
     
-    #Pinhole Image Distnce To Sensor Origin (0,0) Defaults
-    PIDTSO_rows = 293.48
-    PIDTSO_columns = 205.93
+    #Pinhole Image Distnce To Sensor Origin (0,0) Defaults (tested in lab to find the location of the 100um pinhole in an STi image)
+    PIDTSO_x = 293.48
+    PIDTSO_y = 205.93
     
     #CS5 Point on CI Dowel from probe
-    CPOCID_X = 0
-    CPOCID_Y = 0
+    CPOCID_cent_x = 0
+    CPOCID_cent_y = 0
     
     #CS5 Point from centroided image
     CPOCID_rows = 0
@@ -95,7 +95,7 @@ class cs5Offsets(object):
         offset2bButton.grid(row=9, column=1, sticky='W', columnspan=2)
         top.wait_window()
         
-        return self.PIDTSO_rows, self.PIDTSO_columns, self.CPOCID_X, self.CPOCID_Y, self.CPOCID_rows, self.CPOCID_columns, self.dmmMag
+        return self.PIDTSO_rows, self.PIDTSO_columns, self.CPOCID_X, self.CPOCID_Y, self.CPOCID_cent_x, self.CPOCID_cent_y, self.dmmMag
         
     #def _offset1_PinholeImageDistnceToSensorOrigin(self):
         
@@ -214,6 +214,6 @@ class cs5Offsets(object):
         ###########################################################################
         ###Set Offset2
         ###########################################################################
-        self.CPOCID_rows = xCenGMS
-        self.CPOCID_columns = yCenGMS
+        self.CPOCID_cent_x = xCenGMS
+        self.CPOCID_cent_y = yCenGMS
         faah.pageLogging(consoleLog, logFile, "Calibration Routine Complete\n", calibration = True)

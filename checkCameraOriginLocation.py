@@ -57,17 +57,17 @@ class checkCameraOriginLocation(object):
         
         #Get calibration values 
         cs5off = cs5Offsets()
-        PIDTSO_rows, PIDTSO_columns, CPOCID_X, CPOCID_Y, CPOCID_rows, CPOCID_columns, dmmMag = cs5off.calibrationScreen(consoleLog, logFile)
-        print(PIDTSO_rows)
-        print(PIDTSO_columns)
+        PIDTSO_x, PIDTSO_y, CPOCID_X, CPOCID_Y, CPOCID_rows, CPOCID_columns, dmmMag = cs5off.calibrationScreen(consoleLog, logFile)
+        print(PIDTSO_x)
+        print(PIDTSO_y)
         print(CPOCID_X)
         print(CPOCID_Y)
         print(CPOCID_rows)
         print(CPOCID_columns)
         print(dmmMag)
         #Calculate offset
-        calOffX = ((PIDTSO_rows - CPOCID_rows)*self.stipixel)/dmmMag
-        calOffY = ((PIDTSO_columns - CPOCID_columns)*self.stipixel)/dmmMag
+        calOffX = ((PIDTSO_x - CPOCID_rows)*self.stipixel)/dmmMag
+        calOffY = ((PIDTSO_y - CPOCID_columns)*self.stipixel)/dmmMag
         #Print offset
         faah.pageLogging(consoleLog, logFile, "Calibration Offset (um): (" + format(calOffX, '.3f') + ", " + format(calOffY, '.3f') + ")", calibration = True)
         
