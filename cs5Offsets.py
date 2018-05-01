@@ -68,13 +68,13 @@ class cs5Offsets(object):
                  " surface and analyzing the resulting ST-I image. This measurement is completed before the DMM is attached to the" + 
                  " CMM, and the resulting distance is a static variable in the DESI CI Metrology Software.\n\n" +
                  "The current predetermined offsets show that the center the 100um pinhole on the DMM, when imaged with the ST-i" + 
-                 " is located at:\n\n (row = " + str(self.PIDTSO_rows) + ", column = " + str(self.PIDTSO_columns) + ")\n", 
+                 " is located at:\n\n (row = " + str(self.PIDTSO_x) + ", column = " + str(self.PIDTSO_y) + ")\n", 
                  wraplength=700, justify="left").grid(row=5, column=0, sticky='W', columnspan=2)
                  
         faah = fileAndArrayHandling()
         faah.pageLogging(consoleLog, logFile, "\nBeginning Calibration Routine", calibration = True)
         faah.pageLogging(consoleLog, logFile, "The current predetermined offset for the DMM's 100um pinhole as imaged with the ST-i" + 
-                 " is: (row = " + str(self.PIDTSO_rows) + ", column = " + str(self.PIDTSO_columns) + ")", calibration = True)
+                 " is: (row = " + str(self.PIDTSO_x) + ", column = " + str(self.PIDTSO_y) + ")", calibration = True)
                        
         #Offset 2: CS5 Point on CI Dowel as shown in ST-I Image (Needed for FIF and CCD Metrology Measurements)
         Separator(top, orient="horizontal").grid(row=6, column=0, sticky='ew', columnspan=2)
@@ -95,7 +95,7 @@ class cs5Offsets(object):
         offset2bButton.grid(row=9, column=1, sticky='W', columnspan=2)
         top.wait_window()
         
-        return self.PIDTSO_rows, self.PIDTSO_columns, self.CPOCID_X, self.CPOCID_Y, self.CPOCID_cent_x, self.CPOCID_cent_y, self.dmmMag
+        return self.PIDTSO_x, self.PIDTSO_y, self.CPOCID_X, self.CPOCID_Y, self.CPOCID_cent_x, self.CPOCID_cent_y, self.dmmMag
         
     #def _offset1_PinholeImageDistnceToSensorOrigin(self):
         

@@ -57,19 +57,20 @@ class checkCameraOriginLocation(object):
         
         #Get calibration values 
         cs5off = cs5Offsets()
-        PIDTSO_x, PIDTSO_y, CPOCID_X, CPOCID_Y, CPOCID_rows, CPOCID_columns, dmmMag = cs5off.calibrationScreen(consoleLog, logFile)
+        PIDTSO_x, PIDTSO_y, CPOCID_X, CPOCID_Y, CPOCID_cent_x, CPOCID_cent_y, dmmMag = cs5off.calibrationScreen(consoleLog, logFile)
         print(PIDTSO_x)
         print(PIDTSO_y)
         print(CPOCID_X)
         print(CPOCID_Y)
-        print(CPOCID_rows)
-        print(CPOCID_columns)
+        print(CPOCID_cent_x)
+        print(CPOCID_cent_y)
         print(dmmMag)
         #Calculate offset
-        calOffX = ((PIDTSO_x - CPOCID_rows)*self.stipixel)/dmmMag
-        calOffY = ((PIDTSO_y - CPOCID_columns)*self.stipixel)/dmmMag
+        calOffX = ((PIDTSO_x - CPOCID_cent_x)*self.stipixel)/dmmMag
+        calOffY = ((PIDTSO_y - CPOCID_cent_y)*self.stipixel)/dmmMag
         #Print offset
-        faah.pageLogging(consoleLog, logFile, "Calibration Offset (um): (" + format(calOffX, '.3f') + ", " + format(calOffY, '.3f') + ")", calibration = True)
+        faah.pageLogging(consoleLog, logFile, "Using: \n[((100um pinhole mapping STi (pixels)) - (optical CS5 origin (FIF centroid) (pixels))) * (STi Pixel size (um))] / (DMM magnification)\n" +
+                         "Calibration Offset (um): (" + format(calOffX, '.3f') + ", " + format(calOffY, '.3f') + ")", calibration = True)
         
         ###########################################################################
         ###Sensor Location menu
