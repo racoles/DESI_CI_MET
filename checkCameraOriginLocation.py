@@ -28,7 +28,8 @@ class checkCameraOriginLocation(object):
     CCDSelection = ""
     trianglePointLabel = ""
     #Pixel distance to origin check point
-    pixelDistanceToCheckPoint = 25 #pixel location (rows = pixelDistanceToCheckPoint, columns = pixelDistanceToCheckPoint)
+    pixelDistanceToCheckPointX = 25 #pixel location X
+    pixelDistanceToCheckPointY = 25 #pixel location X   
     #STi Pixel Size
     stipixel = 7.4
     
@@ -153,18 +154,18 @@ class checkCameraOriginLocation(object):
         ###########################################################################  
         #Find distance in um to CCD Origin  
         
-        DeltaX_SBIGXL_A = ((xCenGMSA + xOffsetA) - self.pixelDistanceToCheckPoint) * pixelSize
-        DeltaY_SBIGXL_A = ((yCenGMSA + yOffsetA) - self.pixelDistanceToCheckPoint) * pixelSize
+        DeltaX_SBIGXL_A = ((xCenGMSA + xOffsetA) - self.pixelDistanceToCheckPointX) * pixelSize
+        DeltaY_SBIGXL_A = ((yCenGMSA + yOffsetA) - self.pixelDistanceToCheckPointY) * pixelSize
         
-        DeltaX_SBIGXL_B = ((xCenGMSB + xOffsetB) - self.pixelDistanceToCheckPoint) * pixelSize
-        DeltaY_SBIGXL_B = ((yCenGMSB + yOffsetB) - self.pixelDistanceToCheckPoint) * pixelSize
+        DeltaX_SBIGXL_B = ((xCenGMSB + xOffsetB) - self.pixelDistanceToCheckPointX) * pixelSize
+        DeltaY_SBIGXL_B = ((yCenGMSB + yOffsetB) - self.pixelDistanceToCheckPointY) * pixelSize
         
-        DeltaX_SBIGXL_C = ((xCenGMSC + xOffsetC) - self.pixelDistanceToCheckPoint) * pixelSize
-        DeltaY_SBIGXL_C = ((yCenGMSC + yOffsetC) - self.pixelDistanceToCheckPoint) * pixelSize
+        DeltaX_SBIGXL_C = ((xCenGMSC + xOffsetC) - self.pixelDistanceToCheckPointX) * pixelSize
+        DeltaY_SBIGXL_C = ((yCenGMSC + yOffsetC) - self.pixelDistanceToCheckPointY) * pixelSize
         
         ###########################################################################
         ###Rotation Coordinate Transform from SBIG Coordinates to CS5 Coordinates
-        ###Go to (pixelDistanceToCheckPoint, pixelDistanceToCheckPoint)
+        ###Go to (pixelDistanceToCheckPointX, pixelDistanceToCheckPointY)
         ########################################################################### 
         #c(y)>b(y) = +Rz = Counter-Clockwise
         #b(y)>c(y) = -Rz = Clockwise
@@ -179,15 +180,15 @@ class checkCameraOriginLocation(object):
             DeltaX_CS5_C = (DeltaX_SBIGXL_C * np.cos(math.radians(angleRz))) - (DeltaY_SBIGXL_C * np.sin(math.radians(angleRz)))
             DeltaY_CS5_C = (DeltaX_SBIGXL_C * np.sin(math.radians(angleRz))) + (DeltaY_SBIGXL_C * np.cos(math.radians(angleRz)))       
             
-            faah.pageLogging(consoleLog, logFile, "\nMove to pixel (" + str(self.pixelDistanceToCheckPoint) + ", " + str(self.pixelDistanceToCheckPoint) + ")\n\n" +
+            faah.pageLogging(consoleLog, logFile, "\nMove to pixel (" + str(self.pixelDistanceToCheckPointX) + ", " + str(self.pixelDistanceToCheckPointY) + ")\n\n" +
                          "Using: ((centroid(pixel) + planetModeOffset) - targetPixel(pixel)) * pixelSize\n" +
                          "Distance in SBIGXL frame (mm):\n" +
-                         "    DeltaX_SBIGXL_A = (" + format(xCenGMSA , '.3f') +  " + " + format(xOffsetA, '.3f') + ") - " + str(self.pixelDistanceToCheckPoint) + ") * " + str(pixelSize/1000) + " = " + format(DeltaX_SBIGXL_A/1000, '.3f') + "\n" +
-                         "    DeltaY_SBIGXL_A = (" + format(yCenGMSA , '.3f') +  " + " + format(yOffsetA, '.3f') + ") - " + str(self.pixelDistanceToCheckPoint) + ") * " + str(pixelSize/1000) + " = " + format(DeltaY_SBIGXL_A/1000, '.3f') + "\n\n" +
-                         "    DeltaX_SBIGXL_B = (" + format(xCenGMSB , '.3f') +  " + " + format(xOffsetB, '.3f') + ") - " + str(self.pixelDistanceToCheckPoint) + ") * " + str(pixelSize/1000) + " = " + format(DeltaX_SBIGXL_B/1000, '.3f') + "\n" +
-                         "    DeltaY_SBIGXL_B = (" + format(yCenGMSB , '.3f') +  " + " + format(yOffsetB, '.3f') + ") - " + str(self.pixelDistanceToCheckPoint) + ") * " + str(pixelSize/1000) + " = " + format(DeltaY_SBIGXL_B/1000, '.3f') + "\n\n" +
-                         "    DeltaX_SBIGXL_C = (" + format(xCenGMSC , '.3f') +  " + " + format(xOffsetC, '.3f') + ") - " + str(self.pixelDistanceToCheckPoint) + ") * " + str(pixelSize/1000) + " = " + format(DeltaX_SBIGXL_C/1000, '.3f') + "\n" +
-                         "    DeltaY_SBIGXL_C = (" + format(yCenGMSC , '.3f') +  " + " + format(yOffsetC, '.3f') + ") - " + str(self.pixelDistanceToCheckPoint) + ") * " + str(pixelSize/1000) + " = " + format(DeltaY_SBIGXL_C/1000, '.3f') + "\n\n" +
+                         "    DeltaX_SBIGXL_A = (" + format(xCenGMSA , '.3f') +  " + " + format(xOffsetA, '.3f') + ") - " + str(self.pixelDistanceToCheckPointX) + ") * " + str(pixelSize/1000) + " = " + format(DeltaX_SBIGXL_A/1000, '.3f') + "\n" +
+                         "    DeltaY_SBIGXL_A = (" + format(yCenGMSA , '.3f') +  " + " + format(yOffsetA, '.3f') + ") - " + str(self.pixelDistanceToCheckPointY) + ") * " + str(pixelSize/1000) + " = " + format(DeltaY_SBIGXL_A/1000, '.3f') + "\n\n" +
+                         "    DeltaX_SBIGXL_B = (" + format(xCenGMSB , '.3f') +  " + " + format(xOffsetB, '.3f') + ") - " + str(self.pixelDistanceToCheckPointX) + ") * " + str(pixelSize/1000) + " = " + format(DeltaX_SBIGXL_B/1000, '.3f') + "\n" +
+                         "    DeltaY_SBIGXL_B = (" + format(yCenGMSB , '.3f') +  " + " + format(yOffsetB, '.3f') + ") - " + str(self.pixelDistanceToCheckPointY) + ") * " + str(pixelSize/1000) + " = " + format(DeltaY_SBIGXL_B/1000, '.3f') + "\n\n" +
+                         "    DeltaX_SBIGXL_C = (" + format(xCenGMSC , '.3f') +  " + " + format(xOffsetC, '.3f') + ") - " + str(self.pixelDistanceToCheckPointX) + ") * " + str(pixelSize/1000) + " = " + format(DeltaX_SBIGXL_C/1000, '.3f') + "\n" +
+                         "    DeltaY_SBIGXL_C = (" + format(yCenGMSC , '.3f') +  " + " + format(yOffsetC, '.3f') + ") - " + str(self.pixelDistanceToCheckPointY) + ") * " + str(pixelSize/1000) + " = " + format(DeltaY_SBIGXL_C/1000, '.3f') + "\n\n" +
                          
                          "Using: Rotational Coordinate Transform\n" + "       DeltaX_CS5 = (DeltaX_SBIGXL * cos(Rz)) - (DeltaY_SBIGXL * sin(Rz))\n       DeltaY_CS5 = (DeltaX_SBIGXL * sin(Rz)) + (DeltaY_SBIGXL * cos(Rz))\n\n" +
                          "Distance in CS5 frame (mm):\n" +
@@ -225,15 +226,15 @@ class checkCameraOriginLocation(object):
             DeltaX_CS5_C = (DeltaX_SBIGXL_C * np.cos(math.radians(angleRz))) + (DeltaY_SBIGXL_C * np.sin(math.radians(angleRz)))
             DeltaY_CS5_C = (-DeltaX_SBIGXL_C * np.sin(math.radians(angleRz))) + (DeltaY_SBIGXL_C * np.cos(math.radians(angleRz))) 
             
-            faah.pageLogging(consoleLog, logFile, "\nMove to pixel (" + str(self.pixelDistanceToCheckPoint) + ", " + str(self.pixelDistanceToCheckPoint) + ")\n\n" +
+            faah.pageLogging(consoleLog, logFile, "\nMove to pixel (" + str(self.pixelDistanceToCheckPointX) + ", " + str(self.pixelDistanceToCheckPointY) + ")\n\n" +
                          "Using: ((centroid(pixel)) + planetModeOffset) - targetPixel(pixel)) * pixelSize\n" +
                          "Distance in SBIGXL frame (mm):\n" +
-                         "    DeltaX_SBIGXL_A = (" + format(xCenGMSA , '.3f') +  " + " + format(xOffsetA, '.3f') + ") - " + str(self.pixelDistanceToCheckPoint) + ") * " + str(pixelSize/1000) + " = " + format(DeltaX_SBIGXL_A/1000, '.3f') + "\n" +
-                         "    DeltaY_SBIGXL_A = (" + format(yCenGMSA , '.3f') +  " + " + format(yOffsetA, '.3f') + ") - " + str(self.pixelDistanceToCheckPoint) + ") * " + str(pixelSize/1000) + " = " + format(DeltaY_SBIGXL_A/1000, '.3f') + "\n\n" +
-                         "    DeltaX_SBIGXL_B = (" + format(xCenGMSB , '.3f') +  " + " + format(xOffsetB, '.3f') + ") - " + str(self.pixelDistanceToCheckPoint) + ") * " + str(pixelSize/1000) + " = " + format(DeltaX_SBIGXL_B/1000, '.3f') + "\n" +
-                         "    DeltaY_SBIGXL_B = (" + format(yCenGMSB , '.3f') +  " + " + format(yOffsetB, '.3f') + ") - " + str(self.pixelDistanceToCheckPoint) + ") * " + str(pixelSize/1000) + " = " + format(DeltaY_SBIGXL_B/1000, '.3f') + "\n\n" +
-                         "    DeltaX_SBIGXL_C = (" + format(xCenGMSC , '.3f') +  " + " + format(xOffsetC, '.3f') + ") - " + str(self.pixelDistanceToCheckPoint) + ") * " + str(pixelSize/1000) + " = " + format(DeltaX_SBIGXL_C/1000, '.3f') + "\n" +
-                         "    DeltaY_SBIGXL_C = (" + format(yCenGMSC , '.3f') +  " + " + format(yOffsetC, '.3f') + ") - " + str(self.pixelDistanceToCheckPoint) + ") * " + str(pixelSize/1000) + " = " + format(DeltaY_SBIGXL_C/1000, '.3f') + "\n\n" +
+                         "    DeltaX_SBIGXL_A = (" + format(xCenGMSA , '.3f') +  " + " + format(xOffsetA, '.3f') + ") - " + str(self.pixelDistanceToCheckPointX) + ") * " + str(pixelSize/1000) + " = " + format(DeltaX_SBIGXL_A/1000, '.3f') + "\n" +
+                         "    DeltaY_SBIGXL_A = (" + format(yCenGMSA , '.3f') +  " + " + format(yOffsetA, '.3f') + ") - " + str(self.pixelDistanceToCheckPointY) + ") * " + str(pixelSize/1000) + " = " + format(DeltaY_SBIGXL_A/1000, '.3f') + "\n\n" +
+                         "    DeltaX_SBIGXL_B = (" + format(xCenGMSB , '.3f') +  " + " + format(xOffsetB, '.3f') + ") - " + str(self.pixelDistanceToCheckPointX) + ") * " + str(pixelSize/1000) + " = " + format(DeltaX_SBIGXL_B/1000, '.3f') + "\n" +
+                         "    DeltaY_SBIGXL_B = (" + format(yCenGMSB , '.3f') +  " + " + format(yOffsetB, '.3f') + ") - " + str(self.pixelDistanceToCheckPointY) + ") * " + str(pixelSize/1000) + " = " + format(DeltaY_SBIGXL_B/1000, '.3f') + "\n\n" +
+                         "    DeltaX_SBIGXL_C = (" + format(xCenGMSC , '.3f') +  " + " + format(xOffsetC, '.3f') + ") - " + str(self.pixelDistanceToCheckPointX) + ") * " + str(pixelSize/1000) + " = " + format(DeltaX_SBIGXL_C/1000, '.3f') + "\n" +
+                         "    DeltaY_SBIGXL_C = (" + format(yCenGMSC , '.3f') +  " + " + format(yOffsetC, '.3f') + ") - " + str(self.pixelDistanceToCheckPointY) + ") * " + str(pixelSize/1000) + " = " + format(DeltaY_SBIGXL_C/1000, '.3f') + "\n\n" +
                          
                          "Using: Rotational Coordinate Transform\n" + "       DeltaX_CS5 = (DeltaX_SBIGXL * cos(Rz)) + (DeltaY_SBIGXL * sin(Rz))\n       DeltaY_CS5 = (DeltaX_SBIGXL * -sin(Rz)) + (DeltaY_SBIGXL * cos(Rz))\n\n" +
                          "Distance in CS5 frame (mm):\n" +
@@ -273,15 +274,15 @@ class checkCameraOriginLocation(object):
             DeltaX_CS5_C = DeltaX_SBIGXL_C
             DeltaY_CS5_C = DeltaY_SBIGXL_C 
             
-            faah.pageLogging(consoleLog, logFile, "\nMove to pixel (" + str(self.pixelDistanceToCheckPoint) + ", " + str(self.pixelDistanceToCheckPoint) + ")\n\n" +
+            faah.pageLogging(consoleLog, logFile, "\nMove to pixel (" + str(self.pixelDistanceToCheckPointX) + ", " + str(self.pixelDistanceToCheckPointY) + ")\n\n" +
                          "Using: ((centroid(pixel)) + planetModeOffset) - targetPixel(pixel)) * pixelSize\n" +
                          "Distance in SBIGXL frame (mm):\n" +
-                         "    DeltaX_SBIGXL_A = (" + format(xCenGMSA , '.3f') +  " + " + format(xOffsetA, '.3f') + ") - " + str(self.pixelDistanceToCheckPoint) + ") * " + str(pixelSize/1000) + " = " + format(DeltaX_SBIGXL_A/1000, '.3f') + "\n" +
-                         "    DeltaY_SBIGXL_A = (" + format(yCenGMSA , '.3f') +  " + " + format(yOffsetA, '.3f') + ") - " + str(self.pixelDistanceToCheckPoint) + ") * " + str(pixelSize/1000) + " = " + format(DeltaY_SBIGXL_A/1000, '.3f') + "\n\n" +
-                         "    DeltaX_SBIGXL_B = (" + format(xCenGMSB , '.3f') +  " + " + format(xOffsetB, '.3f') + ") - " + str(self.pixelDistanceToCheckPoint) + ") * " + str(pixelSize/1000) + " = " + format(DeltaX_SBIGXL_B/1000, '.3f') + "\n" +
-                         "    DeltaY_SBIGXL_B = (" + format(yCenGMSB , '.3f') +  " + " + format(yOffsetB, '.3f') + ") - " + str(self.pixelDistanceToCheckPoint) + ") * " + str(pixelSize/1000) + " = " + format(DeltaY_SBIGXL_B/1000, '.3f') + "\n\n" +
-                         "    DeltaX_SBIGXL_C = (" + format(xCenGMSC , '.3f') +  " + " + format(xOffsetC, '.3f') + ") - " + str(self.pixelDistanceToCheckPoint) + ") * " + str(pixelSize/1000) + " = " + format(DeltaX_SBIGXL_C/1000, '.3f') + "\n" +
-                         "    DeltaY_SBIGXL_C = (" + format(yCenGMSC , '.3f') +  " + " + format(yOffsetC, '.3f') + ") - " + str(self.pixelDistanceToCheckPoint) + ") * " + str(pixelSize/1000) + " = " + format(DeltaY_SBIGXL_C/1000, '.3f') + "\n\n" +
+                         "    DeltaX_SBIGXL_A = (" + format(xCenGMSA , '.3f') +  " + " + format(xOffsetA, '.3f') + ") - " + str(self.pixelDistanceToCheckPointX) + ") * " + str(pixelSize/1000) + " = " + format(DeltaX_SBIGXL_A/1000, '.3f') + "\n" +
+                         "    DeltaY_SBIGXL_A = (" + format(yCenGMSA , '.3f') +  " + " + format(yOffsetA, '.3f') + ") - " + str(self.pixelDistanceToCheckPointY) + ") * " + str(pixelSize/1000) + " = " + format(DeltaY_SBIGXL_A/1000, '.3f') + "\n\n" +
+                         "    DeltaX_SBIGXL_B = (" + format(xCenGMSB , '.3f') +  " + " + format(xOffsetB, '.3f') + ") - " + str(self.pixelDistanceToCheckPointX) + ") * " + str(pixelSize/1000) + " = " + format(DeltaX_SBIGXL_B/1000, '.3f') + "\n" +
+                         "    DeltaY_SBIGXL_B = (" + format(yCenGMSB , '.3f') +  " + " + format(yOffsetB, '.3f') + ") - " + str(self.pixelDistanceToCheckPointY) + ") * " + str(pixelSize/1000) + " = " + format(DeltaY_SBIGXL_B/1000, '.3f') + "\n\n" +
+                         "    DeltaX_SBIGXL_C = (" + format(xCenGMSC , '.3f') +  " + " + format(xOffsetC, '.3f') + ") - " + str(self.pixelDistanceToCheckPointX) + ") * " + str(pixelSize/1000) + " = " + format(DeltaX_SBIGXL_C/1000, '.3f') + "\n" +
+                         "    DeltaY_SBIGXL_C = (" + format(yCenGMSC , '.3f') +  " + " + format(yOffsetC, '.3f') + ") - " + str(self.pixelDistanceToCheckPointY) + ") * " + str(pixelSize/1000) + " = " + format(DeltaY_SBIGXL_C/1000, '.3f') + "\n\n" +
                          
                          "Using: No Rotational Coordinate Transform\n" + "DeltaX_CS5 = DeltaX_SBIGXL\nDeltaY_CS5 = DeltaX_SBIGXL\n" +
                          "Distance in CS5 frame (mm):\n" +
@@ -310,11 +311,11 @@ class checkCameraOriginLocation(object):
                          format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][1] + DeltaY_CS5_C/1000, '.3f')) 
         
         ###########################################################################
-        ###Image (pixelDistanceToCheckPoint, pixelDistanceToCheckPoint) with SBIGXL
+        ###Image (pixelDistanceToCheckPointX, pixelDistanceToCheckPointY) with SBIGXL
         ###########################################################################                 
         top = tk.Toplevel()
-        top.title("\nImage pixel (" + str(self.pixelDistanceToCheckPoint) + ", " + str(self.pixelDistanceToCheckPoint) + ")?")
-        aboutMessage = str("\nAre you ready to image pixel (" + str(self.pixelDistanceToCheckPoint) + ", " + str(self.pixelDistanceToCheckPoint) + ")?")
+        top.title("\nImage pixel (" + str(self.pixelDistanceToCheckPointX) + ", " + str(self.pixelDistanceToCheckPointY) + ")?")
+        aboutMessage = str("\nAre you ready to image pixel (" + str(self.pixelDistanceToCheckPointX) + ", " + str(self.pixelDistanceToCheckPointY) + ")?")
         faah.pageLogging(consoleLog, logFile, aboutMessage)
         msg = tk.Message(top, text=aboutMessage)
         msg.pack()
@@ -337,7 +338,7 @@ class checkCameraOriginLocation(object):
                                                          int(round(subArrayBoxSizePIX/2)), int(round(subArrayBoxSizePIX/2)), axis='both', verbose=False)
         
         #report pixel centroid location
-        faah.pageLogging(consoleLog, logFile, "Centroid for pixel (" + str(self.pixelDistanceToCheckPoint) + ", " + str(self.pixelDistanceToCheckPoint) + ") found at:" +
+        faah.pageLogging(consoleLog, logFile, "Centroid for pixel (" + str(self.pixelDistanceToCheckPointX) + ", " + str(self.pixelDistanceToCheckPointY) + ") found at:" +
                          "row = " + format(xCenGMSPIX + xOffsetPIX, '.3f') + ", columns = " + format(yCenGMSPIX + yOffsetPIX, '.3f'))
         
         #calculate location of CCD (0,0) in CS5 using triangle a, b, c, and pixel  
@@ -384,7 +385,7 @@ class checkCameraOriginLocation(object):
         NCCD_B.grid(row=3, column=1)
         NCCD_C = tk.Button(top, text="NCCD: C", command=lambda: self._setTrueAndExit(top, CCDLabel="NCCD", trianglePointLabel="C"))
         NCCD_C.grid(row=3, column=2)
-        NCCD_Center = tk.Button(top, text="NCCD: pixel (" + str(self.pixelDistanceToCheckPoint) + ","  + str(self.pixelDistanceToCheckPoint) + ")", command=lambda: self._setTrueAndExit(top, CCDLabel="NCCD"))
+        NCCD_Center = tk.Button(top, text="NCCD: pixel (" + str(self.pixelDistanceToCheckPointX) + ","  + str(self.pixelDistanceToCheckPointY) + ")", command=lambda: self._setTrueAndExit(top, CCDLabel="NCCD"))
         NCCD_Center.grid(row=3, column=3)
         
         # WCCD
@@ -396,7 +397,7 @@ class checkCameraOriginLocation(object):
         WCCD_B.grid(row=6, column=1)
         WCCD_C = tk.Button(top, text="WCCD: C", command=lambda: self._setTrueAndExit(top, CCDLabel="WCCD", trianglePointLabel="C"))
         WCCD_C.grid(row=6, column=2)
-        WCCD_Center = tk.Button(top, text="WCCD: pixel (" + str(self.pixelDistanceToCheckPoint) + ","  + str(self.pixelDistanceToCheckPoint) + ")", command=lambda: self._setTrueAndExit(top, CCDLabel="WCCD"))
+        WCCD_Center = tk.Button(top, text="WCCD: pixel (" + str(self.pixelDistanceToCheckPointX) + ","  + str(self.pixelDistanceToCheckPointY) + ")", command=lambda: self._setTrueAndExit(top, CCDLabel="WCCD"))
         WCCD_Center.grid(row=6, column=3)
         
         # SCCD
@@ -408,7 +409,7 @@ class checkCameraOriginLocation(object):
         SCCD_B.grid(row=9, column=1)
         SCCD_C = tk.Button(top, text="SCCD: C", command=lambda: self._setTrueAndExit(top, CCDLabel="SCCD", trianglePointLabel="C"))
         SCCD_C.grid(row=9, column=2)
-        SCCD_Center = tk.Button(top, text="SCCD: pixel (" + str(self.pixelDistanceToCheckPoint) + ","  + str(self.pixelDistanceToCheckPoint) + ")", command=lambda: self._setTrueAndExit(top, CCDLabel="SCCD"))
+        SCCD_Center = tk.Button(top, text="SCCD: pixel (" + str(self.pixelDistanceToCheckPointX) + ","  + str(self.pixelDistanceToCheckPointY) + ")", command=lambda: self._setTrueAndExit(top, CCDLabel="SCCD"))
         SCCD_Center.grid(row=9, column=3)
         
         # ECCD
@@ -420,7 +421,7 @@ class checkCameraOriginLocation(object):
         ECCD_B.grid(row=12, column=1)
         ECCD_C = tk.Button(top, text="ECCD: C", command=lambda: self._setTrueAndExit(top, CCDLabel="ECCD", trianglePointLabel="C"))
         ECCD_C.grid(row=12, column=2)
-        ECCD_Center = tk.Button(top, text="ECCD: pixel (" + str(self.pixelDistanceToCheckPoint) + ","  + str(self.pixelDistanceToCheckPoint) + ")", command=lambda: self._setTrueAndExit(top, CCDLabel="ECCD"))
+        ECCD_Center = tk.Button(top, text="ECCD: pixel (" + str(self.pixelDistanceToCheckPointX) + ","  + str(self.pixelDistanceToCheckPointY) + ")", command=lambda: self._setTrueAndExit(top, CCDLabel="ECCD"))
         ECCD_Center.grid(row=12, column=3)
         
         # CCCD
@@ -432,7 +433,7 @@ class checkCameraOriginLocation(object):
         CCCD_B.grid(row=15, column=1)
         CCCD_C = tk.Button(top, text="CCCD: C", command=lambda: self._setTrueAndExit(top, CCDLabel="CCCD", trianglePointLabel="C"))
         CCCD_C.grid(row=15, column=2)
-        CCCD_Center = tk.Button(top, text="CCCD: pixel (" + str(self.pixelDistanceToCheckPoint) + ","  + str(self.pixelDistanceToCheckPoint) + ")", command=lambda: self._setTrueAndExit(top, CCDLabel="CCCD"))
+        CCCD_Center = tk.Button(top, text="CCCD: pixel (" + str(self.pixelDistanceToCheckPointX) + ","  + str(self.pixelDistanceToCheckPointY) + ")", command=lambda: self._setTrueAndExit(top, CCDLabel="CCCD"))
         CCCD_Center.grid(row=15, column=3)
         
         top.wait_window()
