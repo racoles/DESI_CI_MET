@@ -301,14 +301,14 @@ class checkCameraOriginLocation(object):
             DeltaX_CS5_C = DeltaX_SBIGXL_C
             DeltaY_CS5_C = DeltaY_SBIGXL_C 
             
-            CS5XA =
-            CS5YA =
+            CS5XA = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][0] + DeltaX_CS5_A/1000
+            CS5YA = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][1] + DeltaY_CS5_A/1000
             
-            CS5XB =
-            CS5YB =
+            CS5XB = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][0] + DeltaX_CS5_B/1000
+            CS5YB = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][1] + DeltaY_CS5_B/1000
             
-            CS5XC =
-            CS5YC =
+            CS5XC = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][0] + DeltaX_CS5_C/1000
+            CS5YC = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][1] + DeltaY_CS5_C/1000
             
             
             faah.pageLogging(consoleLog, logFile, "\nMove to pixel (" + str(self.pixelDistanceToCheckPointX) + ", " + str(self.pixelDistanceToCheckPointY) + ")\n\n" +
@@ -333,19 +333,19 @@ class checkCameraOriginLocation(object):
                          "Using: Target Pixel CS5 Location (mm) = Nominal CS5 + DeltaCS5\n" +
                          "Calculated using triangle point A:\n" +
                          "    CS5X(A) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][0]) + " + " + format(DeltaX_CS5_A/1000, '.3f') + " = " + 
-                         format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][0] + DeltaX_CS5_A/1000, '.3f') + "\n" +
+                         format(CS5XA, '.3f') + "\n" +
                          "    CS5Y(A) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][1]) + " + " + format(DeltaY_CS5_A/1000, '.3f') + " = " + 
-                         format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][1] + DeltaY_CS5_A/1000, '.3f') + "\n\n" +
+                         format(CS5YA, '.3f') + "\n\n" +
                          "Calculated using triangle point B:\n" +
                          "    CS5X(B) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][0]) + " + " + format(DeltaX_CS5_B/1000, '.3f') + " = " + 
-                         format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][0] + DeltaX_CS5_B/1000, '.3f') + "\n" +
+                         format(CS5XB, '.3f') + "\n" +
                          "    CS5Y(B) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][1]) + " + " + format(DeltaY_CS5_B/1000, '.3f') + " = " + 
-                         format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][1] + DeltaY_CS5_B/1000, '.3f') + "\n\n" +
+                         format(CS5YB, '.3f') + "\n\n" +
                          "Calculated using triangle point C:\n" +
                          "    CS5X(C) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][0]) + " + " + format(DeltaX_CS5_C/1000, '.3f') + " = " + 
-                         format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][0] + DeltaX_CS5_C/1000, '.3f') + "\n" +
+                         format(CS5XC, '.3f') + "\n" +
                          "    CS5Y(C) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][1]) + " + " + format(DeltaY_CS5_C/1000, '.3f') + " = " + 
-                         format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][1] + DeltaY_CS5_C/1000, '.3f')) 
+                         format(CS5YC, '.3f')) 
         
         ###########################################################################
         ###Image (pixelDistanceToCheckPointX, pixelDistanceToCheckPointY) with SBIGXL
