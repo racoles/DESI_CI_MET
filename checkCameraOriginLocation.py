@@ -58,6 +58,7 @@ class checkCameraOriginLocation(object):
         #Get calibration values 
         cs5off = cs5Offsets()
         PIDTSO_x, PIDTSO_y, CPOCID_X, CPOCID_Y, CPOCID_cent_x, CPOCID_cent_y, dmmMag = cs5off.calibrationScreen(consoleLog, logFile)
+        
         #print(PIDTSO_x)
         #print(PIDTSO_y)
         #print(CPOCID_X)
@@ -66,14 +67,17 @@ class checkCameraOriginLocation(object):
         #print(CPOCID_cent_y)
         #print(dmmMag)
         #Calculate offset
+        
         calOffX = ((PIDTSO_x - CPOCID_cent_x)*self.stipixel)/dmmMag
         calOffY = ((PIDTSO_y - CPOCID_cent_y)*self.stipixel)/dmmMag
+        
         #Print offset
         faah.pageLogging(consoleLog, logFile, "Using: \n[((100um pinhole mapping STi (pixels)) - (optical CS5 origin (FIF centroid) (pixels)))\n * (STi Pixel size (um))] / (DMM magnification)\n" +
                          "Calibration Offset X (um) = [(" + str(PIDTSO_x) + " - " + format(CPOCID_cent_x, '.3f') + ") * " + str(self.stipixel) + "] / " + str(dmmMag) + " = " + format(calOffX, '.3f') + "\n" +
                          "Calibration Offset Y (um) = [(" + str(PIDTSO_y) + " - " + format(CPOCID_cent_y, '.3f') + ") * " + str(self.stipixel) + "] / " + str(dmmMag) + " = " + format(calOffY, '.3f') + "\n" +
                          "Calibration Offset (um): (" + format(calOffX, '.3f') + ", " + format(calOffY, '.3f') + ")\n", calibration = True)
         faah.pageLogging(consoleLog, logFile, "Calibration Routine Complete\n", calibration = True)
+        
         ###########################################################################
         ###Sensor Location menu
         ###########################################################################
@@ -176,8 +180,6 @@ class checkCameraOriginLocation(object):
         ###Rotation Coordinate Transform from SBIG Coordinates to CS5 Coordinates
         ###Go to (pixelDistanceToCheckPointX, pixelDistanceToCheckPointY)
         ########################################################################### 
-        #c(y)>b(y) = +Rz = Counter-Clockwise
-        #b(y)>c(y) = -Rz = Clockwise
 
         if angleRz < 0: #c(y)>b(y) = +Rz = Counter-Clockwise
             DeltaX_CS5_A = (DeltaX_SBIGXL_A * np.cos(math.radians(angleRz))) - (DeltaY_SBIGXL_A * np.sin(math.radians(angleRz)))
