@@ -70,8 +70,8 @@ class checkCameraOriginLocation(object):
         calOffY = ((PIDTSO_y - CPOCID_cent_y)*self.stipixel)/dmmMag
         #Print offset
         faah.pageLogging(consoleLog, logFile, "Using: \n[((100um pinhole mapping STi (pixels)) - (optical CS5 origin (FIF centroid) (pixels)))\n * (STi Pixel size (um))] / (DMM magnification)\n" +
-                         "Calibration Offset X (um) = [(" + str(PIDTSO_x) + " - " + str(CPOCID_cent_x) + ") * " + str(self.stipixel) + "] / " + str(dmmMag) + " = " + format(calOffX, '.3f') + "\n" +
-                         "Calibration Offset Y (um) = [(" + str(PIDTSO_y) + " - " + str(CPOCID_cent_y) + ") * " + str(self.stipixel) + "] / " + str(dmmMag) + " = " + format(calOffY, '.3f') + "\n" +
+                         "Calibration Offset X (um) = [(" + str(PIDTSO_x) + " - " + format(CPOCID_cent_x, '.3f') + ") * " + str(self.stipixel) + "] / " + str(dmmMag) + " = " + format(calOffX, '.3f') + "\n" +
+                         "Calibration Offset Y (um) = [(" + str(PIDTSO_y) + " - " + format(CPOCID_cent_y, '.3f') + ") * " + str(self.stipixel) + "] / " + str(dmmMag) + " = " + format(calOffY, '.3f') + "\n" +
                          "Calibration Offset (um): (" + format(calOffX, '.3f') + ", " + format(calOffY, '.3f') + ")\n", calibration = True)
         faah.pageLogging(consoleLog, logFile, "Calibration Routine Complete\n", calibration = True)
         ###########################################################################
@@ -362,8 +362,8 @@ class checkCameraOriginLocation(object):
        
         faah.pageLogging(consoleLog, logFile,
                         "CALIBRATION OFFSET APPLIED\n" +
-                        "Using: CS5 CCD Origin (mm) = CS5 No Offset (mm) + calibration Offset (mm)\n" +
-                        "Calibration Offset (mm): (" + str(calOffX/1000) + ", " + str(calOffY/1000) + ")\n\n"
+                        "Using: CS5 CCD Origin (mm) = CS5 CCD Origin No Offset (mm) + calibration Offset (mm)\n" +
+                        "Calibration Offset (mm): (" + format(calOffX/1000, '.3f') + ", " + format(calOffY/1000, '.3f') + ")\n\n"
                         "    CS5 CCD Origin X(A) = " + format(CS5XA, '.3f') + " + " + format(calOffX/1000, '.3f') + " = " + format(CS5XA + calOffX/1000, '.3f') + "\n" +
                         "    CS5 CCD Origin Y(A) = " + format(CS5YA, '.3f') + " + " + format(calOffY/1000, '.3f') + " = " + format(CS5YA + calOffY/1000, '.3f') + "\n\n" +
                         "    CS5 CCD Origin X(B) = " + format(CS5XB, '.3f') + " + " + format(calOffX/1000, '.3f') + " = " + format(CS5XB + calOffX/1000, '.3f') + "\n" +
