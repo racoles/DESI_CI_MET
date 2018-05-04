@@ -34,7 +34,7 @@ class cs5Offsets(object):
     CPOCID_cent_y = 0
     
     #DMM Magnification
-    dmmMag = 4.5
+    dmmMag = 4.417
     
     def __init__(self):
         '''
