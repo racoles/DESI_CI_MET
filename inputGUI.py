@@ -128,7 +128,7 @@ class inputGUI(object):
         
         #FIF Map
         self.fifMAP = tk.PhotoImage(file="FPA.png", width=400, height=400)
-        tk.Label(image=self.fifMAP).grid(row=15, column=0, rowspan=14, columnspan=4, sticky='W')  
+        tk.Label(image=self.fifMAP).grid(row=15, column=0, rowspan=15, columnspan=4, sticky='W')  
         
         ###########################################################################
         ###Log Console Org
