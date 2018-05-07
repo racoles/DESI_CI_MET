@@ -83,9 +83,9 @@ class inputGUI(object):
         #Guided Mode Button        
         tk.Button(master, text="Begin FIF Guided Mode",bg = "white", command=lambda:self._beginGuidedMode(master, self.consoleLog, self.logFile)).grid(row=5, column=0, columnspan=2, sticky='W')
         
-        #FIF Map
-        self.fifMAP = tk.PhotoImage(file="FPA.png", width=400, height=400)
-        tk.Label(image=self.fifMAP).grid(row=0, column=4, rowspan=14, sticky='W')  
+        #FIF Map Org
+        #self.fifMAP = tk.PhotoImage(file="FPA.png", width=400, height=400)
+        #tk.Label(image=self.fifMAP).grid(row=0, column=4, rowspan=14, sticky='W')  
         
         #Grid Separator
         Separator(master, orient="horizontal").grid(row=6, column=0, columnspan=4, sticky='ew')
@@ -123,20 +123,42 @@ class inputGUI(object):
         #Grid Separator
         Separator(master, orient="horizontal").grid(row=14, column=0, columnspan=4, sticky='ew')
         #Style(master).configure("TSeparator", background="black")   
-
+        
+###########################################
+        
+        #FIF Map
+        self.fifMAP = tk.PhotoImage(file="FPA.png", width=400, height=400)
+        tk.Label(image=self.fifMAP).grid(row=15, column=0, rowspan=14, columnspan=4, sticky='W')  
+        
         ###########################################################################
-        ###Log Console
+        ###Log Console Org
         ###########################################################################         
         # create a Text widget with a Scrollbar attached
-        self.consoleLog = ScrolledText.ScrolledText(self.master, undo=True, height=15)
+        self.consoleLog = ScrolledText.ScrolledText(self.master, undo=True, height=45)
         self.consoleLog['font'] = ('consolas', '10')
-        self.consoleLog.grid(row=15, column=0, columnspan=5, sticky='ew') 
+        self.consoleLog.grid(row=0, column=4, rowspan=30, sticky='ew') 
         # start log
         startTime = time.strftime("%Y-%m-%dT%H%M%SZ")
         self.logFile = open("DESI_CI_MET_" + startTime + "_log.txt", "w")
         self.logFile.write("Log started: " + startTime + '\n')
         self.consoleLog.insert(tk.END, "Log started: " + startTime + '\n')
         self.consoleLog.configure(state="disable")
+        
+###########################################
+
+        ###########################################################################
+        ###Log Console Org
+        ###########################################################################         
+        # create a Text widget with a Scrollbar attached
+        #self.consoleLog = ScrolledText.ScrolledText(self.master, undo=True, height=15)
+        #self.consoleLog['font'] = ('consolas', '10')
+        #self.consoleLog.grid(row=15, column=0, columnspan=5, sticky='ew') 
+        # start log
+        #startTime = time.strftime("%Y-%m-%dT%H%M%SZ")
+        #self.logFile = open("DESI_CI_MET_" + startTime + "_log.txt", "w")
+        #self.logFile.write("Log started: " + startTime + '\n')
+        #self.consoleLog.insert(tk.END, "Log started: " + startTime + '\n')
+        #self.consoleLog.configure(state="disable")
                
     def _log_entry_field(self, noteBox, consoleLog, logFile):
         '''
