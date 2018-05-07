@@ -125,12 +125,14 @@ class inputGUI(object):
         tk.Label(image=self.fifMAP).grid(row=15, column=0, rowspan=15, columnspan=4, sticky='W')  
         
         ###########################################################################
-        ###Log Console Org
+        ###Log Console
         ###########################################################################         
         # create a Text widget with a Scrollbar attached
         self.consoleLog = ScrolledText.ScrolledText(self.master, undo=True, height=45)
         self.consoleLog['font'] = ('consolas', '10')
         self.consoleLog.grid(row=0, column=4, rowspan=30, sticky='ew') 
+        self.consoleLog.grid_columnconfigure(4, weight=10000)
+        
         # start log
         startTime = time.strftime("%Y-%m-%dT%H%M%SZ")
         self.logFile = open("DESI_CI_MET_" + startTime + "_log.txt", "w")
