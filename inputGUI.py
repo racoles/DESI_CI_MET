@@ -131,7 +131,6 @@ class inputGUI(object):
         self.consoleLog = ScrolledText.ScrolledText(self.master, undo=True, height=45)
         self.consoleLog['font'] = ('consolas', '10')
         self.consoleLog.grid(row=0, column=4, rowspan=30, sticky='ew') 
-        self.consoleLog.grid_columnconfigure(4, weight=10000)
         
         # start log
         startTime = time.strftime("%Y-%m-%dT%H%M%SZ")
