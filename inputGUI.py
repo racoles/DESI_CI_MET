@@ -111,8 +111,8 @@ class inputGUI(object):
         #Note Text Box Label
         tk.Label(master, text="Add Note to Log", font="bold").grid(row=12, column=0, columnspan=2, sticky='W')
         #Note Text Box
-        noteBox = tk.Entry(master, width=40)
-        noteBox.grid(row=13, column=0, columnspan=10, sticky='W')
+        noteBox = tk.Entry(master, width=55)
+        noteBox.grid(row=13, column=0, columnspan=4, sticky='W')
         #Note Text Submit Button
         tk.Button(master, text='Submit', bg = "white", command=lambda:self._log_entry_field(noteBox, self.consoleLog, self.logFile)).grid(row=13, column=2, columnspan=2, sticky='E')
         
