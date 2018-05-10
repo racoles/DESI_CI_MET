@@ -72,7 +72,7 @@ class cs5Offsets(object):
                  wraplength=700, justify="left").grid(row=5, column=0, sticky='W', columnspan=2)
                  
         faah = fileAndArrayHandling()
-        faah.pageLogging(consoleLog, logFile, "\nBeginning Calibration Routine", calibration = True)
+        faah.pageLogging(consoleLog, logFile, "\n\nBeginning Calibration Routine", calibration = True)
         faah.pageLogging(consoleLog, logFile, "The current predetermined offset for the DMM's 100um pinhole as imaged with the ST-i" + 
                  " is: (row = " + str(self.PIDTSO_x) + ", column = " + str(self.PIDTSO_y) + ")", calibration = True)
                        
