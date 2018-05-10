@@ -398,7 +398,7 @@ class checkCameraOriginLocation(object):
         '''
         Find the location of the CI camera's sensor origin in CS5 and instruct the user to view 
         the origin with the DMM to ensure that the tip/tilt/focus pinhole triangle was placed properly
-        on the SBIt STXL sensor.
+        on the SBIG STXL sensor.
         '''
         ###########################################################################
         ###Construct menu
