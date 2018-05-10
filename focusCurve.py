@@ -43,6 +43,13 @@ class focusCurve(object):
     
     #tip/tilt/Z distance between micrometers on the TTF 
     # (used to find a ratio between triangle points and micrometer points)
+        #The Inside Radius of the fixed TTF ring is 100mm ( we have to reach inside this)
+        #The probe tip diameter is 6mm, radius = 3mm
+        #Radius to probe tip is 100 – 3 = 97
+        #Edge length is 97 * 2 * cos(30) = 168.0
+        #Edge length of wee triangle is 18.475
+        #Ratio = 9.093  when using digital indicator probe
+        #Ratio = 11.908 when using A,B,C actuators directly
     #micrometerDistance = 220 #mm for micrometers
     micrometerDistance = 168 #mm for probe
 
