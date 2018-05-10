@@ -43,7 +43,8 @@ class focusCurve(object):
     
     #tip/tilt/Z distance between micrometers on the TTF 
     # (used to find a ratio between triangle points and micrometer points)
-    micrometerDistance = 220 #mm
+    #micrometerDistance = 220 #mm for micrometers
+    micrometerDistance = 168 #mm for probe
 
     #Dict of (x,y) for FIF centers (mm)
     fifLocationsCS5 = {"RefFIF" : (199.28,-345.15), 

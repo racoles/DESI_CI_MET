@@ -72,7 +72,7 @@ class checkCameraOriginLocation(object):
         calOffY = ((PIDTSO_y - CPOCID_cent_y)*self.stipixel)/dmmMag
         
         #Print offset
-        faah.pageLogging(consoleLog, logFile, "Using: \n[((100um pinhole mapping STi (pixels)) - (optical CS5 origin (FIF centroid) (pixels)))\n * (STi Pixel size (um))] / (DMM magnification)\n" +
+        faah.pageLogging(consoleLog, logFile, "Using: \n[((100um pinhole mapping STi (pixels)) - (optical CS5 origin (FIF centroid) (pixels))) * (STi Pixel size (um))] / (DMM magnification)\n" +
                          "Calibration Offset X (um) = [(" + str(PIDTSO_x) + " - " + format(CPOCID_cent_x, '.3f') + ") * " + str(self.stipixel) + "] / " + str(dmmMag) + " = " + format(calOffX, '.3f') + "\n" +
                          "Calibration Offset Y (um) = [(" + str(PIDTSO_y) + " - " + format(CPOCID_cent_y, '.3f') + ") * " + str(self.stipixel) + "] / " + str(dmmMag) + " = " + format(calOffY, '.3f') + "\n" +
                          "Calibration Offset (um): (" + format(calOffX, '.3f') + ", " + format(calOffY, '.3f') + ")\n", calibration = True)
@@ -379,7 +379,7 @@ class checkCameraOriginLocation(object):
         #Distance from target pixel to origin (um)
         faah.pageLogging(consoleLog, logFile,
                         "CALIBRATION OFFSET APPLIED\n" + "For pixel point (" + str(0) + ", " + str(0) + ")\n" +
-                        "Using: CS5 CCD Origin (mm) = CS5 CCD target pixel with no offset (mm) + calibration Offset (mm) + distance from target pixel to pixel" + "(" + str(0) + ", " + str(0) + ")" + " (mm)\n" +
+                        "Using: CS5 CCD Origin (mm) = CS5 CCD target pixel with no offset (mm) + \ncalibration Offset (mm) + distance from target pixel to pixel" + "(" + str(0) + ", " + str(0) + ")" + " (mm)\n" +
                         "Calibration Offset (mm): (" + format(calOffX/1000, '.3f') + ", " + format(calOffY/1000, '.3f') + ")\n\n"
                         "    CS5 CCD Origin X(A) = " + format(CS5XA, '.3f') + " + " + format(calOffX/1000, '.3f') +  " + " + format((self.pixelDistanceToCheckPointX * pixelSize)/1000, '.3f') +
                          " = " + format(CS5XA + calOffX/1000 + ((self.pixelDistanceToCheckPointX * pixelSize)/1000), '.3f') + "\n" +
