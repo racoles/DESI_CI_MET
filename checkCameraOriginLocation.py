@@ -363,7 +363,7 @@ class checkCameraOriginLocation(object):
         top.wait_window()
        
         faah.pageLogging(consoleLog, logFile,
-                        "CALIBRATION OFFSET APPLIED\n" +
+                        "CALIBRATION OFFSET APPLIED\n" + "For point (" + str(self.pixelDistanceToCheckPointX) + ", " + str(self.pixelDistanceToCheckPointY) + ")\n" +
                         "Using: CS5 CCD Origin (mm) = CS5 CCD Origin No Offset (mm) + calibration Offset (mm)\n" +
                         "Calibration Offset (mm): (" + format(calOffX/1000, '.3f') + ", " + format(calOffY/1000, '.3f') + ")\n\n"
                         "    CS5 CCD Origin X(A) = " + format(CS5XA, '.3f') + " + " + format(calOffX/1000, '.3f') + " = " + format(CS5XA + calOffX/1000, '.3f') + "\n" +
