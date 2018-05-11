@@ -169,24 +169,31 @@ class checkCameraOriginLocation(object):
         
         #if target pixel (x, y) is larger than b(x, y) 
         if self.pixelDistanceToCheckPointX >= (xCenGMSB + xOffsetB) or self.pixelDistanceToCheckPointY >= (yCenGMSB + yOffsetB):
+            #A(x, y)
             #if target pixel X > A(X)
-            DeltaX_SBIGXL_A = (self.pixelDistanceToCheckPointX - (xCenGMSA + xOffsetA)) * pixelSize
-                #else
-            DeltaX_SBIGXL_A = ((xCenGMSA + xOffsetA) - self.pixelDistanceToCheckPointX) * pixelSize
+            if self.pixelDistanceToCheckPointX >= (xCenGMSA + xOffsetA):
+                DeltaX_SBIGXL_A = (self.pixelDistanceToCheckPointX - (xCenGMSA + xOffsetA)) * pixelSize
+            else:
+                DeltaX_SBIGXL_A = ((xCenGMSA + xOffsetA) - self.pixelDistanceToCheckPointX) * pixelSize
             #if target pixel Y > A(Y)
-            DeltaY_SBIGXL_A = (self.pixelDistanceToCheckPointY - (yCenGMSA + yOffsetA)) * pixelSize
-                #else        
-            DeltaY_SBIGXL_A = ((yCenGMSA + yOffsetA) - self.pixelDistanceToCheckPointY) * pixelSize    
-                
-            #if target pixel X > B(X)
-            DeltaX_SBIGXL_B = (self.pixelDistanceToCheckPointX - (xCenGMSB + xOffsetB)) * pixelSize
-                #else
-            DeltaX_SBIGXL_B = ((xCenGMSB + xOffsetB) - self.pixelDistanceToCheckPointX) * pixelSize
-            #if target pixel Y > B(Y)
-            DeltaY_SBIGXL_B = (self.pixelDistanceToCheckPointY - (yCenGMSB + yOffsetB)) * pixelSize
-                #else    
-            DeltaY_SBIGXL_B = ((yCenGMSB + yOffsetB) - self.pixelDistanceToCheckPointY) * pixelSize
+            if self.pixelDistanceToCheckPointY >= (yCenGMSA + yOffsetA):
+                DeltaY_SBIGXL_A = (self.pixelDistanceToCheckPointY - (yCenGMSA + yOffsetA)) * pixelSize
+            else:       
+                DeltaY_SBIGXL_A = ((yCenGMSA + yOffsetA) - self.pixelDistanceToCheckPointY) * pixelSize    
             
+            #B(x, y)  
+            #if target pixel X > B(X)
+            if self.pixelDistanceToCheckPointX >= (xCenGMSB + xOffsetB):
+                DeltaX_SBIGXL_B = (self.pixelDistanceToCheckPointX - (xCenGMSB + xOffsetB)) * pixelSize
+            else:
+                DeltaX_SBIGXL_B = ((xCenGMSB + xOffsetB) - self.pixelDistanceToCheckPointX) * pixelSize
+            #if target pixel Y > B(Y)
+            if self.pixelDistanceToCheckPointY >= (yCenGMSB + yOffsetB):
+                DeltaY_SBIGXL_B = (self.pixelDistanceToCheckPointY - (yCenGMSB + yOffsetB)) * pixelSize
+            else:   
+                DeltaY_SBIGXL_B = ((yCenGMSB + yOffsetB) - self.pixelDistanceToCheckPointY) * pixelSize
+            
+            #C(x, y)  
             #if target pixel X > C(X)
             DeltaX_SBIGXL_C = (self.pixelDistanceToCheckPointX - (xCenGMSC + xOffsetC)) * pixelSize
                 #else
