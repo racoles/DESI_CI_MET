@@ -167,15 +167,28 @@ class checkCameraOriginLocation(object):
         ###########################################################################  
         #Find distance in um to CCD Origin  
         
+        #if target pixel (x, y) is larger than b(x, y) 
         if self.pixelDistanceToCheckPointX >= (xCenGMSB + xOffsetB) or self.pixelDistanceToCheckPointY >= (yCenGMSB + yOffsetB):
+            #if target pixel X > A(X)
             DeltaX_SBIGXL_A = (self.pixelDistanceToCheckPointX - (xCenGMSA + xOffsetA)) * pixelSize
+                #else
+            #if target pixel Y > A(Y)
             DeltaY_SBIGXL_A = (self.pixelDistanceToCheckPointY - (yCenGMSA + yOffsetA)) * pixelSize
-        
+                #else            
+                
+            #if target pixel X > B(X)
             DeltaX_SBIGXL_B = (self.pixelDistanceToCheckPointX - (xCenGMSB + xOffsetB)) * pixelSize
+                #else
+            #if target pixel Y > B(Y)
             DeltaY_SBIGXL_B = (self.pixelDistanceToCheckPointY - (yCenGMSB + yOffsetB)) * pixelSize
-        
+                #else    
+            
+            #if target pixel X > C(X)
             DeltaX_SBIGXL_C = (self.pixelDistanceToCheckPointX - (xCenGMSC + xOffsetC)) * pixelSize
+                #else
+            #if target pixel Y > C(Y)
             DeltaY_SBIGXL_C = (self.pixelDistanceToCheckPointY - (yCenGMSC + yOffsetC)) * pixelSize
+                #else
             
         else:
             DeltaX_SBIGXL_A = ((xCenGMSA + xOffsetA) - self.pixelDistanceToCheckPointX) * pixelSize
