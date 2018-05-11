@@ -204,7 +204,7 @@ class focusCurve(object):
         ax2.plot(sortedX, sortedY, 'ro', xFit, yFit, 
                  sortedXL, [mL*ll+bL for ll in sortedXL], 
                  sortedXR, [mR*mm+bR for mm in sortedXR])
-        py.xlabel('Focal Position (microns)')
+        py.xlabel('Nominal "Z" By Eye (microns)')
         py.ylabel('Standard Deviation')
         py.title('Standard Deviation versus Distance')
         py.text(0, 0, 'Left Linear Fit: y = ' + str(mL) + ' x + ' + str(bL) + 
