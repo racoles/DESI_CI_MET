@@ -28,8 +28,8 @@ class checkCameraOriginLocation(object):
     CCDSelection = ""
     trianglePointLabel = ""
     #Pixel distance to origin check point
-    pixelDistanceToCheckPointX = 25 #pixel location X
-    pixelDistanceToCheckPointY = 25 #pixel location X   
+    pixelDistanceToCheckPointX = 3072/2 #pixel location X
+    pixelDistanceToCheckPointY = 2048/2 #pixel location X   
     #STi Pixel Size
     stipixel = 7.4
     
