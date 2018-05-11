@@ -195,13 +195,15 @@ class checkCameraOriginLocation(object):
             
             #C(x, y)  
             #if target pixel X > C(X)
-            DeltaX_SBIGXL_C = (self.pixelDistanceToCheckPointX - (xCenGMSC + xOffsetC)) * pixelSize
-                #else
-            DeltaX_SBIGXL_C = ((xCenGMSC + xOffsetC) - self.pixelDistanceToCheckPointX) * pixelSize
+            if self.pixelDistanceToCheckPointX >= (xCenGMSC + xOffsetC):
+                DeltaX_SBIGXL_C = (self.pixelDistanceToCheckPointX - (xCenGMSC + xOffsetC)) * pixelSize
+            else:   
+                DeltaX_SBIGXL_C = ((xCenGMSC + xOffsetC) - self.pixelDistanceToCheckPointX) * pixelSize
             #if target pixel Y > C(Y)
-            DeltaY_SBIGXL_C = (self.pixelDistanceToCheckPointY - (yCenGMSC + yOffsetC)) * pixelSize
-                #else
-            DeltaY_SBIGXL_C = ((yCenGMSC + yOffsetC) - self.pixelDistanceToCheckPointY) * pixelSize
+            if self.pixelDistanceToCheckPointY >= (yCenGMSC + yOffsetC):
+                DeltaY_SBIGXL_C = (self.pixelDistanceToCheckPointY - (yCenGMSC + yOffsetC)) * pixelSize
+            else:   
+                DeltaY_SBIGXL_C = ((yCenGMSC + yOffsetC) - self.pixelDistanceToCheckPointY) * pixelSize
             
         else:
             DeltaX_SBIGXL_A = ((xCenGMSA + xOffsetA) - self.pixelDistanceToCheckPointX) * pixelSize
