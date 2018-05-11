@@ -166,7 +166,7 @@ class checkCameraOriginLocation(object):
         ###Calculate the distance to the sensor origin using centroided image.
         ###########################################################################  
         #Find distance in um to CCD Origin  
-        
+        '''        
         #if target pixel (x, y) is larger than b(x, y) 
         if self.pixelDistanceToCheckPointX >= (xCenGMSB + xOffsetB) or self.pixelDistanceToCheckPointY >= (yCenGMSB + yOffsetB):
             #A(x, y)
@@ -214,6 +214,16 @@ class checkCameraOriginLocation(object):
         
             DeltaX_SBIGXL_C = ((xCenGMSC + xOffsetC) - self.pixelDistanceToCheckPointX) * pixelSize
             DeltaY_SBIGXL_C = ((yCenGMSC + yOffsetC) - self.pixelDistanceToCheckPointY) * pixelSize
+        '''
+        
+        DeltaX_SBIGXL_A = ((xCenGMSA + xOffsetA) - self.pixelDistanceToCheckPointX) * pixelSize
+        DeltaY_SBIGXL_A = ((yCenGMSA + yOffsetA) - self.pixelDistanceToCheckPointY) * pixelSize
+        
+        DeltaX_SBIGXL_B = ((xCenGMSB + xOffsetB) - self.pixelDistanceToCheckPointX) * pixelSize
+        DeltaY_SBIGXL_B = ((yCenGMSB + yOffsetB) - self.pixelDistanceToCheckPointY) * pixelSize
+        
+        DeltaX_SBIGXL_C = ((xCenGMSC + xOffsetC) - self.pixelDistanceToCheckPointX) * pixelSize
+        DeltaY_SBIGXL_C = ((yCenGMSC + yOffsetC) - self.pixelDistanceToCheckPointY) * pixelSize
         
         ###########################################################################
         ###Rotation Coordinate Transform from SBIG Coordinates to CS5 Coordinates
