@@ -41,8 +41,8 @@ class inputGUI(object):
         master.title("DESI CI Meterology")
         
         #Calibration Offsets
-        calOffX = ""
-        calOffY = ""
+        calOffX = "Not yet set"
+        calOffY = "Not yet set"
         
         #Construct GUI
         #  ________________________________________________________
@@ -106,7 +106,7 @@ class inputGUI(object):
         #Manual Mode CCD Tip/Tilt/Z
         tk.Button(master, text="CCD Tip/Tilt/Z",bg = "white", command=lambda:self._beginManualMode(master, self.consoleLog, self.logFile, "CCDTipTiltZ")).grid(row=10, column=0, columnspan=2, sticky='W')
         #Print focusCurve Dictionary of Nominal Values to Log/Console
-        tk.Button(master, text="Print Nominal Values",bg = "white", command=lambda:self._printDictOfNominalCIValues()).grid(row=10, column=1, columnspan=2, sticky='W')
+        tk.Button(master, text="Print Nominal Values",bg = "white", command=lambda:self._printDictOfNominalCIValues(self.consoleLog, self.logFile, calOffX, calOffY)).grid(row=10, column=1, columnspan=2, sticky='W')
 
         #Grid Separator
         Separator(master, orient="horizontal").grid(row=11, column=0, columnspan=4, sticky='ew')
@@ -187,7 +187,7 @@ class inputGUI(object):
         if manualFunction == "CCDTipTiltZ":
             mMode.CCDTipTiltZ()
             
-    def _printDictOfNominalCIValues(self):
+    def _printDictOfNominalCIValues(self, consoleLog, logFile):
         '''
         Print focusCurve Dictionary of Nominal Values to Log/Console
         '''
@@ -196,3 +196,4 @@ class inputGUI(object):
         faah.printDictToFile(fC.fifLocationsCS5, "Nominal FIF Locations in CS5 (X mm, Y mm, Z mm)" , self.consoleLog, self.logFile, printNominalDicts = True)
         faah.printDictToFile(fC.CCDLocationsCS5, "Nominal CCD Center Locations in CS5 (X mm, Y mm, Z mm)" , self.consoleLog, self.logFile, printNominalDicts = True)       
         faah.printDictToFile(fC.trianglePonitCCDLocationsCS5, "Nominal CCD tip/tilt/Z Measurement Triangle Locations in CS5 (X mm, Y mm, Z mm)" , self.consoleLog, self.logFile, printNominalDicts = True)
+        faah.pageLogging(consoleLog, logFile, "CS5 Calibration Offsets (um) (X = " + format(self.calOffX, '.3f') + ", Y = " + format(self.calOffX, '.3f') + ")\n")
