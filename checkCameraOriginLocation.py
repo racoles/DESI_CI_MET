@@ -30,6 +30,8 @@ class checkCameraOriginLocation(object):
     pixelDistanceToCheckPointY = 25 #pixel location X   
     #STi Pixel Size
     stipixel = 7.4
+    #logfile
+    logFile = ""
     
     def __init__(self):
         '''
@@ -94,6 +96,8 @@ class checkCameraOriginLocation(object):
         msgA.pack()
         buttonA = tk.Button(topA, text="Ready", command=topA.destroy)
         buttonA.pack()
+        self.logFile = logFile #because faah.createDir get the logfile name from metModeSelf.logFile.name
+        faah.createDir(self.CCDSelection, self, dirType):
         topA.wait_window()
         imageArray4DA, filelistA = faah.openAllFITSImagesInDirectory()
         
