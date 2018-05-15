@@ -375,7 +375,13 @@ class checkCameraOriginLocation(object):
         
         #Planet Mode
         xOffsetTarget, yOffsetTarget, _ = pM.readFitsHeader(imageArray4DTarget, filelistTarget, consoleLog, logFile)
-##########        
+        
+        #Use alternate methods to centroid pinhole image
+        #    gmsCentroid: Gaussian Marginal Sum (GMS) Centroid Method.
+        xCenGMSTarget, yCenGMSTarget, _, _ = gmsCentroid(imageArray4DTarget[tar], maxLocTarget[1], maxLocTarget[0], 
+                                                         int(round(subArrayBoxSizeTarget/2)), int(round(subArrayBoxSizeTarget/2)), axis='both', verbose=False)
+
+##############      
         
         ###########################################################################
         ###Apply Calibration Offset
