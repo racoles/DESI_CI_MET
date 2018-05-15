@@ -71,10 +71,13 @@ class inputGUI(object):
         ###Buttons
         ########################################################################### 
         #CS5 Calibration
+        ccol = checkCameraOriginLocation()
         #cs5off = cs5Offsets()
         #tk.Label(master, text="CS5 Calibration", font="bold").grid(row=0, column=0, columnspan=2, sticky='W')
         #calibrationScreenButton = tk.Button(master, text="Calibration Offsets",bg = "white",command=lambda:cs5off.calibrationScreen(calibrationScreenButton, self.consoleLog, self.logFile))
         #calibrationScreenButton.grid(row=1, column=0, columnspan=2, sticky='W')
+
+        #Title Label
         tk.Label(master, text="DESI CI Meterology", font="bold").grid(row=0, column=0, columnspan=2, sticky='W')
         
         #Grid Separator
@@ -97,8 +100,7 @@ class inputGUI(object):
         cF = centroidFIF()
         tk.Button(master, text="Centroid Pinhole",bg = "white",command=lambda:cF.alternateCentroid(self.consoleLog, self.logFile)).grid(row=8, column=0, columnspan=2, sticky='W')
         #Manual Mode Check Camera Origin
-        ccol = checkCameraOriginLocation()
-        calOffX, calOffY = tk.Button(master, text="Check Camera Origin",bg = "white",command=lambda:ccol.checkCameraOriginLocation(self.consoleLog, self.logFile)).grid(row=8, column=1, columnspan=2, sticky='W')
+        tk.Button(master, text="Check Camera Origin",bg = "white",command=lambda:ccol.checkCameraOriginLocation(self.consoleLog, self.logFile)).grid(row=8, column=1, columnspan=2, sticky='W')
         #Manual Mode FIF Focus Curve
         tk.Button(master, text="FIF Focus Curve",bg = "white", command=lambda:self._beginManualMode(master, self.consoleLog, self.logFile, "manualFIFFocusCurve")).grid(row=9, column=0, columnspan=1, sticky='W')
         #Manual Mode CCD Focus Curve
@@ -106,7 +108,7 @@ class inputGUI(object):
         #Manual Mode CCD Tip/Tilt/Z
         tk.Button(master, text="CCD Tip/Tilt/Z",bg = "white", command=lambda:self._beginManualMode(master, self.consoleLog, self.logFile, "CCDTipTiltZ")).grid(row=10, column=0, columnspan=2, sticky='W')
         #Print focusCurve Dictionary of Nominal Values to Log/Console
-        tk.Button(master, text="Print Nominal Values",bg = "white", command=lambda:self._printDictOfNominalCIValues(self.consoleLog, self.logFile, calOffX, calOffY)).grid(row=10, column=1, columnspan=2, sticky='W')
+        tk.Button(master, text="Print Nominal Values",bg = "white", command=lambda:self._printDictOfNominalCIValues(self.consoleLog, self.logFile, ccol.calOffX, ccol.calOffY)).grid(row=10, column=1, columnspan=2, sticky='W')
 
         #Grid Separator
         Separator(master, orient="horizontal").grid(row=11, column=0, columnspan=4, sticky='ew')
@@ -187,7 +189,7 @@ class inputGUI(object):
         if manualFunction == "CCDTipTiltZ":
             mMode.CCDTipTiltZ()
             
-    def _printDictOfNominalCIValues(self, consoleLog, logFile):
+    def _printDictOfNominalCIValues(self, consoleLog, logFile, calOffX, calOffY):
         '''
         Print focusCurve Dictionary of Nominal Values to Log/Console
         '''

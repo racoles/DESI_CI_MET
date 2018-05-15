@@ -32,6 +32,9 @@ class checkCameraOriginLocation(object):
     stipixel = 7.4
     #logfile
     logFile = ""
+    #Calibration Offsets
+    calOffX = ""
+    calOffY = ""
     
     def __init__(self):
         '''
@@ -398,7 +401,12 @@ class checkCameraOriginLocation(object):
                         "    CS5 CCD Origin Y(C) = " + format(CS5YC, '.3f') + " + " + format(calOffY/1000, '.3f') +  " + " + format((self.pixelDistanceToCheckPointX * pixelSize)/1000, '.3f') +
                           " = " + format(CS5YC + calOffY/1000 + ((self.pixelDistanceToCheckPointX * pixelSize)/1000), '.3f') + "\n\n")
         
-        return calOffX, calOffY
+        ###########################################################################
+        ###Set Calibration Offsets for class
+        ########################################################################### 
+        self.calOffX = calOffX
+        self.calOffY = calOffY
+
         
     def _checkCameraOriginLocationSelectionWindow(self):
         '''
