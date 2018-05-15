@@ -33,8 +33,8 @@ class checkCameraOriginLocation(object):
     #logfile
     logFile = ""
     #Calibration Offsets
-    calOffX = ""
-    calOffY = ""
+    calOffX = "Not yet set"
+    calOffY = "Not yet set"
     
     def __init__(self):
         '''

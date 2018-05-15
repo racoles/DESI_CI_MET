@@ -40,10 +40,6 @@ class inputGUI(object):
         self.master = master
         master.title("DESI CI Meterology")
         
-        #Calibration Offsets
-        calOffX = "Not yet set"
-        calOffY = "Not yet set"
-        
         #Construct GUI
         #  ________________________________________________________
         # |Guided Mode                    |                        |
@@ -51,21 +47,21 @@ class inputGUI(object):
         # |*Guided Metrology Button*      |                        |
         # |-------------------------------|                        |
         # |Manual Mode                    |                        |
-        # |"Description"                  |         CI Map         |
-        # |*Focus Curve*                  |                        |
+        # |"Description"                  |         Console        |
+        # |*Focus Curve*                  |           Log          |
         # |*Centroid FIF*                 |                        |
         # |-------------------------------|                        |
         # |Add Note to Log                |                        |
         # |[text box] *Submit*            |                        |
-        # |--------------------------------------------------------|
-        # |                                                        |
-        # |                                                        |
-        # |                                                        |
-        # |                      Log Console                       |
-        # |                                                        |
-        # |                                                        |
-        # |                                                        |
-        # |________________________________________________________|
+        # |-------------------------------|                        |
+        # |                               |                        |
+        # |                               |                        |
+        # |                               |                        |
+        # |          CI Map               |                        |
+        # |                               |                        |
+        # |                               |                        |
+        # |                               |                        |
+        # |_______________________________|________________________|
         
         ###########################################################################
         ###Buttons
@@ -198,4 +194,4 @@ class inputGUI(object):
         faah.printDictToFile(fC.fifLocationsCS5, "Nominal FIF Locations in CS5 (X mm, Y mm, Z mm)" , self.consoleLog, self.logFile, printNominalDicts = True)
         faah.printDictToFile(fC.CCDLocationsCS5, "Nominal CCD Center Locations in CS5 (X mm, Y mm, Z mm)" , self.consoleLog, self.logFile, printNominalDicts = True)       
         faah.printDictToFile(fC.trianglePonitCCDLocationsCS5, "Nominal CCD tip/tilt/Z Measurement Triangle Locations in CS5 (X mm, Y mm, Z mm)" , self.consoleLog, self.logFile, printNominalDicts = True)
-        faah.pageLogging(consoleLog, logFile, "CS5 Calibration Offsets (um) (X = " + format(self.calOffX, '.3f') + ", Y = " + format(self.calOffX, '.3f') + ")\n")
+        faah.pageLogging(consoleLog, logFile, "CS5 Calibration Offsets (um) (X = " + calOffX + ", Y = " + calOffY + ")\n")
