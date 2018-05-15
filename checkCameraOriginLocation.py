@@ -384,6 +384,17 @@ class checkCameraOriginLocation(object):
         #Find distance in um to CCD Origin  
         DeltaX_SBIGXL_Target = (xCenGMSTarget + xOffsetTarget) * pixelSize
         DeltaY_SBIGXL_Target = (yCenGMSTarget + yOffsetTarget) * pixelSize
+        
+        #Rotation Matrix
+        if angleRz < 0:
+            DeltaX_CS5_Target = (DeltaX_SBIGXL_Target * np.cos(math.radians(angleRz))) - (DeltaY_SBIGXL_Target * np.sin(math.radians(angleRz)))
+            DeltaY_CS5_Target = (DeltaX_SBIGXL_Target * np.sin(math.radians(angleRz))) + (DeltaY_SBIGXL_Target * np.cos(math.radians(angleRz)))
+        elif angleRz > 0:
+            DeltaX_CS5_Target = (DeltaX_SBIGXL_Target * np.cos(math.radians(angleRz))) + (DeltaY_SBIGXL_Target * np.sin(math.radians(angleRz)))
+            DeltaY_CS5_Target = (-DeltaX_SBIGXL_Target * np.sin(math.radians(angleRz))) + (DeltaY_SBIGXL_Target * np.cos(math.radians(angleRz)))
+        else:
+            DeltaX_CS5_Target = DeltaX_SBIGXL_Target
+            DeltaY_CS5_Target = DeltaY_SBIGXL_Target
 
 ##############      
         
