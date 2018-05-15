@@ -96,8 +96,6 @@ class checkCameraOriginLocation(object):
         msgA.pack()
         buttonA = tk.Button(topA, text="Ready", command=topA.destroy)
         buttonA.pack()
-        self.logFile = logFile #because faah.createDir get the logfile name from metModeSelf.logFile.name
-        faah.createDir(self.CCDSelection, self, dirType):
         topA.wait_window()
         imageArray4DA, filelistA = faah.openAllFITSImagesInDirectory()
         
@@ -362,6 +360,10 @@ class checkCameraOriginLocation(object):
         button = tk.Button(top, text="Ready", command=top.destroy)
         button.pack()
         top.wait_window()
+        
+        #Get images
+        self.logFile = logFile #because faah.createDir get the logfile name from metModeSelf.logFile.name
+        faah.createDir(self.CCDSelection, self, "(" + str(self.pixelDistanceToCheckPointX) + ", " + str(self.pixelDistanceToCheckPointY) + ")")
        
         faah.pageLogging(consoleLog, logFile,
                         "CALIBRATION OFFSET APPLIED\n" + "For target pixel (" + str(self.pixelDistanceToCheckPointX) + ", " + str(self.pixelDistanceToCheckPointY) + ")\n" +
