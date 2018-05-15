@@ -380,6 +380,10 @@ class checkCameraOriginLocation(object):
         #    gmsCentroid: Gaussian Marginal Sum (GMS) Centroid Method.
         xCenGMSTarget, yCenGMSTarget, _, _ = gmsCentroid(imageArray4DTarget[tar], maxLocTarget[1], maxLocTarget[0], 
                                                          int(round(subArrayBoxSizeTarget/2)), int(round(subArrayBoxSizeTarget/2)), axis='both', verbose=False)
+        
+        #Find distance in um to CCD Origin  
+        DeltaX_SBIGXL_Target = ((xCenGMSTarget + xOffsetTarget) - self.pixelDistanceToCheckPointX) * pixelSize
+        DeltaY_SBIGXL_Target = ((yCenGMSTarget + yOffsetTarget) - self.pixelDistanceToCheckPointY) * pixelSize
 
 ##############      
         
