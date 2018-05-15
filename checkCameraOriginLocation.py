@@ -361,9 +361,10 @@ class checkCameraOriginLocation(object):
         button.pack()
         top.wait_window()
         
-        #Get images
+        #Get images for target pixel
         self.logFile = logFile #because faah.createDir get the logfile name from metModeSelf.logFile.name
         faah.createDir(self.CCDSelection, self, "(" + str(self.pixelDistanceToCheckPointX) + ", " + str(self.pixelDistanceToCheckPointY) + ")")
+        imageArray4DTarget, filelistTarget = faah.openAllFITSImagesInDirectory()
        
         faah.pageLogging(consoleLog, logFile,
                         "CALIBRATION OFFSET APPLIED\n" + "For target pixel (" + str(self.pixelDistanceToCheckPointX) + ", " + str(self.pixelDistanceToCheckPointY) + ")\n" +
@@ -396,6 +397,8 @@ class checkCameraOriginLocation(object):
                           " = " + format(CS5XC + calOffX/1000 + ((self.pixelDistanceToCheckPointX * pixelSize)/1000), '.3f') + "\n" +
                         "    CS5 CCD Origin Y(C) = " + format(CS5YC, '.3f') + " + " + format(calOffY/1000, '.3f') +  " + " + format((self.pixelDistanceToCheckPointX * pixelSize)/1000, '.3f') +
                           " = " + format(CS5YC + calOffY/1000 + ((self.pixelDistanceToCheckPointX * pixelSize)/1000), '.3f') + "\n\n")
+        
+        return calOffX, calOffY
         
     def _checkCameraOriginLocationSelectionWindow(self):
         '''
