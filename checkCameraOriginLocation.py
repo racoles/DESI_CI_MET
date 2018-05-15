@@ -405,37 +405,27 @@ class checkCameraOriginLocation(object):
         top.title("Check Camera Origin")
         
         #CCD Location Description
-        tk.Label(top, text="Which CCD location would you like to measure?").grid(row=0, column=0, columnspan=4, sticky='W')
+        tk.Label(top, text="Which CCD location\n would you like to\n measure?").grid(row=0, column=0, sticky='W')
         
         # NCCD
-        Separator(top, orient="horizontal").grid(row=1, column=0, columnspan=4, sticky='ew')
-        tk.Label(top, text="NCCD").grid(row=2, column=0, sticky='W')
-        NCCD = tk.Button(top, text="NCCD: A", command=lambda: self._setTrueAndExit(top, CCDLabel="NCCD"))
-        NCCD.grid(row=3, column=0)
+        NCCD = tk.Button(top, text="NCCD", command=lambda: self._setTrueAndExit(top, CCDLabel="NCCD"))
+        NCCD.grid(row=1, column=0, sticky='W')
         
         # WCCD
-        Separator(top, orient="horizontal").grid(row=4, column=0, columnspan=4, sticky='ew')
-        tk.Label(top, text="WCCD").grid(row=5, column=0, sticky='W')
         WCCD = tk.Button(top, text="WCCD", command=lambda: self._setTrueAndExit(top, CCDLabel="WCCD"))
-        WCCD.grid(row=6, column=0)
+        WCCD.grid(row=2, column=0, sticky='W')
         
         # SCCD
-        Separator(top, orient="horizontal").grid(row=7, column=0, columnspan=4, sticky='ew')
-        tk.Label(top, text="SCCD").grid(row=8, column=0, sticky='W')
         SCCD = tk.Button(top, text="SCCD", command=lambda: self._setTrueAndExit(top, CCDLabel="SCCD"))
-        SCCD.grid(row=9, column=0)
+        SCCD.grid(row=3, column=0, sticky='W')
         
         # ECCD
-        Separator(top, orient="horizontal").grid(row=10, column=0, columnspan=4, sticky='ew')
-        tk.Label(top, text="ECCD").grid(row=11, column=0, sticky='W')
         ECCD = tk.Button(top, text="ECCD", command=lambda: self._setTrueAndExit(top, CCDLabel="ECCD"))
-        ECCD.grid(row=12, column=0)
+        ECCD.grid(row=4, column=0, sticky='W')
         
         # CCCD
-        Separator(top, orient="horizontal").grid(row=13, column=0, columnspan=4, sticky='ew')
-        tk.Label(top, text="CCCD").grid(row=14, column=0, sticky='W')
         CCCD = tk.Button(top, text="CCCD", command=lambda: self._setTrueAndExit(top, CCDLabel="CCCD"))
-        CCCD.grid(row=15, column=0)
+        CCCD.grid(row=5, column=0, sticky='W')
         
         top.wait_window()
            
