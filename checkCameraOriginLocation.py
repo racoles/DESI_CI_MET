@@ -382,8 +382,8 @@ class checkCameraOriginLocation(object):
                                                          int(round(subArrayBoxSizeTarget/2)), int(round(subArrayBoxSizeTarget/2)), axis='both', verbose=False)
         
         #Find distance in um to CCD Origin  
-        DeltaX_SBIGXL_Target = ((xCenGMSTarget + xOffsetTarget) - self.pixelDistanceToCheckPointX) * pixelSize
-        DeltaY_SBIGXL_Target = ((yCenGMSTarget + yOffsetTarget) - self.pixelDistanceToCheckPointY) * pixelSize
+        DeltaX_SBIGXL_Target = (xCenGMSTarget + xOffsetTarget) * pixelSize
+        DeltaY_SBIGXL_Target = (yCenGMSTarget + yOffsetTarget) * pixelSize
 
 ##############      
         
