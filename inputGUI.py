@@ -40,6 +40,10 @@ class inputGUI(object):
         self.master = master
         master.title("DESI CI Meterology")
         
+        #Calibration Offsets
+        calOffX = ""
+        calOffY = ""
+        
         #Construct GUI
         #  ________________________________________________________
         # |Guided Mode                    |                        |
@@ -94,7 +98,7 @@ class inputGUI(object):
         tk.Button(master, text="Centroid Pinhole",bg = "white",command=lambda:cF.alternateCentroid(self.consoleLog, self.logFile)).grid(row=8, column=0, columnspan=2, sticky='W')
         #Manual Mode Check Camera Origin
         ccol = checkCameraOriginLocation()
-        tk.Button(master, text="Check Camera Origin",bg = "white",command=lambda:ccol.checkCameraOriginLocation(self.consoleLog, self.logFile)).grid(row=8, column=1, columnspan=2, sticky='W')
+        calOffX, calOffY = tk.Button(master, text="Check Camera Origin",bg = "white",command=lambda:ccol.checkCameraOriginLocation(self.consoleLog, self.logFile)).grid(row=8, column=1, columnspan=2, sticky='W')
         #Manual Mode FIF Focus Curve
         tk.Button(master, text="FIF Focus Curve",bg = "white", command=lambda:self._beginManualMode(master, self.consoleLog, self.logFile, "manualFIFFocusCurve")).grid(row=9, column=0, columnspan=1, sticky='W')
         #Manual Mode CCD Focus Curve
