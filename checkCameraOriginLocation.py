@@ -368,8 +368,14 @@ class checkCameraOriginLocation(object):
         self.logFile = logFile #because faah.createDir get the logfile name from metModeSelf.logFile.name
         faah.createDir(self.CCDSelection, self, "(" + str(self.pixelDistanceToCheckPointX) + ", " + str(self.pixelDistanceToCheckPointY) + ")")
         imageArray4DTarget, filelistTarget = faah.openAllFITSImagesInDirectory()
-        xOffsetTarget, yOffsetTarget, _ = pM.readFitsHeader(imageArray4DTarget, filelistTarget, consoleLog, logFile)
         
+        #Centroid
+        tar = round(len(filelistTarget)/2) #select c focused image from array c
+        _ , subArrayBoxSizeTarget, maxLocTarget = cF.findFIFInImage(imageArray4DTarget[tar])
+        
+        #Planet Mode
+        xOffsetTarget, yOffsetTarget, _ = pM.readFitsHeader(imageArray4DTarget, filelistTarget, consoleLog, logFile)
+##########        
         
         ###########################################################################
         ###Apply Calibration Offset
