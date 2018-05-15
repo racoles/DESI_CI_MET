@@ -360,15 +360,15 @@ class checkCameraOriginLocation(object):
         top.wait_window()
        
         faah.pageLogging(consoleLog, logFile,
-                        "CALIBRATION OFFSET APPLIED\n" + "For pixel point (" + str(self.pixelDistanceToCheckPointX) + ", " + str(self.pixelDistanceToCheckPointY) + ")\n" +
+                        "CALIBRATION OFFSET APPLIED\n" + "For target pixel (" + str(self.pixelDistanceToCheckPointX) + ", " + str(self.pixelDistanceToCheckPointY) + ")\n" +
                         "Using: CS5 CCD Origin (mm) = CS5 CCD target pixel with no offset (mm) + calibration Offset (mm)\n" +
                         "Calibration Offset (mm): (" + format(calOffX/1000, '.3f') + ", " + format(calOffY/1000, '.3f') + ")\n\n"
-                        "    CS5 CCD Origin X(A) = " + format(CS5XA, '.3f') + " + " + format(calOffX/1000, '.3f') + " = " + format(CS5XA + calOffX/1000, '.3f') + "\n" +
-                        "    CS5 CCD Origin Y(A) = " + format(CS5YA, '.3f') + " + " + format(calOffY/1000, '.3f') + " = " + format(CS5YA + calOffY/1000, '.3f') + "\n\n" +
-                        "    CS5 CCD Origin X(B) = " + format(CS5XB, '.3f') + " + " + format(calOffX/1000, '.3f') + " = " + format(CS5XB + calOffX/1000, '.3f') + "\n" +
-                        "    CS5 CCD Origin Y(B) = " + format(CS5YB, '.3f') + " + " + format(calOffY/1000, '.3f') + " = " + format(CS5YB + calOffY/1000, '.3f') + "\n\n" +
-                        "    CS5 CCD Origin X(C) = " + format(CS5XC, '.3f') + " + " + format(calOffX/1000, '.3f') + " = " + format(CS5XC + calOffX/1000, '.3f') + "\n" +
-                        "    CS5 CCD Origin Y(C) = " + format(CS5YC, '.3f') + " + " + format(calOffY/1000, '.3f') + " = " + format(CS5YC + calOffY/1000, '.3f') + "\n\n")
+                        "    CS5 CCD target pixel X(A) = " + format(CS5XA, '.3f') + " + " + format(calOffX/1000, '.3f') + " = " + format(CS5XA + calOffX/1000, '.3f') + "\n" +
+                        "    CS5 CCD target pixel Y(A) = " + format(CS5YA, '.3f') + " + " + format(calOffY/1000, '.3f') + " = " + format(CS5YA + calOffY/1000, '.3f') + "\n\n" +
+                        "    CS5 CCD target pixel X(B) = " + format(CS5XB, '.3f') + " + " + format(calOffX/1000, '.3f') + " = " + format(CS5XB + calOffX/1000, '.3f') + "\n" +
+                        "    CS5 CCD target pixel Y(B) = " + format(CS5YB, '.3f') + " + " + format(calOffY/1000, '.3f') + " = " + format(CS5YB + calOffY/1000, '.3f') + "\n\n" +
+                        "    CS5 CCD target pixel X(C) = " + format(CS5XC, '.3f') + " + " + format(calOffX/1000, '.3f') + " = " + format(CS5XC + calOffX/1000, '.3f') + "\n" +
+                        "    CS5 CCD target pixel Y(C) = " + format(CS5YC, '.3f') + " + " + format(calOffY/1000, '.3f') + " = " + format(CS5YC + calOffY/1000, '.3f') + "\n\n")
         
         ###########################################################################
         ###CCD Origin (pixel (0,0) in CS5 with offset)
