@@ -417,7 +417,7 @@ class checkCameraOriginLocation(object):
         #Distance from target pixel to origin (um)
         faah.pageLogging(consoleLog, logFile,
                         "CALIBRATION OFFSET APPLIED\n" + "For pixel point (" + str(0) + ", " + str(0) + ")\n" +
-                        "Using: CS5 CCD Origin (mm) = [CS5 CCD triangle point (or target pixel) with no offset (mm) + \ncalibration Offset (mm)] * (pixelSize/1000) (mm)\n" +
+                        "Using: CS5 CCD Origin (mm) = [CS5 CCD triangle point (or target pixel) with no offset (pixel) + planetModeOffset (pixel) + \ncalibration Offset (pixel)] * (pixelSize/1000) (mm)\n" +
                         
                         
                         "Calibration Offset (mm): (" + format(calOffX/1000, '.3f') + ", " + format(calOffY/1000, '.3f') + ")\n\n"
