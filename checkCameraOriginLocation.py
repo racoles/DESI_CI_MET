@@ -434,6 +434,7 @@ class checkCameraOriginLocation(object):
                           
                         "    CS5 CCD Origin X(" + str(self.pixelDistanceToCheckPointX) + ") = " + format(CS5XC, '.3f') + " + " + format(calOffX/1000, '.3f') +  " + " + format((self.pixelDistanceToCheckPointX * pixelSize)/1000, '.3f') +
                           " = " + format(CS5XC + calOffX/1000 + ((self.pixelDistanceToCheckPointX * pixelSize)/1000), '.3f') + "\n" +
+                          
                         "    CS5 CCD Origin Y(" + str(self.pixelDistanceToCheckPointY) + ") = " + format(CS5YC, '.3f') + " + " + format(calOffY/1000, '.3f') +  " + " + format((self.pixelDistanceToCheckPointX * pixelSize)/1000, '.3f') +
                           " = " + format(CS5YC + calOffY/1000 + ((self.pixelDistanceToCheckPointX * pixelSize)/1000), '.3f') + "\n\n")
         
