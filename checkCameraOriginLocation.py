@@ -409,10 +409,7 @@ class checkCameraOriginLocation(object):
                         "    CS5 CCD target pixel X(B) = " + format(CS5XB, '.3f') + " + " + format(calOffX/1000, '.3f') + " = " + format(CS5XB + calOffX/1000, '.3f') + "\n" +
                         "    CS5 CCD target pixel Y(B) = " + format(CS5YB, '.3f') + " + " + format(calOffY/1000, '.3f') + " = " + format(CS5YB + calOffY/1000, '.3f') + "\n\n" +
                         "    CS5 CCD target pixel X(C) = " + format(CS5XC, '.3f') + " + " + format(calOffX/1000, '.3f') + " = " + format(CS5XC + calOffX/1000, '.3f') + "\n" +
-                        "    CS5 CCD target pixel Y(C) = " + format(CS5YC, '.3f') + " + " + format(calOffY/1000, '.3f') + " = " + format(CS5YC + calOffY/1000, '.3f') + "\n\n" +
-        
-                        "    CS5 CCD target pixel X(" ++ ") = " + format(CS5XC, '.3f') + " + " + format(calOffX/1000, '.3f') + " = " + format(CS5XC + calOffX/1000, '.3f') + "\n" +
-                        "    CS5 CCD target pixel Y(" ++ ") = " + format(CS5YC, '.3f') + " + " + format(calOffY/1000, '.3f') + " = " + format(CS5YC + calOffY/1000, '.3f') + "\n\n")
+                        "    CS5 CCD target pixel Y(C) = " + format(CS5YC, '.3f') + " + " + format(calOffY/1000, '.3f') + " = " + format(CS5YC + calOffY/1000, '.3f') + "\n\n")
         
         ###########################################################################
         ###CCD Origin (pixel (0,0) in CS5 with offset)
@@ -433,6 +430,11 @@ class checkCameraOriginLocation(object):
                         "    CS5 CCD Origin X(C) = " + format(CS5XC, '.3f') + " + " + format(calOffX/1000, '.3f') +  " + " + format((self.pixelDistanceToCheckPointX * pixelSize)/1000, '.3f') +
                           " = " + format(CS5XC + calOffX/1000 + ((self.pixelDistanceToCheckPointX * pixelSize)/1000), '.3f') + "\n" +
                         "    CS5 CCD Origin Y(C) = " + format(CS5YC, '.3f') + " + " + format(calOffY/1000, '.3f') +  " + " + format((self.pixelDistanceToCheckPointX * pixelSize)/1000, '.3f') +
+                          " = " + format(CS5YC + calOffY/1000 + ((self.pixelDistanceToCheckPointX * pixelSize)/1000), '.3f') + "\n\n" +
+                          
+                        "    CS5 CCD Origin X(" + str(self.pixelDistanceToCheckPointX) + ") = " + format(CS5XC, '.3f') + " + " + format(calOffX/1000, '.3f') +  " + " + format((self.pixelDistanceToCheckPointX * pixelSize)/1000, '.3f') +
+                          " = " + format(CS5XC + calOffX/1000 + ((self.pixelDistanceToCheckPointX * pixelSize)/1000), '.3f') + "\n" +
+                        "    CS5 CCD Origin Y(" + str(self.pixelDistanceToCheckPointY) + ") = " + format(CS5YC, '.3f') + " + " + format(calOffY/1000, '.3f') +  " + " + format((self.pixelDistanceToCheckPointX * pixelSize)/1000, '.3f') +
                           " = " + format(CS5YC + calOffY/1000 + ((self.pixelDistanceToCheckPointX * pixelSize)/1000), '.3f') + "\n\n")
         
         ###########################################################################
