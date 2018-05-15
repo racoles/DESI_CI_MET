@@ -196,6 +196,6 @@ class inputGUI(object):
         faah.printDictToFile(fC.trianglePonitCCDLocationsCS5, "Nominal CCD tip/tilt/Z Measurement Triangle Locations in CS5 (X mm, Y mm, Z mm)" , self.consoleLog, self.logFile, printNominalDicts = True)
         
         if calOffX == "Not yet set" or calOffY == "Not yet set":
-            faah.pageLogging(consoleLog, logFile, "CS5 Calibration Offsets (um) (X = " + calOffX + ", Y = " + calOffY + ")\n")
+            faah.pageLogging(consoleLog, logFile, "CS5 Calibration Offsets (mm) (X = " + calOffX + ", Y = " + calOffY + ")\n")
         else:
-            faah.pageLogging(consoleLog, logFile, "CS5 Calibration Offsets (um) (X = " + format(calOffX, '.3f')+ ", Y = " + format(calOffY, '.3f') + ")\n")
+            faah.pageLogging(consoleLog, logFile, "CS5 Calibration Offsets (mm) (X = " + format(calOffX/1000, '.3f')+ ", Y = " + format(calOffY/1000, '.3f') + ")\n")
