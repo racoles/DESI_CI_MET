@@ -26,7 +26,6 @@ import math
 class checkCameraOriginLocation(object):
     
     CCDSelection = ""
-    trianglePointLabel = ""
     #Pixel distance to origin check point
     pixelDistanceToCheckPointX = 25 #pixel location X
     pixelDistanceToCheckPointY = 25 #pixel location X   
@@ -411,68 +410,36 @@ class checkCameraOriginLocation(object):
         # NCCD
         Separator(top, orient="horizontal").grid(row=1, column=0, columnspan=4, sticky='ew')
         tk.Label(top, text="NCCD").grid(row=2, column=0, sticky='W')
-        NCCD_A = tk.Button(top, text="NCCD: A", command=lambda: self._setTrueAndExit(top, CCDLabel="NCCD", trianglePointLabel="A"))
-        NCCD_A.grid(row=3, column=0)
-        NCCD_B = tk.Button(top, text="NCCD: B", command=lambda: self._setTrueAndExit(top, CCDLabel="NCCD", trianglePointLabel="B"))
-        NCCD_B.grid(row=3, column=1)
-        NCCD_C = tk.Button(top, text="NCCD: C", command=lambda: self._setTrueAndExit(top, CCDLabel="NCCD", trianglePointLabel="C"))
-        NCCD_C.grid(row=3, column=2)
-        NCCD_Center = tk.Button(top, text="NCCD: pixel (" + str(self.pixelDistanceToCheckPointX) + ","  + str(self.pixelDistanceToCheckPointY) + ")", command=lambda: self._setTrueAndExit(top, CCDLabel="NCCD"))
-        NCCD_Center.grid(row=3, column=3)
+        NCCD = tk.Button(top, text="NCCD: A", command=lambda: self._setTrueAndExit(top, CCDLabel="NCCD"))
+        NCCD.grid(row=3, column=0)
         
         # WCCD
         Separator(top, orient="horizontal").grid(row=4, column=0, columnspan=4, sticky='ew')
         tk.Label(top, text="WCCD").grid(row=5, column=0, sticky='W')
-        WCCD_A = tk.Button(top, text="WCCD: A", command=lambda: self._setTrueAndExit(top, CCDLabel="WCCD", trianglePointLabel="A"))
-        WCCD_A.grid(row=6, column=0)
-        WCCD_B = tk.Button(top, text="WCCD: B", command=lambda: self._setTrueAndExit(top, CCDLabel="WCCD", trianglePointLabel="B"))
-        WCCD_B.grid(row=6, column=1)
-        WCCD_C = tk.Button(top, text="WCCD: C", command=lambda: self._setTrueAndExit(top, CCDLabel="WCCD", trianglePointLabel="C"))
-        WCCD_C.grid(row=6, column=2)
-        WCCD_Center = tk.Button(top, text="WCCD: pixel (" + str(self.pixelDistanceToCheckPointX) + ","  + str(self.pixelDistanceToCheckPointY) + ")", command=lambda: self._setTrueAndExit(top, CCDLabel="WCCD"))
-        WCCD_Center.grid(row=6, column=3)
+        WCCD = tk.Button(top, text="WCCD", command=lambda: self._setTrueAndExit(top, CCDLabel="WCCD"))
+        WCCD.grid(row=6, column=0)
         
         # SCCD
         Separator(top, orient="horizontal").grid(row=7, column=0, columnspan=4, sticky='ew')
         tk.Label(top, text="SCCD").grid(row=8, column=0, sticky='W')
-        SCCD_A = tk.Button(top, text="SCCD: A", command=lambda: self._setTrueAndExit(top, CCDLabel="SCCD", trianglePointLabel="A"))
-        SCCD_A.grid(row=9, column=0)
-        SCCD_B = tk.Button(top, text="SCCD: B", command=lambda: self._setTrueAndExit(top, CCDLabel="SCCD", trianglePointLabel="B"))
-        SCCD_B.grid(row=9, column=1)
-        SCCD_C = tk.Button(top, text="SCCD: C", command=lambda: self._setTrueAndExit(top, CCDLabel="SCCD", trianglePointLabel="C"))
-        SCCD_C.grid(row=9, column=2)
-        SCCD_Center = tk.Button(top, text="SCCD: pixel (" + str(self.pixelDistanceToCheckPointX) + ","  + str(self.pixelDistanceToCheckPointY) + ")", command=lambda: self._setTrueAndExit(top, CCDLabel="SCCD"))
-        SCCD_Center.grid(row=9, column=3)
+        SCCD = tk.Button(top, text="SCCD", command=lambda: self._setTrueAndExit(top, CCDLabel="SCCD"))
+        SCCD.grid(row=9, column=0)
         
         # ECCD
         Separator(top, orient="horizontal").grid(row=10, column=0, columnspan=4, sticky='ew')
         tk.Label(top, text="ECCD").grid(row=11, column=0, sticky='W')
-        ECCD_A = tk.Button(top, text="ECCD: A", command=lambda: self._setTrueAndExit(top, CCDLabel="ECCD", trianglePointLabel="A"))
-        ECCD_A.grid(row=12, column=0)
-        ECCD_B = tk.Button(top, text="ECCD: B", command=lambda: self._setTrueAndExit(top, CCDLabel="ECCD", trianglePointLabel="B"))
-        ECCD_B.grid(row=12, column=1)
-        ECCD_C = tk.Button(top, text="ECCD: C", command=lambda: self._setTrueAndExit(top, CCDLabel="ECCD", trianglePointLabel="C"))
-        ECCD_C.grid(row=12, column=2)
-        ECCD_Center = tk.Button(top, text="ECCD: pixel (" + str(self.pixelDistanceToCheckPointX) + ","  + str(self.pixelDistanceToCheckPointY) + ")", command=lambda: self._setTrueAndExit(top, CCDLabel="ECCD"))
-        ECCD_Center.grid(row=12, column=3)
+        ECCD = tk.Button(top, text="ECCD", command=lambda: self._setTrueAndExit(top, CCDLabel="ECCD"))
+        ECCD.grid(row=12, column=0)
         
         # CCCD
         Separator(top, orient="horizontal").grid(row=13, column=0, columnspan=4, sticky='ew')
         tk.Label(top, text="CCCD").grid(row=14, column=0, sticky='W')
-        CCCD_A = tk.Button(top, text="CCCD: A", command=lambda: self._setTrueAndExit(top, CCDLabel="CCCD", trianglePointLabel="A"))
-        CCCD_A.grid(row=15, column=0)
-        CCCD_B = tk.Button(top, text="CCCD: B", command=lambda: self._setTrueAndExit(top, CCDLabel="CCCD", trianglePointLabel="B"))
-        CCCD_B.grid(row=15, column=1)
-        CCCD_C = tk.Button(top, text="CCCD: C", command=lambda: self._setTrueAndExit(top, CCDLabel="CCCD", trianglePointLabel="C"))
-        CCCD_C.grid(row=15, column=2)
-        CCCD_Center = tk.Button(top, text="CCCD: pixel (" + str(self.pixelDistanceToCheckPointX) + ","  + str(self.pixelDistanceToCheckPointY) + ")", command=lambda: self._setTrueAndExit(top, CCDLabel="CCCD"))
-        CCCD_Center.grid(row=15, column=3)
+        CCCD = tk.Button(top, text="CCCD", command=lambda: self._setTrueAndExit(top, CCDLabel="CCCD"))
+        CCCD.grid(row=15, column=0)
         
         top.wait_window()
            
-    def _setTrueAndExit(self, windowVariable, CCDLabel, trianglePointLabel=""):
+    def _setTrueAndExit(self, windowVariable, CCDLabel):
         self.CCDSelection = CCDLabel
-        if trianglePointLabel != "":
-            self.trianglePointLabel = trianglePointLabel
         windowVariable.destroy()
         
