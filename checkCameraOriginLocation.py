@@ -368,6 +368,7 @@ class checkCameraOriginLocation(object):
         self.logFile = logFile #because faah.createDir get the logfile name from metModeSelf.logFile.name
         faah.createDir(self.CCDSelection, self, "(" + str(self.pixelDistanceToCheckPointX) + ", " + str(self.pixelDistanceToCheckPointY) + ")")
         imageArray4DTarget, filelistTarget = faah.openAllFITSImagesInDirectory()
+        xOffsetTarget, yOffsetTarget, _ = pM.readFitsHeader(imageArray4DTarget, filelistTarget, consoleLog, logFile)
        
         faah.pageLogging(consoleLog, logFile,
                         "CALIBRATION OFFSET APPLIED\n" + "For target pixel (" + str(self.pixelDistanceToCheckPointX) + ", " + str(self.pixelDistanceToCheckPointY) + ")\n" +
