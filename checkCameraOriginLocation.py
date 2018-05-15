@@ -166,9 +166,9 @@ class checkCameraOriginLocation(object):
         faah.pageLogging(consoleLog, logFile, "\nRz Local (degrees): " + format(angleRz, '.3f'))   
 
         ###########################################################################
-        ###Calculate the distance to the sensor origin using centroided image.
+        ###Calculate the distance to pixelDistanceToCheckPoint using centroided image.
         ###########################################################################  
-        #Find distance in um to CCD Origin  
+        #Find distance in um to CCD pixelDistanceToCheckPoint
         DeltaX_SBIGXL_A = ((xCenGMSA + xOffsetA) - self.pixelDistanceToCheckPointX) * pixelSize
         DeltaY_SBIGXL_A = ((yCenGMSA + yOffsetA) - self.pixelDistanceToCheckPointY) * pixelSize
         
