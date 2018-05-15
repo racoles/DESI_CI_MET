@@ -11,7 +11,6 @@ This module holds a series of functions that are used to find the origin of a CC
 
 # Import #######################################################################################
 import tkinter as tk
-from tkinter.ttk import Separator
 from fileAndArrayHandling import fileAndArrayHandling
 from CCDOpsPlanetMode import CCDOpsPlanetMode
 from centroidFIF import centroidFIF
