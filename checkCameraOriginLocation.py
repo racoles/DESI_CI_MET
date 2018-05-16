@@ -26,8 +26,8 @@ class checkCameraOriginLocation(object):
     
     CCDSelection = ""
     #Pixel distance to origin check point
-    pixelDistanceToCheckPointX = 25 #pixel location X
-    pixelDistanceToCheckPointY = 25 #pixel location X   
+    pixelDistanceToCheckPointX = 3072/2 #pixel location X
+    pixelDistanceToCheckPointY = 2048/2 #pixel location X   
     #STi Pixel Size
     stipixel = 7.4
     #logfile
@@ -169,14 +169,47 @@ class checkCameraOriginLocation(object):
         ###Calculate the distance to pixelDistanceToCheckPoint using centroided image.
         ###########################################################################  
         #Find distance in um to CCD pixelDistanceToCheckPoint
-        DeltaX_SBIGXL_A = ((xCenGMSA + xOffsetA) - self.pixelDistanceToCheckPointX) * pixelSize
-        DeltaY_SBIGXL_A = ((yCenGMSA + yOffsetA) - self.pixelDistanceToCheckPointY) * pixelSize
+        #DeltaX_SBIGXL_A = ((xCenGMSA + xOffsetA) - self.pixelDistanceToCheckPointX) * pixelSize
+        #DeltaY_SBIGXL_A = ((yCenGMSA + yOffsetA) - self.pixelDistanceToCheckPointY) * pixelSize
         
-        DeltaX_SBIGXL_B = ((xCenGMSB + xOffsetB) - self.pixelDistanceToCheckPointX) * pixelSize
-        DeltaY_SBIGXL_B = ((yCenGMSB + yOffsetB) - self.pixelDistanceToCheckPointY) * pixelSize
+        #DeltaX_SBIGXL_B = ((xCenGMSB + xOffsetB) - self.pixelDistanceToCheckPointX) * pixelSize
+        #DeltaY_SBIGXL_B = ((yCenGMSB + yOffsetB) - self.pixelDistanceToCheckPointY) * pixelSize
         
-        DeltaX_SBIGXL_C = ((xCenGMSC + xOffsetC) - self.pixelDistanceToCheckPointX) * pixelSize
-        DeltaY_SBIGXL_C = ((yCenGMSC + yOffsetC) - self.pixelDistanceToCheckPointY) * pixelSize
+        #DeltaX_SBIGXL_C = ((xCenGMSC + xOffsetC) - self.pixelDistanceToCheckPointX) * pixelSize
+        #DeltaY_SBIGXL_C = ((yCenGMSC + yOffsetC) - self.pixelDistanceToCheckPointY) * pixelSize
+        
+        #X(A)
+        if (xCenGMSA + xOffsetA) <= self.pixelDistanceToCheckPointX:
+            DeltaX_SBIGXL_A = (self.pixelDistanceToCheckPointX - (xCenGMSA + xOffsetA)) * pixelSize
+        else:
+            DeltaX_SBIGXL_A = ((xCenGMSA + xOffsetA) - self.pixelDistanceToCheckPointX) * pixelSize
+        #Y(A)
+        if (yCenGMSA + yOffsetA) <= self.pixelDistanceToCheckPointY:
+            DeltaY_SBIGXL_A = (self.pixelDistanceToCheckPointY - (yCenGMSA + yOffsetA)) * pixelSize
+        else:
+            DeltaY_SBIGXL_A = ((yCenGMSA + yOffsetA) - self.pixelDistanceToCheckPointY) * pixelSize
+            
+        #X(B)
+        if (xCenGMSB + xOffsetB) <= self.pixelDistanceToCheckPointX:
+            DeltaX_SBIGXL_B = (self.pixelDistanceToCheckPointX - (xCenGMSB + xOffsetB)) * pixelSize
+        else:
+            DeltaX_SBIGXL_B = ((xCenGMSB + xOffsetB) - self.pixelDistanceToCheckPointX) * pixelSize
+        #Y(B)
+        if (yCenGMSB + yOffsetB) <= self.pixelDistanceToCheckPointY:
+            DeltaY_SBIGXL_B = (self.pixelDistanceToCheckPointY - (yCenGMSB + yOffsetB)) * pixelSize
+        else:
+            DeltaY_SBIGXL_B = ((yCenGMSB + yOffsetB) - self.pixelDistanceToCheckPointY) * pixelSize
+            
+        #X(C)
+        if (xCenGMSC + xOffsetC) <= self.pixelDistanceToCheckPointX:
+            DeltaX_SBIGXL_C = (self.pixelDistanceToCheckPointX - (xCenGMSC + xOffsetC)) * pixelSize
+        else:
+            DeltaX_SBIGXL_C = ((xCenGMSC + xOffsetC) - self.pixelDistanceToCheckPointX) * pixelSize
+        #Y(C)
+        if (yCenGMSC + yOffsetC) <= self.pixelDistanceToCheckPointY:
+            DeltaY_SBIGXL_C = (self.pixelDistanceToCheckPointY - (yCenGMSC + yOffsetC)) * pixelSize
+        else:
+            DeltaY_SBIGXL_C = ((yCenGMSC + yOffsetC) - self.pixelDistanceToCheckPointY) * pixelSize      
         
         ###########################################################################
         ###Rotation Coordinate Transform from SBIG Coordinates to CS5 Coordinates
