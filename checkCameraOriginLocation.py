@@ -431,11 +431,11 @@ class checkCameraOriginLocation(object):
                           " = " + format(CS5XC + calOffX/1000 + ((self.pixelDistanceToCheckPointX * pixelSize)/1000), '.3f') + "\n" +
                         "    CS5 CCD Origin Y(C) = " + format(CS5YC, '.3f') + " + " + format(calOffY/1000, '.3f') +  " + " + format((self.pixelDistanceToCheckPointX * pixelSize)/1000, '.3f') +
                           " = " + format(CS5YC + calOffY/1000 + ((self.pixelDistanceToCheckPointX * pixelSize)/1000), '.3f') + "\n\n" +
-                        "Average X (mm) = " + format(((CS5XA + CS5XB + CS5XC)/3) + calOffX/1000 + ((self.pixelDistanceToCheckPointX * pixelSize)/1000), '.3f') + "\n"
-                        "Average Y (mm) = " + format(((CS5YA + CS5YB + CS5YC)/3) + calOffY/1000 + ((self.pixelDistanceToCheckPointY * pixelSize)/1000), '.3f') + "\n\n")
-                        #"Using: CS5 CCD Origin (mm) = [CS5 Target Pixel (mm) + Delta_CS5_Target (rotated) (mm)] + calibration Offset (mm)\n" +
-                        #"    CS5 CCD Origin X(" + str(self.pixelDistanceToCheckPointX) + ") = " + format(DeltaX_CS5_Target/1000, '.3f') + " + " + format(calOffX/1000, '.3f') +  " = " + format(DeltaX_CS5_Target/1000 + calOffX/1000, '.3f') + "\n" +
-                        #"    CS5 CCD Origin Y(" + str(self.pixelDistanceToCheckPointY) + ") = " + format(DeltaY_CS5_Target/1000, '.3f') + " + " + format(calOffY/1000, '.3f') + " = " + format(DeltaY_CS5_Target/1000 + calOffY/1000, '.3f') + "\n\n")
+                        "CS5 CCD Origin Average X (mm) = " + format(((CS5XA + CS5XB + CS5XC)/3) + calOffX/1000 + ((self.pixelDistanceToCheckPointX * pixelSize)/1000), '.3f') + "\n"
+                        "CS5 CCD Origin Average Y (mm) = " + format(((CS5YA + CS5YB + CS5YC)/3) + calOffY/1000 + ((self.pixelDistanceToCheckPointY * pixelSize)/1000), '.3f') + "\n\n" +
+                        "Using: CS5 CCD Origin (mm) = [CS5 CCD Target Pixel Average (mm) + Delta_CS5_Target (rotated) (mm)] + calibration Offset (mm)\n" +
+                        "    CS5 CCD Origin X(" + str(self.pixelDistanceToCheckPointX) + ") = " + format(((CS5XA + CS5XB + CS5XC)/3), '.3f') + " + " + format(DeltaX_CS5_Target/1000, '.3f') + " + " + format(calOffX/1000, '.3f') +  " = " + format(((CS5XA + CS5XB + CS5XC)/3) + DeltaX_CS5_Target/1000 + calOffX/1000, '.3f') + "\n" +
+                        "    CS5 CCD Origin Y(" + str(self.pixelDistanceToCheckPointY) + ") = " + format(((CS5YA + CS5YB + CS5YC)/3), '.3f') + " + " + format(DeltaY_CS5_Target/1000, '.3f') + " + " + format(calOffY/1000, '.3f') + " = " + format(((CS5YA + CS5YB + CS5YC)/3) + DeltaY_CS5_Target/1000 + calOffY/1000, '.3f') + "\n\n")
         
         ###########################################################################
         ###Set Calibration Offsets for class
