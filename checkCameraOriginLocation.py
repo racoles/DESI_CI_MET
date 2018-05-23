@@ -179,34 +179,34 @@ class checkCameraOriginLocation(object):
         #DeltaY_SBIGXL_C = ((yCenGMSC + yOffsetC) - self.pixelDistanceToCheckPointY) * pixelSize
         
         #X(A)
-        if (xCenGMSA + xOffsetA) <= self.pixelDistanceToCheckPointX:
+        if (xCenGMSA + xOffsetA) >= self.pixelDistanceToCheckPointX:
             DeltaX_SBIGXL_A = (self.pixelDistanceToCheckPointX - (xCenGMSA + xOffsetA)) * pixelSize
         else:
             DeltaX_SBIGXL_A = ((xCenGMSA + xOffsetA) - self.pixelDistanceToCheckPointX) * pixelSize
         #Y(A)
-        if (yCenGMSA + yOffsetA) <= self.pixelDistanceToCheckPointY:
+        if (yCenGMSA + yOffsetA) >= self.pixelDistanceToCheckPointY:
             DeltaY_SBIGXL_A = (self.pixelDistanceToCheckPointY - (yCenGMSA + yOffsetA)) * pixelSize
         else:
             DeltaY_SBIGXL_A = ((yCenGMSA + yOffsetA) - self.pixelDistanceToCheckPointY) * pixelSize
             
         #X(B)
-        if (xCenGMSB + xOffsetB) <= self.pixelDistanceToCheckPointX:
+        if (xCenGMSB + xOffsetB) >= self.pixelDistanceToCheckPointX:
             DeltaX_SBIGXL_B = (self.pixelDistanceToCheckPointX - (xCenGMSB + xOffsetB)) * pixelSize
         else:
             DeltaX_SBIGXL_B = ((xCenGMSB + xOffsetB) - self.pixelDistanceToCheckPointX) * pixelSize
         #Y(B)
-        if (yCenGMSB + yOffsetB) <= self.pixelDistanceToCheckPointY:
+        if (yCenGMSB + yOffsetB) >= self.pixelDistanceToCheckPointY:
             DeltaY_SBIGXL_B = (self.pixelDistanceToCheckPointY - (yCenGMSB + yOffsetB)) * pixelSize
         else:
             DeltaY_SBIGXL_B = ((yCenGMSB + yOffsetB) - self.pixelDistanceToCheckPointY) * pixelSize
             
         #X(C)
-        if (xCenGMSC + xOffsetC) <= self.pixelDistanceToCheckPointX:
+        if (xCenGMSC + xOffsetC) >= self.pixelDistanceToCheckPointX:
             DeltaX_SBIGXL_C = (self.pixelDistanceToCheckPointX - (xCenGMSC + xOffsetC)) * pixelSize
         else:
             DeltaX_SBIGXL_C = ((xCenGMSC + xOffsetC) - self.pixelDistanceToCheckPointX) * pixelSize
         #Y(C)
-        if (yCenGMSC + yOffsetC) <= self.pixelDistanceToCheckPointY:
+        if (yCenGMSC + yOffsetC) >= self.pixelDistanceToCheckPointY:
             DeltaY_SBIGXL_C = (self.pixelDistanceToCheckPointY - (yCenGMSC + yOffsetC)) * pixelSize
         else:
             DeltaY_SBIGXL_C = ((yCenGMSC + yOffsetC) - self.pixelDistanceToCheckPointY) * pixelSize      
@@ -236,7 +236,7 @@ class checkCameraOriginLocation(object):
             CS5YC = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][1] + DeltaY_CS5_C/1000
             
             faah.pageLogging(consoleLog, logFile, "\nMove to pixel (" + str(self.pixelDistanceToCheckPointX) + ", " + str(self.pixelDistanceToCheckPointY) + ")\n\n" +
-                         "Using: ((centroid(pixel) + planetModeOffset) - targetPixel(pixel)) * pixelSize\n" +
+                         "Using: ((centroid(pixel) + planetModeOffset) +/- targetPixel(pixel)) * pixelSize\n" +
                          "Distance in SBIGXL frame (mm):\n" +
                          "    DeltaX_SBIGXL_A = (" + format(xCenGMSA , '.3f') +  " + " + format(xOffsetA, '.3f') + ") - " + str(self.pixelDistanceToCheckPointX) + ") * " + str(pixelSize/1000) + " = " + format(DeltaX_SBIGXL_A/1000, '.3f') + "\n" +
                          "    DeltaY_SBIGXL_A = (" + format(yCenGMSA , '.3f') +  " + " + format(yOffsetA, '.3f') + ") - " + str(self.pixelDistanceToCheckPointY) + ") * " + str(pixelSize/1000) + " = " + format(DeltaY_SBIGXL_A/1000, '.3f') + "\n\n" +
@@ -291,7 +291,7 @@ class checkCameraOriginLocation(object):
             CS5YC = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][1] + DeltaY_CS5_C/1000
             
             faah.pageLogging(consoleLog, logFile, "\nMove to pixel (" + str(self.pixelDistanceToCheckPointX) + ", " + str(self.pixelDistanceToCheckPointY) + ")\n\n" +
-                         "Using: ((centroid(pixel)) + planetModeOffset) - targetPixel(pixel)) * pixelSize\n" +
+                         "Using: ((centroid(pixel)) + planetModeOffset) +/- targetPixel(pixel)) * pixelSize\n" +
                          "Distance in SBIGXL frame (mm):\n" +
                          "    DeltaX_SBIGXL_A = (" + format(xCenGMSA , '.3f') +  " + " + format(xOffsetA, '.3f') + ") - " + str(self.pixelDistanceToCheckPointX) + ") * " + str(pixelSize/1000) + " = " + format(DeltaX_SBIGXL_A/1000, '.3f') + "\n" +
                          "    DeltaY_SBIGXL_A = (" + format(yCenGMSA , '.3f') +  " + " + format(yOffsetA, '.3f') + ") - " + str(self.pixelDistanceToCheckPointY) + ") * " + str(pixelSize/1000) + " = " + format(DeltaY_SBIGXL_A/1000, '.3f') + "\n\n" +
@@ -349,7 +349,7 @@ class checkCameraOriginLocation(object):
             
             
             faah.pageLogging(consoleLog, logFile, "\nMove to pixel (" + str(self.pixelDistanceToCheckPointX) + ", " + str(self.pixelDistanceToCheckPointY) + ")\n\n" +
-                         "Using: ((centroid(pixel)) + planetModeOffset) - targetPixel(pixel)) * pixelSize\n" +
+                         "Using: ((centroid(pixel)) + planetModeOffset) +/- targetPixel(pixel)) * pixelSize\n" +
                          "Distance in SBIGXL frame (mm):\n" +
                          "    DeltaX_SBIGXL_A = (" + format(xCenGMSA , '.3f') +  " + " + format(xOffsetA, '.3f') + ") - " + str(self.pixelDistanceToCheckPointX) + ") * " + str(pixelSize/1000) + " = " + format(DeltaX_SBIGXL_A/1000, '.3f') + "\n" +
                          "    DeltaY_SBIGXL_A = (" + format(yCenGMSA , '.3f') +  " + " + format(yOffsetA, '.3f') + ") - " + str(self.pixelDistanceToCheckPointY) + ") * " + str(pixelSize/1000) + " = " + format(DeltaY_SBIGXL_A/1000, '.3f') + "\n\n" +
