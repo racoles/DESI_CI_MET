@@ -25,13 +25,21 @@ import math
 class checkCameraOriginLocation(object):
     
     CCDSelection = ""
+    
     #Pixel distance to origin check point
     pixelDistanceToCheckPointX = 25 #pixel location X
     pixelDistanceToCheckPointY = 25 #pixel location Y  
+    
+    #Pixel distance to sensor center
+    pixelDistanceToCenterX = 3072/2 #pixel location X
+    pixelDistanceToCenterY = 2048/2 #pixel location Y      
+    
     #STi Pixel Size
     stipixel = 7.4
+    
     #logfile
     logFile = ""
+    
     #Calibration Offsets
     calOffX = "Not yet set"
     calOffY = "Not yet set"
