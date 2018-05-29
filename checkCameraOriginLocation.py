@@ -1,7 +1,7 @@
 '''
 @title checkCameraOriginLocation
 @author: Rebecca Coles
-Updated on Apr 27, 2018
+Updated on May 29, 2018
 Created on Mar 22, 2018
 
 checkCameraOriginLocation
