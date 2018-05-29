@@ -187,14 +187,14 @@ class checkCameraOriginLocation(object):
         DeltaY_SBIGXL_C = ((yCenGMSC + yOffsetC) - self.pixelDistanceToCheckPointY) * pixelSize
         
         #Find distance in um to CCD pixelDistanceToCenter
-        DeltaX_SBIGXL_A_Sensor_Center = ((xCenGMSA + xOffsetA) - self.pixelDistanceToCheckPointX) * pixelSize
-        DeltaY_SBIGXL_A_Sensor_Center = ((yCenGMSA + yOffsetA) - self.pixelDistanceToCheckPointY) * pixelSize
+        DeltaX_SBIGXL_A_Sensor_Center = ((xCenGMSA + xOffsetA) - self.pixelDistanceToCenterX) * pixelSize
+        DeltaY_SBIGXL_A_Sensor_Center = ((yCenGMSA + yOffsetA) - self.pixelDistanceToCenterY) * pixelSize
         
-        DeltaX_SBIGXL_B_Sensor_Center = ((xCenGMSB + xOffsetB) - self.pixelDistanceToCheckPointX) * pixelSize
-        DeltaY_SBIGXL_B_Sensor_Center = ((yCenGMSB + yOffsetB) - self.pixelDistanceToCheckPointY) * pixelSize
+        DeltaX_SBIGXL_B_Sensor_Center = ((xCenGMSB + xOffsetB) - self.pixelDistanceToCenterX) * pixelSize
+        DeltaY_SBIGXL_B_Sensor_Center = ((yCenGMSB + yOffsetB) - self.pixelDistanceToCenterY) * pixelSize
         
-        DeltaX_SBIGXL_C_Sensor_Center = ((xCenGMSC + xOffsetC) - self.pixelDistanceToCheckPointX) * pixelSize
-        DeltaY_SBIGXL_C_Sensor_Center = ((yCenGMSC + yOffsetC) - self.pixelDistanceToCheckPointY) * pixelSize
+        DeltaX_SBIGXL_C_Sensor_Center = ((xCenGMSC + xOffsetC) - self.pixelDistanceToCenterX) * pixelSize
+        DeltaY_SBIGXL_C_Sensor_Center = ((yCenGMSC + yOffsetC) - self.pixelDistanceToCenterY) * pixelSize
         
         #X(A)
         #if (xCenGMSA + xOffsetA) <= self.pixelDistanceToCenterX:
