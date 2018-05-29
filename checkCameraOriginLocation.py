@@ -187,38 +187,47 @@ class checkCameraOriginLocation(object):
         DeltaY_SBIGXL_C = ((yCenGMSC + yOffsetC) - self.pixelDistanceToCheckPointY) * pixelSize
         
         #Find distance in um to CCD pixelDistanceToCenter
+        DeltaX_SBIGXL_A_Sensor_Center = ((xCenGMSA + xOffsetA) - self.pixelDistanceToCheckPointX) * pixelSize
+        DeltaY_SBIGXL_A_Sensor_Center = ((yCenGMSA + yOffsetA) - self.pixelDistanceToCheckPointY) * pixelSize
+        
+        DeltaX_SBIGXL_B_Sensor_Center = ((xCenGMSB + xOffsetB) - self.pixelDistanceToCheckPointX) * pixelSize
+        DeltaY_SBIGXL_B_Sensor_Center = ((yCenGMSB + yOffsetB) - self.pixelDistanceToCheckPointY) * pixelSize
+        
+        DeltaX_SBIGXL_C_Sensor_Center = ((xCenGMSC + xOffsetC) - self.pixelDistanceToCheckPointX) * pixelSize
+        DeltaY_SBIGXL_C_Sensor_Center = ((yCenGMSC + yOffsetC) - self.pixelDistanceToCheckPointY) * pixelSize
+        
         #X(A)
-        if (xCenGMSA + xOffsetA) <= self.pixelDistanceToCenterX:
-            DeltaX_SBIGXL_A_Sensor_Center = (self.pixelDistanceToCenterX - (xCenGMSA + xOffsetA)) * pixelSize
-        else:
-            DeltaX_SBIGXL_A_Sensor_Center = ((xCenGMSA + xOffsetA) - self.pixelDistanceToCenterX) * pixelSize
+        #if (xCenGMSA + xOffsetA) <= self.pixelDistanceToCenterX:
+        #    DeltaX_SBIGXL_A_Sensor_Center = (self.pixelDistanceToCenterX - (xCenGMSA + xOffsetA)) * pixelSize
+        #else:
+        #    DeltaX_SBIGXL_A_Sensor_Center = ((xCenGMSA + xOffsetA) - self.pixelDistanceToCenterX) * pixelSize
         #Y(A)
-        if (yCenGMSA + yOffsetA) <= self.pixelDistanceToCenterY:
-            DeltaY_SBIGXL_A_Sensor_Center = (self.pixelDistanceToCenterY - (yCenGMSA + yOffsetA)) * pixelSize
-        else:
-            DeltaY_SBIGXL_A_Sensor_Center = ((yCenGMSA + yOffsetA) - self.pixelDistanceToCenterY) * pixelSize
+        #if (yCenGMSA + yOffsetA) <= self.pixelDistanceToCenterY:
+        #    DeltaY_SBIGXL_A_Sensor_Center = (self.pixelDistanceToCenterY - (yCenGMSA + yOffsetA)) * pixelSize
+        #else:
+        #    DeltaY_SBIGXL_A_Sensor_Center = ((yCenGMSA + yOffsetA) - self.pixelDistanceToCenterY) * pixelSize
             
         #X(B)
-        if (xCenGMSB + xOffsetB) <= self.pixelDistanceToCenterX:
-            DeltaX_SBIGXL_B_Sensor_Center = (self.pixelDistanceToCenterX - (xCenGMSB + xOffsetB)) * pixelSize
-        else:
-            DeltaX_SBIGXL_B_Sensor_Center = ((xCenGMSB + xOffsetB) - self.pixelDistanceToCenterX) * pixelSize
+        #if (xCenGMSB + xOffsetB) <= self.pixelDistanceToCenterX:
+        #    DeltaX_SBIGXL_B_Sensor_Center = (self.pixelDistanceToCenterX - (xCenGMSB + xOffsetB)) * pixelSize
+        #else:
+        #    DeltaX_SBIGXL_B_Sensor_Center = ((xCenGMSB + xOffsetB) - self.pixelDistanceToCenterX) * pixelSize
         #Y(B)
-        if (yCenGMSB + yOffsetB) <= self.pixelDistanceToCenterY:
-            DeltaY_SBIGXL_B_Sensor_Center = (self.pixelDistanceToCenterY - (yCenGMSB + yOffsetB)) * pixelSize
-        else:
-            DeltaY_SBIGXL_B_Sensor_Center = ((yCenGMSB + yOffsetB) - self.pixelDistanceToCenterY) * pixelSize
+        #if (yCenGMSB + yOffsetB) <= self.pixelDistanceToCenterY:
+        #    DeltaY_SBIGXL_B_Sensor_Center = (self.pixelDistanceToCenterY - (yCenGMSB + yOffsetB)) * pixelSize
+        #else:
+        #    DeltaY_SBIGXL_B_Sensor_Center = ((yCenGMSB + yOffsetB) - self.pixelDistanceToCenterY) * pixelSize
             
         #X(C)
-        if (xCenGMSC + xOffsetC) <= self.pixelDistanceToCenterX:
-            DeltaX_SBIGXL_C_Sensor_Center = (self.pixelDistanceToCenterX - (xCenGMSC + xOffsetC)) * pixelSize
-        else:
-            DeltaX_SBIGXL_C_Sensor_Center = ((xCenGMSC + xOffsetC) - self.pixelDistanceToCenterX) * pixelSize
+        #if (xCenGMSC + xOffsetC) <= self.pixelDistanceToCenterX:
+        #    DeltaX_SBIGXL_C_Sensor_Center = (self.pixelDistanceToCenterX - (xCenGMSC + xOffsetC)) * pixelSize
+        #else:
+        #   DeltaX_SBIGXL_C_Sensor_Center = ((xCenGMSC + xOffsetC) - self.pixelDistanceToCenterX) * pixelSize
         #Y(C)
-        if (yCenGMSC + yOffsetC) <= self.pixelDistanceToCenterY:
-            DeltaY_SBIGXL_C_Sensor_Center = (self.pixelDistanceToCenterY - (yCenGMSC + yOffsetC)) * pixelSize
-        else:
-            DeltaY_SBIGXL_C_Sensor_Center = ((yCenGMSC + yOffsetC) - self.pixelDistanceToCenterY) * pixelSize      
+        #if (yCenGMSC + yOffsetC) <= self.pixelDistanceToCenterY:
+        #    DeltaY_SBIGXL_C_Sensor_Center = (self.pixelDistanceToCenterY - (yCenGMSC + yOffsetC)) * pixelSize
+        #else:
+        #    DeltaY_SBIGXL_C_Sensor_Center = ((yCenGMSC + yOffsetC) - self.pixelDistanceToCenterY) * pixelSize      
         
         ###########################################################################
         ###Rotation Coordinate Transform from SBIG Coordinates to CS5 Coordinates
