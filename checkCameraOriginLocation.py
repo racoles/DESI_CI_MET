@@ -244,6 +244,15 @@ class checkCameraOriginLocation(object):
             DeltaX_CS5_C = (DeltaX_SBIGXL_C * np.cos(math.radians(angleRz))) - (DeltaY_SBIGXL_C * np.sin(math.radians(angleRz)))
             DeltaY_CS5_C = (DeltaX_SBIGXL_C * np.sin(math.radians(angleRz))) + (DeltaY_SBIGXL_C * np.cos(math.radians(angleRz))) 
             
+        DeltaX_CS5_A_Sensor_Center
+        DeltaY_CS5_A_Sensor_Center
+        
+        DeltaX_CS5_B_Sensor_Center
+        DeltaY_CS5_B_Sensor_Center
+        
+        DeltaX_CS5_C_Sensor_Center
+        DeltaY_CS5_C_Sensor_Center
+            
             CS5XA = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][0] + DeltaX_CS5_A/1000
             CS5YA = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][1] + DeltaY_CS5_A/1000
             
@@ -298,6 +307,15 @@ class checkCameraOriginLocation(object):
             
             DeltaX_CS5_C = (DeltaX_SBIGXL_C * np.cos(math.radians(angleRz))) + (DeltaY_SBIGXL_C * np.sin(math.radians(angleRz)))
             DeltaY_CS5_C = (-DeltaX_SBIGXL_C * np.sin(math.radians(angleRz))) + (DeltaY_SBIGXL_C * np.cos(math.radians(angleRz))) 
+            
+        DeltaX_CS5_A_Sensor_Center
+        DeltaY_CS5_A_Sensor_Center
+        
+        DeltaX_CS5_B_Sensor_Center
+        DeltaY_CS5_B_Sensor_Center
+        
+        DeltaX_CS5_C_Sensor_Center
+        DeltaY_CS5_C_Sensor_Center
             
             CS5XA = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][0] + DeltaX_CS5_A/1000
             CS5YA = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][1] + DeltaY_CS5_A/1000
@@ -355,6 +373,15 @@ class checkCameraOriginLocation(object):
             
             DeltaX_CS5_C = DeltaX_SBIGXL_C
             DeltaY_CS5_C = DeltaY_SBIGXL_C 
+            
+        DeltaX_CS5_A_Sensor_Center
+        DeltaY_CS5_A_Sensor_Center
+        
+        DeltaX_CS5_B_Sensor_Center
+        DeltaY_CS5_B_Sensor_Center
+        
+        DeltaX_CS5_C_Sensor_Center
+        DeltaY_CS5_C_Sensor_Center
             
             CS5XA = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][0] + DeltaX_CS5_A/1000
             CS5YA = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][1] + DeltaY_CS5_A/1000
