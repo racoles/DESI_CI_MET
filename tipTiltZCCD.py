@@ -121,7 +121,8 @@ class tipTiltZCCD(object):
                          " Triangle Adjustment Ratio=(Distance between micrometers)/(Sensor triangle side length)\n Triangle Adjustment Ratio = " + format(fC.micrometerDistance, '.3f') + 
                          "mm / " + format(fC.tccs, '.3f') + "mm = " + format(triangleAdjustmentRatio, '.3f') + "\n")
         
-        faah.pageLogging(consoleLog, logFile, "WARNING: the " + str(CCDLabel) +" camera Z heights are not equal to the nominal height.\n" + "The current micrometer thread pitch is " + str(TTFThread) + "mm (= " + str(TTFThread*1000) + "um = 1/80 in)." + 
+        faah.pageLogging(consoleLog, logFile, "WARNING: the " + str(CCDLabel) +" camera Z heights are not equal to the nominal height.\n" + 
+                "The current micrometer thread pitch is " + str(TTFThread) + "mm (= " + str(TTFThread*1000) + "um = 1/80 in)." + 
                 "\nTo adjust the camera to the nominal height, adjust the micrometers as:\n\n" + 
                 "Micrometer A:\n " + 
                 "A(micrometer um) = " + format(Az_move, '.3f') + "um" +
