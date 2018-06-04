@@ -18,7 +18,7 @@ Testing:
     DESI_CI_MET_1.3: Haas Software test (04/30/2018)   
     DESI_CI_MET_1.3: Haas Software test (05/02/2018)  
     DESI_CI_MET_1.3: Haas DMM Magnification Test (05/03/2018)     
-    DESI_CI_MET_1.4: Haas Software test (05/30/2018) 
+    DESI_CI_MET_1.4: Haas Software test (05/31/2018-06/01/2018)
       
 Pending Testing:
     Ometech

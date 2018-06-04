@@ -190,8 +190,8 @@ class checkCameraOriginLocation(object):
         DeltaX_SBIGXL_A_Sensor_Center = ((xCenGMSA + xOffsetA) - self.pixelDistanceToCenterX) * pixelSize
         DeltaY_SBIGXL_A_Sensor_Center = ((yCenGMSA + yOffsetA) - self.pixelDistanceToCenterY) * pixelSize
         
-        DeltaX_SBIGXL_B_Sensor_Center = ((xCenGMSB + xOffsetB) - self.pixelDistanceToCenterX) * pixelSize
-        DeltaY_SBIGXL_B_Sensor_Center = ((yCenGMSB + yOffsetB) - self.pixelDistanceToCenterY) * pixelSize
+        DeltaX_SBIGXL_B_Sensor_Center = (self.pixelDistanceToCenterX - (xCenGMSB + xOffsetB) ) * pixelSize
+        DeltaY_SBIGXL_B_Sensor_Center = (self.pixelDistanceToCenterY - (yCenGMSB + yOffsetB)) * pixelSize
         
         DeltaX_SBIGXL_C_Sensor_Center = ((xCenGMSC + xOffsetC) - self.pixelDistanceToCenterX) * pixelSize
         DeltaY_SBIGXL_C_Sensor_Center = ((yCenGMSC + yOffsetC) - self.pixelDistanceToCenterY) * pixelSize
