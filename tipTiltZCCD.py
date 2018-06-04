@@ -121,20 +121,21 @@ class tipTiltZCCD(object):
                          " Triangle Adjustment Ratio=(Distance between micrometers)/(Sensor triangle side length)\n Triangle Adjustment Ratio = " + format(fC.micrometerDistance, '.3f') + 
                          "mm / " + format(fC.tccs, '.3f') + "mm = " + format(triangleAdjustmentRatio, '.3f') + "\n")
         
-        faah.pageLogging(consoleLog, logFile, "WARNING: the " + str(CCDLabel) +" camera Z heights are not equal to the nominal height.\n" + "The current micrometer thread pitch is " + str(TTFThread) + "mm (= " + str(TTFThread*1000) + "um = 1/80 in)." + 
+        faah.pageLogging(consoleLog, logFile, "WARNING: the " + str(CCDLabel) +" camera Z heights are not equal to the nominal height.\n" + 
+                "The current micrometer thread pitch is " + str(TTFThread) + "mm (= " + str(TTFThread*1000) + "um = 1/80 in)." + 
                 "\nTo adjust the camera to the nominal height, adjust the micrometers as:\n\n" + 
                 "Micrometer A:\n " + 
                 "A(micrometer um) = " + format(Az_move, '.3f') + "um" +
-                "\nA(degrees) = " + format(AturnDistanceDegrees, '.2f') + " degrees " + turnA + "\n" +
-                "A(ticks) = " + format(AturnDistanceTicks, '.2f') + " ticks " + turnA + 
+                #"\nA(degrees) = " + format(AturnDistanceDegrees, '.2f') + " degrees " + turnA + "\n" +
+                #"A(ticks) = " + format(AturnDistanceTicks, '.2f') + " ticks " + turnA + 
                 "\n\nMicrometer B:\n " + 
                 "B(micrometer um) = " + format(Bz_move, '.3f') + "um" +
-                "\nB(degrees) = " + format(BturnDistanceDegrees, '.2f') + " degrees " + turnB + "\n" +
-                "B(ticks) = " + format(BturnDistanceTicks, '.2f') + " ticks " + turnB +              
+                #"\nB(degrees) = " + format(BturnDistanceDegrees, '.2f') + " degrees " + turnB + "\n" +
+                #"B(ticks) = " + format(BturnDistanceTicks, '.2f') + " ticks " + turnB +              
                 "\n\nMicrometer C: \n" + 
-                "C(micrometer um) = " + format(Cz_move, '.3f') + "um" +
-                "\nC(degrees) = " + format(CturnDistanceDegrees, '.2f') + " degrees " + turnC + "\n" +
-                "C(ticks) = " + format(CturnDistanceTicks, '.2f') + " ticks " + turnC, warning = True)
+                "C(micrometer um) = " + format(Cz_move, '.3f') + "um"                 ,warning = True)
+                #"\nC(degrees) = " + format(CturnDistanceDegrees, '.2f') + " degrees " + turnC + "\n" +
+                #"C(ticks) = " + format(CturnDistanceTicks, '.2f') + " ticks " + turnC, 
         
     def tipCCD(self, Az, Bz, Cz, Az_nominal, Bz_nominal, Cz_nominal, CCDLabel, consoleLog, logFile):
         '''
