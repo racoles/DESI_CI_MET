@@ -269,7 +269,7 @@ class metManualMode(tk.Tk):
         topA = tk.Toplevel()
         topA.title("CCD tip/tilt/Z Triangle Point A")
         aboutMessageA = str('Fill directory with images for point A (' + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'A'][0], '.3f') + 
-                            " ," + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'A'][1], '.3f') + " ," + format(nominalZA, '.3f') + ")")
+                            " mm ," + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'A'][1], '.3f') + " mm," + format(nominalZA, '.3f') + " um)")
         faah.pageLogging(self.consoleLog, self.logFile, aboutMessageA)
         msgA = tk.Message(topA, text=aboutMessageA)
         msgA.pack()
@@ -282,7 +282,7 @@ class metManualMode(tk.Tk):
         topB = tk.Toplevel()
         topB.title("CCD tip/tilt/Z Triangle Point B")
         aboutMessageB = str('Fill directory with images for point B (' + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'B'][0], '.3f') + 
-                            " ," + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'B'][1], '.3f') + " ," + format(nominalZB, '.3f') + ")")
+                            " mm ," + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'B'][1], '.3f') + " mm," + format(nominalZB, '.3f') + " um)")
         faah.pageLogging(self.consoleLog, self.logFile, aboutMessageB)
         msgB = tk.Message(topB, text=aboutMessageB)
         msgB.pack()
@@ -295,7 +295,7 @@ class metManualMode(tk.Tk):
         topC = tk.Toplevel()
         topC.title("CCD tip/tilt/Z Triangle Point C")
         aboutMessageC = str('Fill directory with images for point C (' + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'C'][0], '.3f') + 
-                            " ," + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'C'][1], '.3f') + " ," + format(nominalZC, '.3f') + ")")
+                            " mm ," + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'C'][1], '.3f') + " mm," + format(nominalZC, '.3f') + " um)")
         faah.pageLogging(self.consoleLog, self.logFile, aboutMessageC)
         msgC = tk.Message(topC, text=aboutMessageC)
         msgC.pack()
