@@ -69,14 +69,7 @@ class checkCameraOriginLocation(object):
         #Get calibration values 
         cs5off = cs5Offsets()
         PIDTSO_x, PIDTSO_y, CPOCID_X, CPOCID_Y, CPOCID_cent_x, CPOCID_cent_y, dmmMag = cs5off.calibrationScreen(consoleLog, logFile)
-        
-        #print(PIDTSO_x)
-        #print(PIDTSO_y)
-        #print(CPOCID_X)
-        #print(CPOCID_Y)
-        #print(CPOCID_cent_x)
-        #print(CPOCID_cent_y)
-        #print(dmmMag)
+
         #Calculate offset
         
         calOffX = ((PIDTSO_x - CPOCID_cent_x)*self.stipixel)/dmmMag
@@ -261,6 +254,15 @@ class checkCameraOriginLocation(object):
             
             CS5XC = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][0] + DeltaX_CS5_C/1000
             CS5YC = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][1] + DeltaY_CS5_C/1000
+            
+            CS5XA_Sensor_Center = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][0] + DeltaX_CS5_A_Sensor_Center/1000
+            CS5YA_Sensor_Center = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][1] + DeltaY_CS5_A_Sensor_Center/1000
+            
+            CS5XB_Sensor_Center = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][0] + DeltaX_CS5_B_Sensor_Center/1000
+            CS5YB_Sensor_Center = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][1] + DeltaY_CS5_B_Sensor_Center/1000
+            
+            CS5XC_Sensor_Center = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][0] + DeltaX_CS5_C_Sensor_Center/1000
+            CS5YC_Sensor_Center = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][1] + DeltaY_CS5_C_Sensor_Center/1000            
             
             faah.pageLogging(consoleLog, logFile, "\nMove to pixel (" + str(self.pixelDistanceToCheckPointX) + ", " + str(self.pixelDistanceToCheckPointY) + ")\n\n" +
                          "Using: ((centroid(pixel) + planetModeOffset) +/- targetPixel(pixel)) * pixelSize\n" +
