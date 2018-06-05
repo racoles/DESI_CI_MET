@@ -328,6 +328,15 @@ class checkCameraOriginLocation(object):
             CS5XC = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][0] + DeltaX_CS5_C/1000
             CS5YC = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][1] + DeltaY_CS5_C/1000
             
+            CS5XA_Sensor_Center = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][0] + DeltaX_CS5_A_Sensor_Center/1000
+            CS5YA_Sensor_Center = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][1] + DeltaY_CS5_A_Sensor_Center/1000
+            
+            CS5XB_Sensor_Center = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][0] + DeltaX_CS5_B_Sensor_Center/1000
+            CS5YB_Sensor_Center = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][1] + DeltaY_CS5_B_Sensor_Center/1000
+            
+            CS5XC_Sensor_Center = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][0] + DeltaX_CS5_C_Sensor_Center/1000
+            CS5YC_Sensor_Center = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][1] + DeltaY_CS5_C_Sensor_Center/1000
+            
             faah.pageLogging(consoleLog, logFile, "\nMove to pixel (" + str(self.pixelDistanceToCheckPointX) + ", " + str(self.pixelDistanceToCheckPointY) + ")\n\n" +
                          "Using: ((centroid(pixel)) + planetModeOffset) +/- targetPixel(pixel)) * pixelSize\n" +
                          "Distance in SBIGXL frame (mm):\n" +
@@ -384,7 +393,7 @@ class checkCameraOriginLocation(object):
         
             DeltaX_CS5_C_Sensor_Center = DeltaX_SBIGXL_C_Sensor_Center
             DeltaY_CS5_C_Sensor_Center = DeltaY_SBIGXL_C_Sensor_Center
- ################           
+         
             CS5XA = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][0] + DeltaX_CS5_A/1000
             CS5YA = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][1] + DeltaY_CS5_A/1000
             
@@ -393,6 +402,15 @@ class checkCameraOriginLocation(object):
             
             CS5XC = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][0] + DeltaX_CS5_C/1000
             CS5YC = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][1] + DeltaY_CS5_C/1000
+            
+            CS5XA_Sensor_Center = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][0] + DeltaX_CS5_A_Sensor_Center/1000
+            CS5YA_Sensor_Center = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][1] + DeltaY_CS5_A_Sensor_Center/1000
+            
+            CS5XB_Sensor_Center = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][0] + DeltaX_CS5_B_Sensor_Center/1000
+            CS5YB_Sensor_Center = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][1] + DeltaY_CS5_B_Sensor_Center/1000
+            
+            CS5XC_Sensor_Center = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][0] + DeltaX_CS5_C_Sensor_Center/1000
+            CS5YC_Sensor_Center = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][1] + DeltaY_CS5_C_Sensor_Center/1000
             
             
             faah.pageLogging(consoleLog, logFile, "\nMove to pixel (" + str(self.pixelDistanceToCheckPointX) + ", " + str(self.pixelDistanceToCheckPointY) + ")\n\n" +
