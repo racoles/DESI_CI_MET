@@ -388,17 +388,14 @@ class checkCameraOriginLocation(object):
                          format(CS5YC, '.3f') + "\n\n" +
                          
                         "Using: Center Pixel CS5 Location (mm) = Nominal CS5 + DeltaCS5\n" +
-                         "Calculated using triangle point A:\n" +
                          "    CS5X Sensor Center(A) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][0]) + " + " + format(DeltaX_CS5_A_Sensor_Center/1000, '.3f') + " = " + 
                          format(CS5XA_Sensor_Center, '.3f') + "\n" +
                          "    CS5Y Sensor Center(A) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][1]) + " + " + format(DeltaY_CS5_A_Sensor_Center/1000, '.3f') + " = " + 
                          format(CS5YA_Sensor_Center, '.3f') + "\n\n" +
-                         "Calculated using triangle point B:\n" +
                          "    CS5X Sensor Center(B) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][0]) + " + " + format(DeltaX_CS5_B_Sensor_Center/1000, '.3f') + " = " + 
                          format(CS5XB_Sensor_Center, '.3f') + "\n" +
                          "    CS5Y Sensor Center(B) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][1]) + " + " + format(DeltaY_CS5_B_Sensor_Center/1000, '.3f') + " = " + 
                          format(CS5YB_Sensor_Center, '.3f') + "\n\n" +
-                         "Calculated using triangle point C:\n" +
                          "    CS5X Sensor Center(C) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][0]) + " + " + format(DeltaX_CS5_C_Sensor_Center/1000, '.3f') + " = " + 
                          format(CS5XC_Sensor_Center, '.3f') + "\n" +
                          "    CS5Y Sensor Center(C) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][1]) + " + " + format(DeltaY_CS5_C_Sensor_Center/1000, '.3f') + " = " + 
@@ -481,17 +478,14 @@ class checkCameraOriginLocation(object):
                          format(CS5YC, '.3f') + "\n\n" +
                          
                         "Using: Center Pixel CS5 Location (mm) = Nominal CS5 + DeltaCS5\n" +
-                         "Calculated using triangle point A:\n" +
                          "    CS5X Sensor Center(A) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][0]) + " + " + format(DeltaX_CS5_A_Sensor_Center/1000, '.3f') + " = " + 
                          format(CS5XA_Sensor_Center, '.3f') + "\n" +
                          "    CS5Y Sensor Center(A) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][1]) + " + " + format(DeltaY_CS5_A_Sensor_Center/1000, '.3f') + " = " + 
                          format(CS5YA_Sensor_Center, '.3f') + "\n\n" +
-                         "Calculated using triangle point B:\n" +
                          "    CS5X Sensor Center(B) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][0]) + " + " + format(DeltaX_CS5_B_Sensor_Center/1000, '.3f') + " = " + 
                          format(CS5XB_Sensor_Center, '.3f') + "\n" +
                          "    CS5Y Sensor Center(B) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][1]) + " + " + format(DeltaY_CS5_B_Sensor_Center/1000, '.3f') + " = " + 
                          format(CS5YB_Sensor_Center, '.3f') + "\n\n" +
-                         "Calculated using triangle point C:\n" +
                          "    CS5X Sensor Center(C) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][0]) + " + " + format(DeltaX_CS5_C_Sensor_Center/1000, '.3f') + " = " + 
                          format(CS5XC_Sensor_Center, '.3f') + "\n" +
                          "    CS5Y Sensor Center(C) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][1]) + " + " + format(DeltaY_CS5_C_Sensor_Center/1000, '.3f') + " = " + 
