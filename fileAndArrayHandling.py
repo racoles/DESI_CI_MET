@@ -71,17 +71,17 @@ class fileAndArrayHandling(object):
         file_exists_condition = True
         ittr = 0
         while file_exists_condition:
-            if os.path.isdir(str(fiflabel + "_" + dirType + '_' + logTime + "_" + ittr)):
+            if os.path.isdir(str(fiflabel) + "_" + str(dirType) + '_' + str(logTime) + "_" + str(ittr)):
                 ittr += 1
             else:
-                os.makedirs(str(fiflabel + "_" + dirType + '_' + logTime + "_" + ittr))
+                os.makedirs(str(fiflabel) + "_" + str(dirType) + '_' + str(logTime) + "_" + str(ittr))
                 file_exists_condition = False
         #try:
         #    os.makedirs(str(fiflabel + "_" + dirType + '_' + logTime))
         #except OSError as e:
         #    if e.errno != errno.EEXIST:
         #        raise
-        return str(fiflabel + "_" + dirType + '_' + logTime + "_" + ittr)
+        return str(fiflabel) + "_" + str(dirType) + '_' + str(logTime) + "_" + str(ittr)
     
     def pageLogging(self, cLog, lFile, logText, doubleSpaceWithTime = True, warning = False, calibration = False):
         '''
