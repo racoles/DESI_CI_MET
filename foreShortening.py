@@ -15,17 +15,22 @@ This module holds a series of functions that are used to find the magnitude of t
 '''
 
 # Import #######################################################################################
-import tkinter as tk
-from fileAndArrayHandling import fileAndArrayHandling
-from CCDOpsPlanetMode import CCDOpsPlanetMode
-from centroidFIF import centroidFIF
-from focusCurve import focusCurve
-from alternateCentroidMethods import gmsCentroid
-from cs5Offsets import cs5Offsets
-from tipTiltZCCD import tipTiltZCCD
-import numpy as np
-import math
 ################################################################################################
 
 class foreShortening(object):
+    
+    def __init__(self):
+        '''
+        Constructor
+        '''
+        
+    def foreShortening(self, consoleLog, logFile):
+        '''
+        Find the location of the CI camera's sensor origin in CS5 and instruct the user to view 
+        the origin with the DMM to ensure that the tip/tilt/focus pinhole triangle was placed properly
+        on the SBIG STXL sensor.
+        '''
+        ###########################################################################
+        ###Offset Calibration
+        ###########################################################################
 
