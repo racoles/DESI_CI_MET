@@ -28,6 +28,7 @@ class foreShortening(object):
         '''
         Find the magnitude of this fore-shortening for the 6303 Cameras (N,E,S,W)
         '''
+        
         ###########################################################################
         ###Offset Calibration
         ###########################################################################
