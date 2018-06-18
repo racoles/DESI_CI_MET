@@ -24,7 +24,7 @@ class foreShortening(object):
         Constructor
         '''
         
-    def foreShortening(self, consoleLog, logFile, CCDSelection):
+    def foreShortening(self, consoleLog, logFile, CCDSelection, trianglePoint):
         '''
         Find the magnitude of this fore-shortening for the 6303 Cameras (N,E,S,W)
         '''
