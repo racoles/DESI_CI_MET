@@ -26,9 +26,7 @@ class foreShortening(object):
         
     def foreShortening(self, consoleLog, logFile):
         '''
-        Find the location of the CI camera's sensor origin in CS5 and instruct the user to view 
-        the origin with the DMM to ensure that the tip/tilt/focus pinhole triangle was placed properly
-        on the SBIG STXL sensor.
+        Find the magnitude of this fore-shortening for the 6303 Cameras (N,E,S,W)
         '''
         ###########################################################################
         ###Offset Calibration
