@@ -300,18 +300,15 @@ class checkCameraOriginLocation(object):
                          "    CS5Y(C) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][1]) + " + " + format(DeltaY_CS5_C/1000, '.3f') + " = " + 
                          format(CS5YC, '.3f') + "\n\n" +
                          
-                        "Using: Center Pixel CS5 Location (mm) = Nominal CS5 + DeltaCS5\n" +
-                         "Calculated using triangle point A:\n" +
+                        "Using: Center Pixel CS5 Location (mm) = Nominal CS5 + DeltaCS5\n\n" +
                          "    CS5X Sensor Center(A) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][0]) + " + " + format(DeltaX_CS5_A_Sensor_Center/1000, '.3f') + " = " + 
                          format(CS5XA_Sensor_Center, '.3f') + "\n" +
                          "    CS5Y Sensor Center(A) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][1]) + " + " + format(DeltaY_CS5_A_Sensor_Center/1000, '.3f') + " = " + 
                          format(CS5YA_Sensor_Center, '.3f') + "\n\n" +
-                         "Calculated using triangle point B:\n" +
                          "    CS5X Sensor Center(B) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][0]) + " + " + format(DeltaX_CS5_B_Sensor_Center/1000, '.3f') + " = " + 
                          format(CS5XB_Sensor_Center, '.3f') + "\n" +
                          "    CS5Y Sensor Center(B) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][1]) + " + " + format(DeltaY_CS5_B_Sensor_Center/1000, '.3f') + " = " + 
                          format(CS5YB_Sensor_Center, '.3f') + "\n\n" +
-                         "Calculated using triangle point C:\n" +
                          "    CS5X Sensor Center(C) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][0]) + " + " + format(DeltaX_CS5_C_Sensor_Center/1000, '.3f') + " = " + 
                          format(CS5XC_Sensor_Center, '.3f') + "\n" +
                          "    CS5Y Sensor Center(C) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][1]) + " + " + format(DeltaY_CS5_C_Sensor_Center/1000, '.3f') + " = " + 
@@ -550,7 +547,7 @@ class checkCameraOriginLocation(object):
         ###########################################################################   
        
         faah.pageLogging(consoleLog, logFile,
-                        "CALIBRATION OFFSET APPLIED\n" + "For target pixel (" + str(self.pixelDistanceToCheckPointX) + ", " + str(self.pixelDistanceToCheckPointY) + ")\n" +
+                        "\n\nCALIBRATION OFFSET APPLIED\n" + "For target pixel (" + str(self.pixelDistanceToCheckPointX) + ", " + str(self.pixelDistanceToCheckPointY) + ")\n" +
                         "Using: CS5 CCD Origin (mm) = CS5 CCD target pixel with no offset (mm) + calibration Offset (mm)\n" +
                         "Calibration Offset (mm): (" + format(calOffX/1000, '.3f') + ", " + format(calOffY/1000, '.3f') + ")\n\n"
                         "    CS5 CCD target pixel X(A) = " + format(CS5XA, '.3f') + " + " + format(calOffX/1000, '.3f') + " = " + format(CS5XA + calOffX/1000, '.3f') + "\n" +
@@ -565,7 +562,7 @@ class checkCameraOriginLocation(object):
         ###########################################################################          
         #Distance from target pixel to origin (um)
         faah.pageLogging(consoleLog, logFile,
-                        "CALIBRATION OFFSET APPLIED\n" + "For pixel point (" + str(0) + ", " + str(0) + ")\n" +
+                        "\n\nCALIBRATION OFFSET APPLIED\n" + "For pixel point (" + str(0) + ", " + str(0) + ")\n" +
                         "Using: CS5 CCD Origin (mm) = CS5 CCD target pixel with no offset (mm) + calibration Offset (mm) + (target point (pixel) * pixelSize (mm))\n" +
                         "Calibration Offset (mm): (" + format(calOffX/1000, '.3f') + ", " + format(calOffY/1000, '.3f') + ")\n\n" +
                         "    CS5 CCD Origin X(A) = " + format(CS5XA, '.3f') + " + " + format(calOffX/1000, '.3f') +  " + " + format((self.pixelDistanceToCheckPointX * pixelSize)/1000, '.3f') +
