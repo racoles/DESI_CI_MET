@@ -34,6 +34,6 @@ class foreShortening(object):
         ###########################################################################
         ###
         ###########################################################################
-        foreShortenedDistanceFromCenter = (1-np.arctan)
+        foreShortenedDistanceFromCenter = (1 - np.cos(self.CCDAngle)) * (DIST * pixelSize) #um
         foreShortenedCS5Location =
         
