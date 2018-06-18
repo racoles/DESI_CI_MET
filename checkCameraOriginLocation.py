@@ -313,8 +313,8 @@ class checkCameraOriginLocation(object):
                          format(CS5XC_Sensor_Center, '.3f') + "\n" +
                          "    CS5Y Sensor Center(C) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][1]) + " + " + format(DeltaY_CS5_C_Sensor_Center/1000, '.3f') + " = " + 
                          format(CS5YC_Sensor_Center, '.3f') + "\n\n"
-                        "CS5 CCD Sensor Center Average X (mm) = " + format(, '.3f') + "\n" +
-                        "CS5 CCD Sensor Center Average Y (mm) = " + format(, '.3f') + "\n\n")) 
+                        "CS5 CCD Sensor Center Average X (mm) = " + format(CS5XA_Sensor_Center + CS5XB_Sensor_Center + CS5XC_Sensor_Center, '.3f') + "\n" +
+                        "CS5 CCD Sensor Center Average Y (mm) = " + format(CS5YA_Sensor_Center + CS5YB_Sensor_Center + CS5YC_Sensor_Center, '.3f') + "\n\n") 
             
         elif angleRz > 0: #b(y)>c(y) = -Rz = Clockwise
             DeltaX_CS5_A = (DeltaX_SBIGXL_A * np.cos(math.radians(angleRz))) + (DeltaY_SBIGXL_A * np.sin(math.radians(angleRz)))
@@ -402,8 +402,8 @@ class checkCameraOriginLocation(object):
                          format(CS5XC_Sensor_Center, '.3f') + "\n" +
                          "    CS5Y Sensor Center(C) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][1]) + " + " + format(DeltaY_CS5_C_Sensor_Center/1000, '.3f') + " = " + 
                          format(CS5YC_Sensor_Center, '.3f') + "\n\n"
-                        "CS5 CCD Sensor Center Average X (mm) = " + format(, '.3f') + "\n" +
-                        "CS5 CCD Sensor Center Average Y (mm) = " + format(, '.3f') + "\n\n"))  
+                        "CS5 CCD Sensor Center Average X (mm) = " + format(CS5XA_Sensor_Center + CS5XB_Sensor_Center + CS5XC_Sensor_Center, '.3f') + "\n" +
+                        "CS5 CCD Sensor Center Average Y (mm) = " + format(CS5YA_Sensor_Center + CS5YB_Sensor_Center + CS5YC_Sensor_Center, '.3f') + "\n\n") 
                
         else:
             faah.pageLogging(consoleLog, logFile, "Rz = 0: no rotational transform needed.")
@@ -494,8 +494,8 @@ class checkCameraOriginLocation(object):
                          format(CS5XC_Sensor_Center, '.3f') + "\n" +
                          "    CS5Y Sensor Center(C) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][1]) + " + " + format(DeltaY_CS5_C_Sensor_Center/1000, '.3f') + " = " + 
                          format(CS5YC_Sensor_Center, '.3f') + "\n\n"
-                        "CS5 CCD Sensor Center Average X (mm) = " + format(, '.3f') + "\n" +
-                        "CS5 CCD Sensor Center Average Y (mm) = " + format(, '.3f') + "\n\n")) 
+                        "CS5 CCD Sensor Center Average X (mm) = " + format(CS5XA_Sensor_Center + CS5XB_Sensor_Center + CS5XC_Sensor_Center, '.3f') + "\n" +
+                        "CS5 CCD Sensor Center Average Y (mm) = " + format(CS5YA_Sensor_Center + CS5YB_Sensor_Center + CS5YC_Sensor_Center, '.3f') + "\n\n") 
         
         ###########################################################################
         ###Image (pixelDistanceToCheckPointX, pixelDistanceToCheckPointY) with SBIGXL
