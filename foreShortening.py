@@ -1,11 +1,16 @@
 '''
-@title checkCameraOriginLocation
+@title foreShortening
 @author: Rebecca Coles
-Updated on June 06, 2018
-Created on Mar 22, 2018
+Updated on June 18, 2018
+Created on Mar 18, 2018
 
-checkCameraOriginLocation
-This module holds a series of functions that are used to find the origin of a CCD on the DESI CI in CS5.
+foreShortening
+This module holds a series of functions that are used to find the magnitude of this fore-shortening:
+
+1.    The 6303 Cameras (N,E,S,W) are tilted by 5.4 degrees from the Z axis. Therefore when the CCDs are viewed from above, 
+        and measurements are made in the CS5 X,Y plane, the 6303 CCDs will appear to be fore-shortened across their width for all four  cameras. 
+2.    Magnitude of this fore-shortening is ~ (1- COS(5.4deg)) *(2048*9um) = 82 um  (too large to ignore)
+
 
 '''
 
@@ -22,14 +27,5 @@ import numpy as np
 import math
 ################################################################################################
 
-class checkCameraOriginLocation(object):
-    
-    CCDSelection = ""
-    
-    #Pixel distance to origin check point
-    pixelDistanceToCheckPointX = 25 #pixel location X
-    pixelDistanceToCheckPointY = 25 #pixel location Y  
-    
-    #Pixel distance to sensor center
-    pixelDistanceToCenterX = 3072/2 #pixel location X
-    pixelDistanceToCenterY = 2048/2 #pixel location Y     
+class foreShortening(object):
+
