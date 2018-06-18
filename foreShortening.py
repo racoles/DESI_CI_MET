@@ -15,20 +15,25 @@ This module holds a series of functions that are used to find the magnitude of t
 '''
 
 # Import #######################################################################################
+import numpy as np
 ################################################################################################
 
 class foreShortening(object):
+    
+    CCDAngle = 5.4 #degrees
     
     def __init__(self):
         '''
         Constructor
         '''
         
-    def foreShortening(self, consoleLog, logFile, CCDSelection, trianglePoint):
+    def foreShortening(self, consoleLog, logFile, CCDLabel, trianglePoint, pixelSize):
         '''
         Find the magnitude of this fore-shortening for the 6303 Cameras (N,E,S,W)
         '''
         ###########################################################################
         ###
         ###########################################################################
-
+        foreShortenedDistanceFromCenter = (1-np.arctan)
+        foreShortenedCS5Location =
+        
