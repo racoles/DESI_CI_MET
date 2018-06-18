@@ -502,7 +502,7 @@ class checkCameraOriginLocation(object):
         ###########################################################################                 
         top = tk.Toplevel()
         top.title("\nImage pixel (" + str(self.pixelDistanceToCheckPointX) + ", " + str(self.pixelDistanceToCheckPointY) + ")?")
-        aboutMessage = str("\nAre you ready to image pixel (" + str(self.pixelDistanceToCheckPointX) + ", " + str(self.pixelDistanceToCheckPointY) + ")?")
+        aboutMessage = str("\nAre you ready to image pixel (" + str(self.pixelDistanceToCheckPointX) + ", " + str(self.pixelDistanceToCheckPointY) + ")?\n\n")
         faah.pageLogging(consoleLog, logFile, aboutMessage)
         msg = tk.Message(top, text=aboutMessage)
         msg.pack()
