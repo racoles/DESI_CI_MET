@@ -15,6 +15,7 @@ This module holds a series of functions that are used to find the magnitude of t
 # Import #######################################################################################
 import numpy as np
 from focusCurve import focusCurve
+from fileAndArrayHandling import fileAndArrayHandling
 ################################################################################################
 
 class foreShortening(object):
@@ -33,7 +34,7 @@ class foreShortening(object):
         ###########################################################################
         ###Select Camera
         ###########################################################################
-        
+        faah = fileAndArrayHandling()
         fC = focusCurve()
                 
         if CCDLabel == "NCCD": #(fore-shortened in Y)
@@ -107,5 +108,6 @@ class foreShortening(object):
             foreShortenedCS5Location_C = fC.CCDLocationsCS5["CCCD"][1] + foreShortenedDistanceFromCenter_C #mm
                 
         else:
-        
+            faah.pageLogging(consoleLog, logFile, "Calibration Routine Complete\n")
+                
         return foreShortenedCS5Location_A, foreShortenedCS5Location_B, foreShortenedCS5Location_C
