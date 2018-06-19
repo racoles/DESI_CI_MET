@@ -39,9 +39,10 @@ class foreShortening(object):
         fC = focusCurve()
                 
         if CCDLabel == "NCCD":
-            if trianglePoint == "NCCDA":
+            if trianglePoint == "NCCDA": #(fore-shortened in Y)
                 dist = fC.trianglePonitCCDLocationsCS5["NCCDA"][1] - fC.CCDLocationsCS5["NCCDA"][1] 
-                foreShortenedDistanceFromCenter = (1 - np.cos(self.CCDAngle)) * (dist * pixelSize) #um
+                foreShortenedDistanceFromCenter = (1 - np.cos(self.CCDAngle)) * (dist * (pixelSize/1000)) #mm
+                foreShortenedCS5Location = fC.CCDLocationsCS5["NCCDA"][1] + foreShortenedDistanceFromCenter
             elif trianglePoint == "NCCDB" or trianglePoint == "NCCDC":
             else:
         elif CCDLabel == "WCCD":
@@ -61,7 +62,5 @@ class foreShortening(object):
             elif trianglePoint == "CCCDB" or trianglePoint == "CCCDC":
             else:
         else:
-            
-        foreShortenedCS5Location =
         
-        return CS5position
+        return foreShortenedCS5Location
