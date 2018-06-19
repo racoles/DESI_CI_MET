@@ -16,6 +16,7 @@ This module holds a series of functions that are used to find the magnitude of t
 
 # Import #######################################################################################
 import numpy as np
+from focusCurve import focusCurve
 ################################################################################################
 
 class foreShortening(object):
@@ -34,8 +35,13 @@ class foreShortening(object):
         ###########################################################################
         ###Select Camera
         ###########################################################################
+        
+        fC = focusCurve()
+                
         if CCDLabel == "NCCD":
-            if trianglePoint == "NCCDA"
+            if trianglePoint == "NCCDA":
+                dist = fC.trianglePonitCCDLocationsCS5["NCCDA"][1] - fC.CCDLocationsCS5["NCCDA"][1] 
+                foreShortenedDistanceFromCenter = (1 - np.cos(self.CCDAngle)) * (dist * pixelSize) #um
             elif trianglePoint == "NCCDB" or trianglePoint == "NCCDC":
             else:
         elif CCDLabel == "WCCD":
@@ -55,6 +61,7 @@ class foreShortening(object):
             elif trianglePoint == "CCCDB" or trianglePoint == "CCCDC":
             else:
         else:
-        foreShortenedDistanceFromCenter = (1 - np.cos(self.CCDAngle)) * (DIST * pixelSize) #um
+            
         foreShortenedCS5Location =
         
+        return CS5position
