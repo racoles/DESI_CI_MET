@@ -32,8 +32,14 @@ class foreShortening(object):
         Find the magnitude of this fore-shortening for the 6303 Cameras (N,E,S,W)
         '''
         ###########################################################################
-        ###
+        ###Select Camera
         ###########################################################################
+        if CCDLabel == "NCCD":
+        elif CCDLabel == "WCCD":
+        elif CCDLabel == "SCCD":
+        elif CCDLabel == "ECCD":
+        elif CCDLabel == "CCCD":
+        else:
         foreShortenedDistanceFromCenter = (1 - np.cos(self.CCDAngle)) * (DIST * pixelSize) #um
         foreShortenedCS5Location =
         
