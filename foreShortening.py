@@ -35,10 +35,25 @@ class foreShortening(object):
         ###Select Camera
         ###########################################################################
         if CCDLabel == "NCCD":
+            if trianglePoint == "NCCDA"
+            elif trianglePoint == "NCCDB" or trianglePoint == "NCCDC":
+            else:
         elif CCDLabel == "WCCD":
+            if trianglePoint == "WCCDA"
+            elif trianglePoint == "WCCDB" or trianglePoint == "WCCDC":
+            else:
         elif CCDLabel == "SCCD":
+            if trianglePoint == "SCCDA"
+            elif trianglePoint == "SCCDB" or trianglePoint == "SCCDC":
+            else:
         elif CCDLabel == "ECCD":
+            if trianglePoint == "ECCDA"
+            elif trianglePoint == "ECCDB" or trianglePoint == "ECCDC":
+            else:
         elif CCDLabel == "CCCD":
+            if trianglePoint == "CCCDA"
+            elif trianglePoint == "CCCDB" or trianglePoint == "CCCDC":
+            else:
         else:
         foreShortenedDistanceFromCenter = (1 - np.cos(self.CCDAngle)) * (DIST * pixelSize) #um
         foreShortenedCS5Location =
