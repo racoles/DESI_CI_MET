@@ -108,6 +108,6 @@ class foreShortening(object):
             foreShortenedCS5Location_C = fC.CCDLocationsCS5["CCCD"][1] + foreShortenedDistanceFromCenter_C #mm
                 
         else:
-            faah.pageLogging(consoleLog, logFile, "\n\nWarning: was unable to fore-shorten value\n\n", warning = True)
+            faah.pageLogging(consoleLog, logFile, "\n\nWarning: was unable to fore-shorten value.\n\n", warning = True)
                 
         return foreShortenedCS5Location_A, foreShortenedCS5Location_B, foreShortenedCS5Location_C
