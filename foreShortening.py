@@ -60,11 +60,11 @@ class foreShortening(object):
             #trinaglePoint B
             distB = fC.trianglePonitCCDLocationsCS5["WCCDB"][0] - fC.CCDLocationsCS5["WCCDB"][0] 
             foreShortenedDistanceFromCenter_B = (1 - np.cos(self.CCDAngle)) * (distB * (pixelSize/1000)) #mm
-            foreShortenedCS5Location_B = fC.CCDLocationsCS5["WCCDB"][0] + foreShortenedDistanceFromCenter_B #mm
+            foreShortenedCS5Location_B = fC.CCDLocationsCS5["WCCDB"][0] - foreShortenedDistanceFromCenter_B #mm
             #trinaglePoint C
             distC = fC.trianglePonitCCDLocationsCS5["WCCDC"][0] - fC.CCDLocationsCS5["WCCDC"][0] 
             foreShortenedDistanceFromCenter_C = (1 - np.cos(self.CCDAngle)) * (distC * (pixelSize/1000)) #mm
-            foreShortenedCS5Location_C = fC.CCDLocationsCS5["WCCDC"][0] + foreShortenedDistanceFromCenter_C #mm
+            foreShortenedCS5Location_C = fC.CCDLocationsCS5["WCCDC"][0] - foreShortenedDistanceFromCenter_C #mm
             
         elif CCDLabel == "SCCD":
             if trianglePoint == "SCCDA"
