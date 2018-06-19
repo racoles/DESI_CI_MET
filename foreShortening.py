@@ -28,7 +28,7 @@ class foreShortening(object):
         Constructor
         '''
         
-    def foreShortening(self, consoleLog, logFile, CCDLabel, trianglePoint, pixelSize):
+    def foreShortening(self, consoleLog, logFile, CCDLabel, pixelSize):
         '''
         Find the magnitude of this fore-shortening for the 6303 Cameras (N,E,S,W)
         '''
@@ -38,13 +38,15 @@ class foreShortening(object):
         
         fC = focusCurve()
                 
-        if CCDLabel == "NCCD":
-            if trianglePoint == "NCCDA": #(fore-shortened in Y)
-                dist = fC.trianglePonitCCDLocationsCS5["NCCDA"][1] - fC.CCDLocationsCS5["NCCDA"][1] 
-                foreShortenedDistanceFromCenter = (1 - np.cos(self.CCDAngle)) * (dist * (pixelSize/1000)) #mm
-                foreShortenedCS5Location = fC.CCDLocationsCS5["NCCDA"][1] + foreShortenedDistanceFromCenter
-            elif trianglePoint == "NCCDB" or trianglePoint == "NCCDC":
-            else:
+        if CCDLabel == "NCCD": #(fore-shortened in Y)
+            #trinaglePoint A
+            distA = fC.trianglePonitCCDLocationsCS5["NCCDA"][1] - fC.CCDLocationsCS5["NCCDA"][1] 
+            foreShortenedDistanceFromCenter_A = (1 - np.cos(self.CCDAngle)) * (distA * (pixelSize/1000)) #mm
+            foreShortenedCS5Location_A = fC.CCDLocationsCS5["NCCDA"][1] + foreShortenedDistanceFromCenter_A
+            #trinaglePoint B
+            #trinaglePoint C
+                
+
         elif CCDLabel == "WCCD":
             if trianglePoint == "WCCDA"
             elif trianglePoint == "WCCDB" or trianglePoint == "WCCDC":
@@ -63,4 +65,4 @@ class foreShortening(object):
             else:
         else:
         
-        return foreShortenedCS5Location
+        return foreShortenedCS5Location_A, foreShortenedCS5Location_B, foreShortenedCS5Location_C
