@@ -97,6 +97,8 @@ class inputGUI(object):
         tk.Button(master, text="Centroid Pinhole",bg = "white",command=lambda:cF.alternateCentroid(self.consoleLog, self.logFile)).grid(row=8, column=0, columnspan=2, sticky='W')
         #Manual Mode Check Camera Origin
         tk.Button(master, text="Check Camera Origin",bg = "white",command=lambda:ccol.checkCameraOriginLocation(self.consoleLog, self.logFile)).grid(row=8, column=1, columnspan=2, sticky='W')
+        #Manual Mode Temperature Check
+        tk.Button(master, text="Record Temperatures",bg = "white",command=lambda:ccol.checkCameraOriginLocation(self.consoleLog, self.logFile)).grid(row=8, column=2, columnspan=2, sticky='W')
         #Manual Mode FIF Focus Curve
         tk.Button(master, text="FIF Focus Curve",bg = "white", command=lambda:self._beginManualMode(master, self.consoleLog, self.logFile, "manualFIFFocusCurve")).grid(row=9, column=0, columnspan=1, sticky='W')
         #Manual Mode CCD Focus Curve
@@ -186,6 +188,21 @@ class inputGUI(object):
             mMode.CCDTipTiltZ()
             
     def _printDictOfNominalCIValues(self, consoleLog, logFile, calOffX, calOffY):
+        '''
+        Print focusCurve Dictionary of Nominal Values to Log/Console
+        '''
+        faah = fileAndArrayHandling()
+        fC = focusCurve()
+        faah.printDictToFile(fC.fifLocationsCS5, "Nominal FIF Locations in CS5 (X mm, Y mm, Z mm)" , self.consoleLog, self.logFile, printNominalDicts = True)
+        faah.printDictToFile(fC.CCDLocationsCS5, "Nominal CCD Center Locations in CS5 (X mm, Y mm, Z mm)" , self.consoleLog, self.logFile, printNominalDicts = True)       
+        faah.printDictToFile(fC.trianglePonitCCDLocationsCS5, "Nominal CCD tip/tilt/Z Measurement Triangle Locations in CS5 (X mm, Y mm, Z mm)" , self.consoleLog, self.logFile, printNominalDicts = True)
+        
+        if calOffX == "Not yet set" or calOffY == "Not yet set":
+            faah.pageLogging(consoleLog, logFile, "CS5 Calibration Offsets (mm) (X = " + calOffX + ", Y = " + calOffY + ")\n")
+        else:
+            faah.pageLogging(consoleLog, logFile, "CS5 Calibration Offsets (mm) (X = " + format(calOffX/1000, '.3f')+ ", Y = " + format(calOffY/1000, '.3f') + ")\n")
+            
+    def _recordTemperatures(self, consoleLog, logFile):
         '''
         Print focusCurve Dictionary of Nominal Values to Log/Console
         '''
