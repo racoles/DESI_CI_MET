@@ -98,7 +98,7 @@ class inputGUI(object):
         #Manual Mode Check Camera Origin
         tk.Button(master, text="Check Camera Origin",bg = "white",command=lambda:ccol.checkCameraOriginLocation(self.consoleLog, self.logFile)).grid(row=8, column=1, columnspan=2, sticky='W')
         #Manual Mode Temperature Check
-        tk.Button(master, text="Record Temperatures",bg = "white",command=lambda:ccol.checkCameraOriginLocation(self.consoleLog, self.logFile)).grid(row=8, column=2, columnspan=2, sticky='W')
+        tk.Button(master, text="Record Temperatures",bg = "white",command=lambda:self._recordTemperatures(self.consoleLog, self.logFile)).grid(row=8, column=2, columnspan=2, sticky='W')
         #Manual Mode FIF Focus Curve
         tk.Button(master, text="FIF Focus Curve",bg = "white", command=lambda:self._beginManualMode(master, self.consoleLog, self.logFile, "manualFIFFocusCurve")).grid(row=9, column=0, columnspan=1, sticky='W')
         #Manual Mode CCD Focus Curve
@@ -211,8 +211,6 @@ class inputGUI(object):
         top.title("Record Temperatures")
         aboutMessage = str("Enter CI temperatures:")
         faah.pageLogging(consoleLog, logFile, aboutMessage)
-        msgA = tk.Message(top, text=aboutMessage)
-        msgA.pack()
         
         #Temp1
         tk.Label(top, text="Temp #1 (degrees C) = ").grid(row=1, column=0, sticky='W')
@@ -249,12 +247,13 @@ class inputGUI(object):
         temp1Button = tk.Button(top, text='Submit', bg = "white", command=lambda:self._submitTempValue(temp1Button, temp1, "5", consoleLog, logFile))
         temp1Button.grid(row=5, column=2)
         
-        buttonA = tk.Button(top, text="Exit Temperature Screen", command=top.destroy)
-        buttonA.pack()
+        tk.Label(top, text=" ").grid(row=6, column=0, sticky='W')
+        exitButton = tk.Button(top, text="Exit Temperature Screen", command=top.destroy)
+        exitButton.grid(row=7, column=0)
+        
         top.wait_window()
             
     def _submitTempValue(self, tempButton, temp, tempSensor, consoleLog, logFile):
-        self.temp = temp.get()
         tempButton.config(text = "Entered", bg = 'green') 
         faah = fileAndArrayHandling()
-        faah.pageLogging(consoleLog, logFile, "Temp #" + tempSensor + ": " + str(temp) + "C", tempLog = True)
+        faah.pageLogging(consoleLog, logFile, "Temp #" + tempSensor + ": " + str(temp.get()) + "C", tempLog = True)
