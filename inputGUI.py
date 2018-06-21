@@ -221,31 +221,31 @@ class inputGUI(object):
         
         #Temp2
         tk.Label(top, text="Temp #2 (degrees C) = ").grid(row=2, column=0, sticky='W')
-        temp1 = tk.Entry(top, width=20)
-        temp1.grid(row=2, column=1, sticky='W')
-        temp1Button = tk.Button(top, text='Submit', bg = "white", command=lambda:self._submitTempValue(temp1Button, temp1, "2", consoleLog, logFile))
-        temp1Button.grid(row=2, column=2)
+        temp2 = tk.Entry(top, width=20)
+        temp2.grid(row=2, column=1, sticky='W')
+        temp2Button = tk.Button(top, text='Submit', bg = "white", command=lambda:self._submitTempValue(temp2Button, temp2, "2", consoleLog, logFile))
+        temp2Button.grid(row=2, column=2)
         
         #Temp3
         tk.Label(top, text="Temp #3 (degrees C) = ").grid(row=3, column=0, sticky='W')
-        temp1 = tk.Entry(top, width=20)
-        temp1.grid(row=3, column=1, sticky='W')
-        temp1Button = tk.Button(top, text='Submit', bg = "white", command=lambda:self._submitTempValue(temp1Button, temp1, "3", consoleLog, logFile))
-        temp1Button.grid(row=3, column=2)
+        temp3 = tk.Entry(top, width=20)
+        temp3.grid(row=3, column=1, sticky='W')
+        temp3Button = tk.Button(top, text='Submit', bg = "white", command=lambda:self._submitTempValue(temp3Button, temp3, "3", consoleLog, logFile))
+        temp3Button.grid(row=3, column=2)
         
         #Temp4
         tk.Label(top, text="Temp #4 (degrees C) = ").grid(row=4, column=0, sticky='W')
-        temp1 = tk.Entry(top, width=20)
-        temp1.grid(row=4, column=1, sticky='W')
-        temp1Button = tk.Button(top, text='Submit', bg = "white", command=lambda:self._submitTempValue(temp1Button, temp1, "4", consoleLog, logFile))
-        temp1Button.grid(row=4, column=2)
+        temp4 = tk.Entry(top, width=20)
+        temp4.grid(row=4, column=1, sticky='W')
+        temp4Button = tk.Button(top, text='Submit', bg = "white", command=lambda:self._submitTempValue(temp4Button, temp4, "4", consoleLog, logFile))
+        temp4Button.grid(row=4, column=2)
         
         #Temp4
         tk.Label(top, text="Temp #5 (degrees C) = ").grid(row=5, column=0, sticky='W')
-        temp1 = tk.Entry(top, width=20)
-        temp1.grid(row=5, column=1, sticky='W')
-        temp1Button = tk.Button(top, text='Submit', bg = "white", command=lambda:self._submitTempValue(temp1Button, temp1, "5", consoleLog, logFile))
-        temp1Button.grid(row=5, column=2)
+        temp5 = tk.Entry(top, width=20)
+        temp5.grid(row=5, column=1, sticky='W')
+        temp5Button = tk.Button(top, text='Submit', bg = "white", command=lambda:self._submitTempValue(temp5Button, temp5, "5", consoleLog, logFile))
+        temp5Button.grid(row=5, column=2)
         
         tk.Label(top, text=" ").grid(row=6, column=0, sticky='W')
         exitButton = tk.Button(top, text="Exit Temperature Screen", command=top.destroy)
