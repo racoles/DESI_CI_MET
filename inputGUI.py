@@ -215,35 +215,35 @@ class inputGUI(object):
         msgA.pack()
         
         #Temp1
-        tk.Label(top, text="Temp1 (degrees C) = ").grid(row=1, column=0, sticky='W')
+        tk.Label(top, text="Temp #1 (degrees C) = ").grid(row=1, column=0, sticky='W')
         temp1 = tk.Entry(top, width=20)
         temp1.grid(row=1, column=1, sticky='W')
         temp1Button = tk.Button(top, text='Submit', bg = "white", command=lambda:self._submitTempValue(temp1Button, temp1, "1", consoleLog, logFile))
         temp1Button.grid(row=1, column=2)
         
         #Temp2
-        tk.Label(top, text="Temp2 (degrees C) = ").grid(row=2, column=0, sticky='W')
+        tk.Label(top, text="Temp #2 (degrees C) = ").grid(row=2, column=0, sticky='W')
         temp1 = tk.Entry(top, width=20)
         temp1.grid(row=2, column=1, sticky='W')
         temp1Button = tk.Button(top, text='Submit', bg = "white", command=lambda:self._submitTempValue(temp1Button, temp1, "2", consoleLog, logFile))
         temp1Button.grid(row=2, column=2)
         
         #Temp3
-        tk.Label(top, text="Temp3 (degrees C) = ").grid(row=3, column=0, sticky='W')
+        tk.Label(top, text="Temp #3 (degrees C) = ").grid(row=3, column=0, sticky='W')
         temp1 = tk.Entry(top, width=20)
         temp1.grid(row=3, column=1, sticky='W')
         temp1Button = tk.Button(top, text='Submit', bg = "white", command=lambda:self._submitTempValue(temp1Button, temp1, "3", consoleLog, logFile))
         temp1Button.grid(row=3, column=2)
         
         #Temp4
-        tk.Label(top, text="Temp4 (degrees C) = ").grid(row=4, column=0, sticky='W')
+        tk.Label(top, text="Temp #4 (degrees C) = ").grid(row=4, column=0, sticky='W')
         temp1 = tk.Entry(top, width=20)
         temp1.grid(row=4, column=1, sticky='W')
         temp1Button = tk.Button(top, text='Submit', bg = "white", command=lambda:self._submitTempValue(temp1Button, temp1, "4", consoleLog, logFile))
         temp1Button.grid(row=4, column=2)
         
         #Temp4
-        tk.Label(top, text="Temp5 (degrees C) = ").grid(row=5, column=0, sticky='W')
+        tk.Label(top, text="Temp #5 (degrees C) = ").grid(row=5, column=0, sticky='W')
         temp1 = tk.Entry(top, width=20)
         temp1.grid(row=5, column=1, sticky='W')
         temp1Button = tk.Button(top, text='Submit', bg = "white", command=lambda:self._submitTempValue(temp1Button, temp1, "5", consoleLog, logFile))
@@ -255,6 +255,6 @@ class inputGUI(object):
             
     def _submitTempValue(self, tempButton, temp, tempSensor, consoleLog, logFile):
         self.temp = temp.get()
-        tempButton.config(text = "Temp #" + tempSensor + " Entered", bg = 'green') 
+        tempButton.config(text = "Entered", bg = 'green') 
         faah = fileAndArrayHandling()
         faah.pageLogging(consoleLog, logFile, "Temp #" + tempSensor + ": " + str(temp) + "C", tempLog = True)
