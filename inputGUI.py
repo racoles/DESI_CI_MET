@@ -206,6 +206,18 @@ class inputGUI(object):
         '''
         Allow the user in enter CI temperatures from the sensors on the CI
         '''
+        faah = fileAndArrayHandling()     
+        top = tk.Toplevel()
+        top.title("Record Temperatures")
+        aboutMessage = str("Enter CI temperatures:")
+        faah.pageLogging(consoleLog, logFile, aboutMessage)
+        msgA = tk.Message(top, text=aboutMessage)
+        msgA.pack()
+        
+        buttonA = tk.Button(topA, text="Ready", command=topA.destroy)
+        buttonA.pack()
+        topA.wait_window()
+        imageArray4DA, filelistA = faah.openAllFITSImagesInDirectory()
         
         if calOffX == "Not yet set" or calOffY == "Not yet set":
             faah.pageLogging(consoleLog, logFile, "CS5 Calibration Offsets (mm) (X = " + calOffX + ", Y = " + calOffY + ")\n")
