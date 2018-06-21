@@ -83,7 +83,7 @@ class fileAndArrayHandling(object):
         #        raise
         return str(fiflabel) + "_" + str(dirType) + '_' + str(logTime) + "_" + str(ittr)
     
-    def pageLogging(self, cLog, lFile, logText, doubleSpaceWithTime = True, warning = False, calibration = False, tempLog == True):
+    def pageLogging(self, cLog, lFile, logText, doubleSpaceWithTime = True, warning = False, calibration = False, tempLog = False):
         '''
         Send text to console and log file.
         

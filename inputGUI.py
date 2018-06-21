@@ -214,12 +214,19 @@ class inputGUI(object):
         msgA = tk.Message(top, text=aboutMessage)
         msgA.pack()
         
-        buttonA = tk.Button(topA, text="Ready", command=topA.destroy)
-        buttonA.pack()
-        topA.wait_window()
-        imageArray4DA, filelistA = faah.openAllFITSImagesInDirectory()
+        #Temp1
+        tk.Label(top, text="Temp1 (degrees C) = ").grid(row=1, column=0, sticky='W')
+        temp1 = tk.Entry(top, width=20)
+        temp1.grid(row=1, column=1, sticky='W')
+        temp1Button = tk.Button(top, text='Submit', bg = "white", command=lambda:self._submitTempValue(temp1Button, temp1, "1", consoleLog, logFile))
+        temp1Button.grid(row=1, column=2)
         
-        if calOffX == "Not yet set" or calOffY == "Not yet set":
-            faah.pageLogging(consoleLog, logFile, "CS5 Calibration Offsets (mm) (X = " + calOffX + ", Y = " + calOffY + ")\n")
-        else:
-            faah.pageLogging(consoleLog, logFile, "CS5 Calibration Offsets (mm) (X = " + format(calOffX/1000, '.3f')+ ", Y = " + format(calOffY/1000, '.3f') + ")\n")
+        buttonA = tk.Button(top, text="Ready", command=top.destroy)
+        buttonA.pack()
+        top.wait_window()
+            
+    def _submitTempValue(self, tempButton, temp, tempSensor, consoleLog, logFile):
+        self.temp = temp.get()
+        tempButton.config(text = "Temp #" + tempSensor + " Entered", bg = 'green') 
+        faah = fileAndArrayHandling()
+        faah.pageLogging(consoleLog, logFile, "Temp #" + tempSensor + ": " + str(temp) + "C", tempLog = True)
