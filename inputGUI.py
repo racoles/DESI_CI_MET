@@ -204,13 +204,8 @@ class inputGUI(object):
             
     def _recordTemperatures(self, consoleLog, logFile):
         '''
-        Print focusCurve Dictionary of Nominal Values to Log/Console
+        Allow the user in enter CI temperatures from the sensors on the CI
         '''
-        faah = fileAndArrayHandling()
-        fC = focusCurve()
-        faah.printDictToFile(fC.fifLocationsCS5, "Nominal FIF Locations in CS5 (X mm, Y mm, Z mm)" , self.consoleLog, self.logFile, printNominalDicts = True)
-        faah.printDictToFile(fC.CCDLocationsCS5, "Nominal CCD Center Locations in CS5 (X mm, Y mm, Z mm)" , self.consoleLog, self.logFile, printNominalDicts = True)       
-        faah.printDictToFile(fC.trianglePonitCCDLocationsCS5, "Nominal CCD tip/tilt/Z Measurement Triangle Locations in CS5 (X mm, Y mm, Z mm)" , self.consoleLog, self.logFile, printNominalDicts = True)
         
         if calOffX == "Not yet set" or calOffY == "Not yet set":
             faah.pageLogging(consoleLog, logFile, "CS5 Calibration Offsets (mm) (X = " + calOffX + ", Y = " + calOffY + ")\n")

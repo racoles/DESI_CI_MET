@@ -1,7 +1,7 @@
 '''
 @title fileAndArrayHandling
 @author: Rebecca Coles
-Updated on Feb 7, 2017
+Updated on Jun 21, 2017
 Created on Dec 12, 2017
 
 fileAndArrayHandling
@@ -83,7 +83,7 @@ class fileAndArrayHandling(object):
         #        raise
         return str(fiflabel) + "_" + str(dirType) + '_' + str(logTime) + "_" + str(ittr)
     
-    def pageLogging(self, cLog, lFile, logText, doubleSpaceWithTime = True, warning = False, calibration = False):
+    def pageLogging(self, cLog, lFile, logText, doubleSpaceWithTime = True, warning = False, calibration = False, tempLog == True):
         '''
         Send text to console and log file.
         
@@ -118,7 +118,18 @@ class fileAndArrayHandling(object):
                 cLog.configure(state="normal")
                 cLog.insert(tk.END, str(logText) +'\n', 'warning')
                 cLog.tag_config('warning', foreground='blue')
-                cLog.configure(state="disable")            
+                cLog.configure(state="disable")      
+        elif tempLog == True:
+            if doubleSpaceWithTime == True:
+                cLog.configure(state="normal")
+                cLog.insert(tk.END, currentTime + ': ' + str(logText) + '\n\n', 'calibration')
+                cLog.tag_config('calibration', foreground='green')
+                cLog.configure(state="disable")
+            else:
+                cLog.configure(state="normal")
+                cLog.insert(tk.END, str(logText) +'\n', 'warning')
+                cLog.tag_config('warning', foreground='green')
+                cLog.configure(state="disable")
         else:
             if doubleSpaceWithTime == True:
                 cLog.configure(state="normal")
