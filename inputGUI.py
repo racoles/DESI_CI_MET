@@ -98,7 +98,8 @@ class inputGUI(object):
         #Manual Mode Check Camera Origin
         tk.Button(master, text="Check Camera Origin",bg = "white",command=lambda:ccol.checkCameraOriginLocation(self.consoleLog, self.logFile)).grid(row=8, column=1, columnspan=2, sticky='W')
         #Manual Mode Temperature Check
-        tk.Button(master, text="Record Temperatures",bg = "white",command=lambda:self._recordTemperatures(self.consoleLog, self.logFile)).grid(row=8, column=2, columnspan=2, sticky='W')
+        recordTempButton = tk.Button(master, text="Record Temperatures",bg = "white",command=lambda:self._recordTemperatures(recordTempButton, self.consoleLog, self.logFile)).grid(row=8, column=2, columnspan=2, sticky='W')
+        self._updateLabel(recordTempButton)
         #Manual Mode FIF Focus Curve
         tk.Button(master, text="FIF Focus Curve",bg = "white", command=lambda:self._beginManualMode(master, self.consoleLog, self.logFile, "manualFIFFocusCurve")).grid(row=9, column=0, columnspan=1, sticky='W')
         #Manual Mode CCD Focus Curve
@@ -202,7 +203,7 @@ class inputGUI(object):
         else:
             faah.pageLogging(consoleLog, logFile, "CS5 Calibration Offsets (mm) (X = " + format(calOffX/1000, '.3f')+ ", Y = " + format(calOffY/1000, '.3f') + ")\n")
             
-    def _recordTemperatures(self, consoleLog, logFile):
+    def _recordTemperatures(self, button, consoleLog, logFile):
         '''
         Allow the user in enter CI temperatures from the sensors on the CI
         '''
@@ -251,9 +252,14 @@ class inputGUI(object):
         exitButton = tk.Button(top, text="Exit Temperature Screen", command=top.destroy)
         exitButton.grid(row=7, column=0)
         
+        button.config(bg = 'white')  
         top.wait_window()
             
     def _submitTempValue(self, tempButton, temp, tempSensor, consoleLog, logFile):
         tempButton.config(text = "Entered", bg = 'green') 
         faah = fileAndArrayHandling()
         faah.pageLogging(consoleLog, logFile, "Temp #" + tempSensor + ": " + str(temp.get()) + "C", tempLog = True)
+        
+    def _updateLabel(self, button):
+        button.config(bg = 'red') 
+        self.master.after(1000, self._updateLabel)
