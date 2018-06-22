@@ -98,7 +98,8 @@ class inputGUI(object):
         #Manual Mode Check Camera Origin
         tk.Button(master, text="Check Camera Origin",bg = "white",command=lambda:ccol.checkCameraOriginLocation(self.consoleLog, self.logFile)).grid(row=8, column=1, columnspan=2, sticky='W')
         #Manual Mode Temperature Check
-        recordTempButton = tk.Button(master, text="Record Temperatures",bg = "white",command=lambda:self._recordTemperatures(recordTempButton, self.consoleLog, self.logFile)).grid(row=8, column=2, columnspan=2, sticky='W')
+        recordTempButton = tk.Button(master, text="Record Temperatures",bg = "white",command=lambda:self._recordTemperatures(recordTempButton, self.consoleLog, self.logFile))
+        recordTempButton.grid(row=8, column=2, columnspan=2, sticky='W')
         self._updateLabel(recordTempButton)
         #Manual Mode FIF Focus Curve
         tk.Button(master, text="FIF Focus Curve",bg = "white", command=lambda:self._beginManualMode(master, self.consoleLog, self.logFile, "manualFIFFocusCurve")).grid(row=9, column=0, columnspan=1, sticky='W')
