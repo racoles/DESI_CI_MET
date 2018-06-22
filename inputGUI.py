@@ -263,4 +263,4 @@ class inputGUI(object):
         
     def _updateLabel(self, button):
         button.config(bg = 'red') 
-        self.master.after(1000, self._updateLabel)
+        self.master.after(1000, self._updateLabel(button))
