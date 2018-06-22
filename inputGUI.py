@@ -263,4 +263,4 @@ class inputGUI(object):
         
     def _updateLabel(self):
         self.recordTempButton.config(bg = 'red') 
-        self.master.after(99999999, self._updateLabel)
+        self.master.after(60000*30, self._updateLabel)
