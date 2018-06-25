@@ -1,5 +1,5 @@
 '''
-@title DESI_CI_MET 1.4
+@title DESI_CI_MET 1.5
 @author: Rebecca Coles
 Updated on Feb 21, 2017
 Created on Dec 11, 2017
@@ -19,6 +19,8 @@ Testing:
     DESI_CI_MET_1.3: Haas Software test (05/02/2018)  
     DESI_CI_MET_1.3: Haas DMM Magnification Test (05/03/2018)     
     DESI_CI_MET_1.4: Haas Software test (05/31/2018-06/01/2018)
+    DESI_CI_MET_1.5: Ometech Software test (06/27/2018)
+    
       
 Pending Testing:
     Ometech
