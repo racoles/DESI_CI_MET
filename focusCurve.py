@@ -107,6 +107,7 @@ class focusCurve(object):
     #                                 'OtherB': (0,0),
     #                                 'OtherC': (0,0)}
     
+    #NO-FORESHORTENING
     #OffCenter Wee Triangle
     #Dict of (x,y) for CCD triangles around offcenter point (mm)
     trianglePonitCCDLocationsCS5 = { 'NCCDA': (0,CCDLocationsCS5["NCCD"][1]+tccr),        
