@@ -21,6 +21,7 @@ from tipTiltZCCD import tipTiltZCCD
 from CCDOpsPlanetMode import CCDOpsPlanetMode
 from centroidFIF import centroidFIF
 from alternateCentroidMethods import gmsCentroid
+from foreShortening import foreShortening
 ################################################################################################
 
 class metManualMode(tk.Tk):
@@ -268,8 +269,10 @@ class metManualMode(tk.Tk):
         #Point A      
         topA = tk.Toplevel()
         topA.title("CCD tip/tilt/Z Triangle Point A")
-        aboutMessageA = str('Fill directory with images for point A (' + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'A'][0], '.3f') + 
-                            " mm ," + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'A'][1], '.3f') + " mm," + format(nominalZA, '.3f') + " um)")
+        aboutMessageA = str('Fill directory with images for point A:\n(' + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'A'][0], '.3f') + 
+                            " mm ," + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'A'][1], '.3f') + " mm," + format(nominalZA, '.3f') + " um)" +
+                            "\n\nFore-shortened:\n(" + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'A'][0], '.3f') + 
+                            " mm ," + )
         faah.pageLogging(self.consoleLog, self.logFile, aboutMessageA)
         msgA = tk.Message(topA, text=aboutMessageA)
         msgA.pack()
