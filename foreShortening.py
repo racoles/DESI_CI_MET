@@ -116,20 +116,20 @@ class foreShortening(object):
             #trinaglePoint A
                 #X  
             distA = fC.CCDLocationsCS5["ECCD"][0] - fC.trianglePonitCCDLocationsCS5["ECCDA"][0]
-            foreShortenedDistanceFromCenter_A = (1 - np.cos(self.CCDAngle)) * (distA * (pixelSize/1000)) #mm
-            foreShortenedCS5Location_A = fC.CCDLocationsCS5["ECCD"][0] - foreShortenedDistanceFromCenter_A #mm
+            foreShortenedDistanceFromCenter_AX = (1 - np.cos(self.CCDAngle)) * (distA * (pixelSize/1000)) #mm
+            foreShortenedCS5Location_AX = fC.CCDLocationsCS5["ECCD"][0] - foreShortenedDistanceFromCenter_AX #mm
                 #Y 
             #trinaglePoint B
                 #X  
             distB = fC.trianglePonitCCDLocationsCS5["ECCDB"][0] - fC.CCDLocationsCS5["ECCD"][0]
-            foreShortenedDistanceFromCenter_B = (1 - np.cos(self.CCDAngle)) * (distB * (pixelSize/1000)) #mm
-            foreShortenedCS5Location_B = fC.CCDLocationsCS5["ECCD"][0] + foreShortenedDistanceFromCenter_B #mm
+            foreShortenedDistanceFromCenter_BX = (1 - np.cos(self.CCDAngle)) * (distB * (pixelSize/1000)) #mm
+            foreShortenedCS5Location_BX = fC.CCDLocationsCS5["ECCD"][0] + foreShortenedDistanceFromCenter_BX #mm
                 #Y 
             #trinaglePoint C
                 #X  
             distC = fC.trianglePonitCCDLocationsCS5["ECCDC"][0] - fC.CCDLocationsCS5["ECCD"][0]
-            foreShortenedDistanceFromCenter_C = (1 - np.cos(self.CCDAngle)) * (distC * (pixelSize/1000)) #mm
-            foreShortenedCS5Location_C = fC.CCDLocationsCS5["ECCD"][0] + foreShortenedDistanceFromCenter_C #mm
+            foreShortenedDistanceFromCenter_CX = (1 - np.cos(self.CCDAngle)) * (distC * (pixelSize/1000)) #mm
+            foreShortenedCS5Location_CX = fC.CCDLocationsCS5["ECCD"][0] + foreShortenedDistanceFromCenter_CX #mm
                 #Y 
                 
         elif CCDLabel == "CCCD": #(no fore-shortening)
