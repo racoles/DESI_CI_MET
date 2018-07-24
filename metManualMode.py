@@ -267,7 +267,7 @@ class metManualMode(tk.Tk):
         nominalZC = fC.asphericFocalCurve(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'C'][0], fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'C'][1])
         
         #Fore-shortening)
-        AX, AY, BX, BY, CX, CY = foreShortening(self.CCDSelection)
+        AX, AY, BX, BY, CX, CY = foreShortening(self.consoleLog, self.logFile, self.CCDSelection)
         #also add pre-align mode
         
         #Point A      
@@ -275,8 +275,9 @@ class metManualMode(tk.Tk):
         topA.title("CCD tip/tilt/Z Triangle Point A")
         aboutMessageA = str('Fill directory with images for point A:\n(' + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'A'][0], '.3f') + 
                             " mm ," + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'A'][1], '.3f') + " mm," + format(nominalZA, '.3f') + " um)" +
-                            "\n\nFore-shortened:\n(" + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'A'][0], '.3f') + 
-                            " mm ," + )
+                            "\n\nFore-shortened:\n(" + format(AX, '.3f') + " mm, " + format(AY, '.3f') + " mm, " + format(nominalZA, '.3f') + " um)" +
+                            "\n\nPre-alignment:\n(" + format(fC.trianglePonitCCDLocationsCS5['CCCDA'][0], '.3f') + " mm, " + format(fC.trianglePonitCCDLocationsCS5['CCCDA'][1], '.3f')
+                             + " mm, " + format(nominalZA, '.3f') + " um)")
         faah.pageLogging(self.consoleLog, self.logFile, aboutMessageA)
         msgA = tk.Message(topA, text=aboutMessageA)
         msgA.pack()
@@ -289,7 +290,10 @@ class metManualMode(tk.Tk):
         topB = tk.Toplevel()
         topB.title("CCD tip/tilt/Z Triangle Point B")
         aboutMessageB = str('Fill directory with images for point B (' + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'B'][0], '.3f') + 
-                            " mm ," + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'B'][1], '.3f') + " mm," + format(nominalZB, '.3f') + " um)")
+                            " mm ," + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'B'][1], '.3f') + " mm," + format(nominalZB, '.3f') + " um)"
+                            "\n\nFore-shortened:\n(" + format(BX, '.3f') + " mm, " + format(BY, '.3f') + " mm, " + format(nominalZB, '.3f') + " um)" +
+                            "\n\nPre-alignment:\n(" + format(fC.trianglePonitCCDLocationsCS5['CCCDB'][0], '.3f') + " mm, " + format(fC.trianglePonitCCDLocationsCS5['CCCDB'][1], '.3f')
+                             + " mm, " + format(nominalZB, '.3f') + " um)")
         faah.pageLogging(self.consoleLog, self.logFile, aboutMessageB)
         msgB = tk.Message(topB, text=aboutMessageB)
         msgB.pack()
@@ -302,7 +306,10 @@ class metManualMode(tk.Tk):
         topC = tk.Toplevel()
         topC.title("CCD tip/tilt/Z Triangle Point C")
         aboutMessageC = str('Fill directory with images for point C (' + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'C'][0], '.3f') + 
-                            " mm ," + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'C'][1], '.3f') + " mm," + format(nominalZC, '.3f') + " um)")
+                            " mm ," + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'C'][1], '.3f') + " mm," + format(nominalZC, '.3f') + " um)"
+                            "\n\nFore-shortened:\n(" + format(CX, '.3f') + " mm, " + format(CY, '.3f') + " mm, " + format(nominalZC, '.3f') + " um)" +
+                            "\n\nPre-alignment:\n(" + format(fC.trianglePonitCCDLocationsCS5['CCCDC'][0], '.3f') + " mm, " + format(fC.trianglePonitCCDLocationsCS5['CCCDC'][1], '.3f')
+                             + " mm, " + format(nominalZC, '.3f') + " um)")
         faah.pageLogging(self.consoleLog, self.logFile, aboutMessageC)
         msgC = tk.Message(topC, text=aboutMessageC)
         msgC.pack()
