@@ -277,7 +277,7 @@ class metManualMode(tk.Tk):
                             " mm ," + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'A'][1], '.3f') + " mm," + format(nominalZA, '.3f') + " um)" +
                             "\n\nFore-shortened:\n(" + format(AX, '.3f') + " mm, " + format(AY, '.3f') + " mm, " + format(nominalZA, '.3f') + " um)" +
                             "\n\nPre-alignment:\n(" + format(fC.trianglePonitCCDLocationsCS5['CCCDA'][0], '.3f') + " mm, " + format(fC.trianglePonitCCDLocationsCS5['CCCDA'][1], '.3f')
-                             + " mm, " + format(nominalZA, '.3f') + " um)")
+                             + " mm, " + format(nominalZA, '.3f') + " um)\n")
         faah.pageLogging(self.consoleLog, self.logFile, aboutMessageA)
         msgA = tk.Message(topA, text=aboutMessageA)
         msgA.pack()
@@ -293,7 +293,7 @@ class metManualMode(tk.Tk):
                             " mm ," + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'B'][1], '.3f') + " mm," + format(nominalZB, '.3f') + " um)"
                             "\n\nFore-shortened:\n(" + format(BX, '.3f') + " mm, " + format(BY, '.3f') + " mm, " + format(nominalZB, '.3f') + " um)" +
                             "\n\nPre-alignment:\n(" + format(fC.trianglePonitCCDLocationsCS5['CCCDB'][0], '.3f') + " mm, " + format(fC.trianglePonitCCDLocationsCS5['CCCDB'][1], '.3f')
-                             + " mm, " + format(nominalZB, '.3f') + " um)")
+                             + " mm, " + format(nominalZB, '.3f') + " um)\n")
         faah.pageLogging(self.consoleLog, self.logFile, aboutMessageB)
         msgB = tk.Message(topB, text=aboutMessageB)
         msgB.pack()
@@ -309,7 +309,7 @@ class metManualMode(tk.Tk):
                             " mm ," + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'C'][1], '.3f') + " mm," + format(nominalZC, '.3f') + " um)"
                             "\n\nFore-shortened:\n(" + format(CX, '.3f') + " mm, " + format(CY, '.3f') + " mm, " + format(nominalZC, '.3f') + " um)" +
                             "\n\nPre-alignment:\n(" + format(fC.trianglePonitCCDLocationsCS5['CCCDC'][0], '.3f') + " mm, " + format(fC.trianglePonitCCDLocationsCS5['CCCDC'][1], '.3f')
-                             + " mm, " + format(nominalZC, '.3f') + " um)")
+                             + " mm, " + format(nominalZC, '.3f') + " um)\n")
         faah.pageLogging(self.consoleLog, self.logFile, aboutMessageC)
         msgC = tk.Message(topC, text=aboutMessageC)
         msgC.pack()
