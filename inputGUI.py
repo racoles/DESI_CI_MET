@@ -19,7 +19,7 @@ _beginGuidedMode(self, master):
 import tkinter as tk
 import tkinter.scrolledtext as ScrolledText
 from tkinter.ttk import Separator, Style
-import time
+import time, os, re
 from metGuidedMode import metGuidedMode
 from metManualMode import metManualMode
 from focusCurve import focusCurve
@@ -144,6 +144,11 @@ class inputGUI(object):
         self.logFile.write("Log started: " + startTime + '\n')
         self.consoleLog.insert(tk.END, "Log started: " + startTime + '\n')
         self.consoleLog.configure(state="disable")
+        
+        ###########################################################################
+        ###Create Calibration Directory
+        ###########################################################################
+        self._createCalibrationDir(self)     
                
     def _log_entry_field(self, noteBox, consoleLog, logFile):
         '''
@@ -264,3 +269,23 @@ class inputGUI(object):
     def _updateLabel(self):
         self.recordTempButton.config(bg = 'red') 
         self.master.after(60000*30, self._updateLabel)
+        
+    def _createCalibrationDir(self):
+        ###########################################################################
+        ###Get log start time
+        ###########################################################################
+        logTime = re.findall(r'\d+', self.logFile.name)
+        logTime = '-'.join(logTime[:])
+        
+        ###########################################################################
+        ###Create Dir
+        ###########################################################################
+        file_exists_condition = True
+        ittr = 0
+        while file_exists_condition:
+            if os.path.isdir("Calibration_" + str(logTime) + "_" + str(ittr)):
+                ittr += 1
+            else:
+                os.makedirs("Calibration_" + str(logTime) + "_" + str(ittr))
+                file_exists_condition = False
+            

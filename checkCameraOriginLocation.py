@@ -61,6 +61,8 @@ class checkCameraOriginLocation(object):
         
 #Note: in future, row versus columns equal to x and y will be different for NESW cameras
 
+#create unique cali file dir here
+
         #Print fif loactions
         faah = fileAndArrayHandling()
         fC = focusCurve()
