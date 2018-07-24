@@ -154,12 +154,13 @@ class inputGUI(object):
         '''
         Manually enter text into log.
         '''
+        currentTime = time.strftime("%Y-%m-%dT%H%M%SZ")
         # console
         consoleLog.configure(state="normal")
-        consoleLog.insert(tk.END, str(noteBox.get()) + '\n')
+        consoleLog.insert(tk.END,  currentTime + ': ' + str(noteBox.get()) + '\n')
         consoleLog.configure(state="disable")
         # log file
-        logFile.write(str(noteBox.get()) + '\n')
+        logFile.write(str(currentTime + ': ' + noteBox.get()) + '\n')
         logFile.flush()
         noteBox.delete(0, tk.END)
         
