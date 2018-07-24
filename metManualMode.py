@@ -266,6 +266,9 @@ class metManualMode(tk.Tk):
         nominalZB = fC.asphericFocalCurve(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'B'][0], fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'B'][1])
         nominalZC = fC.asphericFocalCurve(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'C'][0], fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'C'][1])
         
+        #Fore-shortening
+        foreShortenedCS5Location_AX, foreShortenedCS5Location_AY, foreShortenedCS5Location_BX, foreShortenedCS5Location_BY, foreShortenedCS5Location_CX, foreShortenedCS5Location_CY = 
+        
         #Point A      
         topA = tk.Toplevel()
         topA.title("CCD tip/tilt/Z Triangle Point A")
