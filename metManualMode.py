@@ -268,7 +268,7 @@ class metManualMode(tk.Tk):
         
         #Fore-shortening)
         AX, AY, BX, BY, CX, CY = foreShortening(self.CCDSelection)
-        
+        #also add pre-align mode
         
         #Point A      
         topA = tk.Toplevel()
