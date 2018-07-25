@@ -59,7 +59,7 @@ class checkCameraOriginLocation(object):
         ###Offset Calibration
         ###########################################################################
         
-#Note: in future, row versus columns equal to x and y will be different for NESW cameras
+        #Note: row versus columns equal to x and y will be different for EW cameras than NCS cameras
 
         #Print fif loactions
         faah = fileAndArrayHandling()
