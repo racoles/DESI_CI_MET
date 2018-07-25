@@ -31,8 +31,8 @@ class checkCameraOriginLocation(object):
     pixelDistanceToCheckPointY = 25 #pixel location Y  
     
     #Pixel distance to sensor center
-    pixelDistanceToCenterX = 3072/2 #pixel location X
-    pixelDistanceToCenterY = 2048/2 #pixel location Y      
+    #pixelDistanceToCenterX = 3072/2 #pixel location X
+    #pixelDistanceToCenterY = 2048/2 #pixel location Y      
     
     #STi Pixel Size
     stipixel = 7.4
@@ -167,7 +167,7 @@ class checkCameraOriginLocation(object):
         faah.pageLogging(consoleLog, logFile, "\nRz Local (degrees): " + format(angleRz, '.3f'))   
 
         ###########################################################################
-        ###Calculate the distance to pixelDistanceToCheckPoint pixelDistanceToCenter and using centroided image.
+        ###Calculate the distance to pixelDistanceToCheckPoint and pixelDistanceToCenter using centroided image.
         ###########################################################################  
         #Find distance in um to CCD pixelDistanceToCheckPoint
         DeltaX_SBIGXL_A = ((xCenGMSA + xOffsetA) - self.pixelDistanceToCheckPointX) * pixelSize
@@ -180,14 +180,14 @@ class checkCameraOriginLocation(object):
         DeltaY_SBIGXL_C = ((yCenGMSC + yOffsetC) - self.pixelDistanceToCheckPointY) * pixelSize
         
         #Find distance in um to CCD pixelDistanceToCenter
-        DeltaX_SBIGXL_A_Sensor_Center = ((xCenGMSA + xOffsetA) - self.pixelDistanceToCenterX) * pixelSize
-        DeltaY_SBIGXL_A_Sensor_Center = ((yCenGMSA + yOffsetA) - self.pixelDistanceToCenterY) * pixelSize
+        DeltaX_SBIGXL_A_Sensor_Center = ((xCenGMSA + xOffsetA) - int(imageArray4DA[aa].shape[0]/2)) * pixelSize
+        DeltaY_SBIGXL_A_Sensor_Center = ((yCenGMSA + yOffsetA) - int(imageArray4DA[aa].shape[1]/2)) * pixelSize
         
-        DeltaX_SBIGXL_B_Sensor_Center = ((xCenGMSB + xOffsetB) - self.pixelDistanceToCenterX) * pixelSize
-        DeltaY_SBIGXL_B_Sensor_Center = ((yCenGMSB + yOffsetB) - self.pixelDistanceToCenterY) * pixelSize
+        DeltaX_SBIGXL_B_Sensor_Center = ((xCenGMSB + xOffsetB) - int(imageArray4DB[bb].shape[0]/2)) * pixelSize
+        DeltaY_SBIGXL_B_Sensor_Center = ((yCenGMSB + yOffsetB) - int(imageArray4DB[bb].shape[1]/2)) * pixelSize
         
-        DeltaX_SBIGXL_C_Sensor_Center = ((xCenGMSC + xOffsetC) - self.pixelDistanceToCenterX) * pixelSize
-        DeltaY_SBIGXL_C_Sensor_Center = ((yCenGMSC + yOffsetC) - self.pixelDistanceToCenterY) * pixelSize   
+        DeltaX_SBIGXL_C_Sensor_Center = ((xCenGMSC + xOffsetC) - int(imageArray4DC[cc].shape[0]/2)) * pixelSize
+        DeltaY_SBIGXL_C_Sensor_Center = ((yCenGMSC + yOffsetC) - int(imageArray4DC[cc].shape[1]/2)) * pixelSize   
         
         ###########################################################################
         ###Rotation Coordinate Transform from SBIG Coordinates to CS5 Coordinates
