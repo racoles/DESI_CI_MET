@@ -49,7 +49,7 @@ class checkCameraOriginLocation(object):
         Constructor
         '''
         
-    def checkCameraOriginLocation(self, consoleLog, logFile):
+    def checkCameraOriginLocation(self, consoleLog, logFile, CCDLabel):
         '''
         Find the location of the CI camera's sensor origin in CS5 and instruct the user to view 
         the origin with the DMM to ensure that the tip/tilt/focus pinhole triangle was placed properly
@@ -60,8 +60,6 @@ class checkCameraOriginLocation(object):
         ###########################################################################
         
 #Note: in future, row versus columns equal to x and y will be different for NESW cameras
-
-#create unique cali file dir here
 
         #Print fif loactions
         faah = fileAndArrayHandling()
