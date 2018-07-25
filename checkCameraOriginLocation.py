@@ -400,10 +400,13 @@ class checkCameraOriginLocation(object):
                 CS5YB_Sensor_Center = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][1] + DeltaX_CS5_B_Sensor_Center/1000
             
                 CS5XC_Sensor_Center = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][0] + DeltaY_CS5_C_Sensor_Center/1000
-                CS5YC_Sensor_Center = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][1] + DeltaX_CS5_C_Sensor_Center/1000 
+                CS5YC_Sensor_Center = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][1] + DeltaX_CS5_C_Sensor_Center/1000                  
+                   
+            else:
+                faah.pageLogging(consoleLog, logFile, "Error with CCD label selection")                  
             
             faah.pageLogging(consoleLog, logFile, "\nMove to pixel (" + str(self.pixelDistanceToCheckPointX) + ", " + str(self.pixelDistanceToCheckPointY) + ")\n\n" +
-                         "Using: ((centroid(pixel)) + planetModeOffset) +/- targetPixel(pixel)) * pixelSize\n" +
+                         "Using: ((centroid(pixel) + planetModeOffset) +/- targetPixel(pixel)) * pixelSize\n" +
                          "Distance in SBIGXL frame (mm):\n" +
                          "    DeltaX_SBIGXL_A = (" + format(xCenGMSA , '.3f') +  " + " + format(xOffsetA, '.3f') + ") - " + str(self.pixelDistanceToCheckPointX) + ") * " + str(pixelSize/1000) + " = " + format(DeltaX_SBIGXL_A/1000, '.3f') + "\n" +
                          "    DeltaY_SBIGXL_A = (" + format(yCenGMSA , '.3f') +  " + " + format(yOffsetA, '.3f') + ") - " + str(self.pixelDistanceToCheckPointY) + ") * " + str(pixelSize/1000) + " = " + format(DeltaY_SBIGXL_A/1000, '.3f') + "\n\n" +
@@ -412,47 +415,85 @@ class checkCameraOriginLocation(object):
                          "    DeltaX_SBIGXL_C = (" + format(xCenGMSC , '.3f') +  " + " + format(xOffsetC, '.3f') + ") - " + str(self.pixelDistanceToCheckPointX) + ") * " + str(pixelSize/1000) + " = " + format(DeltaX_SBIGXL_C/1000, '.3f') + "\n" +
                          "    DeltaY_SBIGXL_C = (" + format(yCenGMSC , '.3f') +  " + " + format(yOffsetC, '.3f') + ") - " + str(self.pixelDistanceToCheckPointY) + ") * " + str(pixelSize/1000) + " = " + format(DeltaY_SBIGXL_C/1000, '.3f') + "\n\n" +
                          
-                         "Using: Rotational Coordinate Transform\n" + "       DeltaX_CS5 = (DeltaX_SBIGXL * cos(Rz)) + (DeltaY_SBIGXL * sin(Rz))\n       DeltaY_CS5 = (DeltaX_SBIGXL * -sin(Rz)) + (DeltaY_SBIGXL * cos(Rz))\n\n" +
+                         "Using: Rotational Coordinate Transform\n" + "       DeltaX_CS5 = (DeltaX_SBIGXL * cos(Rz)) - (DeltaY_SBIGXL * sin(Rz))\n       DeltaY_CS5 = (DeltaX_SBIGXL * sin(Rz)) + (DeltaY_SBIGXL * cos(Rz))\n\n" +
                          "Distance in CS5 frame (mm):\n" +
-                         "    DeltaX_CS5_A = (" + format(DeltaX_SBIGXL_A/1000, '.3f') + " * " + format(np.cos(math.radians(angleRz)), '.3f') + ") + (" + format(DeltaY_SBIGXL_A/1000, '.3f') + " * " + format(np.sin(math.radians(angleRz)), '.3f') + ") = " + format(DeltaX_CS5_A/1000, '.3f') + "\n" +
-                         "    DeltaY_CS5_A = (" + format(-DeltaX_SBIGXL_A/1000, '.3f') + " * " + format(np.sin(math.radians(angleRz)), '.3f') + ") + (" + format(DeltaY_SBIGXL_A/1000, '.3f') + " * " + format(np.cos(math.radians(angleRz)), '.3f') + ") = " + format(DeltaY_CS5_A/1000, '.3f') + "\n\n" +
-                         "    DeltaX_CS5_B = (" + format(DeltaX_SBIGXL_B/1000, '.3f') + " * " + format(np.cos(math.radians(angleRz)), '.3f') + ") + (" + format(DeltaY_SBIGXL_B/1000, '.3f') + " * " + format(np.sin(math.radians(angleRz)), '.3f') + ") = " + format(DeltaX_CS5_B/1000, '.3f') +"\n" +
-                         "    DeltaY_CS5_B = (" + format(-DeltaX_SBIGXL_B/1000, '.3f') + " * " + format(np.sin(math.radians(angleRz)), '.3f') + ") + (" + format(DeltaY_SBIGXL_B/1000, '.3f') + " * " + format(np.cos(math.radians(angleRz)), '.3f') + ") = " + format(DeltaY_CS5_B/1000, '.3f') +"\n\n" +
-                         "    DeltaX_CS5_C = (" + format(DeltaX_SBIGXL_C/1000, '.3f') + " * " + format(np.cos(math.radians(angleRz)), '.3f') + ") + (" + format(DeltaY_SBIGXL_C/1000, '.3f') + " * " + format(np.sin(math.radians(angleRz)), '.3f') + ") = " +  format(DeltaX_CS5_C/1000, '.3f') +"\n" +
-                         "    DeltaY_CS5_C = (" + format(-DeltaX_SBIGXL_C/1000, '.3f') + " * " + format(np.sin(math.radians(angleRz)), '.3f') + ") + (" + format(DeltaY_SBIGXL_C/1000, '.3f') + " * " + format(np.cos(math.radians(angleRz)), '.3f') + ") = " + format(DeltaY_CS5_C/1000, '.3f') +"\n\n" +
+                         "    DeltaX_CS5_A = (" + format(DeltaX_SBIGXL_A/1000, '.3f') + " * " + format(np.cos(math.radians(angleRz)), '.3f') + ") - (" + format(DeltaY_SBIGXL_A/1000, '.3f') + " * " + format(np.sin(math.radians(angleRz)), '.3f') + ") = "+ format(DeltaX_CS5_A/1000, '.3f') +"\n" +
+                         "    DeltaY_CS5_A = (" + format(DeltaX_SBIGXL_A/1000, '.3f') + " * " + format(np.sin(math.radians(angleRz)), '.3f') + ") + (" + format(DeltaY_SBIGXL_A/1000, '.3f') + " * " + format(np.cos(math.radians(angleRz)), '.3f') + ") = "+ format(DeltaY_CS5_A/1000, '.3f') +"\n\n" +
+                         "    DeltaX_CS5_B = (" + format(DeltaX_SBIGXL_B/1000, '.3f') + " * " + format(np.cos(math.radians(angleRz)), '.3f') + ") - (" + format(DeltaY_SBIGXL_B/1000, '.3f') + " * " + format(np.sin(math.radians(angleRz)), '.3f') + ") = "+ format(DeltaX_CS5_B/1000, '.3f') +"\n" +
+                         "    DeltaY_CS5_B = (" + format(DeltaX_SBIGXL_B/1000, '.3f') + " * " + format(np.sin(math.radians(angleRz)), '.3f') + ") + (" + format(DeltaY_SBIGXL_B/1000, '.3f') + " * " + format(np.cos(math.radians(angleRz)), '.3f') + ") = "+ format(DeltaY_CS5_B/1000, '.3f') +"\n\n" +
+                         "    DeltaX_CS5_C = (" + format(DeltaX_SBIGXL_C/1000, '.3f') + " * " + format(np.cos(math.radians(angleRz)), '.3f') + ") - (" + format(DeltaY_SBIGXL_C/1000, '.3f') + " * " + format(np.sin(math.radians(angleRz)), '.3f') + ") = "+ format(DeltaX_CS5_C/1000, '.3f') +"\n" +
+                         "    DeltaY_CS5_C = (" + format(DeltaX_SBIGXL_C/1000, '.3f') + " * " + format(np.sin(math.radians(angleRz)), '.3f') + ") + (" + format(DeltaY_SBIGXL_C/1000, '.3f') + " * " + format(np.cos(math.radians(angleRz)), '.3f') + ") = "+ format(DeltaY_CS5_C/1000, '.3f') +"\n\n")
                          
-                         "Using: Target Pixel CS5 Location (mm) = Nominal CS5 + DeltaCS5\n" +
-                         "Calculated using triangle point A:\n" +
-                         "    CS5X(A) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][0]) + " + " + format(DeltaX_CS5_A/1000, '.3f') + " = " + 
-                         format(CS5XA, '.3f') + "\n" +
-                         "    CS5Y(A) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][1]) + " + " + format(DeltaY_CS5_A/1000, '.3f') + " = " + 
-                         format(CS5YA, '.3f') + "\n\n" +
-                         "Calculated using triangle point B:\n" +
-                         "    CS5X(B) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][0]) + " + " + format(DeltaX_CS5_B/1000, '.3f') + " = " + 
-                         format(CS5XB, '.3f') + "\n" +
-                         "    CS5Y(B) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][1]) + " + " + format(DeltaY_CS5_B/1000, '.3f') + " = " + 
-                         format(CS5YB, '.3f') + "\n\n" +
-                         "Calculated using triangle point C:\n" +
-                         "    CS5X(C) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][0]) + " + " + format(DeltaX_CS5_C/1000, '.3f') + " = " + 
-                         format(CS5XC, '.3f') + "\n" +
-                         "    CS5Y(C) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][1]) + " + " + format(DeltaY_CS5_C/1000, '.3f') + " = " + 
-                         format(CS5YC, '.3f') + "\n\n" +
+            if self.CCDSelection == "CCCD" or "SCCD" or "NCCD":
+                faah.pageLogging(consoleLog, logFile, "Using: Target Pixel CS5 Location (mm) = Nominal CS5 + DeltaCS5\n" +
+                "Calculated using triangle point A:\n" +
+                "    CS5X(A) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][0]) + " + " + format(DeltaX_CS5_A/1000, '.3f') + " = " + 
+                format(CS5XA, '.3f') + "\n" +
+                "    CS5Y(A) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][1]) + " + " + format(DeltaY_CS5_A/1000, '.3f') + " = " + 
+                format(CS5YA, '.3f') + "\n\n" +
+                "Calculated using triangle point B:\n" +
+                "    CS5X(B) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][0]) + " + " + format(DeltaX_CS5_B/1000, '.3f') + " = " + 
+                format(CS5XB, '.3f') + "\n" +
+                "    CS5Y(B) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][1]) + " + " + format(DeltaY_CS5_B/1000, '.3f') + " = " + 
+                format(CS5YB, '.3f') + "\n\n" +
+                "Calculated using triangle point C:\n" +
+                "    CS5X(C) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][0]) + " + " + format(DeltaX_CS5_C/1000, '.3f') + " = " + 
+                format(CS5XC, '.3f') + "\n" +
+                "    CS5Y(C) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][1]) + " + " + format(DeltaY_CS5_C/1000, '.3f') + " = " + 
+                format(CS5YC, '.3f') + "\n\n" +
                          
-                        "Using: Center Pixel CS5 Location (mm) = Nominal CS5 + DeltaCS5\n\n" +
-                         "    CS5X Sensor Center(A) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][0]) + " + " + format(DeltaX_CS5_A_Sensor_Center/1000, '.3f') + " = " + 
-                         format(CS5XA_Sensor_Center, '.3f') + "\n" +
-                         "    CS5Y Sensor Center(A) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][1]) + " + " + format(DeltaY_CS5_A_Sensor_Center/1000, '.3f') + " = " + 
-                         format(CS5YA_Sensor_Center, '.3f') + "\n\n" +
-                         "    CS5X Sensor Center(B) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][0]) + " + " + format(DeltaX_CS5_B_Sensor_Center/1000, '.3f') + " = " + 
-                         format(CS5XB_Sensor_Center, '.3f') + "\n" +
-                         "    CS5Y Sensor Center(B) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][1]) + " + " + format(DeltaY_CS5_B_Sensor_Center/1000, '.3f') + " = " + 
-                         format(CS5YB_Sensor_Center, '.3f') + "\n\n" +
-                         "    CS5X Sensor Center(C) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][0]) + " + " + format(DeltaX_CS5_C_Sensor_Center/1000, '.3f') + " = " + 
-                         format(CS5XC_Sensor_Center, '.3f') + "\n" +
-                         "    CS5Y Sensor Center(C) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][1]) + " + " + format(DeltaY_CS5_C_Sensor_Center/1000, '.3f') + " = " + 
-                         format(CS5YC_Sensor_Center, '.3f') + "\n\n"
-                        "CS5 CCD Sensor Center Average X (mm) = " + format(CS5XA_Sensor_Center + CS5XB_Sensor_Center + CS5XC_Sensor_Center, '.3f') + "\n" +
-                        "CS5 CCD Sensor Center Average Y (mm) = " + format(CS5YA_Sensor_Center + CS5YB_Sensor_Center + CS5YC_Sensor_Center, '.3f') + "\n\n") 
+                "Using: Center Pixel CS5 Location (mm) = Nominal CS5 + DeltaCS5\n\n" +
+                "    CS5X Sensor Center(A) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][0]) + " + " + format(DeltaX_CS5_A_Sensor_Center/1000, '.3f') + " = " + 
+                format(CS5XA_Sensor_Center, '.3f') + "\n" +
+                "    CS5Y Sensor Center(A) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][1]) + " + " + format(DeltaY_CS5_A_Sensor_Center/1000, '.3f') + " = " + 
+                format(CS5YA_Sensor_Center, '.3f') + "\n\n" +
+                "    CS5X Sensor Center(B) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][0]) + " + " + format(DeltaX_CS5_B_Sensor_Center/1000, '.3f') + " = " + 
+                format(CS5XB_Sensor_Center, '.3f') + "\n" +
+                "    CS5Y Sensor Center(B) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][1]) + " + " + format(DeltaY_CS5_B_Sensor_Center/1000, '.3f') + " = " + 
+                format(CS5YB_Sensor_Center, '.3f') + "\n\n" +
+                "    CS5X Sensor Center(C) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][0]) + " + " + format(DeltaX_CS5_C_Sensor_Center/1000, '.3f') + " = " + 
+                format(CS5XC_Sensor_Center, '.3f') + "\n" +
+                "    CS5Y Sensor Center(C) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][1]) + " + " + format(DeltaY_CS5_C_Sensor_Center/1000, '.3f') + " = " + 
+                format(CS5YC_Sensor_Center, '.3f') + "\n\n"
+                "CS5 CCD Sensor Center Average X (mm) = " + format((CS5XA_Sensor_Center + CS5XB_Sensor_Center + CS5XC_Sensor_Center)/3, '.3f') + "\n" +
+                "CS5 CCD Sensor Center Average Y (mm) = " + format((CS5YA_Sensor_Center + CS5YB_Sensor_Center + CS5YC_Sensor_Center)/3, '.3f') + "\n\n") 
+            
+            elif self.CCDSelection == "ECCD" or "WCCD":
+                faah.pageLogging(consoleLog, logFile, "Using: Target Pixel CS5 Location (mm) = Nominal CS5 + DeltaCS5\n" +
+                "Calculated using triangle point A:\n" +
+                "    CS5X(A) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][0]) + " + " + format(DeltaY_CS5_A/1000, '.3f') + " = " + 
+                format(CS5XA, '.3f') + "\n" +
+                "    CS5Y(A) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][1]) + " + " + format(DeltaX_CS5_A/1000, '.3f') + " = " + 
+                format(CS5YA, '.3f') + "\n\n" +
+                "Calculated using triangle point B:\n" +
+                "    CS5X(B) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][0]) + " + " + format(DeltaY_CS5_B/1000, '.3f') + " = " + 
+                format(CS5XB, '.3f') + "\n" +
+                "    CS5Y(B) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][1]) + " + " + format(DeltaX_CS5_B/1000, '.3f') + " = " + 
+                format(CS5YB, '.3f') + "\n\n" +
+                "Calculated using triangle point C:\n" +
+                "    CS5X(C) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][0]) + " + " + format(DeltaY_CS5_C/1000, '.3f') + " = " + 
+                format(CS5XC, '.3f') + "\n" +
+                "    CS5Y(C) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][1]) + " + " + format(DeltaX_CS5_C/1000, '.3f') + " = " + 
+                format(CS5YC, '.3f') + "\n\n" +
+                         
+                "Using: Center Pixel CS5 Location (mm) = Nominal CS5 + DeltaCS5\n\n" +
+                "    CS5X Sensor Center(A) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][0]) + " + " + format(DeltaY_CS5_A_Sensor_Center/1000, '.3f') + " = " + 
+                format(CS5XA_Sensor_Center, '.3f') + "\n" +
+                "    CS5Y Sensor Center(A) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][1]) + " + " + format(DeltaX_CS5_A_Sensor_Center/1000, '.3f') + " = " + 
+                format(CS5YA_Sensor_Center, '.3f') + "\n\n" +
+                "    CS5X Sensor Center(B) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][0]) + " + " + format(DeltaY_CS5_B_Sensor_Center/1000, '.3f') + " = " + 
+                format(CS5XB_Sensor_Center, '.3f') + "\n" +
+                "    CS5Y Sensor Center(B) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][1]) + " + " + format(DeltaX_CS5_B_Sensor_Center/1000, '.3f') + " = " + 
+                format(CS5YB_Sensor_Center, '.3f') + "\n\n" +
+                "    CS5X Sensor Center(C) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][0]) + " + " + format(DeltaY_CS5_C_Sensor_Center/1000, '.3f') + " = " + 
+                format(CS5XC_Sensor_Center, '.3f') + "\n" +
+                "    CS5Y Sensor Center(C) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][1]) + " + " + format(DeltaX_CS5_C_Sensor_Center/1000, '.3f') + " = " + 
+                format(CS5YC_Sensor_Center, '.3f') + "\n\n"
+                "CS5 CCD Sensor Center Average X (mm) = " + format((CS5XA_Sensor_Center + CS5XB_Sensor_Center + CS5XC_Sensor_Center)/3, '.3f') + "\n" +
+                "CS5 CCD Sensor Center Average Y (mm) = " + format((CS5YA_Sensor_Center + CS5YB_Sensor_Center + CS5YC_Sensor_Center)/3, '.3f') + "\n\n") 
+                                
+            else:
+                faah.pageLogging(consoleLog, logFile, "Error with CCD label selection print")
                
         else:
             faah.pageLogging(consoleLog, logFile, "Rz = 0: no rotational transform needed.")
@@ -512,11 +553,13 @@ class checkCameraOriginLocation(object):
                 CS5YB_Sensor_Center = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][1] + DeltaX_CS5_B_Sensor_Center/1000
             
                 CS5XC_Sensor_Center = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][0] + DeltaY_CS5_C_Sensor_Center/1000
-                CS5YC_Sensor_Center = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][1] + DeltaX_CS5_C_Sensor_Center/1000 
-            
+                CS5YC_Sensor_Center = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][1] + DeltaX_CS5_C_Sensor_Center/1000                  
+                   
+            else:
+                faah.pageLogging(consoleLog, logFile, "Error with CCD label selection")                  
             
             faah.pageLogging(consoleLog, logFile, "\nMove to pixel (" + str(self.pixelDistanceToCheckPointX) + ", " + str(self.pixelDistanceToCheckPointY) + ")\n\n" +
-                         "Using: ((centroid(pixel)) + planetModeOffset) +/- targetPixel(pixel)) * pixelSize\n" +
+                         "Using: ((centroid(pixel) + planetModeOffset) +/- targetPixel(pixel)) * pixelSize\n" +
                          "Distance in SBIGXL frame (mm):\n" +
                          "    DeltaX_SBIGXL_A = (" + format(xCenGMSA , '.3f') +  " + " + format(xOffsetA, '.3f') + ") - " + str(self.pixelDistanceToCheckPointX) + ") * " + str(pixelSize/1000) + " = " + format(DeltaX_SBIGXL_A/1000, '.3f') + "\n" +
                          "    DeltaY_SBIGXL_A = (" + format(yCenGMSA , '.3f') +  " + " + format(yOffsetA, '.3f') + ") - " + str(self.pixelDistanceToCheckPointY) + ") * " + str(pixelSize/1000) + " = " + format(DeltaY_SBIGXL_A/1000, '.3f') + "\n\n" +
@@ -525,47 +568,85 @@ class checkCameraOriginLocation(object):
                          "    DeltaX_SBIGXL_C = (" + format(xCenGMSC , '.3f') +  " + " + format(xOffsetC, '.3f') + ") - " + str(self.pixelDistanceToCheckPointX) + ") * " + str(pixelSize/1000) + " = " + format(DeltaX_SBIGXL_C/1000, '.3f') + "\n" +
                          "    DeltaY_SBIGXL_C = (" + format(yCenGMSC , '.3f') +  " + " + format(yOffsetC, '.3f') + ") - " + str(self.pixelDistanceToCheckPointY) + ") * " + str(pixelSize/1000) + " = " + format(DeltaY_SBIGXL_C/1000, '.3f') + "\n\n" +
                          
-                         "Using: No Rotational Coordinate Transform\n" + "DeltaX_CS5 = DeltaX_SBIGXL\nDeltaY_CS5 = DeltaX_SBIGXL\n" +
+                         "Using: Rotational Coordinate Transform\n" + "       DeltaX_CS5 = (DeltaX_SBIGXL * cos(Rz)) - (DeltaY_SBIGXL * sin(Rz))\n       DeltaY_CS5 = (DeltaX_SBIGXL * sin(Rz)) + (DeltaY_SBIGXL * cos(Rz))\n\n" +
                          "Distance in CS5 frame (mm):\n" +
-                         "    DeltaX_CS5_A = DeltaX_SBIGXL_A = " + format(DeltaX_CS5_A/1000 , '.3f') + "\n" +
-                         "    DeltaY_CS5_A = DeltaY_SBIGXL_A = " + format(DeltaY_CS5_A/1000 , '.3f') + "\n\n" +
-                         "    DeltaX_CS5_B = DeltaX_SBIGXL_B = " + format(DeltaX_CS5_B/1000 , '.3f') + "\n" +
-                         "    DeltaY_CS5_B = DeltaY_SBIGXL_B = " + format(DeltaY_CS5_B/1000 , '.3f') + "\n\n" +
-                         "    DeltaX_CS5_C = DeltaX_SBIGXL_C = " + format(DeltaX_CS5_C/1000 , '.3f') + "\n" +
-                         "    DeltaY_CS5_C = DeltaY_SBIGXL_C = " + format(DeltaY_CS5_C/1000 , '.3f') + "\n\n" +
+                         "    DeltaX_CS5_A = (" + format(DeltaX_SBIGXL_A/1000, '.3f') + " * " + format(np.cos(math.radians(angleRz)), '.3f') + ") - (" + format(DeltaY_SBIGXL_A/1000, '.3f') + " * " + format(np.sin(math.radians(angleRz)), '.3f') + ") = "+ format(DeltaX_CS5_A/1000, '.3f') +"\n" +
+                         "    DeltaY_CS5_A = (" + format(DeltaX_SBIGXL_A/1000, '.3f') + " * " + format(np.sin(math.radians(angleRz)), '.3f') + ") + (" + format(DeltaY_SBIGXL_A/1000, '.3f') + " * " + format(np.cos(math.radians(angleRz)), '.3f') + ") = "+ format(DeltaY_CS5_A/1000, '.3f') +"\n\n" +
+                         "    DeltaX_CS5_B = (" + format(DeltaX_SBIGXL_B/1000, '.3f') + " * " + format(np.cos(math.radians(angleRz)), '.3f') + ") - (" + format(DeltaY_SBIGXL_B/1000, '.3f') + " * " + format(np.sin(math.radians(angleRz)), '.3f') + ") = "+ format(DeltaX_CS5_B/1000, '.3f') +"\n" +
+                         "    DeltaY_CS5_B = (" + format(DeltaX_SBIGXL_B/1000, '.3f') + " * " + format(np.sin(math.radians(angleRz)), '.3f') + ") + (" + format(DeltaY_SBIGXL_B/1000, '.3f') + " * " + format(np.cos(math.radians(angleRz)), '.3f') + ") = "+ format(DeltaY_CS5_B/1000, '.3f') +"\n\n" +
+                         "    DeltaX_CS5_C = (" + format(DeltaX_SBIGXL_C/1000, '.3f') + " * " + format(np.cos(math.radians(angleRz)), '.3f') + ") - (" + format(DeltaY_SBIGXL_C/1000, '.3f') + " * " + format(np.sin(math.radians(angleRz)), '.3f') + ") = "+ format(DeltaX_CS5_C/1000, '.3f') +"\n" +
+                         "    DeltaY_CS5_C = (" + format(DeltaX_SBIGXL_C/1000, '.3f') + " * " + format(np.sin(math.radians(angleRz)), '.3f') + ") + (" + format(DeltaY_SBIGXL_C/1000, '.3f') + " * " + format(np.cos(math.radians(angleRz)), '.3f') + ") = "+ format(DeltaY_CS5_C/1000, '.3f') +"\n\n")
                          
-                         "Using: Target Pixel CS5 Location (mm) = Nominal CS5 + DeltaCS5\n" +
-                         "Calculated using triangle point A:\n" +
-                         "    CS5X(A) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][0]) + " + " + format(DeltaX_CS5_A/1000, '.3f') + " = " + 
-                         format(CS5XA, '.3f') + "\n" +
-                         "    CS5Y(A) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][1]) + " + " + format(DeltaY_CS5_A/1000, '.3f') + " = " + 
-                         format(CS5YA, '.3f') + "\n\n" +
-                         "Calculated using triangle point B:\n" +
-                         "    CS5X(B) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][0]) + " + " + format(DeltaX_CS5_B/1000, '.3f') + " = " + 
-                         format(CS5XB, '.3f') + "\n" +
-                         "    CS5Y(B) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][1]) + " + " + format(DeltaY_CS5_B/1000, '.3f') + " = " + 
-                         format(CS5YB, '.3f') + "\n\n" +
-                         "Calculated using triangle point C:\n" +
-                         "    CS5X(C) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][0]) + " + " + format(DeltaX_CS5_C/1000, '.3f') + " = " + 
-                         format(CS5XC, '.3f') + "\n" +
-                         "    CS5Y(C) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][1]) + " + " + format(DeltaY_CS5_C/1000, '.3f') + " = " + 
-                         format(CS5YC, '.3f') + "\n\n" +
+            if self.CCDSelection == "CCCD" or "SCCD" or "NCCD":
+                faah.pageLogging(consoleLog, logFile, "Using: Target Pixel CS5 Location (mm) = Nominal CS5 + DeltaCS5\n" +
+                "Calculated using triangle point A:\n" +
+                "    CS5X(A) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][0]) + " + " + format(DeltaX_CS5_A/1000, '.3f') + " = " + 
+                format(CS5XA, '.3f') + "\n" +
+                "    CS5Y(A) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][1]) + " + " + format(DeltaY_CS5_A/1000, '.3f') + " = " + 
+                format(CS5YA, '.3f') + "\n\n" +
+                "Calculated using triangle point B:\n" +
+                "    CS5X(B) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][0]) + " + " + format(DeltaX_CS5_B/1000, '.3f') + " = " + 
+                format(CS5XB, '.3f') + "\n" +
+                "    CS5Y(B) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][1]) + " + " + format(DeltaY_CS5_B/1000, '.3f') + " = " + 
+                format(CS5YB, '.3f') + "\n\n" +
+                "Calculated using triangle point C:\n" +
+                "    CS5X(C) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][0]) + " + " + format(DeltaX_CS5_C/1000, '.3f') + " = " + 
+                format(CS5XC, '.3f') + "\n" +
+                "    CS5Y(C) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][1]) + " + " + format(DeltaY_CS5_C/1000, '.3f') + " = " + 
+                format(CS5YC, '.3f') + "\n\n" +
                          
-                        "Using: Center Pixel CS5 Location (mm) = Nominal CS5 + DeltaCS5\n\n" +
-                         "    CS5X Sensor Center(A) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][0]) + " + " + format(DeltaX_CS5_A_Sensor_Center/1000, '.3f') + " = " + 
-                         format(CS5XA_Sensor_Center, '.3f') + "\n" +
-                         "    CS5Y Sensor Center(A) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][1]) + " + " + format(DeltaY_CS5_A_Sensor_Center/1000, '.3f') + " = " + 
-                         format(CS5YA_Sensor_Center, '.3f') + "\n\n" +
-                         "    CS5X Sensor Center(B) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][0]) + " + " + format(DeltaX_CS5_B_Sensor_Center/1000, '.3f') + " = " + 
-                         format(CS5XB_Sensor_Center, '.3f') + "\n" +
-                         "    CS5Y Sensor Center(B) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][1]) + " + " + format(DeltaY_CS5_B_Sensor_Center/1000, '.3f') + " = " + 
-                         format(CS5YB_Sensor_Center, '.3f') + "\n\n" +
-                         "    CS5X Sensor Center(C) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][0]) + " + " + format(DeltaX_CS5_C_Sensor_Center/1000, '.3f') + " = " + 
-                         format(CS5XC_Sensor_Center, '.3f') + "\n" +
-                         "    CS5Y Sensor Center(C) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][1]) + " + " + format(DeltaY_CS5_C_Sensor_Center/1000, '.3f') + " = " + 
-                         format(CS5YC_Sensor_Center, '.3f') + "\n\n"
-                        "CS5 CCD Sensor Center Average X (mm) = " + format(CS5XA_Sensor_Center + CS5XB_Sensor_Center + CS5XC_Sensor_Center, '.3f') + "\n" +
-                        "CS5 CCD Sensor Center Average Y (mm) = " + format(CS5YA_Sensor_Center + CS5YB_Sensor_Center + CS5YC_Sensor_Center, '.3f') + "\n\n") 
+                "Using: Center Pixel CS5 Location (mm) = Nominal CS5 + DeltaCS5\n\n" +
+                "    CS5X Sensor Center(A) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][0]) + " + " + format(DeltaX_CS5_A_Sensor_Center/1000, '.3f') + " = " + 
+                format(CS5XA_Sensor_Center, '.3f') + "\n" +
+                "    CS5Y Sensor Center(A) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][1]) + " + " + format(DeltaY_CS5_A_Sensor_Center/1000, '.3f') + " = " + 
+                format(CS5YA_Sensor_Center, '.3f') + "\n\n" +
+                "    CS5X Sensor Center(B) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][0]) + " + " + format(DeltaX_CS5_B_Sensor_Center/1000, '.3f') + " = " + 
+                format(CS5XB_Sensor_Center, '.3f') + "\n" +
+                "    CS5Y Sensor Center(B) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][1]) + " + " + format(DeltaY_CS5_B_Sensor_Center/1000, '.3f') + " = " + 
+                format(CS5YB_Sensor_Center, '.3f') + "\n\n" +
+                "    CS5X Sensor Center(C) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][0]) + " + " + format(DeltaX_CS5_C_Sensor_Center/1000, '.3f') + " = " + 
+                format(CS5XC_Sensor_Center, '.3f') + "\n" +
+                "    CS5Y Sensor Center(C) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][1]) + " + " + format(DeltaY_CS5_C_Sensor_Center/1000, '.3f') + " = " + 
+                format(CS5YC_Sensor_Center, '.3f') + "\n\n"
+                "CS5 CCD Sensor Center Average X (mm) = " + format((CS5XA_Sensor_Center + CS5XB_Sensor_Center + CS5XC_Sensor_Center)/3, '.3f') + "\n" +
+                "CS5 CCD Sensor Center Average Y (mm) = " + format((CS5YA_Sensor_Center + CS5YB_Sensor_Center + CS5YC_Sensor_Center)/3, '.3f') + "\n\n") 
+            
+            elif self.CCDSelection == "ECCD" or "WCCD":
+                faah.pageLogging(consoleLog, logFile, "Using: Target Pixel CS5 Location (mm) = Nominal CS5 + DeltaCS5\n" +
+                "Calculated using triangle point A:\n" +
+                "    CS5X(A) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][0]) + " + " + format(DeltaY_CS5_A/1000, '.3f') + " = " + 
+                format(CS5XA, '.3f') + "\n" +
+                "    CS5Y(A) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][1]) + " + " + format(DeltaX_CS5_A/1000, '.3f') + " = " + 
+                format(CS5YA, '.3f') + "\n\n" +
+                "Calculated using triangle point B:\n" +
+                "    CS5X(B) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][0]) + " + " + format(DeltaY_CS5_B/1000, '.3f') + " = " + 
+                format(CS5XB, '.3f') + "\n" +
+                "    CS5Y(B) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][1]) + " + " + format(DeltaX_CS5_B/1000, '.3f') + " = " + 
+                format(CS5YB, '.3f') + "\n\n" +
+                "Calculated using triangle point C:\n" +
+                "    CS5X(C) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][0]) + " + " + format(DeltaY_CS5_C/1000, '.3f') + " = " + 
+                format(CS5XC, '.3f') + "\n" +
+                "    CS5Y(C) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][1]) + " + " + format(DeltaX_CS5_C/1000, '.3f') + " = " + 
+                format(CS5YC, '.3f') + "\n\n" +
+                         
+                "Using: Center Pixel CS5 Location (mm) = Nominal CS5 + DeltaCS5\n\n" +
+                "    CS5X Sensor Center(A) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][0]) + " + " + format(DeltaY_CS5_A_Sensor_Center/1000, '.3f') + " = " + 
+                format(CS5XA_Sensor_Center, '.3f') + "\n" +
+                "    CS5Y Sensor Center(A) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][1]) + " + " + format(DeltaX_CS5_A_Sensor_Center/1000, '.3f') + " = " + 
+                format(CS5YA_Sensor_Center, '.3f') + "\n\n" +
+                "    CS5X Sensor Center(B) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][0]) + " + " + format(DeltaY_CS5_B_Sensor_Center/1000, '.3f') + " = " + 
+                format(CS5XB_Sensor_Center, '.3f') + "\n" +
+                "    CS5Y Sensor Center(B) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][1]) + " + " + format(DeltaX_CS5_B_Sensor_Center/1000, '.3f') + " = " + 
+                format(CS5YB_Sensor_Center, '.3f') + "\n\n" +
+                "    CS5X Sensor Center(C) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][0]) + " + " + format(DeltaY_CS5_C_Sensor_Center/1000, '.3f') + " = " + 
+                format(CS5XC_Sensor_Center, '.3f') + "\n" +
+                "    CS5Y Sensor Center(C) (mm) = " + str(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][1]) + " + " + format(DeltaX_CS5_C_Sensor_Center/1000, '.3f') + " = " + 
+                format(CS5YC_Sensor_Center, '.3f') + "\n\n"
+                "CS5 CCD Sensor Center Average X (mm) = " + format((CS5XA_Sensor_Center + CS5XB_Sensor_Center + CS5XC_Sensor_Center)/3, '.3f') + "\n" +
+                "CS5 CCD Sensor Center Average Y (mm) = " + format((CS5YA_Sensor_Center + CS5YB_Sensor_Center + CS5YC_Sensor_Center)/3, '.3f') + "\n\n") 
+                                
+            else:
+                faah.pageLogging(consoleLog, logFile, "Error with CCD label selection print")
         
         ###########################################################################
         ###Image (pixelDistanceToCheckPointX, pixelDistanceToCheckPointY) with SBIGXL
