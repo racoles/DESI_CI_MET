@@ -1,7 +1,7 @@
 '''
 @title checkCameraOriginLocation
 @author: Rebecca Coles
-Updated on June 18, 2018
+Updated on July 25, 2018
 Created on Mar 22, 2018
 
 checkCameraOriginLocation
@@ -49,7 +49,7 @@ class checkCameraOriginLocation(object):
         Constructor
         '''
         
-    def checkCameraOriginLocation(self, consoleLog, logFile, CCDLabel):
+    def checkCameraOriginLocation(self, consoleLog, logFile):
         '''
         Find the location of the CI camera's sensor origin in CS5 and instruct the user to view 
         the origin with the DMM to ensure that the tip/tilt/focus pinhole triangle was placed properly
@@ -139,8 +139,8 @@ class checkCameraOriginLocation(object):
         #Get location of pinhole image in (rows, columns)
         cF = centroidFIF()
         _ , subArrayBoxSizeA, maxLocA = cF.findFIFInImage(imageArray4DA[aa])
-        _ , subArrayBoxSizeB, maxLocB = cF.findFIFInImage(imageArray4DA[bb])
-        _ , subArrayBoxSizeC, maxLocC = cF.findFIFInImage(imageArray4DA[cc])
+        _ , subArrayBoxSizeB, maxLocB = cF.findFIFInImage(imageArray4DB[bb])
+        _ , subArrayBoxSizeC, maxLocC = cF.findFIFInImage(imageArray4DC[cc])
         
         #Account for planet mode
         pM = CCDOpsPlanetMode()
@@ -187,40 +187,7 @@ class checkCameraOriginLocation(object):
         DeltaY_SBIGXL_B_Sensor_Center = ((yCenGMSB + yOffsetB) - self.pixelDistanceToCenterY) * pixelSize
         
         DeltaX_SBIGXL_C_Sensor_Center = ((xCenGMSC + xOffsetC) - self.pixelDistanceToCenterX) * pixelSize
-        DeltaY_SBIGXL_C_Sensor_Center = ((yCenGMSC + yOffsetC) - self.pixelDistanceToCenterY) * pixelSize
-        
-        #X(A)
-        #if (xCenGMSA + xOffsetA) <= self.pixelDistanceToCenterX:
-        #    DeltaX_SBIGXL_A_Sensor_Center = (self.pixelDistanceToCenterX - (xCenGMSA + xOffsetA)) * pixelSize
-        #else:
-        #    DeltaX_SBIGXL_A_Sensor_Center = ((xCenGMSA + xOffsetA) - self.pixelDistanceToCenterX) * pixelSize
-        #Y(A)
-        #if (yCenGMSA + yOffsetA) <= self.pixelDistanceToCenterY:
-        #    DeltaY_SBIGXL_A_Sensor_Center = (self.pixelDistanceToCenterY - (yCenGMSA + yOffsetA)) * pixelSize
-        #else:
-        #    DeltaY_SBIGXL_A_Sensor_Center = ((yCenGMSA + yOffsetA) - self.pixelDistanceToCenterY) * pixelSize
-            
-        #X(B)
-        #if (xCenGMSB + xOffsetB) <= self.pixelDistanceToCenterX:
-        #    DeltaX_SBIGXL_B_Sensor_Center = (self.pixelDistanceToCenterX - (xCenGMSB + xOffsetB)) * pixelSize
-        #else:
-        #    DeltaX_SBIGXL_B_Sensor_Center = ((xCenGMSB + xOffsetB) - self.pixelDistanceToCenterX) * pixelSize
-        #Y(B)
-        #if (yCenGMSB + yOffsetB) <= self.pixelDistanceToCenterY:
-        #    DeltaY_SBIGXL_B_Sensor_Center = (self.pixelDistanceToCenterY - (yCenGMSB + yOffsetB)) * pixelSize
-        #else:
-        #    DeltaY_SBIGXL_B_Sensor_Center = ((yCenGMSB + yOffsetB) - self.pixelDistanceToCenterY) * pixelSize
-            
-        #X(C)
-        #if (xCenGMSC + xOffsetC) <= self.pixelDistanceToCenterX:
-        #    DeltaX_SBIGXL_C_Sensor_Center = (self.pixelDistanceToCenterX - (xCenGMSC + xOffsetC)) * pixelSize
-        #else:
-        #   DeltaX_SBIGXL_C_Sensor_Center = ((xCenGMSC + xOffsetC) - self.pixelDistanceToCenterX) * pixelSize
-        #Y(C)
-        #if (yCenGMSC + yOffsetC) <= self.pixelDistanceToCenterY:
-        #    DeltaY_SBIGXL_C_Sensor_Center = (self.pixelDistanceToCenterY - (yCenGMSC + yOffsetC)) * pixelSize
-        #else:
-        #    DeltaY_SBIGXL_C_Sensor_Center = ((yCenGMSC + yOffsetC) - self.pixelDistanceToCenterY) * pixelSize      
+        DeltaY_SBIGXL_C_Sensor_Center = ((yCenGMSC + yOffsetC) - self.pixelDistanceToCenterY) * pixelSize   
         
         ###########################################################################
         ###Rotation Coordinate Transform from SBIG Coordinates to CS5 Coordinates
