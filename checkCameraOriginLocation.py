@@ -325,23 +325,44 @@ class checkCameraOriginLocation(object):
             DeltaX_CS5_C_Sensor_Center = (DeltaX_SBIGXL_C_Sensor_Center * np.cos(math.radians(angleRz))) + (DeltaY_SBIGXL_C_Sensor_Center * np.sin(math.radians(angleRz)))
             DeltaY_CS5_C_Sensor_Center = (-DeltaX_SBIGXL_C_Sensor_Center * np.sin(math.radians(angleRz))) + (DeltaY_SBIGXL_C_Sensor_Center * np.cos(math.radians(angleRz))) 
             
-            CS5XA = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][0] + DeltaX_CS5_A/1000
-            CS5YA = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][1] + DeltaY_CS5_A/1000
+                
+            if self.CCDSelection == "CCCD" or "SCCD" or "NCCD":
+                CS5XA = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][0] + DeltaX_CS5_A/1000
+                CS5YA = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][1] + DeltaY_CS5_A/1000
             
-            CS5XB = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][0] + DeltaX_CS5_B/1000
-            CS5YB = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][1] + DeltaY_CS5_B/1000
+                CS5XB = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][0] + DeltaX_CS5_B/1000
+                CS5YB = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][1] + DeltaY_CS5_B/1000
             
-            CS5XC = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][0] + DeltaX_CS5_C/1000
-            CS5YC = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][1] + DeltaY_CS5_C/1000
+                CS5XC = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][0] + DeltaX_CS5_C/1000
+                CS5YC = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][1] + DeltaY_CS5_C/1000
             
-            CS5XA_Sensor_Center = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][0] + DeltaX_CS5_A_Sensor_Center/1000
-            CS5YA_Sensor_Center = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][1] + DeltaY_CS5_A_Sensor_Center/1000
+                CS5XA_Sensor_Center = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][0] + DeltaX_CS5_A_Sensor_Center/1000
+                CS5YA_Sensor_Center = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][1] + DeltaY_CS5_A_Sensor_Center/1000
             
-            CS5XB_Sensor_Center = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][0] + DeltaX_CS5_B_Sensor_Center/1000
-            CS5YB_Sensor_Center = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][1] + DeltaY_CS5_B_Sensor_Center/1000
+                CS5XB_Sensor_Center = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][0] + DeltaX_CS5_B_Sensor_Center/1000
+                CS5YB_Sensor_Center = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][1] + DeltaY_CS5_B_Sensor_Center/1000
             
-            CS5XC_Sensor_Center = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][0] + DeltaX_CS5_C_Sensor_Center/1000
-            CS5YC_Sensor_Center = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][1] + DeltaY_CS5_C_Sensor_Center/1000
+                CS5XC_Sensor_Center = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][0] + DeltaX_CS5_C_Sensor_Center/1000
+                CS5YC_Sensor_Center = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][1] + DeltaY_CS5_C_Sensor_Center/1000  
+            
+            elif self.CCDSelection == "ECCD" or "WCCD":
+                CS5XA = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][0] + DeltaY_CS5_A/1000
+                CS5YA = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][1] + DeltaX_CS5_A/1000
+            
+                CS5XB = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][0] + DeltaY_CS5_B/1000
+                CS5YB = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][1] + DeltaX_CS5_B/1000
+            
+                CS5XC = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][0] + DeltaY_CS5_C/1000
+                CS5YC = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][1] + DeltaX_CS5_C/1000
+            
+                CS5XA_Sensor_Center = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][0] + DeltaY_CS5_A_Sensor_Center/1000
+                CS5YA_Sensor_Center = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][1] + DeltaX_CS5_A_Sensor_Center/1000
+            
+                CS5XB_Sensor_Center = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][0] + DeltaY_CS5_B_Sensor_Center/1000
+                CS5YB_Sensor_Center = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][1] + DeltaX_CS5_B_Sensor_Center/1000
+            
+                CS5XC_Sensor_Center = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][0] + DeltaY_CS5_C_Sensor_Center/1000
+                CS5YC_Sensor_Center = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][1] + DeltaX_CS5_C_Sensor_Center/1000 
             
             faah.pageLogging(consoleLog, logFile, "\nMove to pixel (" + str(self.pixelDistanceToCheckPointX) + ", " + str(self.pixelDistanceToCheckPointY) + ")\n\n" +
                          "Using: ((centroid(pixel)) + planetModeOffset) +/- targetPixel(pixel)) * pixelSize\n" +
@@ -416,23 +437,44 @@ class checkCameraOriginLocation(object):
             DeltaX_CS5_C_Sensor_Center = DeltaX_SBIGXL_C_Sensor_Center
             DeltaY_CS5_C_Sensor_Center = DeltaY_SBIGXL_C_Sensor_Center
          
-            CS5XA = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][0] + DeltaX_CS5_A/1000
-            CS5YA = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][1] + DeltaY_CS5_A/1000
+                
+            if self.CCDSelection == "CCCD" or "SCCD" or "NCCD":
+                CS5XA = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][0] + DeltaX_CS5_A/1000
+                CS5YA = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][1] + DeltaY_CS5_A/1000
             
-            CS5XB = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][0] + DeltaX_CS5_B/1000
-            CS5YB = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][1] + DeltaY_CS5_B/1000
+                CS5XB = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][0] + DeltaX_CS5_B/1000
+                CS5YB = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][1] + DeltaY_CS5_B/1000
             
-            CS5XC = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][0] + DeltaX_CS5_C/1000
-            CS5YC = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][1] + DeltaY_CS5_C/1000
+                CS5XC = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][0] + DeltaX_CS5_C/1000
+                CS5YC = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][1] + DeltaY_CS5_C/1000
             
-            CS5XA_Sensor_Center = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][0] + DeltaX_CS5_A_Sensor_Center/1000
-            CS5YA_Sensor_Center = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][1] + DeltaY_CS5_A_Sensor_Center/1000
+                CS5XA_Sensor_Center = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][0] + DeltaX_CS5_A_Sensor_Center/1000
+                CS5YA_Sensor_Center = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][1] + DeltaY_CS5_A_Sensor_Center/1000
             
-            CS5XB_Sensor_Center = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][0] + DeltaX_CS5_B_Sensor_Center/1000
-            CS5YB_Sensor_Center = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][1] + DeltaY_CS5_B_Sensor_Center/1000
+                CS5XB_Sensor_Center = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][0] + DeltaX_CS5_B_Sensor_Center/1000
+                CS5YB_Sensor_Center = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][1] + DeltaY_CS5_B_Sensor_Center/1000
             
-            CS5XC_Sensor_Center = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][0] + DeltaX_CS5_C_Sensor_Center/1000
-            CS5YC_Sensor_Center = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][1] + DeltaY_CS5_C_Sensor_Center/1000
+                CS5XC_Sensor_Center = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][0] + DeltaX_CS5_C_Sensor_Center/1000
+                CS5YC_Sensor_Center = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][1] + DeltaY_CS5_C_Sensor_Center/1000  
+            
+            elif self.CCDSelection == "ECCD" or "WCCD":
+                CS5XA = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][0] + DeltaY_CS5_A/1000
+                CS5YA = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][1] + DeltaX_CS5_A/1000
+            
+                CS5XB = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][0] + DeltaY_CS5_B/1000
+                CS5YB = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][1] + DeltaX_CS5_B/1000
+            
+                CS5XC = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][0] + DeltaY_CS5_C/1000
+                CS5YC = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][1] + DeltaX_CS5_C/1000
+            
+                CS5XA_Sensor_Center = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][0] + DeltaY_CS5_A_Sensor_Center/1000
+                CS5YA_Sensor_Center = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "A"][1] + DeltaX_CS5_A_Sensor_Center/1000
+            
+                CS5XB_Sensor_Center = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][0] + DeltaY_CS5_B_Sensor_Center/1000
+                CS5YB_Sensor_Center = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "B"][1] + DeltaX_CS5_B_Sensor_Center/1000
+            
+                CS5XC_Sensor_Center = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][0] + DeltaY_CS5_C_Sensor_Center/1000
+                CS5YC_Sensor_Center = fC.trianglePonitCCDLocationsCS5[self.CCDSelection + "C"][1] + DeltaX_CS5_C_Sensor_Center/1000 
             
             
             faah.pageLogging(consoleLog, logFile, "\nMove to pixel (" + str(self.pixelDistanceToCheckPointX) + ", " + str(self.pixelDistanceToCheckPointY) + ")\n\n" +
