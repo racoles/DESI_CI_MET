@@ -148,7 +148,7 @@ class inputGUI(object):
         ###########################################################################
         ###Create Calibration Directory
         ###########################################################################
-        self._createCalibrationDir(self)     
+        self._createCalibrationDir()     
                
     def _log_entry_field(self, noteBox, consoleLog, logFile):
         '''
