@@ -124,15 +124,15 @@ class tipTiltZCCD(object):
         faah.pageLogging(consoleLog, logFile, "WARNING: the " + str(CCDLabel) +" camera Z heights are not equal to the nominal height.\n" + 
                 "The current micrometer thread pitch is " + str(TTFThread) + "mm (= " + str(TTFThread*1000) + "um = 1/80 in)." + 
                 "\nTo adjust the camera to the nominal height, adjust the micrometers as:\n\n" + 
-                "Micrometer A: (" + format(Az, '.3f') + "um" + ")\n " + 
+                "Micrometer A: (" + format(Az, '.3f') + "um away from nominal" + ")\n " + 
                 "A(micrometer um) = " + format(Az_move, '.3f') + "um" +
                 #"\nA(degrees) = " + format(AturnDistanceDegrees, '.2f') + " degrees " + turnA + "\n" +
                 #"A(ticks) = " + format(AturnDistanceTicks, '.2f') + " ticks " + turnA + 
-                "\n\nMicrometer B: (" + format(Bz, '.3f') + "um" + ")\n " + 
+                "\n\nMicrometer B: (" + format(Bz, '.3f') + "um away from nominal" + ")\n " + 
                 "B(micrometer um) = " + format(Bz_move, '.3f') + "um" +
                 #"\nB(degrees) = " + format(BturnDistanceDegrees, '.2f') + " degrees " + turnB + "\n" +
                 #"B(ticks) = " + format(BturnDistanceTicks, '.2f') + " ticks " + turnB +              
-                "\n\nMicrometer C: (" + format(Cz, '.3f') + "um" + ") \n" + 
+                "\n\nMicrometer C: (" + format(Cz, '.3f') + "um away from nominal" + ") \n" + 
                 "C(micrometer um) = " + format(Cz_move, '.3f') + "um"                 ,warning = True)
                 #"\nC(degrees) = " + format(CturnDistanceDegrees, '.2f') + " degrees " + turnC + "\n" +
                 #"C(ticks) = " + format(CturnDistanceTicks, '.2f') + " ticks " + turnC, 
