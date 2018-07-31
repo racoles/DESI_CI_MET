@@ -266,9 +266,9 @@ class metManualMode(tk.Tk):
         nominalZB = fC.asphericFocalCurve(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'B'][0], fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'B'][1])
         nominalZC = fC.asphericFocalCurve(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'C'][0], fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'C'][1])
         
-        #Fore-shortening)
-        AX, AY, BX, BY, CX, CY = foreShortening(self.consoleLog, self.logFile, self.CCDSelection)
-        #also add pre-align mode
+        #Fore-shortening
+        fS = foreShortening()
+        AX, AY, BX, BY, CX, CY = fS.foreShortening(self.consoleLog, self.logFile, self.CCDSelection)
         
         #Point A      
         topA = tk.Toplevel()
