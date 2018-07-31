@@ -275,9 +275,10 @@ class metManualMode(tk.Tk):
         topA.title("CCD tip/tilt/Z Triangle Point A")
         aboutMessageA = str('Fill directory with images for point A:\n(' + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'A'][0], '.3f') + 
                             " mm ," + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'A'][1], '.3f') + " mm," + format(nominalZA, '.3f') + " um)" +
-                            "\n\nFore-shortened:\n(" + format(AX, '.3f') + " mm, " + format(AY, '.3f') + " mm, " + format(nominalZA, '.3f') + " um)" +
-                            "\n\nPre-alignment:\n(" + format(fC.trianglePonitCCDLocationsCS5['CCCDA'][0], '.3f') + " mm, " + format(fC.trianglePonitCCDLocationsCS5['CCCDA'][1], '.3f')
+                            "\nFore-shortened:\n(" + format(AX, '.3f') + " mm, " + format(AY, '.3f') + " mm, " + format(nominalZA, '.3f') + " um)" +
+                            "\nPre-alignment:\n(" + format(fC.trianglePonitCCDLocationsCS5['CCCDA'][0], '.3f') + " mm, " + format(fC.trianglePonitCCDLocationsCS5['CCCDA'][1], '.3f')
                              + " mm, " + format(nominalZA, '.3f') + " um)\n")
+        
         faah.pageLogging(self.consoleLog, self.logFile, aboutMessageA)
         msgA = tk.Message(topA, text=aboutMessageA)
         msgA.pack()
