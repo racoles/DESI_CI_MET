@@ -134,7 +134,7 @@ class metManualMode(tk.Tk):
         faah.pageLogging(self.consoleLog, self.logFile, 
                                       "Suggested " +  str(self.CCDSelection + ' ' + self.trianglePointSelection) + 
                                       " manual mode focus curve directory: \n" + str(os.getcwd()) + '\\' + dirName + 
-                                      "\nNOTE: the file names will be used to create the Z axis values (distance)\n" +
+                                      "\n\nNOTE: the file names will be used to create the Z axis values (distance)\n" +
                                         " so please label the FITS files appropriately\n" +
                                         "(example: 350.fit for the image taken at 350um).")  
         
