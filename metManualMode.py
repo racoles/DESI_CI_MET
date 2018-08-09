@@ -21,7 +21,6 @@ from tipTiltZCCD import tipTiltZCCD
 from CCDOpsPlanetMode import CCDOpsPlanetMode
 from centroidFIF import centroidFIF
 from alternateCentroidMethods import gmsCentroid
-from foreShortening import foreShortening
 ################################################################################################
 
 class metManualMode(tk.Tk):
@@ -266,18 +265,11 @@ class metManualMode(tk.Tk):
         nominalZB = fC.asphericFocalCurve(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'B'][0], fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'B'][1])
         nominalZC = fC.asphericFocalCurve(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'C'][0], fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'C'][1])
         
-        #Fore-shortening
-        fS = foreShortening()
-        AX, AY, BX, BY, CX, CY = fS.foreShortening(self.consoleLog, self.logFile, self.CCDSelection)
-        
         #Point A      
         topA = tk.Toplevel()
         topA.title("CCD tip/tilt/Z Triangle Point A")
         aboutMessageA = str('Fill directory with images for point A:\n(' + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'A'][0], '.3f') + 
-                            " mm ," + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'A'][1], '.3f') + " mm," + format(nominalZA, '.3f') + " um)" +
-                            "\nFore-shortened:\n(" + format(AX, '.3f') + " mm, " + format(AY, '.3f') + " mm, " + format(nominalZA, '.3f') + " um)" +
-                            "\nPre-alignment:\n(" + format(fC.trianglePonitCCDLocationsCS5['CCCDA'][0], '.3f') + " mm, " + format(fC.trianglePonitCCDLocationsCS5['CCCDA'][1], '.3f')
-                             + " mm, " + format(nominalZA, '.3f') + " um)\n")
+                            " mm ," + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'A'][1], '.3f') + " mm," + format(nominalZA, '.3f') + " um)\n")
         
         faah.pageLogging(self.consoleLog, self.logFile, aboutMessageA)
         msgA = tk.Message(topA, text=aboutMessageA)
@@ -291,10 +283,7 @@ class metManualMode(tk.Tk):
         topB = tk.Toplevel()
         topB.title("CCD tip/tilt/Z Triangle Point B")
         aboutMessageB = str('Fill directory with images for point B (' + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'B'][0], '.3f') + 
-                            " mm ," + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'B'][1], '.3f') + " mm," + format(nominalZB, '.3f') + " um)"
-                            "\n\nFore-shortened:\n(" + format(BX, '.3f') + " mm, " + format(BY, '.3f') + " mm, " + format(nominalZB, '.3f') + " um)" +
-                            "\n\nPre-alignment:\n(" + format(fC.trianglePonitCCDLocationsCS5['CCCDB'][0], '.3f') + " mm, " + format(fC.trianglePonitCCDLocationsCS5['CCCDB'][1], '.3f')
-                             + " mm, " + format(nominalZB, '.3f') + " um)\n")
+                            " mm ," + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'B'][1], '.3f') + " mm," + format(nominalZB, '.3f') + " um)\n")
         faah.pageLogging(self.consoleLog, self.logFile, aboutMessageB)
         msgB = tk.Message(topB, text=aboutMessageB)
         msgB.pack()
@@ -307,10 +296,7 @@ class metManualMode(tk.Tk):
         topC = tk.Toplevel()
         topC.title("CCD tip/tilt/Z Triangle Point C")
         aboutMessageC = str('Fill directory with images for point C (' + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'C'][0], '.3f') + 
-                            " mm ," + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'C'][1], '.3f') + " mm," + format(nominalZC, '.3f') + " um)"
-                            "\n\nFore-shortened:\n(" + format(CX, '.3f') + " mm, " + format(CY, '.3f') + " mm, " + format(nominalZC, '.3f') + " um)" +
-                            "\n\nPre-alignment:\n(" + format(fC.trianglePonitCCDLocationsCS5['CCCDC'][0], '.3f') + " mm, " + format(fC.trianglePonitCCDLocationsCS5['CCCDC'][1], '.3f')
-                             + " mm, " + format(nominalZC, '.3f') + " um)\n")
+                            " mm ," + format(fC.trianglePonitCCDLocationsCS5[self.CCDSelection + 'C'][1], '.3f') + " mm," + format(nominalZC, '.3f') + " um)\n")
         faah.pageLogging(self.consoleLog, self.logFile, aboutMessageC)
         msgC = tk.Message(topC, text=aboutMessageC)
         msgC.pack()
