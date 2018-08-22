@@ -39,9 +39,9 @@ Updated on Feb 21, 2017
 Created on Aug 18, 2018  
 
 Using external packages:  
-&npsp; astropy  
-&npsp; matplotlib  
-&npsp; opencv-python  
+astropy  
+matplotlib  
+opencv-python  
     
 Testing:  
     DESI_CI_MET_1.0: Haas Probe test (02/26/2018)  
