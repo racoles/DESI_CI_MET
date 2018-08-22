@@ -31,13 +31,11 @@ routines to locate a IF, or light from the 100um pinhole projected onto a camera
 position relative to the CS5 origin compared to the nominal position.
 
 ---
+## Testing Log
 
 Title: DESI_CI_MET 1.5
-
 Author: Rebecca Coles
-
 Updated on Feb 21, 2017
-
 Created on Aug 18, 2018
 
 Using external packages:
