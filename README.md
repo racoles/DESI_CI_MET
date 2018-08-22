@@ -62,7 +62,7 @@ Testing:
         
 ## Notes:
 
-BackFocus  
+BackFocus:
 &nbsp; &nbsp;Precision measurements of each camera's back focus is not necessary. Back focus measurements were only done to check that all 5 cameras are close to each other.
 
     We will measure the Z position of three points on each CCD as accurately as possible. 
