@@ -1,5 +1,5 @@
 # DESI-CI-MET
-Software for the DESI CI metrology program.
+## Software for the DESI CI metrology program.
 
 The DESI commissioning instrument (CI), will be used to commission the telescope control system, guiding, and
 the Aetin Optics System that maintains optical alignment. It will be used to characterize the image quality and
@@ -62,7 +62,7 @@ Testing:
         
 ---
         
-Notes:
+## Notes:
 
 BackFocus
     Precision measurements of each camera's back focus is not necessary. Back focus measurements were only done to check that all 5 cameras are close to each other.
