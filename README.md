@@ -30,10 +30,14 @@ To adjust the TTFs and IFs on the CI in the CS5 X-Y plane, the DESI CI metrology
 routines to locate a IF, or light from the 100um pinhole projected onto a camera CCD, in an image and find its
 position relative to the CS5 origin compared to the nominal position.
 
+---
 
 Title: DESI_CI_MET 1.5
+
 Author: Rebecca Coles
+
 Updated on Feb 21, 2017
+
 Created on Aug 18, 2018
 
 Using external packages:
@@ -55,6 +59,8 @@ Testing:
     DESI_CI_MET_1.5: Ometech DESI commissioning instrument metrology complete (08/15/2018-08/17/2018)  
         Sheffield Cordax RS70 DCC CMM – 40” x 50” x 40” with Renishaw AR1probe changer, PH10 head, PH7 probe. 
         CMM manager software with reverse engineering capabilities as well as automated scanning.
+        
+---
         
 Notes:
 
