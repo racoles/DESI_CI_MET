@@ -63,7 +63,7 @@ Testing:
 ## Notes:
 
 BackFocus  
-    Precision measurements of each camera's back focus is not necessary. Back focus measurements were only done to check that all 5 cameras are close to each other.
+&nbsp; &nbsp;Precision measurements of each camera's back focus is not necessary. Back focus measurements were only done to check that all 5 cameras are close to each other.
 
     We will measure the Z position of three points on each CCD as accurately as possible. 
     The 3 primary sources of error are:
@@ -74,6 +74,6 @@ BackFocus
     Therefore we should be able to meet the 50um Z spec for the CCDs
     
 Sensor -> TTF Baseplate Distance:  
-    The sensor to TTF baseplate distance (according to the SolidWorks model):  
-    C: 86.88mm  
-    N,E,S,W: 104.512mm  
+&nbsp; &nbsp;The sensor to TTF baseplate distance (according to the SolidWorks model):  
+&nbsp; &nbsp;C: 86.88mm  
+&nbsp; &nbsp;N,E,S,W: 104.512mm  
