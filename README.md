@@ -38,22 +38,22 @@ Author: Rebecca Coles
 Updated on Feb 21, 2017  
 Created on Aug 18, 2018  
 
-Using external packages:
-    astropy
-    matplotlib
-    opencv-python
+Using external packages:  
+    astropy  
+    matplotlib  
+    opencv-python  
     
 Testing:
-    DESI_CI_MET_1.0: Haas Probe test (02/26/2018)
-    DESI_CI_MET_1.1: Haas Software test (03/07/2018)
-    DESI_CI_MET_1.2: Haas Software test (03/27/2018-03/30/2018)
-    DESI_CI_MET_1.2: Haas Software test (04/23/2018) 
-    DESI_CI_MET_1.2: Haas Software test (04/27/2018)   
-    DESI_CI_MET_1.3: Haas Software test (04/30/2018)   
+    DESI_CI_MET_1.0: Haas Probe test (02/26/2018)  
+    DESI_CI_MET_1.1: Haas Software test (03/07/2018)  
+    DESI_CI_MET_1.2: Haas Software test (03/27/2018-03/30/2018)  
+    DESI_CI_MET_1.2: Haas Software test (04/23/2018)   
+    DESI_CI_MET_1.2: Haas Software test (04/27/2018)  
+    DESI_CI_MET_1.3: Haas Software test (04/30/2018)     
     DESI_CI_MET_1.3: Haas Software test (05/02/2018)  
-    DESI_CI_MET_1.3: Haas DMM Magnification Test (05/03/2018)     
-    DESI_CI_MET_1.4: Haas Software test (05/31/2018-06/01/2018)
-    DESI_CI_MET_1.5: Ometech Software test (06/27/2018)
+    DESI_CI_MET_1.3: Haas DMM Magnification Test (05/03/2018)      
+    DESI_CI_MET_1.4: Haas Software test (05/31/2018-06/01/2018)  
+    DESI_CI_MET_1.5: Ometech Software test (06/27/2018)  
     DESI_CI_MET_1.5: Ometech DESI commissioning instrument metrology complete (08/15/2018-08/17/2018)  
         Sheffield Cordax RS70 DCC CMM – 40” x 50” x 40” with Renishaw AR1probe changer, PH10 head, PH7 probe. 
         CMM manager software with reverse engineering capabilities as well as automated scanning.
