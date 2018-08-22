@@ -55,7 +55,7 @@ Testing:
 &nbsp; &nbsp;DESI_CI_MET_1.4: Haas Software test (05/31/2018-06/01/2018)  
 &nbsp; &nbsp;DESI_CI_MET_1.5: Ometech Software test (06/27/2018)  
 &nbsp; &nbsp;DESI_CI_MET_1.5: Ometech DESI commissioning instrument metrology complete (08/15/2018-08/17/2018)  
-&nbsp; &nbsp;&nbsp; &nbsp;Sheffield Cordax RS70 DCC CMM – 40” x 50” x 40” with Renishaw AR1probe changer, PH10 head, PH7 probe. 
+&nbsp; &nbsp;&nbsp; &nbsp;Sheffield Cordax RS70 DCC CMM – 40” x 50” x 40” with Renishaw AR1probe changer, PH10 head, PH7 probe.   
 &nbsp; &nbsp;&nbsp; &nbsp;CMM manager software with reverse engineering capabilities as well as automated scanning.
         
 ---
