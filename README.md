@@ -43,7 +43,7 @@ Using external packages:
     matplotlib  
     opencv-python  
     
-Testing:
+Testing:  
     DESI_CI_MET_1.0: Haas Probe test (02/26/2018)  
     DESI_CI_MET_1.1: Haas Software test (03/07/2018)  
     DESI_CI_MET_1.2: Haas Software test (03/27/2018-03/30/2018)  
