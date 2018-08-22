@@ -33,15 +33,15 @@ position relative to the CS5 origin compared to the nominal position.
 ---
 ## Testing Log
 
-Title: DESI_CI_MET 1.5\s\s
-Author: Rebecca Coles\s\s
-Updated on Feb 21, 2017\s\s
-Created on Aug 18, 2018\s\s
+Title: DESI_CI_MET 1.5  
+Author: Rebecca Coles  
+Updated on Feb 21, 2017  
+Created on Aug 18, 2018  
 
-Using external packages:\s\s
-    astropy\s\s
-    matplotlib\s\s
-    opencv-python\s\s
+Using external packages:
+    astropy
+    matplotlib
+    opencv-python
     
 Testing:
     DESI_CI_MET_1.0: Haas Probe test (02/26/2018)
