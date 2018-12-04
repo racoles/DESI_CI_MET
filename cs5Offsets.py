@@ -1,7 +1,7 @@
 '''
 @title cs5Offsets
 @author: Rebecca Coles
-Updated on Mar 21, 2018
+Updated on Dec 04, 2018
 Created on Feb 14, 2018
 
 cs5Offsets
@@ -22,8 +22,11 @@ from alternateCentroidMethods import gmsCentroid
 class cs5Offsets(object):
     
     #Pinhole Image Distnce To Sensor Origin (0,0) Defaults (tested in lab to find the location of the 100um pinhole in an STi image)
-    PIDTSO_x = 293.48
-    PIDTSO_y = 205.93
+    #PIDTSO_x = 293.48
+    #PIDTSO_y = 205.93
+    
+    PIDTSO_x = 324.1
+    PIDTSO_y = 295.7
     
     #CS5 Point on CI Dowel from probe
     CPOCID_X = 0
